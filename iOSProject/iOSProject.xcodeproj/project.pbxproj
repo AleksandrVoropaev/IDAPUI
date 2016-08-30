@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		1F2B57CC1D7057D70026A944 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57CB1D7057D70026A944 /* main.m */; };
 		1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57CE1D7057D70026A944 /* AppDelegate.m */; };
-		1F2B57D21D7057D70026A944 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57D11D7057D70026A944 /* ViewController.m */; };
 		1F2B57D51D7057D70026A944 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2B57D31D7057D70026A944 /* Main.storyboard */; };
 		1F2B57D71D7057D70026A944 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2B57D61D7057D70026A944 /* Assets.xcassets */; };
 		1F2B57DA1D7057D70026A944 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2B57D81D7057D70026A944 /* LaunchScreen.storyboard */; };
 		1F2B57E51D7057D70026A944 /* iOSProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57E41D7057D70026A944 /* iOSProjectTests.m */; };
 		1F2B57F01D7057D70026A944 /* iOSProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */; };
+		1F36A94F1D74BB31006CEADD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F36A94D1D74BB31006CEADD /* ViewController.m */; };
+		1F36A9501D74BB31006CEADD /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F36A94E1D74BB31006CEADD /* ViewController.xib */; };
+		1F36A9531D74C9D5006CEADD /* AVLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F36A9521D74C9D5006CEADD /* AVLabelView.m */; };
+		1F36A9561D758C9A006CEADD /* AVDraggableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F36A9551D758C9A006CEADD /* AVDraggableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +42,6 @@
 		1F2B57CB1D7057D70026A944 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1F2B57CD1D7057D70026A944 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1F2B57CE1D7057D70026A944 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1F2B57D01D7057D70026A944 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1F2B57D11D7057D70026A944 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1F2B57D41D7057D70026A944 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F2B57D61D7057D70026A944 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F2B57D91D7057D70026A944 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +52,14 @@
 		1F2B57EB1D7057D70026A944 /* iOSProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSProjectUITests.m; sourceTree = "<group>"; };
 		1F2B57F11D7057D70026A944 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F2B57FD1D70822E0026A944 /* iOS Study Plan.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
+		1F36A94C1D74BB31006CEADD /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1F36A94D1D74BB31006CEADD /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1F36A94E1D74BB31006CEADD /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		1F36A9511D74C9D5006CEADD /* AVLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVLabelView.h; sourceTree = "<group>"; };
+		1F36A9521D74C9D5006CEADD /* AVLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVLabelView.m; sourceTree = "<group>"; };
+		1F36A9541D758C9A006CEADD /* AVDraggableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVDraggableView.h; sourceTree = "<group>"; };
+		1F36A9551D758C9A006CEADD /* AVDraggableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVDraggableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +94,7 @@
 				1F2B57E31D7057D70026A944 /* iOSProjectTests */,
 				1F2B57EE1D7057D70026A944 /* iOSProjectUITests */,
 				1F2B57C81D7057D70026A944 /* Products */,
+				1F2B57FD1D70822E0026A944 /* iOS Study Plan.txt */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,13 +113,18 @@
 			children = (
 				1F2B57CD1D7057D70026A944 /* AppDelegate.h */,
 				1F2B57CE1D7057D70026A944 /* AppDelegate.m */,
-				1F2B57D01D7057D70026A944 /* ViewController.h */,
-				1F2B57D11D7057D70026A944 /* ViewController.m */,
 				1F2B57D31D7057D70026A944 /* Main.storyboard */,
 				1F2B57D61D7057D70026A944 /* Assets.xcassets */,
 				1F2B57D81D7057D70026A944 /* LaunchScreen.storyboard */,
 				1F2B57DB1D7057D70026A944 /* Info.plist */,
 				1F2B57CA1D7057D70026A944 /* Supporting Files */,
+				1F36A94C1D74BB31006CEADD /* ViewController.h */,
+				1F36A94D1D74BB31006CEADD /* ViewController.m */,
+				1F36A94E1D74BB31006CEADD /* ViewController.xib */,
+				1F36A9511D74C9D5006CEADD /* AVLabelView.h */,
+				1F36A9521D74C9D5006CEADD /* AVLabelView.m */,
+				1F36A9541D758C9A006CEADD /* AVDraggableView.h */,
+				1F36A9551D758C9A006CEADD /* AVDraggableView.m */,
 			);
 			path = iOSProject;
 			sourceTree = "<group>";
@@ -244,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F2B57DA1D7057D70026A944 /* LaunchScreen.storyboard in Resources */,
+				1F36A9501D74BB31006CEADD /* ViewController.xib in Resources */,
 				1F2B57D71D7057D70026A944 /* Assets.xcassets in Resources */,
 				1F2B57D51D7057D70026A944 /* Main.storyboard in Resources */,
 			);
@@ -270,8 +286,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F2B57D21D7057D70026A944 /* ViewController.m in Sources */,
+				1F36A94F1D74BB31006CEADD /* ViewController.m in Sources */,
 				1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */,
+				1F36A9531D74C9D5006CEADD /* AVLabelView.m in Sources */,
+				1F36A9561D758C9A006CEADD /* AVDraggableView.m in Sources */,
 				1F2B57CC1D7057D70026A944 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,6 +514,7 @@
 				1F2B57F61D7057D70026A944 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1F2B57F71D7057D70026A944 /* Build configuration list for PBXNativeTarget "iOSProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +523,7 @@
 				1F2B57F91D7057D70026A944 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1F2B57FA1D7057D70026A944 /* Build configuration list for PBXNativeTarget "iOSProjectUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +532,7 @@
 				1F2B57FC1D7057D70026A944 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
