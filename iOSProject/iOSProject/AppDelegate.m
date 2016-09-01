@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "ViewController.h"
+#import "AVSquareMovingViewController.h"
 
 @interface AppDelegate ()
 
@@ -21,12 +21,10 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = window;
     
-    ViewController *controller = [ViewController new];
+    AVSquareMovingViewController *controller = [AVSquareMovingViewController new];
     window.rootViewController = controller;
-    window.backgroundColor = [UIColor redColor];
     [window makeKeyAndVisible];
     
-    controller.data = @"YEEP!";
     // Override point for customization after application launch.
     return YES;
 }
