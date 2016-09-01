@@ -15,4 +15,7 @@
 - (IBAction)onNextButton:(id)sender;
 - (IBAction)onRandomButton:(id)sender;
 
+- (IBAction)onRunButton:(id)sender;
+- (IBAction)onStopButton:(id)sender;
+
 @end

@@ -28,5 +28,6 @@ typedef enum {
 - (void)setSquarePosition:(AVSquareViewPositions)squarePosition
                  animated:(BOOL)animated
         completionHandler:(void(^)(BOOL finished))handler;
+- (void)setRandomSquarePosition:(NSTimer *)timer;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "AVSquareView.h"
 
+const NSTimeInterval kAVTimeInteerval = 0.2;
+
 @implementation AVSquareView
 
 //- (void)awakeFromNib {
@@ -76,7 +78,7 @@
     CGRect frame = self.frame;
     frame.origin = location;
     
-    [UIView animateWithDuration:0.1
+    [UIView animateWithDuration:kAVTimeInteerval
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
@@ -84,6 +86,10 @@
                      }
                      completion:handler];
     self.position = squarePosition;
+}
+
+- (void)setRandomSquarePosition:(NSTimer *)timer {
+    [self setSquarePosition:[self randomSquarePosition]];
 }
 
 @end
