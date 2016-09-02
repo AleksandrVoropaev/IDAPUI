@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "AVSquareMovingViewController.h"
+#import "AVUsersViewController.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +22,9 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = window;
     
-    AVSquareMovingViewController *controller = [AVSquareMovingViewController new];
+//    AVSquareMovingViewController *controller = [AVSquareMovingViewController new];
+    AVUsersViewController *controller = [AVUsersViewController new];
+
     window.rootViewController = controller;
     [window makeKeyAndVisible];
     
