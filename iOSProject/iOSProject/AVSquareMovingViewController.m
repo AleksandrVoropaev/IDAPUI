@@ -12,18 +12,10 @@ const NSTimeInterval kAVTimeInterval = .5;
 
 @interface AVSquareMovingViewController ()
 @property (nonatomic, readonly) AVSquareMovingView  *squareMovingView;
-@property (nonatomic, assign)   NSTimer             *timer;
 
 @end
 
 @implementation AVSquareMovingViewController
-
--(void)setTimer:(NSTimer *)timer {
-    if (_timer != timer) {
-        [_timer invalidate];
-        _timer = timer;
-    }
-}
 
 - (AVSquareMovingView *)squareMovingView {
     if ([self isViewLoaded] && [self.view isKindOfClass:[AVSquareMovingView class]]) {
@@ -44,23 +36,24 @@ const NSTimeInterval kAVTimeInterval = .5;
 }
 
 - (IBAction)onNextButton:(id)sender {
-    [self.squareMovingView.squareView setSquarePosition:[self.squareMovingView.squareView nextSquarePosition] animated:YES];
+    [self.squareMovingView.squareView setNextSquarePositionAnimated:YES];
 }
 
 - (IBAction)onRandomButton:(id)sender {
-    [self.squareMovingView.squareView setSquarePosition:[self.squareMovingView.squareView randomSquarePosition] animated:YES];
+    [self setRandomSquarePositionAnimated:YES];
 }
 
 - (IBAction)onRunButton:(id)sender {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:kAVTimeInterval
-                                                  target:self.squareMovingView.squareView
-                                                selector:@selector(setRandomSquarePosition:)
-                                                userInfo:nil
-                                                 repeats:YES];
+    self.squareMovingView.squareView.looping = YES;
+    [self setRandomSquarePositionAnimated:YES];
 }
 
 - (IBAction)onStopButton:(id)sender {
-    self.timer = nil;
+    self.squareMovingView.squareView.looping = NO;
+}
+
+- (void)setRandomSquarePositionAnimated:(BOOL)animated {
+    [self.squareMovingView.squareView setRandomSquarePositionAnimated:animated];
 }
 
 @end

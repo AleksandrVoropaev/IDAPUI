@@ -15,19 +15,22 @@ typedef enum {
     AVSquareViewPositionTopRight,
     AVSquareViewPositionBottomRight,
     AVSquareViewPositionBottomLeft,
-} AVSquareViewPositions;
+} AVSquareViewPosition;
 
 @interface AVSquareView : AVSquareMovingView
-@property (nonatomic, assign)   AVSquareViewPositions   position;
+@property (nonatomic, assign)   AVSquareViewPosition    squarePosition;
+@property (nonatomic, assign)   BOOL                    looping;
 
-- (AVSquareViewPositions)nextSquarePosition;
-- (AVSquareViewPositions)randomSquarePosition;
-- (void)setSquarePosition:(AVSquareViewPositions)squarePosition;
-- (void)setSquarePosition:(AVSquareViewPositions)squarePosition
+- (void)setSquarePosition:(AVSquareViewPosition)squarePosition
                  animated:(BOOL)animated;
-- (void)setSquarePosition:(AVSquareViewPositions)squarePosition
+- (void)setSquarePosition:(AVSquareViewPosition)squarePosition
                  animated:(BOOL)animated
         completionHandler:(void(^)(BOOL finished))handler;
-- (void)setRandomSquarePosition:(NSTimer *)timer;
+
+- (void)setRandomSquarePositionAnimated:(BOOL)animated;
+- (void)setNextSquarePositionAnimated:(BOOL)animated;
+
+- (AVSquareViewPosition)nextSquarePosition;
+- (AVSquareViewPosition)randomSquarePosition;
 
 @end
