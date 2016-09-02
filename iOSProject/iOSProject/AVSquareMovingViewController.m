@@ -10,12 +10,17 @@
 
 const NSTimeInterval kAVTimeInterval = .5;
 
-@interface AVSquareMovingViewController ()
-@property (nonatomic, readonly) AVSquareMovingView  *squareMovingView;
+//@interface AVSquareMovingViewController ()
+////@property (nonatomic, strong)   AVSquareMovingView  *squareMovingView;
+//AVViewStrongProperty(AVSquareMovingView, squareMovingView);
+//
+//@end
 
-@end
+AVViewPrivateInterfaceWithDynamicProperty(AVSquareMovingViewController, AVSquareMovingView, squareMovingView)
 
 @implementation AVSquareMovingViewController
+
+//@dynamic squareMovingView;
 
 - (AVSquareMovingView *)squareMovingView {
     if ([self isViewLoaded] && [self.view isKindOfClass:[AVSquareMovingView class]]) {

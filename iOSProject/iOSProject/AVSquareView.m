@@ -8,7 +8,7 @@
 
 #import "AVSquareView.h"
 
-const NSTimeInterval kAVTimeInteerval = 0.2;
+const NSTimeInterval kAVTimeInteerval = 0.7;
 
 @implementation AVSquareView
 
@@ -55,16 +55,17 @@ const NSTimeInterval kAVTimeInteerval = 0.2;
     CGRect frame = self.frame;
     frame.origin = [self squareLocationWithPosition:squarePosition];
     
-    __block BOOL looping = self.looping;
+    BOOL looping = self.looping;
     
     void(^animationCompletion)(BOOL finished) = ^(BOOL finished) {
         _squarePosition = squarePosition;
-        if (looping) {
-            [self setSquarePosition:squarePosition animated:animated completionHandler:handler];
-        }
         
         if (handler) {
             handler(finished);
+        }
+        
+        if (looping) {
+            [self setSquarePosition:squarePosition animated:animated completionHandler:handler];
         }
     };
     
@@ -78,7 +79,7 @@ const NSTimeInterval kAVTimeInteerval = 0.2;
                          completion:animationCompletion];
     } else {
         self.frame = frame;
-        animationCompletion(NO);
+        animationCompletion(YES);
     }
 }
 
