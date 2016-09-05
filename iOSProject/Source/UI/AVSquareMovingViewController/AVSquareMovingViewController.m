@@ -33,11 +33,13 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVSquareMovingViewController, AVSq
 }
 
 - (IBAction)onRunButton:(id)sender {
+//    self.squareMovingView.runButton.hidden = YES;
     self.squareMovingView.squareView.looping = YES;
 }
 
 - (IBAction)onStopButton:(id)sender {
     self.squareMovingView.squareView.looping = NO;
+//    self.squareMovingView.runButton.hidden = NO;
 }
 
 - (void)MoveToRandomSquarePositionAnimated:(BOOL)animated {

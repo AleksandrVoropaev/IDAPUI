@@ -14,5 +14,7 @@
 @property (nonatomic, strong)   IBOutlet AVSquareView   *squareView;
 @property (nonatomic, strong)   IBOutlet UIButton       *nextButton;
 @property (nonatomic, strong)   IBOutlet UIButton       *randomButton;
+@property (nonatomic, strong)   IBOutlet UIButton       *runButton;
+@property (nonatomic, strong)   IBOutlet UIButton       *stopButton;
 
 @end

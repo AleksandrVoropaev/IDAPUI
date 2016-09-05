@@ -8,9 +8,10 @@
 
 #import "AVSquareView.h"
 
-const NSTimeInterval kAVTimeInteerval = 7;
+const NSTimeInterval kAVTimeInteerval = .7;
 
 @interface AVSquareView ()
+@property (nonatomic, assign)   BOOL    running;
 
 - (AVSquareViewPosition)nextSquarePosition;
 - (AVSquareViewPosition)randomSquarePosition;
@@ -47,16 +48,35 @@ const NSTimeInterval kAVTimeInteerval = 7;
         _looping = looping;
     }
     
-    if (looping) {
+    if (looping && !self.running) {
         [self performAnimation];
     }
 }
 
+//- (void)performAnimation {
+//    do {
+//        if (self.running) {
+//            return;
+//        }
+//        
+//        self.running = YES;
+//        [self setSquarePosition:[self randomSquarePosition]
+//                       animated:YES
+//              completionHandler:^(BOOL finished) {
+//                  //          completionHandler:^() {
+//                  if (self.looping) {
+//                      [self performAnimation];
+//                  }
+//              }];
+//    } while (self.looping);
+//}
+
 - (void)performAnimation {
+    self.running = YES;
     [self setSquarePosition:[self randomSquarePosition]
                    animated:YES
           completionHandler:^(BOOL finished) {
-//          completionHandler:^() {
+              //          completionHandler:^() {
               if (self.looping) {
                   [self performAnimation];
               }
@@ -86,7 +106,8 @@ const NSTimeInterval kAVTimeInteerval = 7;
                      completion: ^(BOOL finished) {
                          _squarePosition = squarePosition;
                              if (handler) {
-                                 handler(finished);
+                                 handler(YES);
+                                 self.running = NO;
                              }
                      }];
 }
