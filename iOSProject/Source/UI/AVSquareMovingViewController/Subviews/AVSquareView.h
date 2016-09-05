@@ -10,11 +10,18 @@
 
 #import "AVSquareMovingView.h"
 
+#define CGWidth CGRectGetWidth
+#define CGHeight CGRectGetHeight
+
+#define AVSwitchCase(value, code) case value: { code } break;
+#define AVSwitchCaseDefault(code) default: { code } break;
+
 typedef enum {
     AVSquareViewPositionTopLeft,
     AVSquareViewPositionTopRight,
     AVSquareViewPositionBottomRight,
     AVSquareViewPositionBottomLeft,
+    AVSquareViewPositionCount,
 } AVSquareViewPosition;
 
 @interface AVSquareView : AVSquareMovingView
@@ -26,11 +33,9 @@ typedef enum {
 - (void)setSquarePosition:(AVSquareViewPosition)squarePosition
                  animated:(BOOL)animated
         completionHandler:(void(^)(BOOL finished))handler;
+//        completionHandler:(void(^)(void))handler;
 
-- (void)setRandomSquarePositionAnimated:(BOOL)animated;
-- (void)setNextSquarePositionAnimated:(BOOL)animated;
-
-- (AVSquareViewPosition)nextSquarePosition;
-- (AVSquareViewPosition)randomSquarePosition;
+- (void)moveToRandomSquarePositionAnimated:(BOOL)animated;
+- (void)moveToNextSquarePositionAnimated:(BOOL)animated;
 
 @end

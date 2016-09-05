@@ -8,31 +8,25 @@
 
 #import "AVSquareView.h"
 
-const NSTimeInterval kAVTimeInteerval = 0.7;
+const NSTimeInterval kAVTimeInteerval = 7;
+
+@interface AVSquareView ()
+
+- (AVSquareViewPosition)nextSquarePosition;
+- (AVSquareViewPosition)randomSquarePosition;
+
+@end
 
 @implementation AVSquareView
 
-//- (void)awakeFromNib {
-//    [super awakeFromNib];
-//    
-//    [self setPosition:AVSquareViewPositionTopLeft];
-//}
-
 - (AVSquareViewPosition)nextSquarePosition {
-    AVSquareViewPosition position = self.squarePosition;
-    if (position == AVSquareViewPositionBottomLeft) {
-        self.squarePosition = AVSquareViewPositionTopLeft;
-        
-        return AVSquareViewPositionTopLeft;
-    }
-    
-    return ++position;
+    return (self.squarePosition + 1) % AVSquareViewPositionCount;
 }
 
 - (AVSquareViewPosition)randomSquarePosition {
-    AVSquareViewPosition randomPosition;
+    AVSquareViewPosition randomPosition = AVSquareViewPositionTopLeft;
     do {
-        randomPosition = arc4random() % 4;
+        randomPosition = arc4random() % AVSquareViewPositionCount;
     } while (randomPosition == self.squarePosition);
     
     return randomPosition;
@@ -48,90 +42,91 @@ const NSTimeInterval kAVTimeInteerval = 0.7;
     [self setSquarePosition:squarePosition animated:animated completionHandler:nil];
 }
 
-- (void)setSquarePosition:(AVSquareViewPosition)squarePosition
-                 animated:(BOOL)animated
-        completionHandler:(void(^)(BOOL finished))handler
-{
-    CGRect frame = self.frame;
-    frame.origin = [self squareLocationWithPosition:squarePosition];
+- (void)setLooping:(BOOL)looping {
+    if (_looping != looping) {
+        _looping = looping;
+    }
     
-    BOOL looping = self.looping;
-    
-    void(^animationCompletion)(BOOL finished) = ^(BOOL finished) {
-        _squarePosition = squarePosition;
-        
-        if (handler) {
-            handler(finished);
-        }
-        
-        if (looping) {
-            [self setSquarePosition:squarePosition animated:animated completionHandler:handler];
-        }
-    };
-    
-    if (animated) {
-        [UIView animateWithDuration:kAVTimeInteerval
-                              delay:0
-                            options:UIViewAnimationOptionBeginFromCurrentState
-                         animations:^{
-                             self.frame = frame;
-                         }
-                         completion:animationCompletion];
-    } else {
-        self.frame = frame;
-        animationCompletion(YES);
+    if (looping) {
+        [self performAnimation];
     }
 }
 
-- (CGPoint)squareLocationWithPosition:(AVSquareViewPosition)squarePosition {
-    CGRect superviewBounds = self.superview.bounds;
-    CGRect selfFrame = self.frame;
-    CGFloat maxXLocation = CGRectGetWidth(superviewBounds) - CGRectGetWidth(selfFrame);
-    CGFloat maxYLocation = CGRectGetHeight(superviewBounds) - CGRectGetHeight(selfFrame);
-    switch (squarePosition) {
-        case AVSquareViewPositionTopRight:
-            return CGPointMake(maxXLocation, 0);
-            
-        case AVSquareViewPositionBottomRight:
-            return CGPointMake(maxXLocation, maxYLocation);
+- (void)performAnimation {
+    [self setSquarePosition:[self randomSquarePosition]
+                   animated:YES
+          completionHandler:^(BOOL finished) {
+//          completionHandler:^() {
+              if (self.looping) {
+                  [self performAnimation];
+              }
+          }];
+}
 
-        case AVSquareViewPositionBottomLeft:
-            return CGPointMake(0, maxYLocation);
-            
-        default:
-            break;
+- (void)setSquarePosition:(AVSquareViewPosition)squarePosition
+                 animated:(BOOL)animated
+        completionHandler:(void(^)(BOOL finished))handler
+//        completionHandler:(void(^)(void))handler
+{
+    if (_squarePosition == squarePosition) {
+        return;
     }
-    
-    return CGPointMake(0, 0);
-    
-//    float x = 0;
-//    float y = 0;
-//    switch (squarePosition) {
+//    if (handler) {
+//        handler();
+//    }
+   
+    [UIView animateWithDuration:animated ? kAVTimeInteerval : 0
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         CGRect frame = self.frame;
+                         frame.origin = [self originWithSquarePosition:squarePosition];
+                         self.frame = frame;
+                     }
+                     completion: ^(BOOL finished) {
+                         _squarePosition = squarePosition;
+                             if (handler) {
+                                 handler(finished);
+                             }
+                     }];
+}
+
+- (CGPoint)originWithSquarePosition:(AVSquareViewPosition)squarePosition {
+    CGRect bounds = self.superview.bounds;
+    CGRect frame = self.frame;
+    CGPoint maxOrigin = CGPointMake(CGWidth(bounds) - CGWidth(frame),
+                                    CGHeight(bounds) - CGHeight(frame));
+    CGPoint origin = CGPointZero;
+    switch (squarePosition) {
+        AVSwitchCase(AVSquareViewPositionTopRight, { origin.x = maxOrigin.x; })
+        AVSwitchCase(AVSquareViewPositionBottomRight, { origin = maxOrigin; })
+        AVSwitchCase(AVSquareViewPositionBottomLeft, { origin.y = maxOrigin.y; })
+        AVSwitchCaseDefault()
+
 //        case AVSquareViewPositionTopRight:
-//            x = maxXLocation;
+//            origin.x = maxOrigin.x;
 //            break;
 //            
 //        case AVSquareViewPositionBottomRight:
-//            x = maxXLocation;
-//            y = maxYLocation;
+//            origin = maxOrigin;
 //            break;
 //            
 //        case AVSquareViewPositionBottomLeft:
-//            y = maxYLocation;
+//            origin.y = maxOrigin.y;
 //            break;
 //            
 //        default:
 //            break;
-//    }
-//    
-//    return CGPointMake(x, y);
+    }
+    
+    return origin;
 }
 
-- (void)setRandomSquarePositionAnimated:(BOOL)animated {
+- (void)moveToRandomSquarePositionAnimated:(BOOL)animated {
     [self setSquarePosition:[self randomSquarePosition] animated:animated];
 }
 
-- (void)setNextSquarePositionAnimated:(BOOL)animated {
+- (void)moveToNextSquarePositionAnimated:(BOOL)animated {
     [self setSquarePosition:[self nextSquarePosition] animated:animated];
 }
 

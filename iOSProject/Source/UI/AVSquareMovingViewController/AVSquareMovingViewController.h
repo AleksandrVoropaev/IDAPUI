@@ -10,35 +10,27 @@
 
 #import "AVSquareView.h"
 
-#define AVViewPropertyWithType(propertyType, viewClassName, viewPropertyName) \
-    @property (nonatomic, propertyType) viewClassName *viewPropertyName;
+#define AVRootViewProperty(viewClass, viewProperty) \
+    @property (nonatomic, readonly) viewClass *viewProperty;
 
-#define AVViewStrongProperty(viewClassName, viewPropertyName) \
-    AVViewPropertyWithType(strong, viewClassName, viewPropertyName)
-
-#define AVViewReadonlyProperty(viewClassName, viewPropertyName) \
-    AVViewPropertyWithType(readonly, viewClassName, viewPropertyName)
-
-
-#define AVViewGetter(viewClassName, getterName) \
-    - (viewClassName *)viewPropertyName { \
-        if ([self isViewLoaded] && [self.view isKindOfClass:[viewClassName class]]) { \
-            return (viewClassName *)self.view; \
+#define AVRootViewGetter(viewClass, propertyName) \
+    @dynamic propertyName; \
+    - (viewClass *)propertyName { \
+        if ([self isViewLoaded] && [self.view isKindOfClass:[viewClass class]]) { \
+            return (viewClass *)self.view; \
         } \
         return nil; \
     }
 
-#define AVViewPrivateInterfaceWithDynamicProperty(interfaceName, viewClassName, viewPropertyName) \
-    @interface interfaceName () \
-    AVViewStrongProperty(viewClassName, viewPropertyName); \
+#define AVRootViewPrivateInterfaceWithDynamicProperty(viewControllerClass, viewClass, propertyName) \
+    @interface viewControllerClass (__AVViewControllerRootView_##viewControllerClass##_##viewClass##_##propertyName) \
+    AVRootViewProperty(viewClass, propertyName); \
     @end \
-    @implementation interfaceName \
-    @dynamic viewPropertyName; \
+    @implementation viewControllerClass (__AVViewControllerRootView_##viewControllerClass##_##viewClass##_##propertyName) \
+    AVRootViewGetter(viewClass, propertyName) \
     @end
 
 @interface AVSquareMovingViewController : UIViewController
-//@property (nonatomic, readonly) AVSquareMovingView  *squareMovingView;
-AVViewReadonlyProperty(AVSquareMovingView, squareMovingView);
 
 - (IBAction)onNextButton:(id)sender;
 - (IBAction)onRandomButton:(id)sender;

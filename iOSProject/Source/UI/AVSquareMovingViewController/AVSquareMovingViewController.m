@@ -10,25 +10,9 @@
 
 const NSTimeInterval kAVTimeInterval = .5;
 
-@interface AVSquareMovingViewController ()
-//@property (nonatomic, strong)   AVSquareMovingView  *squareMovingView;
-AVViewStrongProperty(AVSquareMovingView, squareMovingView);
-
-@end
-
-//AVViewPrivateInterfaceWithDynamicProperty(AVSquareMovingViewController, AVSquareMovingView, squareMovingView)
+AVRootViewPrivateInterfaceWithDynamicProperty(AVSquareMovingViewController, AVSquareMovingView, squareMovingView)
 
 @implementation AVSquareMovingViewController
-
-@dynamic squareMovingView;
-
-- (AVSquareMovingView *)squareMovingView {
-    if ([self isViewLoaded] && [self.view isKindOfClass:[AVSquareMovingView class]]) {
-        return (AVSquareMovingView *)self.view;
-    }
-    
-    return nil;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,24 +25,23 @@ AVViewStrongProperty(AVSquareMovingView, squareMovingView);
 }
 
 - (IBAction)onNextButton:(id)sender {
-    [self.squareMovingView.squareView setNextSquarePositionAnimated:YES];
+    [self.squareMovingView.squareView moveToNextSquarePositionAnimated:YES];
 }
 
 - (IBAction)onRandomButton:(id)sender {
-    [self setRandomSquarePositionAnimated:YES];
+    [self MoveToRandomSquarePositionAnimated:YES];
 }
 
 - (IBAction)onRunButton:(id)sender {
     self.squareMovingView.squareView.looping = YES;
-    [self setRandomSquarePositionAnimated:YES];
 }
 
 - (IBAction)onStopButton:(id)sender {
     self.squareMovingView.squareView.looping = NO;
 }
 
-- (void)setRandomSquarePositionAnimated:(BOOL)animated {
-    [self.squareMovingView.squareView setRandomSquarePositionAnimated:animated];
+- (void)MoveToRandomSquarePositionAnimated:(BOOL)animated {
+    [self.squareMovingView.squareView moveToRandomSquarePositionAnimated:animated];
 }
 
 @end
