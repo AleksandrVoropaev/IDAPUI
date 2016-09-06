@@ -56,7 +56,7 @@ const NSTimeInterval kAVTimeInteerval = .7;
                      }
                      completion: ^(BOOL finished) {
                          _squarePosition = squarePosition;
-                         if (handler && self.running) {
+                         if (handler) {
                              handler(finished);
                          }
                      }];
@@ -122,9 +122,11 @@ const NSTimeInterval kAVTimeInteerval = .7;
                    animated:YES
           completionHandler:^(BOOL finished) {
               __strong typeof(weakSelf) strongSelf = weakSelf;
-              strongSelf.running = NO;
-              if (strongSelf.looping) {
-                  [strongSelf performAnimation];
+              if (strongSelf.running) {
+                  strongSelf.running = NO;
+                  if (strongSelf.looping) {
+                      [strongSelf performAnimation];
+                  }
               }
           }];
 }

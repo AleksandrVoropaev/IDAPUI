@@ -27,7 +27,7 @@ NSRange AVMakeAlphabetRange(unichar firstChar, unichar secondChar) {
 #pragma mark Class methods
 
 + (instancetype)alphabetWithRange:(NSRange)range {
-    return [[[AVRangeAlphabet alloc] initWithRange:range] autorelease];
+    return [[AVRangeAlphabet alloc] initWithRange:range];
 }
 
 + (instancetype)alphabetWithSymbols:(NSString *)symbols {
@@ -35,11 +35,11 @@ NSRange AVMakeAlphabetRange(unichar firstChar, unichar secondChar) {
 }
 
 + (instancetype)alphabetWithStrings:(NSArray *)strings {
-    return [[[AVStringsAlphabet alloc] initWithStrings:strings] autorelease];
+    return [[AVStringsAlphabet alloc] initWithStrings:strings];
 }
 
 + (instancetype)alphabetWithAlphabets:(NSArray *)alphabets {
-    return [[[AVClusterAlphabet alloc] initWithAlphabets:alphabets] autorelease];
+    return [[AVClusterAlphabet alloc] initWithAlphabets:alphabets];
 }
 
 + (instancetype)alphanumericAlphabet {
@@ -72,26 +72,18 @@ NSRange AVMakeAlphabetRange(unichar firstChar, unichar secondChar) {
 #pragma mark Initializations and Deallocations
 
 - (instancetype)initWithRange:(NSRange)range {
-    [self release];
-    
     return [[AVRangeAlphabet alloc] initWithRange:range];
 }
 
 - (instancetype)initWithSymbols:(NSString *)symbols {
-    [self release];
-    
     return [[AVStringsAlphabet alloc] initWithStrings:[symbols symbols]];
 }
 
 - (instancetype)initWithStrings:(NSArray *)strings {
-    [self release];
-    
     return [[AVStringsAlphabet alloc] initWithStrings:strings];
 }
 
 - (instancetype)initWithAlphabets:(NSArray *)alphabets {
-    [self release];
-    
     return [[AVClusterAlphabet alloc] initWithAlphabets:alphabets];
 }
 
@@ -120,17 +112,18 @@ NSRange AVMakeAlphabetRange(unichar firstChar, unichar secondChar) {
         [string appendString:symbol];
     }
     
-    return [[string copy] autorelease];
+    return [string copy];
 }
 
 #pragma mark -
 #pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-                                  objects:(id _Nonnull [])stackbuf
+                                  objects:(id __unsafe_unretained _Nonnull [])stackbuf
                                     count:(NSUInteger)len
 {
-    state->mutationsPtr = (unsigned long *)self;
+//    state->mutationsPtr = (unsigned long *)self;
+    state->mutationsPtr = *self;
     
     NSUInteger length = MIN(state->state + len, [self count]);
     len = length - state->state;

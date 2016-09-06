@@ -8,6 +8,8 @@
 
 #import "AVUser.h"
 
+#import "NSString+AVRandomName.h"
+
 @implementation AVUser
 
 @dynamic fullname;
@@ -16,7 +18,7 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetyspe)init {
+- (instancetype)init {
     self = [super init];
     
     if (self) {

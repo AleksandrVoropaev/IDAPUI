@@ -23,8 +23,6 @@
 
 - (void)dealloc {
     self.alphabets = nil;
-    
-    [super dealloc];
 }
 
 - (instancetype)initWithAlphabets:(NSArray *)alphabets {
@@ -62,7 +60,7 @@
         [string appendString:[alphabet string]];
     }
     
-    return [[string copy] autorelease];
+    return [string copy];
 }
 
 #pragma mark -

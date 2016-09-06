@@ -43,7 +43,7 @@
 #pragma mark Public
 
 - (void)fillWithModel:(AVUser *)user {
-    self.fullNameLabel.text = user.fullName;
+    self.fullNameLabel.text = user.fullname;
     self.userImageView.image = user.image;
 }
 

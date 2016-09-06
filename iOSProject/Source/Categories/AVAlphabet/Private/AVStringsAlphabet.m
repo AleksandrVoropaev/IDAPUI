@@ -48,7 +48,7 @@
 #pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-                                  objects:(id _Nonnull [])stackbuf
+                                  objects:(id __unsafe_unretained _Nonnull [])stackbuf
                                     count:(NSUInteger)len
 {
     return [self.strings countByEnumeratingWithState:state
