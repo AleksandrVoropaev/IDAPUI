@@ -18,11 +18,23 @@
 		1F0DCDCA1D79CAB500FD425C /* AVUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0DCDC81D79CAB500FD425C /* AVUsersViewController.m */; };
 		1F0DCDCB1D79CAB500FD425C /* AVUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F0DCDC91D79CAB500FD425C /* AVUsersViewController.xib */; };
 		1F0DCDCE1D79CACC00FD425C /* AVUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0DCDCD1D79CACC00FD425C /* AVUsersView.m */; };
+		1F0E88E21D7EDE84000A85E1 /* AVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E88E11D7EDE84000A85E1 /* AVTableViewCell.m */; };
+		1F0E88E61D7EE30B000A85E1 /* AVUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E88E51D7EE30B000A85E1 /* AVUserCell.m */; };
+		1F0E88EA1D7EE397000A85E1 /* AVUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F0E88E91D7EE397000A85E1 /* AVUserCell.xib */; };
+		1F0E88EE1D7EF0AB000A85E1 /* AVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E88ED1D7EF0AB000A85E1 /* AVUser.m */; };
+		1F0E88F11D7EF789000A85E1 /* NSString+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E88F01D7EF789000A85E1 /* NSString+AVExtensions.m */; };
+		1F0E88FC1D7EF7F9000A85E1 /* AVAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E88F41D7EF7F9000A85E1 /* AVAlphabet.m */; };
+		1F0E88FD1D7EF7F9000A85E1 /* AVClusterAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E88F71D7EF7F9000A85E1 /* AVClusterAlphabet.m */; };
+		1F0E88FE1D7EF7F9000A85E1 /* AVRangeAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E88F91D7EF7F9000A85E1 /* AVRangeAlphabet.m */; };
+		1F0E88FF1D7EF7F9000A85E1 /* AVStringsAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E88FB1D7EF7F9000A85E1 /* AVStringsAlphabet.m */; };
+		1F0E89031D7EF828000A85E1 /* AVRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E89021D7EF828000A85E1 /* AVRandom.m */; };
+		1F0E890B1D7EFAEF000A85E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F0E89051D7EFAEF000A85E1 /* Assets.xcassets */; };
+		1F0E890C1D7EFAEF000A85E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F0E89071D7EFAEF000A85E1 /* LaunchScreen.storyboard */; };
+		1F0E890D1D7EFAEF000A85E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F0E89091D7EFAEF000A85E1 /* Main.storyboard */; };
+		1F0E89101D7EFBD0000A85E1 /* userImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F0E890F1D7EFBD0000A85E1 /* userImage.png */; };
+		1F0E89131D7F045B000A85E1 /* NSString+AVRandomName.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E89121D7F045B000A85E1 /* NSString+AVRandomName.m */; };
 		1F2B57CC1D7057D70026A944 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57CB1D7057D70026A944 /* main.m */; };
 		1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57CE1D7057D70026A944 /* AppDelegate.m */; };
-		1F2B57D51D7057D70026A944 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2B57D31D7057D70026A944 /* Main.storyboard */; };
-		1F2B57D71D7057D70026A944 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2B57D61D7057D70026A944 /* Assets.xcassets */; };
-		1F2B57DA1D7057D70026A944 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2B57D81D7057D70026A944 /* LaunchScreen.storyboard */; };
 		1F2B57E51D7057D70026A944 /* iOSProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57E41D7057D70026A944 /* iOSProjectTests.m */; };
 		1F2B57F01D7057D70026A944 /* iOSProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */; };
 /* End PBXBuildFile section */
@@ -67,13 +79,35 @@
 		1F0E88DB1D7ECFA5000A85E1 /* AVSwitchCaseMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVSwitchCaseMacro.h; sourceTree = "<group>"; };
 		1F0E88DC1D7ECFD6000A85E1 /* AVCGRectMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCGRectMacro.h; sourceTree = "<group>"; };
 		1F0E88DD1D7ED07B000A85E1 /* AVRootViewMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVRootViewMacro.h; sourceTree = "<group>"; };
+		1F0E88E01D7EDE84000A85E1 /* AVTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVTableViewCell.h; sourceTree = "<group>"; };
+		1F0E88E11D7EDE84000A85E1 /* AVTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVTableViewCell.m; sourceTree = "<group>"; };
+		1F0E88E41D7EE30B000A85E1 /* AVUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVUserCell.h; sourceTree = "<group>"; };
+		1F0E88E51D7EE30B000A85E1 /* AVUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVUserCell.m; sourceTree = "<group>"; };
+		1F0E88E91D7EE397000A85E1 /* AVUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVUserCell.xib; sourceTree = "<group>"; };
+		1F0E88EC1D7EF0AB000A85E1 /* AVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVUser.h; sourceTree = "<group>"; };
+		1F0E88ED1D7EF0AB000A85E1 /* AVUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVUser.m; sourceTree = "<group>"; };
+		1F0E88EF1D7EF789000A85E1 /* NSString+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AVExtensions.h"; sourceTree = "<group>"; };
+		1F0E88F01D7EF789000A85E1 /* NSString+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AVExtensions.m"; sourceTree = "<group>"; };
+		1F0E88F31D7EF7F9000A85E1 /* AVAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAlphabet.h; sourceTree = "<group>"; };
+		1F0E88F41D7EF7F9000A85E1 /* AVAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAlphabet.m; sourceTree = "<group>"; };
+		1F0E88F61D7EF7F9000A85E1 /* AVClusterAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVClusterAlphabet.h; sourceTree = "<group>"; };
+		1F0E88F71D7EF7F9000A85E1 /* AVClusterAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVClusterAlphabet.m; sourceTree = "<group>"; };
+		1F0E88F81D7EF7F9000A85E1 /* AVRangeAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVRangeAlphabet.h; sourceTree = "<group>"; };
+		1F0E88F91D7EF7F9000A85E1 /* AVRangeAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVRangeAlphabet.m; sourceTree = "<group>"; };
+		1F0E88FA1D7EF7F9000A85E1 /* AVStringsAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVStringsAlphabet.h; sourceTree = "<group>"; };
+		1F0E88FB1D7EF7F9000A85E1 /* AVStringsAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVStringsAlphabet.m; sourceTree = "<group>"; };
+		1F0E89011D7EF828000A85E1 /* AVRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVRandom.h; sourceTree = "<group>"; };
+		1F0E89021D7EF828000A85E1 /* AVRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVRandom.m; sourceTree = "<group>"; };
+		1F0E89051D7EFAEF000A85E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1F0E89081D7EFAEF000A85E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1F0E890A1D7EFAEF000A85E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		1F0E890F1D7EFBD0000A85E1 /* userImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userImage.png; sourceTree = "<group>"; };
+		1F0E89111D7F045B000A85E1 /* NSString+AVRandomName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AVRandomName.h"; sourceTree = "<group>"; };
+		1F0E89121D7F045B000A85E1 /* NSString+AVRandomName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AVRandomName.m"; sourceTree = "<group>"; };
 		1F2B57C71D7057D70026A944 /* iOSProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2B57CB1D7057D70026A944 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1F2B57CD1D7057D70026A944 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1F2B57CE1D7057D70026A944 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1F2B57D41D7057D70026A944 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1F2B57D61D7057D70026A944 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1F2B57D91D7057D70026A944 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F2B57DB1D7057D70026A944 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F2B57E01D7057D70026A944 /* iOSProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2B57E41D7057D70026A944 /* iOSProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSProjectTests.m; sourceTree = "<group>"; };
@@ -123,6 +157,12 @@
 		1F0DCDA91D79CA7200FD425C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				1F0E89001D7EF828000A85E1 /* AVRandom */,
+				1F0E88F21D7EF7F9000A85E1 /* AVAlphabet */,
+				1F0E88EF1D7EF789000A85E1 /* NSString+AVExtensions.h */,
+				1F0E88F01D7EF789000A85E1 /* NSString+AVExtensions.m */,
+				1F0E89111D7F045B000A85E1 /* NSString+AVRandomName.h */,
+				1F0E89121D7F045B000A85E1 /* NSString+AVRandomName.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -130,6 +170,7 @@
 		1F0DCDAA1D79CA7200FD425C /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				1F0E88DE1D7EDDA5000A85E1 /* Classes */,
 				1F0E88DA1D7ECFA5000A85E1 /* Macro */,
 			);
 			path = Library;
@@ -138,6 +179,7 @@
 		1F0DCDAB1D79CA7200FD425C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1F0E88EB1D7EF090000A85E1 /* AVUser */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,6 +219,7 @@
 		1F0DCDB61D79CA7200FD425C /* AVUsersViewComtroller */ = {
 			isa = PBXGroup;
 			children = (
+				1F0E88E31D7EE2DC000A85E1 /* Views */,
 				1F0DCDC71D79CAB500FD425C /* AVUsersViewController.h */,
 				1F0DCDC81D79CAB500FD425C /* AVUsersViewController.m */,
 				1F0DCDC91D79CAB500FD425C /* AVUsersViewController.xib */,
@@ -210,6 +253,101 @@
 			path = Macro;
 			sourceTree = "<group>";
 		};
+		1F0E88DE1D7EDDA5000A85E1 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1F0E88DF1D7EDDE2000A85E1 /* AVTableViewCell */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1F0E88DF1D7EDDE2000A85E1 /* AVTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1F0E88E01D7EDE84000A85E1 /* AVTableViewCell.h */,
+				1F0E88E11D7EDE84000A85E1 /* AVTableViewCell.m */,
+			);
+			path = AVTableViewCell;
+			sourceTree = "<group>";
+		};
+		1F0E88E31D7EE2DC000A85E1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1F0E88E41D7EE30B000A85E1 /* AVUserCell.h */,
+				1F0E88E51D7EE30B000A85E1 /* AVUserCell.m */,
+				1F0E88E91D7EE397000A85E1 /* AVUserCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1F0E88EB1D7EF090000A85E1 /* AVUser */ = {
+			isa = PBXGroup;
+			children = (
+				1F0E88EC1D7EF0AB000A85E1 /* AVUser.h */,
+				1F0E88ED1D7EF0AB000A85E1 /* AVUser.m */,
+			);
+			path = AVUser;
+			sourceTree = "<group>";
+		};
+		1F0E88F21D7EF7F9000A85E1 /* AVAlphabet */ = {
+			isa = PBXGroup;
+			children = (
+				1F0E88F31D7EF7F9000A85E1 /* AVAlphabet.h */,
+				1F0E88F41D7EF7F9000A85E1 /* AVAlphabet.m */,
+				1F0E88F51D7EF7F9000A85E1 /* Private */,
+			);
+			path = AVAlphabet;
+			sourceTree = "<group>";
+		};
+		1F0E88F51D7EF7F9000A85E1 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				1F0E88F61D7EF7F9000A85E1 /* AVClusterAlphabet.h */,
+				1F0E88F71D7EF7F9000A85E1 /* AVClusterAlphabet.m */,
+				1F0E88F81D7EF7F9000A85E1 /* AVRangeAlphabet.h */,
+				1F0E88F91D7EF7F9000A85E1 /* AVRangeAlphabet.m */,
+				1F0E88FA1D7EF7F9000A85E1 /* AVStringsAlphabet.h */,
+				1F0E88FB1D7EF7F9000A85E1 /* AVStringsAlphabet.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		1F0E89001D7EF828000A85E1 /* AVRandom */ = {
+			isa = PBXGroup;
+			children = (
+				1F0E89011D7EF828000A85E1 /* AVRandom.h */,
+				1F0E89021D7EF828000A85E1 /* AVRandom.m */,
+			);
+			path = AVRandom;
+			sourceTree = "<group>";
+		};
+		1F0E89041D7EFA89000A85E1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1F0E890E1D7EFBD0000A85E1 /* Images */,
+				1F0E89051D7EFAEF000A85E1 /* Assets.xcassets */,
+				1F0E89061D7EFAEF000A85E1 /* Base.lproj */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1F0E89061D7EFAEF000A85E1 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				1F0E89071D7EFAEF000A85E1 /* LaunchScreen.storyboard */,
+				1F0E89091D7EFAEF000A85E1 /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		1F0E890E1D7EFBD0000A85E1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1F0E890F1D7EFBD0000A85E1 /* userImage.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		1F2B57BE1D7057D70026A944 = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +356,7 @@
 				1F2B57E31D7057D70026A944 /* iOSProjectTests */,
 				1F2B57EE1D7057D70026A944 /* iOSProjectUITests */,
 				1F2B57C81D7057D70026A944 /* Products */,
+				1F0E89041D7EFA89000A85E1 /* Resources */,
 				1F2B57FD1D70822E0026A944 /* iOS Study Plan.txt */,
 			);
 			sourceTree = "<group>";
@@ -237,9 +376,6 @@
 			children = (
 				1F2B57CD1D7057D70026A944 /* AppDelegate.h */,
 				1F2B57CE1D7057D70026A944 /* AppDelegate.m */,
-				1F2B57D31D7057D70026A944 /* Main.storyboard */,
-				1F2B57D61D7057D70026A944 /* Assets.xcassets */,
-				1F2B57D81D7057D70026A944 /* LaunchScreen.storyboard */,
 				1F2B57DB1D7057D70026A944 /* Info.plist */,
 				1F2B57CA1D7057D70026A944 /* Supporting Files */,
 			);
@@ -376,11 +512,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F0DCDC61D79CA7200FD425C /* ViewController.xib in Resources */,
+				1F0E890C1D7EFAEF000A85E1 /* LaunchScreen.storyboard in Resources */,
+				1F0E89101D7EFBD0000A85E1 /* userImage.png in Resources */,
 				1F0DCDC11D79CA7200FD425C /* AVSquareMovingViewController.xib in Resources */,
-				1F2B57DA1D7057D70026A944 /* LaunchScreen.storyboard in Resources */,
-				1F2B57D71D7057D70026A944 /* Assets.xcassets in Resources */,
+				1F0E88EA1D7EE397000A85E1 /* AVUserCell.xib in Resources */,
+				1F0E890B1D7EFAEF000A85E1 /* Assets.xcassets in Resources */,
+				1F0E890D1D7EFAEF000A85E1 /* Main.storyboard in Resources */,
 				1F0DCDCB1D79CAB500FD425C /* AVUsersViewController.xib in Resources */,
-				1F2B57D51D7057D70026A944 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,15 +543,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F0E88F11D7EF789000A85E1 /* NSString+AVExtensions.m in Sources */,
 				1F0DCDC01D79CA7200FD425C /* AVSquareMovingViewController.m in Sources */,
+				1F0E88FF1D7EF7F9000A85E1 /* AVStringsAlphabet.m in Sources */,
+				1F0E89031D7EF828000A85E1 /* AVRandom.m in Sources */,
 				1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */,
 				1F0DCDC51D79CA7200FD425C /* ViewController.m in Sources */,
+				1F0E88FE1D7EF7F9000A85E1 /* AVRangeAlphabet.m in Sources */,
 				1F0DCDCE1D79CACC00FD425C /* AVUsersView.m in Sources */,
 				1F0DCDC21D79CA7200FD425C /* AVSquareView.m in Sources */,
+				1F0E88EE1D7EF0AB000A85E1 /* AVUser.m in Sources */,
 				1F0DCDC31D79CA7200FD425C /* AVDraggableView.m in Sources */,
+				1F0E88FD1D7EF7F9000A85E1 /* AVClusterAlphabet.m in Sources */,
 				1F2B57CC1D7057D70026A944 /* main.m in Sources */,
 				1F0DCDC41D79CA7200FD425C /* AVLabelView.m in Sources */,
+				1F0E88E21D7EDE84000A85E1 /* AVTableViewCell.m in Sources */,
+				1F0E88E61D7EE30B000A85E1 /* AVUserCell.m in Sources */,
 				1F0DCDBF1D79CA7200FD425C /* AVSquareMovingView.m in Sources */,
+				1F0E88FC1D7EF7F9000A85E1 /* AVAlphabet.m in Sources */,
+				1F0E89131D7F045B000A85E1 /* NSString+AVRandomName.m in Sources */,
 				1F0DCDCA1D79CAB500FD425C /* AVUsersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,20 +598,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1F2B57D31D7057D70026A944 /* Main.storyboard */ = {
+		1F0E89071D7EFAEF000A85E1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1F2B57D41D7057D70026A944 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		1F2B57D81D7057D70026A944 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1F2B57D91D7057D70026A944 /* Base */,
+				1F0E89081D7EFAEF000A85E1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1F0E89091D7EFAEF000A85E1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F0E890A1D7EFAEF000A85E1 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

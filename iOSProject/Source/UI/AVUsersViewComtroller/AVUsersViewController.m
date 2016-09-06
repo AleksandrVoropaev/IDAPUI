@@ -8,7 +8,9 @@
 
 #import "AVUsersViewController.h"
 
+#import "AVUser.h"
 #import "AVUsersView.h"
+#import "AVUserCell.h"
 
 @interface AVUsersViewController ()
 @property (nonatomic, strong)   AVUsersView *usersView;
@@ -54,13 +56,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString * const kAVCellName = @"kAVCellName";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kAVCellName];
+    NSString *cellClass = NSStringFromClass([AVUserCell class]);
+    
+    AVUserCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClass];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:kAVCellName];
+        UINib *nib = [UINib nibWithNibName:cellClass bundle:nil];
+        NSArray *cells = [nib instantiateWithOwner:nil options:nil];
+        cell = [cells firstObject];
     }
-    cell.textLabel.text =  @"Some String ", self.count++;
+    
+//    cell.user = self.user;
+    cell.user = [AVUser new];
     
     return cell;
 }

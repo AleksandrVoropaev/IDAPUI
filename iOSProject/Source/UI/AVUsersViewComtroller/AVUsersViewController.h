@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AVUsersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@class AVUser;
 
+@interface AVUsersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, strong) AVUser    *user;
 @end
