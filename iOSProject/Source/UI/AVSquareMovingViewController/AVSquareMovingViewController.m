@@ -8,6 +8,8 @@
 
 #import "AVSquareMovingViewController.h"
 
+#import "AVRootViewMacro.h"
+
 const NSTimeInterval kAVTimeInterval = .5;
 
 AVRootViewPrivateInterfaceWithDynamicProperty(AVSquareMovingViewController, AVSquareMovingView, squareMovingView)

@@ -10,12 +10,6 @@
 
 #import "AVSquareMovingView.h"
 
-#define CGWidth CGRectGetWidth
-#define CGHeight CGRectGetHeight
-
-#define AVSwitchCase(value, code) case value: { code } break;
-#define AVSwitchCaseDefault(code) default: { code } break;
-
 typedef enum {
     AVSquareViewPositionTopLeft,
     AVSquareViewPositionTopRight,

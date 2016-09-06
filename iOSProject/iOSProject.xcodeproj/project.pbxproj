@@ -64,6 +64,9 @@
 		1F0DCDC91D79CAB500FD425C /* AVUsersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVUsersViewController.xib; sourceTree = "<group>"; };
 		1F0DCDCC1D79CACC00FD425C /* AVUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVUsersView.h; sourceTree = "<group>"; };
 		1F0DCDCD1D79CACC00FD425C /* AVUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVUsersView.m; sourceTree = "<group>"; };
+		1F0E88DB1D7ECFA5000A85E1 /* AVSwitchCaseMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVSwitchCaseMacro.h; sourceTree = "<group>"; };
+		1F0E88DC1D7ECFD6000A85E1 /* AVCGRectMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCGRectMacro.h; sourceTree = "<group>"; };
+		1F0E88DD1D7ED07B000A85E1 /* AVRootViewMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVRootViewMacro.h; sourceTree = "<group>"; };
 		1F2B57C71D7057D70026A944 /* iOSProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2B57CB1D7057D70026A944 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1F2B57CD1D7057D70026A944 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 		1F0DCDAA1D79CA7200FD425C /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				1F0E88DA1D7ECFA5000A85E1 /* Macro */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -194,6 +198,16 @@
 				1F0DCDBE1D79CA7200FD425C /* ViewController.xib */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		1F0E88DA1D7ECFA5000A85E1 /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				1F0E88DB1D7ECFA5000A85E1 /* AVSwitchCaseMacro.h */,
+				1F0E88DC1D7ECFD6000A85E1 /* AVCGRectMacro.h */,
+				1F0E88DD1D7ED07B000A85E1 /* AVRootViewMacro.h */,
+			);
+			path = Macro;
 			sourceTree = "<group>";
 		};
 		1F2B57BE1D7057D70026A944 = {
