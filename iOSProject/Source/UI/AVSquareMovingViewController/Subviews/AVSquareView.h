@@ -26,14 +26,13 @@ typedef enum {
 
 @interface AVSquareView : AVSquareMovingView
 @property (nonatomic, assign)   AVSquareViewPosition    squarePosition;
-@property (nonatomic, assign)   BOOL                    looping;
-
 - (void)setSquarePosition:(AVSquareViewPosition)squarePosition
                  animated:(BOOL)animated;
 - (void)setSquarePosition:(AVSquareViewPosition)squarePosition
                  animated:(BOOL)animated
         completionHandler:(void(^)(BOOL finished))handler;
-//        completionHandler:(void(^)(void))handler;
+
+@property (nonatomic, assign)   BOOL                    looping;
 
 - (void)moveToRandomSquarePositionAnimated:(BOOL)animated;
 - (void)moveToNextSquarePositionAnimated:(BOOL)animated;

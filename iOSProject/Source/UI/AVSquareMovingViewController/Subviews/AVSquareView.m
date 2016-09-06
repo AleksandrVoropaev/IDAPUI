@@ -27,7 +27,7 @@ const NSTimeInterval kAVTimeInteerval = .7;
 - (AVSquareViewPosition)randomSquarePosition {
     AVSquareViewPosition randomPosition = AVSquareViewPositionTopLeft;
     do {
-        randomPosition = arc4random() % AVSquareViewPositionCount;
+        randomPosition = arc4random_uniform(AVSquareViewPositionCount);
     } while (randomPosition == self.squarePosition);
     
     return randomPosition;
@@ -53,32 +53,16 @@ const NSTimeInterval kAVTimeInteerval = .7;
     }
 }
 
-//- (void)performAnimation {
-//    do {
-//        if (self.running) {
-//            return;
-//        }
-//        
-//        self.running = YES;
-//        [self setSquarePosition:[self randomSquarePosition]
-//                       animated:YES
-//              completionHandler:^(BOOL finished) {
-//                  //          completionHandler:^() {
-//                  if (self.looping) {
-//                      [self performAnimation];
-//                  }
-//              }];
-//    } while (self.looping);
-//}
-
 - (void)performAnimation {
     self.running = YES;
+    __weak typeof(self) weakSelf = self;
     [self setSquarePosition:[self randomSquarePosition]
                    animated:YES
           completionHandler:^(BOOL finished) {
-              //          completionHandler:^() {
-              if (self.looping) {
-                  [self performAnimation];
+              __strong typeof(weakSelf) strongSelf = weakSelf;
+              strongSelf.running = NO;
+              if (strongSelf.looping) {
+                  [strongSelf performAnimation];
               }
           }];
 }
@@ -86,14 +70,10 @@ const NSTimeInterval kAVTimeInteerval = .7;
 - (void)setSquarePosition:(AVSquareViewPosition)squarePosition
                  animated:(BOOL)animated
         completionHandler:(void(^)(BOOL finished))handler
-//        completionHandler:(void(^)(void))handler
 {
     if (_squarePosition == squarePosition) {
         return;
     }
-//    if (handler) {
-//        handler();
-//    }
    
     [UIView animateWithDuration:animated ? kAVTimeInteerval : 0
                           delay:0
@@ -105,10 +85,9 @@ const NSTimeInterval kAVTimeInteerval = .7;
                      }
                      completion: ^(BOOL finished) {
                          _squarePosition = squarePosition;
-                             if (handler) {
-                                 handler(YES);
-                                 self.running = NO;
-                             }
+                         if (handler && self.running) {
+                             handler(finished);
+                         }
                      }];
 }
 
@@ -123,21 +102,6 @@ const NSTimeInterval kAVTimeInteerval = .7;
         AVSwitchCase(AVSquareViewPositionBottomRight, { origin = maxOrigin; })
         AVSwitchCase(AVSquareViewPositionBottomLeft, { origin.y = maxOrigin.y; })
         AVSwitchCaseDefault()
-
-//        case AVSquareViewPositionTopRight:
-//            origin.x = maxOrigin.x;
-//            break;
-//            
-//        case AVSquareViewPositionBottomRight:
-//            origin = maxOrigin;
-//            break;
-//            
-//        case AVSquareViewPositionBottomLeft:
-//            origin.y = maxOrigin.y;
-//            break;
-//            
-//        default:
-//            break;
     }
     
     return origin;

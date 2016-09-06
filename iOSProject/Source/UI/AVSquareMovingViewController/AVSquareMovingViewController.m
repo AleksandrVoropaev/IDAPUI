@@ -29,7 +29,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVSquareMovingViewController, AVSq
 }
 
 - (IBAction)onRandomButton:(id)sender {
-    [self MoveToRandomSquarePositionAnimated:YES];
+    [self moveToRandomSquarePositionAnimated:YES];
 }
 
 - (IBAction)onRunButton:(id)sender {
@@ -42,7 +42,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVSquareMovingViewController, AVSq
 //    self.squareMovingView.runButton.hidden = NO;
 }
 
-- (void)MoveToRandomSquarePositionAnimated:(BOOL)animated {
+- (void)moveToRandomSquarePositionAnimated:(BOOL)animated {
     [self.squareMovingView.squareView moveToRandomSquarePositionAnimated:animated];
 }
 
