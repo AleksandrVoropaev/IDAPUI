@@ -14,7 +14,7 @@
 
 static const NSUInteger kNSStringRandomStringDefaultMaxLength = 30;
 
-@implementation NSMutableString (AVExtensions)
+@implementation NSString (AVExtensions)
 
 + (instancetype)randomString {
     return [self randomStringWithLength:arc4random_uniform(kNSStringRandomStringDefaultMaxLength)];

@@ -16,6 +16,8 @@
 
 #import "NSString+AVExtensions.h"
 
+static unsigned long *const kAVmutationsPtr;
+
 NSRange AVMakeAlphabetRange(unichar firstChar, unichar secondChar) {
     return NSMakeRange(MIN(firstChar, secondChar),
                        MAX(firstChar, secondChar) - MIN(firstChar, secondChar) + 1);
@@ -122,8 +124,8 @@ NSRange AVMakeAlphabetRange(unichar firstChar, unichar secondChar) {
                                   objects:(id __unsafe_unretained _Nonnull [])stackbuf
                                     count:(NSUInteger)len
 {
-//    state->mutationsPtr = (unsigned long *)self;
-    state->mutationsPtr = *self;
+    //    state->mutationsPtr = (unsigned long *)()self;
+    state->mutationsPtr = kAVmutationsPtr;
     
     NSUInteger length = MIN(state->state + len, [self count]);
     len = length - state->state;

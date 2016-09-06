@@ -22,8 +22,8 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = window;
     
-    AVSquareMovingViewController *controller = [AVSquareMovingViewController new];
-//    AVUsersViewController *controller = [AVUsersViewController new];
+//    AVSquareMovingViewController *controller = [AVSquareMovingViewController new];
+    AVUsersViewController *controller = [AVUsersViewController new];
 
     window.rootViewController = controller;
     [window makeKeyAndVisible];
