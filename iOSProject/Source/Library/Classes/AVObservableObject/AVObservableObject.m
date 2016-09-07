@@ -24,8 +24,6 @@
 
 - (void)dealloc {
     self.mutableObserverSet = nil;
-    
-    [super dealloc];
 }
 
 - (instancetype)init {
@@ -40,7 +38,7 @@
 
 - (NSSet *)observerSet {
     @synchronized (self) {
-        return [[self.mutableObserverSet copy] autorelease];
+        return [self.mutableObserverSet copy];
     }
 }
 

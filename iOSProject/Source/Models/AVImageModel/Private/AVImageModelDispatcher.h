@@ -9,5 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface AVImageModelDispatcher : NSObject
+@property (nonatomic, readonly)     NSOperationQueue    *queue;
+
++ (instancetype)sharedDispatcher;
 
 @end

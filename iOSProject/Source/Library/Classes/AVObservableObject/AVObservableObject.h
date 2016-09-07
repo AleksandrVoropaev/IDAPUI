@@ -8,7 +8,7 @@
 
 #import "AVAlphabet.h"
 
-@interface AVObservableObject : AVAlphabet
+@interface AVObservableObject : NSObject
 @property (nonatomic, assign)   NSUInteger  state;
 @property (nonatomic, readonly) NSSet       *observerSet;
 

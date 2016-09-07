@@ -8,9 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AVImageModel : NSObject
-@property (nonatomic, readonly)                     UIImage *image;
-@property (nonatomic, readonly)                     NSURL   *url;
-@property (nonatomic, readonly, getter=isLoaded)    BOOL    loaded;
+#import "AVObservableObject.h"
+
+typedef NS_ENUM(NSUInteger, AVImageModelState) {
+    AVImageModelUnloaded,
+    AVImageModelLoaded,
+    AVImageModelLoading,
+    AVImageModelFailedLoading,
+};
+
+@interface AVImageModel : AVObservableObject
+@property (nonatomic, readonly) UIImage *image;
+@property (nonatomic, readonly) NSURL   *url;
+
++ (instancetype)imageWithURL:(NSURL *)url;
+
+- (instancetype)initWithURL:(NSURL *)url;
+- (void)load;
+- (void)dump; //unload from RAM or/and save to hard drive
+//- (void)cancel; duplicating ()dump
 
 @end

@@ -37,6 +37,9 @@
 		1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57CE1D7057D70026A944 /* AppDelegate.m */; };
 		1F2B57E51D7057D70026A944 /* iOSProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57E41D7057D70026A944 /* iOSProjectTests.m */; };
 		1F2B57F01D7057D70026A944 /* iOSProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */; };
+		1FE14A961D7FEE37005D42AA /* AVImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14A951D7FEE37005D42AA /* AVImageModel.m */; };
+		1FE14A9A1D800ACD005D42AA /* AVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14A991D800ACD005D42AA /* AVObservableObject.m */; };
+		1FE14A9E1D801DA4005D42AA /* AVImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14A9D1D801DA4005D42AA /* AVImageModelDispatcher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +119,13 @@
 		1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSProjectUITests.m; sourceTree = "<group>"; };
 		1F2B57F11D7057D70026A944 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F2B57FD1D70822E0026A944 /* iOS Study Plan.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
+		1FE14A941D7FEE37005D42AA /* AVImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVImageModel.h; sourceTree = "<group>"; };
+		1FE14A951D7FEE37005D42AA /* AVImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageModel.m; sourceTree = "<group>"; };
+		1FE14A981D800ACD005D42AA /* AVObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVObservableObject.h; sourceTree = "<group>"; };
+		1FE14A991D800ACD005D42AA /* AVObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVObservableObject.m; sourceTree = "<group>"; };
+		1FE14A9C1D801DA4005D42AA /* AVImageModelDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVImageModelDispatcher.h; sourceTree = "<group>"; };
+		1FE14A9D1D801DA4005D42AA /* AVImageModelDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageModelDispatcher.m; sourceTree = "<group>"; };
+		1FE14A9F1D8037EE005D42AA /* AVWeakifyStrongify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVWeakifyStrongify.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +189,7 @@
 		1F0DCDAB1D79CA7200FD425C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1FE14A931D7FEE37005D42AA /* AVImageModel */,
 				1F0E88EB1D7EF090000A85E1 /* AVUser */,
 			);
 			path = Models;
@@ -249,6 +260,7 @@
 				1F0E88DB1D7ECFA5000A85E1 /* AVSwitchCaseMacro.h */,
 				1F0E88DC1D7ECFD6000A85E1 /* AVCGRectMacro.h */,
 				1F0E88DD1D7ED07B000A85E1 /* AVRootViewMacro.h */,
+				1FE14A9F1D8037EE005D42AA /* AVWeakifyStrongify.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";
@@ -256,6 +268,7 @@
 		1F0E88DE1D7EDDA5000A85E1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1FE14A971D800ACD005D42AA /* AVObservableObject */,
 				1F0E88DF1D7EDDE2000A85E1 /* AVTableViewCell */,
 			);
 			path = Classes;
@@ -408,6 +421,34 @@
 			path = iOSProjectUITests;
 			sourceTree = "<group>";
 		};
+		1FE14A931D7FEE37005D42AA /* AVImageModel */ = {
+			isa = PBXGroup;
+			children = (
+				1FE14A9B1D801D38005D42AA /* Private */,
+				1FE14A941D7FEE37005D42AA /* AVImageModel.h */,
+				1FE14A951D7FEE37005D42AA /* AVImageModel.m */,
+			);
+			path = AVImageModel;
+			sourceTree = "<group>";
+		};
+		1FE14A971D800ACD005D42AA /* AVObservableObject */ = {
+			isa = PBXGroup;
+			children = (
+				1FE14A981D800ACD005D42AA /* AVObservableObject.h */,
+				1FE14A991D800ACD005D42AA /* AVObservableObject.m */,
+			);
+			path = AVObservableObject;
+			sourceTree = "<group>";
+		};
+		1FE14A9B1D801D38005D42AA /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				1FE14A9C1D801DA4005D42AA /* AVImageModelDispatcher.h */,
+				1FE14A9D1D801DA4005D42AA /* AVImageModelDispatcher.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -549,10 +590,13 @@
 				1F0E89031D7EF828000A85E1 /* AVRandom.m in Sources */,
 				1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */,
 				1F0DCDC51D79CA7200FD425C /* ViewController.m in Sources */,
+				1FE14A9A1D800ACD005D42AA /* AVObservableObject.m in Sources */,
+				1FE14A9E1D801DA4005D42AA /* AVImageModelDispatcher.m in Sources */,
 				1F0E88FE1D7EF7F9000A85E1 /* AVRangeAlphabet.m in Sources */,
 				1F0DCDCE1D79CACC00FD425C /* AVUsersView.m in Sources */,
 				1F0DCDC21D79CA7200FD425C /* AVSquareView.m in Sources */,
 				1F0E88EE1D7EF0AB000A85E1 /* AVUser.m in Sources */,
+				1FE14A961D7FEE37005D42AA /* AVImageModel.m in Sources */,
 				1F0DCDC31D79CA7200FD425C /* AVDraggableView.m in Sources */,
 				1F0E88FD1D7EF7F9000A85E1 /* AVClusterAlphabet.m in Sources */,
 				1F2B57CC1D7057D70026A944 /* main.m in Sources */,
