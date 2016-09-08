@@ -14,19 +14,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGM-C1-ZiD">
-                        <rect key="frame" x="70" y="0.0" width="242" height="43"/>
+                        <rect key="frame" x="60" y="0.0" width="252" height="43"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YVc-Xo-KJY">
-                        <rect key="frame" x="8" y="0.0" width="54" height="43"/>
-                    </imageView>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qu3-Xn-aQl" customClass="AVImageView">
+                        <rect key="frame" x="8" y="0.0" width="44" height="43"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="fullNameLabel" destination="jGM-C1-ZiD" id="a4l-GA-PvM"/>
-                <outlet property="userImageView" destination="YVc-Xo-KJY" id="JCp-fS-dMA"/>
+                <outlet property="userImageView" destination="qu3-Xn-aQl" id="zdy-Gj-G8R"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -12,6 +12,9 @@
 #import "AVUsersView.h"
 #import "AVUserCell.h"
 
+#import "UITableView+AVExtensions.h"
+#import "UINib+AVExtensions.h"
+
 @interface AVUsersViewController ()
 @property (nonatomic, strong)   AVUsersView *usersView;
 @property (nonatomic,assign)    NSUInteger  count;
@@ -56,16 +59,15 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellClass = NSStringFromClass([AVUserCell class]);
-    
-    AVUserCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClass];
+    Class classAVUserCell = [AVUserCell class];
+    AVUserCell *cell = (AVUserCell *)[tableView dequeueReusableCellWithClass:classAVUserCell];
+
     if (!cell) {
-        UINib *nib = [UINib nibWithNibName:cellClass bundle:nil];
+        UINib *nib = [UINib nibWithNibNameFromClassName:classAVUserCell];
         NSArray *cells = [nib instantiateWithOwner:nil options:nil];
         cell = [cells firstObject];
     }
     
-//    cell.user = self.user;
     cell.user = [AVUser new];
     
     return cell;

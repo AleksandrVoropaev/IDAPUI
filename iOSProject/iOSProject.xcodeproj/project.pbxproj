@@ -41,6 +41,8 @@
 		1FE14ACA1D8054A6005D42AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14ABB1D8054A6005D42AA /* ViewController.m */; };
 		1FE14ACB1D8054A6005D42AA /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FE14ABC1D8054A6005D42AA /* ViewController.xib */; };
 		1FE14ACE1D8054E3005D42AA /* AVImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14ACD1D8054E3005D42AA /* AVImageView.m */; };
+		1FE14AD21D81CC58005D42AA /* UITableView+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14AD11D81CC58005D42AA /* UITableView+AVExtensions.m */; };
+		1FE14AD51D81D554005D42AA /* UINib+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14AD41D81D554005D42AA /* UINib+AVExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,10 @@
 		1FE14ACC1D8054E3005D42AA /* AVImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVImageView.h; sourceTree = "<group>"; };
 		1FE14ACD1D8054E3005D42AA /* AVImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageView.m; sourceTree = "<group>"; };
 		1FE14ACF1D805D16005D42AA /* AVCompilerMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCompilerMacro.h; sourceTree = "<group>"; };
+		1FE14AD01D81CC58005D42AA /* UITableView+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+AVExtensions.h"; sourceTree = "<group>"; };
+		1FE14AD11D81CC58005D42AA /* UITableView+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+AVExtensions.m"; sourceTree = "<group>"; };
+		1FE14AD31D81D554005D42AA /* UINib+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINib+AVExtensions.h"; sourceTree = "<group>"; };
+		1FE14AD41D81D554005D42AA /* UINib+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINib+AVExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +183,10 @@
 				1F0E88F01D7EF789000A85E1 /* NSString+AVExtensions.m */,
 				1F0E89111D7F045B000A85E1 /* NSString+AVRandomName.h */,
 				1F0E89121D7F045B000A85E1 /* NSString+AVRandomName.m */,
+				1FE14AD01D81CC58005D42AA /* UITableView+AVExtensions.h */,
+				1FE14AD11D81CC58005D42AA /* UITableView+AVExtensions.m */,
+				1FE14AD31D81D554005D42AA /* UINib+AVExtensions.h */,
+				1FE14AD41D81D554005D42AA /* UINib+AVExtensions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -626,6 +636,8 @@
 				1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */,
 				1FE14A9A1D800ACD005D42AA /* AVObservableObject.m in Sources */,
 				1FE14AC81D8054A6005D42AA /* AVDraggableView.m in Sources */,
+				1FE14AD21D81CC58005D42AA /* UITableView+AVExtensions.m in Sources */,
+				1FE14AD51D81D554005D42AA /* UINib+AVExtensions.m in Sources */,
 				1FE14A9E1D801DA4005D42AA /* AVImageModelDispatcher.m in Sources */,
 				1F0E88FE1D7EF7F9000A85E1 /* AVRangeAlphabet.m in Sources */,
 				1FE14ACE1D8054E3005D42AA /* AVImageView.m in Sources */,

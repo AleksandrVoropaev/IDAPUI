@@ -11,6 +11,7 @@
 @class AVImageModel;
 
 @interface AVImageView : UIView
-@property (nonatomic, strong)   AVImageView     *imageModel;
+@property (nonatomic, strong)   IBOutlet UIImageView    *contentImageView;
+@property (nonatomic, strong)   AVImageView             *imageModel;
 
 @end

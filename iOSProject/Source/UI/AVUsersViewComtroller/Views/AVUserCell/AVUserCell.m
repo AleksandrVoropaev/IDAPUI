@@ -9,6 +9,7 @@
 #import "AVUserCell.h"
 
 #import "AVUser.h"
+#import "AVImageView.h"
 
 @implementation AVUserCell
 
@@ -44,7 +45,7 @@
 
 - (void)fillWithModel:(AVUser *)user {
     self.fullNameLabel.text = user.fullname;
-    self.userImageView.image = user.image;
+    self.userImageView.contentImageView.image = user.image;
 }
 
 @end
