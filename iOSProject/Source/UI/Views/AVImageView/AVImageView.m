@@ -60,7 +60,8 @@
 #pragma mark Accessors
 
 - (void)setContentImageView:(UIImageView *)contentImageView {
-    if (_contentImageView != contentImageView) {
+    if (_contentImageView != contentImageView)
+    {
         [_contentImageView removeFromSuperview];
         _contentImageView = contentImageView;
         [self addSubview:_contentImageView];

@@ -12,4 +12,5 @@
 
 @interface AVUsersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) AVUser    *user;
+
 @end

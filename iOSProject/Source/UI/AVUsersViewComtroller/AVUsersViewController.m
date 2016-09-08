@@ -66,7 +66,6 @@
     if (!cell) {
         UINib *nib = [UINib nibWithNibNameFromClassName:classAVUserCell];
         NSArray *cells = [nib instantiateWithOwner:nil options:nil];
-//        cell = [cells firstObject];
         cell = [cells firstObjectWithClass:classAVUserCell];
     }
     

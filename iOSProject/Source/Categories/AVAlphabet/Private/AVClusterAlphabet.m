@@ -9,7 +9,7 @@
 #import "AVClusterAlphabet.h"
 
 @interface AVClusterAlphabet ()
-@property (nonatomic, retain)   NSArray     *alphabets;
+@property (nonatomic, strong)   NSArray     *alphabets;
 @property (nonatomic, assign)   NSUInteger  count;
 
 - (NSUInteger)countWithAlphabets:(NSArray *)alphabets;

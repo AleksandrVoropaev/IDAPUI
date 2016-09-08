@@ -124,7 +124,8 @@ NSRange AVMakeAlphabetRange(unichar firstChar, unichar secondChar) {
                                   objects:(id __unsafe_unretained _Nonnull [])stackbuf
                                     count:(NSUInteger)len
 {
-    //    state->mutationsPtr = (unsigned long *)()self;
+//    state->mutationsPtr = (unsigned long *)()self; // doesnt work with ARC
+//    state->mutationsPtr = (unsigned long *)(__bridge CFTypeRef)self; // works with ARC
     state->mutationsPtr = kAVmutationsPtr;
     
     NSUInteger length = MIN(state->state + len, [self count]);
