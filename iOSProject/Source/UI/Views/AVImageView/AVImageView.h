@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class AVImageModel;
+
 @interface AVImageView : UIView
+@property (nonatomic, strong)   AVImageView     *imageModel;
 
 @end
