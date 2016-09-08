@@ -43,6 +43,7 @@
 		1FE14ACE1D8054E3005D42AA /* AVImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14ACD1D8054E3005D42AA /* AVImageView.m */; };
 		1FE14AD21D81CC58005D42AA /* UITableView+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14AD11D81CC58005D42AA /* UITableView+AVExtensions.m */; };
 		1FE14AD51D81D554005D42AA /* UINib+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14AD41D81D554005D42AA /* UINib+AVExtensions.m */; };
+		1FE14AD81D81D96B005D42AA /* NSArray+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14AD71D81D96B005D42AA /* NSArray+AVExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,8 @@
 		1FE14AD11D81CC58005D42AA /* UITableView+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+AVExtensions.m"; sourceTree = "<group>"; };
 		1FE14AD31D81D554005D42AA /* UINib+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINib+AVExtensions.h"; sourceTree = "<group>"; };
 		1FE14AD41D81D554005D42AA /* UINib+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINib+AVExtensions.m"; sourceTree = "<group>"; };
+		1FE14AD61D81D96B005D42AA /* NSArray+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AVExtensions.h"; sourceTree = "<group>"; };
+		1FE14AD71D81D96B005D42AA /* NSArray+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AVExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,8 @@
 				1FE14AD11D81CC58005D42AA /* UITableView+AVExtensions.m */,
 				1FE14AD31D81D554005D42AA /* UINib+AVExtensions.h */,
 				1FE14AD41D81D554005D42AA /* UINib+AVExtensions.m */,
+				1FE14AD61D81D96B005D42AA /* NSArray+AVExtensions.h */,
+				1FE14AD71D81D96B005D42AA /* NSArray+AVExtensions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -628,6 +633,7 @@
 				1FE14AC01D8054A6005D42AA /* AVSquareMovingViewController.m in Sources */,
 				1F0E88F11D7EF789000A85E1 /* NSString+AVExtensions.m in Sources */,
 				1F0E88FF1D7EF7F9000A85E1 /* AVStringsAlphabet.m in Sources */,
+				1FE14AD81D81D96B005D42AA /* NSArray+AVExtensions.m in Sources */,
 				1FE14AC21D8054A6005D42AA /* AVSquareView.m in Sources */,
 				1FE14AC91D8054A6005D42AA /* AVLabelView.m in Sources */,
 				1FE14ABF1D8054A6005D42AA /* AVSquareMovingView.m in Sources */,

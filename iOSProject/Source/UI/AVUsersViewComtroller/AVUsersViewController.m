@@ -14,6 +14,7 @@
 
 #import "UITableView+AVExtensions.h"
 #import "UINib+AVExtensions.h"
+#import "NSArray+AVExtensions.h"
 
 @interface AVUsersViewController ()
 @property (nonatomic, strong)   AVUsersView *usersView;
@@ -65,7 +66,8 @@
     if (!cell) {
         UINib *nib = [UINib nibWithNibNameFromClassName:classAVUserCell];
         NSArray *cells = [nib instantiateWithOwner:nil options:nil];
-        cell = [cells firstObject];
+//        cell = [cells firstObject];
+        cell = [cells firstObjectWithClass:classAVUserCell];
     }
     
     cell.user = [AVUser new];
