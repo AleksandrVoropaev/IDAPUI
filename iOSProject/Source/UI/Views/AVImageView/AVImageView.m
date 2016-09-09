@@ -8,6 +8,7 @@
 
 #import "AVImageView.h"
 
+#import "AVImageModel.h"
 //#import "AVObservableObject.h"
 
 @interface AVImageView ()
@@ -68,9 +69,11 @@
     }
 }
 
-- (void)setImageModel:(AVImageView *)imageModel {
+- (void)setImageModel:(AVImageModel *)imageModel {
     if (_imageModel != imageModel) {
         _imageModel = imageModel;
+        
+        [imageModel load];
     }
 }
 

@@ -17,9 +17,19 @@ typedef NS_ENUM(NSUInteger, AVImageModelState) {
     AVImageModelFailedLoading,
 };
 
+//@protocol AVImageViewObserver <NSObject>
+//
+//@optional
+//- (void)AVImageViewDidBecomeUnloaded;
+//- (void)AVImageViewDidBecomeLoaded;
+//- (void)AVImageViewDidBecomeLoading;
+//- (void)AVImageViewDidBecomeFailedLoading;
+//
+//@end
+
 @interface AVImageModel : AVObservableObject
-@property (nonatomic, readonly) UIImage *image;
-@property (nonatomic, readonly) NSURL   *url;
+@property (nonatomic, readonly)     UIImage     *image;
+@property (nonatomic, readonly)     NSURL       *url;
 
 + (instancetype)imageWithURL:(NSURL *)url;
 

@@ -8,12 +8,14 @@
 
 #import "AVUser.h"
 
+#import "AVImageModel.h"
+
 #import "NSString+AVRandomName.h"
 
 @implementation AVUser
 
 @dynamic fullname;
-@dynamic image;
+@dynamic imageModel;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -36,10 +38,10 @@
     return [NSString stringWithFormat:@"%@ %@", self.name, self.surname];
 }
 
-- (UIImage *)image {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"userImage" ofType:@"png"];
+- (AVImageModel *)imageModel {
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"userImage" withExtension:@"png"];
     
-    return [UIImage imageWithContentsOfFile:path];
+    return [AVImageModel imageWithURL:url];
 }
 
 @end

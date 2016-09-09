@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class AVImageModel;
+
 @interface AVUser : NSObject
-@property (nonatomic, copy)     NSString    *name;
-@property (nonatomic, copy)     NSString    *surname;
-@property (nonatomic, readonly) NSString    *fullname;
-@property (nonatomic, readonly) UIImage     *image;
+@property (nonatomic, copy)     NSString        *name;
+@property (nonatomic, copy)     NSString        *surname;
+@property (nonatomic, readonly) NSString        *fullname;
+@property (nonatomic, readonly) AVImageModel    *imageModel;
 
 @end

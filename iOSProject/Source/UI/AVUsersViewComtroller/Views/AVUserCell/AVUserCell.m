@@ -45,7 +45,7 @@
 
 - (void)fillWithModel:(AVUser *)user {
     self.fullNameLabel.text = user.fullname;
-    self.userImageView.contentImageView.image = user.image;
+    self.userImageView.imageModel = user.imageModel;
 }
 
 @end
