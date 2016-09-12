@@ -56,36 +56,39 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Class classAVUserCell = [AVUserCell class];
-    AVUserCell *cell = (AVUserCell *)[tableView dequeueReusableCellWithClass:classAVUserCell];
+    Class cellClass = [AVUserCell class];
 
-    if (!cell) {
-        UINib *nib = [UINib nibWithNibNameFromClassName:classAVUserCell];
-        NSArray *cells = [nib instantiateWithOwner:nil options:nil];
-        cell = [cells firstObjectWithClass:classAVUserCell];
-    }
-    
+    AVUserCell *cell = [tableView dequeueReusableCellFromTableViewOrCreateNewFromNibWithClass:cellClass];
     cell.user = [AVUser new];
     
     return cell;
 }
 
-#pragma mark -
-#pragma mark UITableViewDataSource
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
-*/
+
+#pragma mark -
+#pragma mark Private
+
+- (IBAction)onEditButton:(id)sender {
+    BOOL editing = self.usersView.tableView.editing;
+    if (editing) {
+        editing = NO;
+    } else {
+        editing = YES;
+    }
+    
+    [self.usersView.tableView setEditing:editing animated:YES];
+}
+
+- (IBAction)onCreateButton:(id)sender {
+
+}
+
 
 @end

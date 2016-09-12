@@ -29,9 +29,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self) {
-        [self initSubviews];
-    }
+    [self initSubviews];
     
     return self;
 }
@@ -61,10 +59,11 @@
 #pragma mark Accessors
 
 - (void)setContentImageView:(UIImageView *)contentImageView {
-    if (_contentImageView != contentImageView)
-    {
+    if (_contentImageView != contentImageView) {
         [_contentImageView removeFromSuperview];
+        
         _contentImageView = contentImageView;
+        
         [self addSubview:_contentImageView];
     }
 }

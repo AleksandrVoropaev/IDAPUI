@@ -24,6 +24,7 @@
 		1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57CE1D7057D70026A944 /* AppDelegate.m */; };
 		1F2B57E51D7057D70026A944 /* iOSProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57E41D7057D70026A944 /* iOSProjectTests.m */; };
 		1F2B57F01D7057D70026A944 /* iOSProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */; };
+		1FCAA6461D86FD9B00708B7B /* AVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAA6451D86FD9A00708B7B /* AVArrayModel.m */; };
 		1FE14A961D7FEE37005D42AA /* AVImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14A951D7FEE37005D42AA /* AVImageModel.m */; };
 		1FE14A9A1D800ACD005D42AA /* AVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14A991D800ACD005D42AA /* AVObservableObject.m */; };
 		1FE14A9E1D801DA4005D42AA /* AVImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14A9D1D801DA4005D42AA /* AVImageModelDispatcher.m */; };
@@ -101,6 +102,8 @@
 		1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSProjectUITests.m; sourceTree = "<group>"; };
 		1F2B57F11D7057D70026A944 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F2B57FD1D70822E0026A944 /* iOS Study Plan.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
+		1FCAA6441D86FD9A00708B7B /* AVArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayModel.h; sourceTree = "<group>"; };
+		1FCAA6451D86FD9A00708B7B /* AVArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVArrayModel.m; sourceTree = "<group>"; };
 		1FE14A941D7FEE37005D42AA /* AVImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVImageModel.h; sourceTree = "<group>"; };
 		1FE14A951D7FEE37005D42AA /* AVImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageModel.m; sourceTree = "<group>"; };
 		1FE14A981D800ACD005D42AA /* AVObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVObservableObject.h; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 		1F0DCDAB1D79CA7200FD425C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1FCAA6431D86FD0400708B7B /* AVArrayModel */,
 				1FE14A931D7FEE37005D42AA /* AVImageModel */,
 				1F0E88EB1D7EF090000A85E1 /* AVUser */,
 			);
@@ -370,6 +374,15 @@
 				1F2B57F11D7057D70026A944 /* Info.plist */,
 			);
 			path = iOSProjectUITests;
+			sourceTree = "<group>";
+		};
+		1FCAA6431D86FD0400708B7B /* AVArrayModel */ = {
+			isa = PBXGroup;
+			children = (
+				1FCAA6441D86FD9A00708B7B /* AVArrayModel.h */,
+				1FCAA6451D86FD9A00708B7B /* AVArrayModel.m */,
+			);
+			path = AVArrayModel;
 			sourceTree = "<group>";
 		};
 		1FE14A931D7FEE37005D42AA /* AVImageModel */ = {
@@ -634,6 +647,7 @@
 				1F0E88F11D7EF789000A85E1 /* NSString+AVExtensions.m in Sources */,
 				1F0E88FF1D7EF7F9000A85E1 /* AVStringsAlphabet.m in Sources */,
 				1FE14AD81D81D96B005D42AA /* NSArray+AVExtensions.m in Sources */,
+				1FCAA6461D86FD9B00708B7B /* AVArrayModel.m in Sources */,
 				1FE14AC21D8054A6005D42AA /* AVSquareView.m in Sources */,
 				1FE14AC91D8054A6005D42AA /* AVLabelView.m in Sources */,
 				1FE14ABF1D8054A6005D42AA /* AVSquareMovingView.m in Sources */,

@@ -10,5 +10,8 @@
 
 @interface AVUsersView : UIView
 @property (nonatomic, strong)   IBOutlet UITableView    *tableView;
+@property (nonatomic, strong)   IBOutlet UIButton       *editButton;
+@property (nonatomic, strong)   IBOutlet UIButton       *sortButton;
+@property (nonatomic, strong)   IBOutlet UIButton       *createButton;
 
 @end

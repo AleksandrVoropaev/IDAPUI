@@ -14,8 +14,29 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="d6v-TX-jmE">
+                    <rect key="frame" x="8" y="18" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Edit"/>
+                    <connections>
+                        <action selector="onEditButton:" destination="-1" eventType="touchUpInside" id="Pe2-k9-loT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="D2Q-KE-Uxp">
+                    <rect key="frame" x="266" y="18" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="+"/>
+                    <connections>
+                        <action selector="onCreateButton:" destination="-1" eventType="touchUpInside" id="QYt-P8-azp"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="anO-iH-oFd">
+                    <rect key="frame" x="137" y="18" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Sort"/>
+                </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cPt-kq-eEK">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="56" width="320" height="512"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -26,6 +47,9 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="createButton" destination="D2Q-KE-Uxp" id="ppR-ap-7MH"/>
+                <outlet property="editButton" destination="d6v-TX-jmE" id="NV7-Ge-sTN"/>
+                <outlet property="sortButton" destination="anO-iH-oFd" id="Dfh-kt-m5h"/>
                 <outlet property="tableView" destination="cPt-kq-eEK" id="9pr-ym-Uhw"/>
             </connections>
             <point key="canvasLocation" x="301" y="342"/>

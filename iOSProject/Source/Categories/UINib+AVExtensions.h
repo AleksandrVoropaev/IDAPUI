@@ -10,6 +10,9 @@
 
 @interface UINib (AVExtensions)
 
-+ (UINib *)nibWithNibNameFromClassName:(Class)cls;
++ (UINib *)nibWithClass:(Class)cls;
+
++ (NSArray *)objectsFromNibWithClass:(Class)cls;
++ (id)firstObjectFromNibWithClass:(Class)cls;
 
 @end
