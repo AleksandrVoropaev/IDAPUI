@@ -8,6 +8,8 @@
 
 #import "AVArrayModel.h"
 
+#import "AVUser.h"
+
 #import "AVSwitchCaseMacro.h"
 
 @interface AVArrayModel ()
@@ -69,14 +71,23 @@
 }
 
 - (NSArray *)sortedArrayWithType:(AVArraySortType)sortType {
+    NSMutableArray *result = nil;
     switch (sortType) {
-            AVSwitchCase(AVArraySortTypeAscending, { [self.array sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-                
-                return ;
-            }]; });
-            AVSwitchCase(AVArraySortTypeDescending, {  });
-            AVSwitchCaseDefault({});
+        AVSwitchCase(AVArraySortTypeAscending, { [result arrayByAddingObjectsFromArray:[self.array sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            NSString *firstSurname = ((AVUser *)obj1).surname;
+            NSString *secondSurname = ((AVUser *)obj2).surname;
+            return [firstSurname compare:secondSurname];
+        }]]; });
+        AVSwitchCase(AVArraySortTypeDescending, { [result arrayByAddingObjectsFromArray:[self.array sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            NSString *firstSurname = ((AVUser *)obj1).surname;
+            NSString *secondSurname = ((AVUser *)obj2).surname;
+            return [secondSurname compare:firstSurname];
+        }]]; });
+
+        AVSwitchCaseDefault({});
     }
+    
+    return result;
 }
 
 @end
