@@ -16,6 +16,8 @@ typedef enum : NSUInteger {
 @interface AVArrayModel : AVObservableObject
 @property (nonatomic, readonly)   NSUInteger  count;
 
+- (id)objectAtIndex:(NSUInteger)index;
+
 - (void)addObject:(id)object;
 - (void)addObject:(id)object atIndex:(NSUInteger)index;
 - (void)addObjects:(NSArray *)objects;

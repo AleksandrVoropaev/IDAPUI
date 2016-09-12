@@ -25,6 +25,10 @@
     return self.array.count;
 }
 
+- (id)objectAtIndex:(NSUInteger)index {
+    return [self.array objectAtIndex:index];
+}
+
 - (void)addObject:(id)object {
     NSMutableArray *result = [NSMutableArray arrayWithArray:self.array];
     [result addObject:object];

@@ -9,6 +9,7 @@
 #import "AVUsersViewController.h"
 
 #import "AVUser.h"
+#import "AVUsers.h"
 #import "AVUsersView.h"
 #import "AVUserCell.h"
 
@@ -25,6 +26,13 @@
 @implementation AVUsersViewController
 
 @dynamic usersView;
+
+- (instancetype)init {
+    self = [super init];
+    self.users = [AVUsers new];
+    
+    return self;
+}
 
 #pragma mark -
 #pragma mark Accsessors
@@ -43,6 +51,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.users addUsersWithCount:10];
+    
     [self.usersView.tableView reloadData];
     // Do any additional setup after loading the view from its nib.
 }
@@ -56,20 +66,25 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.users.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Class cellClass = [AVUserCell class];
 
     AVUserCell *cell = [tableView dequeueReusableCellFromTableViewOrCreateNewFromNibWithClass:cellClass];
-    cell.user = [AVUser new];
+    cell.user = [self.users objectAtIndex:[indexPath indexAtPosition:1]];
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)deleteRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
+              withRowAnimation:(UITableViewRowAnimation)animation {
+    for (NSIndexPath *indexPath in indexPaths) {
+        [self.users removeObjectAtIndex:[indexPath indexAtPosition:1]];
+    }
     
+    [self.usersView.tableView reloadData];
 }
 
 #pragma mark -
@@ -77,17 +92,18 @@
 
 - (IBAction)onEditButton:(id)sender {
     BOOL editing = self.usersView.tableView.editing;
-    if (editing) {
-        editing = NO;
-    } else {
-        editing = YES;
-    }
     
-    [self.usersView.tableView setEditing:editing animated:YES];
+    [self.usersView.tableView setEditing:!editing animated:YES];
 }
 
 - (IBAction)onCreateButton:(id)sender {
+    AVUser *user = [AVUser new];
+    [self.users addObject:user];
+    [self.usersView.tableView reloadData];
+}
 
+- (IBAction)onSortButton:(id)sender {
+    
 }
 
 

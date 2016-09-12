@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class AVUser;
+@class AVUsers;
 
 @interface AVUsersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) AVUser    *user;
+@property (nonatomic, strong) AVUsers    *users;
 
 @end
