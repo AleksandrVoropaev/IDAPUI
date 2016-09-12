@@ -74,6 +74,10 @@
     self.array = result;
 }
 
+- (void)removeAll {
+    self.array = nil;
+}
+
 - (NSArray *)sortedArrayWithType:(AVArraySortType)sortType {
     NSMutableArray *result = nil;
     switch (sortType) {

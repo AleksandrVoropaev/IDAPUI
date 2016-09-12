@@ -12,6 +12,7 @@
 #import "AVUsers.h"
 #import "AVUsersView.h"
 #import "AVUserCell.h"
+#import "AVArrayModel.h"
 
 #import "UITableView+AVExtensions.h"
 #import "UINib+AVExtensions.h"
@@ -19,7 +20,8 @@
 
 @interface AVUsersViewController ()
 @property (nonatomic, strong)   AVUsersView *usersView;
-@property (nonatomic,assign)    NSUInteger  count;
+@property (nonatomic, assign)   NSUInteger  count;
+@property (nonatomic, assign)   BOOL        isAscending;
 
 @end
 
@@ -103,8 +105,15 @@
 }
 
 - (IBAction)onSortButton:(id)sender {
+    [self.users removeAll];
+    AVArraySortType sortType = AVArraySortTypeDescending;
+    if (self.isAscending) {
+        sortType = AVArraySortTypeAscending;
+        self.isAscending = !self.isAscending;
+    }
     
+    [self.users addObjects:[self.users sortedArrayWithType:sortType]];
+    [self.usersView.tableView reloadData];
 }
-
 
 @end

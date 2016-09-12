@@ -34,6 +34,9 @@
                     <rect key="frame" x="137" y="18" width="46" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Sort"/>
+                    <connections>
+                        <action selector="onSortButton:" destination="-1" eventType="touchUpInside" id="qT7-sw-xjm"/>
+                    </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cPt-kq-eEK">
                     <rect key="frame" x="0.0" y="56" width="320" height="512"/>
