@@ -10,6 +10,9 @@
 
 #import "AVSquareMovingViewController.h"
 #import "AVUsersViewController.h"
+#import "AVUsers.h"
+
+#import "UIWindow+AVExtensions.h"
 
 @interface AppDelegate ()
 
@@ -19,11 +22,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UIWindow *window  = [UIWindow windowWithScreenBounds];
     self.window = window;
     
 //    AVSquareMovingViewController *controller = [AVSquareMovingViewController new];
-    AVUsersViewController *controller = [AVUsersViewController new];
+//    AVUsersViewController *controller = [AVUsersViewController new];
+    AVUsersViewController *controller = [AVUsersViewController usersViewControllerWithModel:[AVUsers usersWithCount:20]];
 
     window.rootViewController = controller;
     [window makeKeyAndVisible];

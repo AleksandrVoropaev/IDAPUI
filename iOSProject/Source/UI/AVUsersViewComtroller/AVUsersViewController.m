@@ -19,9 +19,9 @@
 #import "NSArray+AVExtensions.h"
 
 @interface AVUsersViewController ()
-@property (nonatomic, strong)   AVUsersView *usersView;
-@property (nonatomic, assign)   NSUInteger  count;
-@property (nonatomic, assign)   BOOL        isAscending;
+@property (nonatomic, strong)   AVUsersView     *usersView;
+@property (nonatomic, assign)   NSUInteger      count;
+@property (nonatomic, assign)   BOOL            isAscending;
 
 @end
 
@@ -29,10 +29,26 @@
 
 @dynamic usersView;
 
+#pragma mark -
+#pragma mark Class Methods
+
++ (instancetype)usersViewControllerWithModel:(AVUsers *)model {
+    return [[self alloc] initWithModel:model];
+}
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
 - (instancetype)init {
     self = [super init];
-    self.users = [AVUsers usersWithCount:20];
     self.isAscending = YES;
+    
+    return self;
+}
+
+- (instancetype)initWithModel:(AVUsers *)model {
+    self = [self init];
+    [self setModel:model];
     
     return self;
 }
@@ -103,9 +119,8 @@
     return YES;
 }
 
-
 #pragma mark -
-#pragma mark Private
+#pragma mark Buttons Processing
 
 - (IBAction)onEditButton:(id)sender {
     BOOL editing = self.usersView.tableView.editing;
@@ -130,6 +145,13 @@
 
     [self.users sortArrayWithType:sortType];
     [self.usersView.tableView reloadData];
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)setModel:(AVUsers *)model {
+    self.users = model;
 }
 
 @end

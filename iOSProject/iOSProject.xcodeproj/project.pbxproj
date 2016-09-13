@@ -46,6 +46,8 @@
 		1FE14AD21D81CC58005D42AA /* UITableView+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14AD11D81CC58005D42AA /* UITableView+AVExtensions.m */; };
 		1FE14AD51D81D554005D42AA /* UINib+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14AD41D81D554005D42AA /* UINib+AVExtensions.m */; };
 		1FE14AD81D81D96B005D42AA /* NSArray+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14AD71D81D96B005D42AA /* NSArray+AVExtensions.m */; };
+		1FF7D5C11D8847C600D39253 /* UIWindow+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7D5C01D8847C600D39253 /* UIWindow+AVExtensions.m */; };
+		1FF7D5C41D8848D900D39253 /* UIViewController+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7D5C31D8848D900D39253 /* UIViewController+AVExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +147,10 @@
 		1FE14AD41D81D554005D42AA /* UINib+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINib+AVExtensions.m"; sourceTree = "<group>"; };
 		1FE14AD61D81D96B005D42AA /* NSArray+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AVExtensions.h"; sourceTree = "<group>"; };
 		1FE14AD71D81D96B005D42AA /* NSArray+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AVExtensions.m"; sourceTree = "<group>"; };
+		1FF7D5BF1D8847C600D39253 /* UIWindow+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+AVExtensions.h"; sourceTree = "<group>"; };
+		1FF7D5C01D8847C600D39253 /* UIWindow+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+AVExtensions.m"; sourceTree = "<group>"; };
+		1FF7D5C21D8848D900D39253 /* UIViewController+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AVExtensions.h"; sourceTree = "<group>"; };
+		1FF7D5C31D8848D900D39253 /* UIViewController+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AVExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +204,10 @@
 				1FE14AD41D81D554005D42AA /* UINib+AVExtensions.m */,
 				1FE14AD61D81D96B005D42AA /* NSArray+AVExtensions.h */,
 				1FE14AD71D81D96B005D42AA /* NSArray+AVExtensions.m */,
+				1FF7D5BF1D8847C600D39253 /* UIWindow+AVExtensions.h */,
+				1FF7D5C01D8847C600D39253 /* UIWindow+AVExtensions.m */,
+				1FF7D5C21D8848D900D39253 /* UIViewController+AVExtensions.h */,
+				1FF7D5C31D8848D900D39253 /* UIViewController+AVExtensions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -658,12 +668,14 @@
 			files = (
 				1FE14AC01D8054A6005D42AA /* AVSquareMovingViewController.m in Sources */,
 				1F0E88F11D7EF789000A85E1 /* NSString+AVExtensions.m in Sources */,
+				1FF7D5C41D8848D900D39253 /* UIViewController+AVExtensions.m in Sources */,
 				1F0E88FF1D7EF7F9000A85E1 /* AVStringsAlphabet.m in Sources */,
 				1FE14AD81D81D96B005D42AA /* NSArray+AVExtensions.m in Sources */,
 				1FCAA6461D86FD9B00708B7B /* AVArrayModel.m in Sources */,
 				1FE14AC21D8054A6005D42AA /* AVSquareView.m in Sources */,
 				1FE14AC91D8054A6005D42AA /* AVLabelView.m in Sources */,
 				1FE14ABF1D8054A6005D42AA /* AVSquareMovingView.m in Sources */,
+				1FF7D5C11D8847C600D39253 /* UIWindow+AVExtensions.m in Sources */,
 				1FE14AC61D8054A6005D42AA /* AVUserCell.m in Sources */,
 				1F0E89031D7EF828000A85E1 /* AVRandom.m in Sources */,
 				1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */,
