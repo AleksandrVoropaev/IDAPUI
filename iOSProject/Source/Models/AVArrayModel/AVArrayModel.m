@@ -36,15 +36,16 @@
 }
 
 - (void)addObject:(id)object atIndex:(NSUInteger)index {
-    NSMutableArray *result = nil;
+    NSMutableArray *result = [NSMutableArray array];
     for (NSUInteger iterator = 0; iterator < index + 1; iterator++) {
-        [result addObject:self.array[iterator]];
+        id obj = [self.array objectAtIndex:iterator];
+        [result addObject:obj];
     }
 
     [result addObject:object];
     
     for (NSUInteger iterator = index + 1; iterator < self.array.count; iterator++) {
-        [result addObject:self.array[iterator]];
+        [result addObject:[self.array objectAtIndex:iterator]];
     }
 
     self.array = result;
@@ -78,7 +79,12 @@
     self.array = nil;
 }
 
-- (void)sortedArrayWithType:(AVArraySortType)sortType {
+- (void)moveObjectFromIndex:(NSUInteger)baseIndex toIndex:(NSUInteger)targetIndex {
+    [self addObject:[self objectAtIndex:baseIndex] atIndex:targetIndex];
+    [self removeObjectAtIndex:baseIndex];
+}
+
+- (void)sortArrayWithType:(AVArraySortType)sortType {
     NSArray *result = nil;
     switch (sortType) {
         AVSwitchCase(AVArraySortTypeAscending, { result = [self.array sortedArrayUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {

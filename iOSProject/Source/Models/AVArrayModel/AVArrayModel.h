@@ -27,6 +27,8 @@ typedef enum : NSUInteger {
 - (void)removeObjects:(NSArray *)objects;
 - (void)removeAll;
 
-- (void)sortedArrayWithType:(AVArraySortType)sortType;
+- (void)moveObjectFromIndex:(NSUInteger)baseIndex toIndex:(NSUInteger)targetIndex;
+
+- (void)sortArrayWithType:(AVArraySortType)sortType;
 
 @end

@@ -80,15 +80,48 @@
     return cell;
 }
 
-- (void)deleteRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
-              withRowAnimation:(UITableViewRowAnimation)animation
+//- (void)deleteRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
+//              withRowAnimation:(UITableViewRowAnimation)animation
+//{
+//    for (NSIndexPath *indexPath in indexPaths) {
+//        [self.users removeObjectAtIndex:[indexPath indexAtPosition:1]];
+//    }
+//    
+//    [self.usersView.tableView reloadData];
+//}
+
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+//                                            forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//}
+
+// Data manipulation - reorder / moving support
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+                                            forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    for (NSIndexPath *indexPath in indexPaths) {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.users removeObjectAtIndex:[indexPath indexAtPosition:1]];
+        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+        [self.usersView.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:YES];
     }
     
     [self.usersView.tableView reloadData];
 }
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+                                                  toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    [self.users moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
+                            toIndex:[destinationIndexPath indexAtPosition:1]];
+    [self.usersView.tableView reloadData];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
 
 #pragma mark -
 #pragma mark Private
@@ -115,7 +148,7 @@
     
     self.isAscending = !self.isAscending;
 
-    [self.users sortedArrayWithType:sortType];
+    [self.users sortArrayWithType:sortType];
     [self.usersView.tableView reloadData];
 }
 
