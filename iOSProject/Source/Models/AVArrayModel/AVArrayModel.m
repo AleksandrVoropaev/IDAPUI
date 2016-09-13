@@ -78,24 +78,24 @@
     self.array = nil;
 }
 
-- (NSArray *)sortedArrayWithType:(AVArraySortType)sortType {
-    NSMutableArray *result = nil;
+- (void)sortedArrayWithType:(AVArraySortType)sortType {
+    NSArray *result = nil;
     switch (sortType) {
-        AVSwitchCase(AVArraySortTypeAscending, { [result arrayByAddingObjectsFromArray:[self.array sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            NSString *firstSurname = ((AVUser *)obj1).surname;
-            NSString *secondSurname = ((AVUser *)obj2).surname;
+        AVSwitchCase(AVArraySortTypeAscending, { result = [self.array sortedArrayUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
+            NSString *firstSurname = firstUser.surname;
+            NSString *secondSurname = secondUser.surname;
             return [firstSurname compare:secondSurname];
-        }]]; });
-        AVSwitchCase(AVArraySortTypeDescending, { [result arrayByAddingObjectsFromArray:[self.array sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            NSString *firstSurname = ((AVUser *)obj1).surname;
-            NSString *secondSurname = ((AVUser *)obj2).surname;
+        }]; });
+        AVSwitchCase(AVArraySortTypeDescending, { result = [self.array sortedArrayUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
+            NSString *firstSurname = firstUser.surname;
+            NSString *secondSurname = secondUser.surname;
             return [secondSurname compare:firstSurname];
-        }]]; });
+        }]; });
 
         AVSwitchCaseDefault({});
     }
     
-    return result;
+    self.array = result;
 }
 
 @end

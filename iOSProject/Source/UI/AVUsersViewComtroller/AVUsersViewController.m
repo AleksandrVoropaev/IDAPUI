@@ -31,7 +31,7 @@
 
 - (instancetype)init {
     self = [super init];
-    self.users = [AVUsers new];
+    self.users = [AVUsers usersWithCount:20];
     
     return self;
 }
@@ -53,7 +53,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.users addUsersWithCount:10];
+//    [self.users addUsersWithCount:10];
     
     [self.usersView.tableView reloadData];
     // Do any additional setup after loading the view from its nib.
@@ -74,14 +74,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Class cellClass = [AVUserCell class];
 
-    AVUserCell *cell = [tableView dequeueReusableCellFromTableViewOrCreateNewFromNibWithClass:cellClass];
+    AVUserCell *cell = [tableView dequeueReusableCellWithClass:cellClass];
     cell.user = [self.users objectAtIndex:[indexPath indexAtPosition:1]];
     
     return cell;
 }
 
 - (void)deleteRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
-              withRowAnimation:(UITableViewRowAnimation)animation {
+              withRowAnimation:(UITableViewRowAnimation)animation
+{
     for (NSIndexPath *indexPath in indexPaths) {
         [self.users removeObjectAtIndex:[indexPath indexAtPosition:1]];
     }
@@ -105,14 +106,16 @@
 }
 
 - (IBAction)onSortButton:(id)sender {
-    [self.users removeAll];
     AVArraySortType sortType = AVArraySortTypeDescending;
     if (self.isAscending) {
         sortType = AVArraySortTypeAscending;
-        self.isAscending = !self.isAscending;
+    } else {
+        sortType = AVArraySortTypeDescending;
     }
     
-    [self.users addObjects:[self.users sortedArrayWithType:sortType]];
+    self.isAscending = !self.isAscending;
+
+    [self.users sortedArrayWithType:sortType];
     [self.usersView.tableView reloadData];
 }
 

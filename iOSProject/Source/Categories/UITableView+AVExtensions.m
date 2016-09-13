@@ -14,16 +14,11 @@
 
 //- (nullable __kindof UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;  // Used by the delegate to acquire an already allocated cell, in lieu of allocating a new one.
 
-- (nullable __kindof UITableViewCell *)dequeueReusableCellWithClass:(Class)cls {
-    NSString *identifier = NSStringFromClass(cls);
-    return [self dequeueReusableCellWithIdentifier:identifier];
-}
-
-- (id)dequeueReusableCellFromTableViewOrCreateNewFromNibWithClass:(Class)class {
-    id cell = [self dequeueReusableCellWithClass:class];
-    
+- (nullable __kindof UITableViewCell *)dequeueReusableCellWithClass:(Class)class {
+    NSString *identifier = NSStringFromClass(class);
+    id cell = [self dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        cell = [UINib firstObjectFromNibWithClass:class];
+        cell = [UINib firstObjectWithClass:class];
     }
     
     return cell;

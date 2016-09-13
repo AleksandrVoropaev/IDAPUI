@@ -12,6 +12,18 @@
 
 @implementation AVUsers
 
++ (instancetype)usersWithCount:(NSUInteger)count {
+    return [[self alloc] initWithCount:count];
+}
+
+- (instancetype)initWithCount:(NSUInteger)count {
+    self = [super init];
+    [self addUsersWithCount:count];
+    
+    return self;
+}
+
+
 - (void)addUsersWithCount:(NSUInteger)count {
     for (NSUInteger iterator = 0; iterator < count; iterator++) {
         [self addObject:[AVUser new]];

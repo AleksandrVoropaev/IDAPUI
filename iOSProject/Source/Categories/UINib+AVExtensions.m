@@ -19,13 +19,25 @@
     return [self nibWithNibName:nibName bundle:nil];
 }
 
-+ (NSArray *)objectsFromNibWithClass:(Class)class {
++ (NSArray *)objectsWithClass:(Class)class {
     UINib *nib = [UINib nibWithClass:class];
     return [nib instantiateWithOwner:nil options:nil];
 }
 
-+ (id)firstObjectFromNibWithClass:(Class)class {
-    return [[self objectsFromNibWithClass:class] firstObjectWithClass:class];
++ (id)firstObjectWithClass:(Class)class {
+    return [[self objectsWithClass:class] firstObjectWithClass:class];
+}
+
+- (NSArray *)objectsWithOwner:(nullable id)ownerOrNil {
+    return [self instantiateWithOwner:ownerOrNil options:nil];
+}
+
+- (NSArray *)objectsWithClass:(Class)class owner:(nullable id)ownerOrNil {
+    return [[self objectsWithOwner:ownerOrNil] objectsWithClass:class];
+}
+
+- (id)firstObjectWithClass:(Class)class owner:(nullable id)ownerOrNil {
+    return [[self objectsWithClass:class owner:ownerOrNil] firstObject];
 }
 
 @end

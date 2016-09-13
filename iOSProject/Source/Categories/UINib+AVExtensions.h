@@ -12,7 +12,11 @@
 
 + (UINib *)nibWithClass:(Class)cls;
 
-+ (NSArray *)objectsFromNibWithClass:(Class)cls;
-+ (id)firstObjectFromNibWithClass:(Class)cls;
++ (NSArray *)objectsWithClass:(Class)cls;
++ (id)firstObjectWithClass:(Class)cls;
+
+- (NSArray *)objectsWithOwner:(nullable id)ownerOrNil;
+- (NSArray *)objectsWithClass:(Class)cls owner:(nullable id)ownerOrNil;
+- (id)firstObjectWithClass:(Class)cls owner:(nullable id)ownerOrNil;
 
 @end
