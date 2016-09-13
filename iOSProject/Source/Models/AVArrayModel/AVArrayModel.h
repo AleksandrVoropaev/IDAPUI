@@ -13,6 +13,10 @@ typedef enum : NSUInteger {
     AVArraySortTypeDescending,
 } AVArraySortType;
 
+typedef NS_ENUM(NSUInteger, AVArrayState) {
+    AVArrayStateDidChanged
+};
+
 @interface AVArrayModel : AVObservableObject
 @property (nonatomic, readonly)   NSUInteger  count;
 

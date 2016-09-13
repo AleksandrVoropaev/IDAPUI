@@ -111,4 +111,11 @@
     [self.array addObjectsFromArray:result];
 }
 
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        AVSwitchCase(AVArrayStateDidChanged, { return @selector(arrayDidChanged); });
+        AVSwitchCaseDefault({ return [super selectorForState:state]; })
+    }
+}
+
 @end
