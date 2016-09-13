@@ -13,13 +13,20 @@
 #import "AVSwitchCaseMacro.h"
 
 @interface AVArrayModel ()
-@property (nonatomic, strong)   NSArray     *array;
+@property (nonatomic, strong)   NSMutableArray  *array;
 
 @end
 
 @implementation AVArrayModel
 
 @dynamic count;
+
+- (instancetype)init {
+    self = [super init];
+    self.array = [NSMutableArray array];
+    
+    return self;
+}
 
 - (NSUInteger)count {
     return self.array.count;
@@ -29,10 +36,16 @@
     return [self.array objectAtIndex:index];
 }
 
+- (id)objectAtIndexedSubscript:(NSUInteger)index {
+    return [self.array objectAtIndexedSubscript:index];
+}
+
+- (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
+    [self.array setObject:object atIndexedSubscript:index];
+}
+
 - (void)addObject:(id)object {
-    NSMutableArray *result = [NSMutableArray arrayWithArray:self.array];
-    [result addObject:object];
-    self.array = result;
+    [self.array addObject:object];
 }
 
 - (void)addObject:(id)object atIndex:(NSUInteger)index {
@@ -49,34 +62,27 @@
     }
 
     self.array = result;
+//    [self.array insertObject:object atIndex:index];
 }
 
 - (void)addObjects:(NSArray *)objects {
-    NSMutableArray *result = [NSMutableArray arrayWithArray:self.array];
-    [result addObjectsFromArray:objects];
-    self.array = result;
+    [self.array addObjectsFromArray:objects];
 }
 
 - (void)removeObject:(id)object {
-    NSMutableArray *result = [NSMutableArray arrayWithArray:self.array];
-    [result removeObject:object];
-    self.array = result;
+    [self.array removeObject:object];
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
-    NSMutableArray *result = [NSMutableArray arrayWithArray:self.array];
-    [result removeObjectAtIndex:index];
-    self.array = result;
+    [self.array removeObjectAtIndex:index];
 }
 
 - (void)removeObjects:(NSArray *)objects {
-    NSMutableArray *result = [NSMutableArray arrayWithArray:self.array];
-    [result removeObjectsInArray:objects];
-    self.array = result;
+    [self.array removeObjectsInArray:objects];
 }
 
 - (void)removeAll {
-    self.array = nil;
+    [self.array removeObjectsInArray:self.array];
 }
 
 - (void)moveObjectFromIndex:(NSUInteger)baseIndex toIndex:(NSUInteger)targetIndex {
@@ -101,7 +107,8 @@
         AVSwitchCaseDefault({});
     }
     
-    self.array = result;
+    [self removeAll];
+    [self.array addObjectsFromArray:result];
 }
 
 @end

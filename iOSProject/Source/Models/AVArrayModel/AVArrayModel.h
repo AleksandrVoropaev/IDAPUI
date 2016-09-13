@@ -17,10 +17,12 @@ typedef enum : NSUInteger {
 @property (nonatomic, readonly)   NSUInteger  count;
 
 - (id)objectAtIndex:(NSUInteger)index;
+- (id)objectAtIndexedSubscript:(NSUInteger)index;
 
 - (void)addObject:(id)object;
 - (void)addObject:(id)object atIndex:(NSUInteger)index;
 - (void)addObjects:(NSArray *)objects;
+- (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
 
 - (void)removeObject:(id)object;
 - (void)removeObjectAtIndex:(NSUInteger)index;

@@ -32,6 +32,7 @@
 - (instancetype)init {
     self = [super init];
     self.users = [AVUsers usersWithCount:20];
+    self.isAscending = YES;
     
     return self;
 }
@@ -52,8 +53,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    [self.users addUsersWithCount:10];
     
     [self.usersView.tableView reloadData];
     // Do any additional setup after loading the view from its nib.
@@ -80,31 +79,13 @@
     return cell;
 }
 
-//- (void)deleteRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
-//              withRowAnimation:(UITableViewRowAnimation)animation
-//{
-//    for (NSIndexPath *indexPath in indexPaths) {
-//        [self.users removeObjectAtIndex:[indexPath indexAtPosition:1]];
-//    }
-//    
-//    [self.usersView.tableView reloadData];
-//}
-
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-//                                            forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//}
-
-// Data manipulation - reorder / moving support
-
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
                                             forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.users removeObjectAtIndex:[indexPath indexAtPosition:1]];
-        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-        [self.usersView.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:YES];
+        [self.usersView.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                        withRowAnimation:YES];
     }
     
     [self.usersView.tableView reloadData];
@@ -133,13 +114,12 @@
 }
 
 - (IBAction)onCreateButton:(id)sender {
-    AVUser *user = [AVUser new];
-    [self.users addObject:user];
+    [self.users addObject:[AVUser new]];
     [self.usersView.tableView reloadData];
 }
 
 - (IBAction)onSortButton:(id)sender {
-    AVArraySortType sortType = AVArraySortTypeDescending;
+    AVArraySortType sortType = AVArraySortTypeAscending;
     if (self.isAscending) {
         sortType = AVArraySortTypeAscending;
     } else {
