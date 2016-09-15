@@ -12,16 +12,23 @@
 
 @implementation AVUsers
 
-+ (instancetype)usersWithCount:(NSUInteger)count {
-    return [[self alloc] initWithCount:count];
-}
+//+ (instancetype)usersWithCount:(NSUInteger)count {
+//    return [[self alloc] initWithCount:count];
+//}
 
-- (instancetype)initWithCount:(NSUInteger)count {
+- (instancetype)init {
     self = [super init];
-    [self addUsersWithCount:count];
+    [self addUsersWithCount:20];
     
     return self;
 }
+
+//- (instancetype)initWithCount:(NSUInteger)count {
+//    self = [super init];
+//    [self addUsersWithCount:count];
+//    
+//    return self;
+//}
 
 
 - (void)addUsersWithCount:(NSUInteger)count {

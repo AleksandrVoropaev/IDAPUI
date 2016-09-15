@@ -49,20 +49,20 @@
 }
 
 - (void)addObject:(id)object atIndex:(NSUInteger)index {
-    NSMutableArray *result = [NSMutableArray array];
-    for (NSUInteger iterator = 0; iterator < index + 1; iterator++) {
-        id obj = [self.array objectAtIndex:iterator];
-        [result addObject:obj];
-    }
-
-    [result addObject:object];
-    
-    for (NSUInteger iterator = index + 1; iterator < self.array.count; iterator++) {
-        [result addObject:[self.array objectAtIndex:iterator]];
-    }
-
-    self.array = result;
-//    [self.array insertObject:object atIndex:index];
+//    NSMutableArray *result = [NSMutableArray array];
+//    for (NSUInteger iterator = 0; iterator < index + 1; iterator++) {
+//        id obj = [self.array objectAtIndex:iterator];
+//        [result addObject:obj];
+//    }
+//
+//    [result addObject:object];
+//    
+//    for (NSUInteger iterator = index + 1; iterator < self.array.count; iterator++) {
+//        [result addObject:[self.array objectAtIndex:iterator]];
+//    }
+//
+//    self.array = result;
+    [self.array insertObject:object atIndex:index];
 }
 
 - (void)addObjects:(NSArray *)objects {
@@ -86,34 +86,14 @@
 }
 
 - (void)moveObjectFromIndex:(NSUInteger)baseIndex toIndex:(NSUInteger)targetIndex {
-    [self addObject:[self objectAtIndex:baseIndex] atIndex:targetIndex];
+//    [self addObject:[self objectAtIndex:baseIndex] atIndex:targetIndex];
+    [self addObject:[self objectAtIndex:baseIndex] atIndex:targetIndex + 1];
     [self removeObjectAtIndex:baseIndex];
-}
-
-- (void)sortArrayWithType:(AVArraySortType)sortType {
-    NSArray *result = nil;
-    switch (sortType) {
-        AVSwitchCase(AVArraySortTypeAscending, { result = [self.array sortedArrayUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
-            NSString *firstSurname = firstUser.surname;
-            NSString *secondSurname = secondUser.surname;
-            return [firstSurname compare:secondSurname];
-        }]; });
-        AVSwitchCase(AVArraySortTypeDescending, { result = [self.array sortedArrayUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
-            NSString *firstSurname = firstUser.surname;
-            NSString *secondSurname = secondUser.surname;
-            return [secondSurname compare:firstSurname];
-        }]; });
-
-        AVSwitchCaseDefault({});
-    }
-    
-    [self removeAll];
-    [self.array addObjectsFromArray:result];
 }
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        AVSwitchCase(AVArrayStateDidChanged, { return @selector(arrayDidChanged); });
+        AVSwitchCase(AVArrayStateDidChange, { return @selector(arrayDidChange); });
         AVSwitchCaseDefault({ return [super selectorForState:state]; })
     }
 }

@@ -10,7 +10,7 @@
 
 @implementation UIWindow (AVExtensions)
 
-+ (instancetype)windowWithScreenBounds {
++ (instancetype)window {
     return [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 }
 

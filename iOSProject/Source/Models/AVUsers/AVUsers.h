@@ -10,9 +10,9 @@
 
 @interface AVUsers : AVArrayModel
 
-+ (instancetype)usersWithCount:(NSUInteger)count;
+//+ (instancetype)usersWithCount:(NSUInteger)count;
 
-- (instancetype)initWithCount:(NSUInteger)count;
+//- (instancetype)initWithCount:(NSUInteger)count;
 - (void)addUsersWithCount:(NSUInteger)count;
 
 @end

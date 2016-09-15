@@ -10,7 +10,6 @@
 
 @interface UIViewController (AVExtensions)
 
-+ (instancetype)viewControllerWithNibClass:(Class)class;
-+ (instancetype)viewControllerWithNib;
++ (instancetype)viewController;
 
 @end

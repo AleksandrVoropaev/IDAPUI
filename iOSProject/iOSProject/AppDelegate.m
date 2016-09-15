@@ -23,12 +23,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UIWindow *window  = [UIWindow windowWithScreenBounds];
+    UIWindow *window  = [UIWindow window];
     self.window = window;
     
 //    AVSquareMovingViewController *controller = [AVSquareMovingViewController new];
 //    AVUsersViewController *controller = [AVUsersViewController new];
-    AVUsersViewController *controller = [AVUsersViewController usersViewControllerWithModel:[AVUsers usersWithCount:20]];
+    AVUsersViewController *controller = [AVUsersViewController new];
 
     window.rootViewController = controller;
     [window makeKeyAndVisible];

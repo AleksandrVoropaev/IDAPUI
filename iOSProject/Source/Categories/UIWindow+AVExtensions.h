@@ -10,6 +10,6 @@
 
 @interface UIWindow (AVExtensions)
 
-+ (instancetype)windowWithScreenBounds;
++ (instancetype)window;
 
 @end

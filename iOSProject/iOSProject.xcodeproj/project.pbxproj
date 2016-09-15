@@ -24,6 +24,8 @@
 		1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57CE1D7057D70026A944 /* AppDelegate.m */; };
 		1F2B57E51D7057D70026A944 /* iOSProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57E41D7057D70026A944 /* iOSProjectTests.m */; };
 		1F2B57F01D7057D70026A944 /* iOSProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */; };
+		1F9B27F11D8AC5B8003C2223 /* NSBundle+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9B27F01D8AC5B8003C2223 /* NSBundle+AVExtensions.m */; };
+		1F9B27F51D8AD906003C2223 /* AVSortingArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9B27F41D8AD906003C2223 /* AVSortingArrayModel.m */; };
 		1FCAA6461D86FD9B00708B7B /* AVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAA6451D86FD9A00708B7B /* AVArrayModel.m */; };
 		1FCAA64A1D8714E700708B7B /* AVUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAA6491D8714E700708B7B /* AVUsers.m */; };
 		1FE14A961D7FEE37005D42AA /* AVImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14A951D7FEE37005D42AA /* AVImageModel.m */; };
@@ -105,6 +107,10 @@
 		1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSProjectUITests.m; sourceTree = "<group>"; };
 		1F2B57F11D7057D70026A944 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F2B57FD1D70822E0026A944 /* iOS Study Plan.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
+		1F9B27EF1D8AC5B8003C2223 /* NSBundle+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+AVExtensions.h"; sourceTree = "<group>"; };
+		1F9B27F01D8AC5B8003C2223 /* NSBundle+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+AVExtensions.m"; sourceTree = "<group>"; };
+		1F9B27F31D8AD906003C2223 /* AVSortingArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVSortingArrayModel.h; sourceTree = "<group>"; };
+		1F9B27F41D8AD906003C2223 /* AVSortingArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVSortingArrayModel.m; sourceTree = "<group>"; };
 		1FCAA6441D86FD9A00708B7B /* AVArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayModel.h; sourceTree = "<group>"; };
 		1FCAA6451D86FD9A00708B7B /* AVArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVArrayModel.m; sourceTree = "<group>"; };
 		1FCAA6481D8714E700708B7B /* AVUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVUsers.h; sourceTree = "<group>"; };
@@ -208,6 +214,8 @@
 				1FF7D5C01D8847C600D39253 /* UIWindow+AVExtensions.m */,
 				1FF7D5C21D8848D900D39253 /* UIViewController+AVExtensions.h */,
 				1FF7D5C31D8848D900D39253 /* UIViewController+AVExtensions.m */,
+				1F9B27EF1D8AC5B8003C2223 /* NSBundle+AVExtensions.h */,
+				1F9B27F01D8AC5B8003C2223 /* NSBundle+AVExtensions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -390,9 +398,19 @@
 			path = iOSProjectUITests;
 			sourceTree = "<group>";
 		};
+		1F9B27F21D8AD8E6003C2223 /* AVSortingArrayModel */ = {
+			isa = PBXGroup;
+			children = (
+				1F9B27F31D8AD906003C2223 /* AVSortingArrayModel.h */,
+				1F9B27F41D8AD906003C2223 /* AVSortingArrayModel.m */,
+			);
+			path = AVSortingArrayModel;
+			sourceTree = "<group>";
+		};
 		1FCAA6431D86FD0400708B7B /* AVArrayModel */ = {
 			isa = PBXGroup;
 			children = (
+				1F9B27F21D8AD8E6003C2223 /* AVSortingArrayModel */,
 				1FCAA6441D86FD9A00708B7B /* AVArrayModel.h */,
 				1FCAA6451D86FD9A00708B7B /* AVArrayModel.m */,
 			);
@@ -691,12 +709,14 @@
 				1FE14A961D7FEE37005D42AA /* AVImageModel.m in Sources */,
 				1FE14AC31D8054A6005D42AA /* AVUsersView.m in Sources */,
 				1F0E88FD1D7EF7F9000A85E1 /* AVClusterAlphabet.m in Sources */,
+				1F9B27F51D8AD906003C2223 /* AVSortingArrayModel.m in Sources */,
 				1F2B57CC1D7057D70026A944 /* main.m in Sources */,
 				1FE14AC41D8054A6005D42AA /* AVUsersViewController.m in Sources */,
 				1F0E88E21D7EDE84000A85E1 /* AVTableViewCell.m in Sources */,
 				1FE14ACA1D8054A6005D42AA /* ViewController.m in Sources */,
 				1F0E88FC1D7EF7F9000A85E1 /* AVAlphabet.m in Sources */,
 				1F0E89131D7F045B000A85E1 /* NSString+AVRandomName.m in Sources */,
+				1F9B27F11D8AC5B8003C2223 /* NSBundle+AVExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

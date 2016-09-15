@@ -8,13 +8,8 @@
 
 #import "AVObservableObject.h"
 
-typedef enum : NSUInteger {
-    AVArraySortTypeAscending,
-    AVArraySortTypeDescending,
-} AVArraySortType;
-
 typedef NS_ENUM(NSUInteger, AVArrayState) {
-    AVArrayStateDidChanged
+    AVArrayStateDidChange
 };
 
 @interface AVArrayModel : AVObservableObject
@@ -34,7 +29,5 @@ typedef NS_ENUM(NSUInteger, AVArrayState) {
 - (void)removeAll;
 
 - (void)moveObjectFromIndex:(NSUInteger)baseIndex toIndex:(NSUInteger)targetIndex;
-
-- (void)sortArrayWithType:(AVArraySortType)sortType;
 
 @end

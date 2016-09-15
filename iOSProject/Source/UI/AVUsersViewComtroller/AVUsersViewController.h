@@ -13,6 +13,6 @@
 @interface AVUsersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) AVUsers    *users;
 
-+ (instancetype)usersViewControllerWithModel:(AVUsers *)model;
+//+ (instancetype)usersViewControllerWithModel:(AVUsers *)model;
 
 @end

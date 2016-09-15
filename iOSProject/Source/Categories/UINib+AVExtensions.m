@@ -20,24 +20,52 @@
 }
 
 + (NSArray *)objectsWithClass:(Class)class {
+    return [self objectsWithClass:class owner:nil];
+}
+
++ (NSArray *)objectsWithClass:(Class)class owner:(nullable id)ownerOrNil {
+    return [self objectsWithClass:class owner:ownerOrNil options:nil];
+}
+
++ (NSArray *)objectsWithClass:(Class)class owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil {
     UINib *nib = [UINib nibWithClass:class];
-    return [nib instantiateWithOwner:nil options:nil];
+    return [nib instantiateWithOwner:ownerOrNil options:optionsOrNil];
 }
 
-+ (id)firstObjectWithClass:(Class)class {
-    return [[self objectsWithClass:class] firstObjectWithClass:class];
++ (id)objectWithClass:(Class)class {
+    return [[self objectsWithClass:class] firstObject];
 }
 
-- (NSArray *)objectsWithOwner:(nullable id)ownerOrNil {
-    return [self instantiateWithOwner:ownerOrNil options:nil];
++ (id)objectWithClass:(Class)class owner:(nullable id)ownerOrNil {
+    return [[self objectsWithClass:class owner:ownerOrNil] firstObject];
+}
+
++ (id)objectWithClass:(Class)class owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil {
+    return [[self objectsWithClass:class owner:ownerOrNil options:optionsOrNil] firstObject];
+}
+
+- (NSArray *)objectsWithClass:(Class)class {
+    return [self objectsWithClass:class owner:nil];
 }
 
 - (NSArray *)objectsWithClass:(Class)class owner:(nullable id)ownerOrNil {
-    return [[self objectsWithOwner:ownerOrNil] objectsWithClass:class];
+    return [self objectsWithClass:class owner:ownerOrNil options:nil];
 }
 
-- (id)firstObjectWithClass:(Class)class owner:(nullable id)ownerOrNil {
+- (NSArray *)objectsWithClass:(Class)class owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil {
+    return [self instantiateWithOwner:ownerOrNil options:optionsOrNil];
+}
+
+- (id)objectWithClass:(Class)class {
+    return [[self objectsWithClass:class] firstObject];
+}
+
+- (id)objectWithClass:(Class)class owner:(nullable id)ownerOrNil {
     return [[self objectsWithClass:class owner:ownerOrNil] firstObject];
+}
+
+- (id)objectWithClass:(Class)class owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil {
+    return [[self objectsWithClass:class owner:ownerOrNil options:optionsOrNil] firstObject];
 }
 
 @end

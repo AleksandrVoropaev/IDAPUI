@@ -18,7 +18,7 @@
     NSString *identifier = NSStringFromClass(class);
     id cell = [self dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        cell = [UINib firstObjectWithClass:class];
+        cell = [UINib objectWithClass:class];
     }
     
     return cell;

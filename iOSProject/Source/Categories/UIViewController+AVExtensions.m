@@ -12,12 +12,12 @@
 
 @implementation UIViewController (AVExtensions)
 
-+ (instancetype)viewControllerWithNibClass:(Class)class {
-    return [[self alloc] initWithNibName:NSStringFromClass(class) bundle:nil];
++ (instancetype)viewController {
+    return [[self alloc] initWithNibName:[self nibName] bundle:nil];
 }
 
-+ (instancetype)viewControllerWithNib {
-    return [self viewControllerWithNibClass:[self class]];
++ (NSString *)nibName {
+    return NSStringFromClass([self class]);
 }
 
 @end

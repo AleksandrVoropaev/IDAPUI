@@ -12,11 +12,18 @@
 
 + (UINib *)nibWithClass:(Class)cls;
 
-+ (NSArray *)objectsWithClass:(Class)cls;
-+ (id)firstObjectWithClass:(Class)cls;
+//+ (NSArray *)objectsWithClass:(Class)cls;
+//+ (NSArray *)objectsWithClass:(Class)cls owner:(nullable id)ownerOrNil;
+//+ (NSArray *)objectsWithClass:(Class)cls owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil;
++ (id)objectWithClass:(Class)cls;
++ (id)objectWithClass:(Class)cls owner:(nullable id)ownerOrNil;
++ (id)objectWithClass:(Class)cls owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil;
 
-- (NSArray *)objectsWithOwner:(nullable id)ownerOrNil;
-- (NSArray *)objectsWithClass:(Class)cls owner:(nullable id)ownerOrNil;
-- (id)firstObjectWithClass:(Class)cls owner:(nullable id)ownerOrNil;
+//- (NSArray *)objectsWithClass:(Class)cls;
+//- (NSArray *)objectsWithClass:(Class)cls owner:(nullable id)ownerOrNil;
+//- (NSArray *)objectsWithClass:(Class)cls owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil;
+- (id)objectWithClass:(Class)cls;
+- (id)objectWithClass:(Class)cls owner:(nullable id)ownerOrNil;
+- (id)objectWithClass:(Class)cls owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil;
 
 @end
