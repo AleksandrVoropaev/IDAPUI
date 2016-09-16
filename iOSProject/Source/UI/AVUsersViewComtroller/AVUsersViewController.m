@@ -25,7 +25,9 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 @interface AVUsersViewController ()
 @property (nonatomic, assign)   NSUInteger              count;
-//@property (nonatomic, strong)   AVSortingArrayModel     *sortedUsers;
+@property (nonatomic, strong)   AVSortingArrayModel     *sortedUsers;
+@property (nonatomic, strong)   AVUsers                 *notSortedUsers;
+@property (nonatomic, assign)   NSUInteger              iterator;
 
 @end
 
@@ -40,7 +42,9 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 - (instancetype)init {
     self = [super init];
     self.users = [AVUsers new];
-    
+    self.notSortedUsers = self.users;
+    self.sortedUsers = [AVSortingArrayModel sortArray:self.users];
+
     return self;
 }
 
@@ -138,8 +142,20 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 }
 
 - (IBAction)onSortButton:(id)sender {
-    self.users = [self.sortedUsers resortedUsers];
-    [self.usersView.tableView reloadData];
+    if ([self needToSort]) {
+        self.users = [self.sortedUsers resortedUsers];
+    } else {
+        self.users = self.notSortedUsers;
+    }
+}
+
+- (BOOL)needToSort {
+    _iterator = (_iterator + 1) % 3;
+    if (_iterator > 2) {
+        _iterator = 0;
+    }
+    
+    return _iterator == 0 ? NO : YES;
 }
 
 #pragma mark -

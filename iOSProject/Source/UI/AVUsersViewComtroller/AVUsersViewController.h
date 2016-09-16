@@ -12,8 +12,7 @@
 @class AVSortingArrayModel;
 
 @interface AVUsersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) AVUsers               *users;
-@property (nonatomic, strong) AVSortingArrayModel   *sortedUsers;
+@property (nonatomic, strong) AVUsers   *users;
 
 //+ (instancetype)usersViewControllerWithModel:(AVUsers *)model;
 
