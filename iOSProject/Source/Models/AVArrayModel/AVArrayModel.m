@@ -32,6 +32,10 @@
     return self.array.count;
 }
 
+- (NSArray *)objects {
+    return [self.array copy];
+}
+
 - (id)objectAtIndex:(NSUInteger)index {
     return [self.array objectAtIndex:index];
 }

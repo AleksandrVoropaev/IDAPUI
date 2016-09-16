@@ -15,6 +15,7 @@ typedef NS_ENUM(NSUInteger, AVArrayState) {
 @interface AVArrayModel : AVObservableObject
 @property (nonatomic, readonly)   NSUInteger  count;
 
+- (NSArray *)objects;
 - (id)objectAtIndex:(NSUInteger)index;
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 

@@ -30,6 +30,9 @@
 //    return self;
 //}
 
+- (NSArray *)users {
+    return [self objects];
+}
 
 - (void)addUsersWithCount:(NSUInteger)count {
     for (NSUInteger iterator = 0; iterator < count; iterator++) {

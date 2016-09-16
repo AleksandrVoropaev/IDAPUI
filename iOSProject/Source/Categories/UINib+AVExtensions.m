@@ -15,8 +15,12 @@
 //+ (UINib *)nibWithNibName:(NSString *)name bundle:(nullable NSBundle *)bundleOrNil;
 
 + (UINib *)nibWithClass:(Class)cls {
+    return [self nibWithClass:cls bundle:nil];
+}
+
++ (UINib *)nibWithClass:(Class)cls bundle:(NSBundle *)bundleOrNil {
     NSString *nibName = NSStringFromClass(cls);
-    return [self nibWithNibName:nibName bundle:nil];
+    return [self nibWithNibName:nibName bundle:bundleOrNil];
 }
 
 + (NSArray *)objectsWithClass:(Class)class {

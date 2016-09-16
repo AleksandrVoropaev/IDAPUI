@@ -10,20 +10,15 @@
 
 @interface UINib (AVExtensions)
 
-+ (UINib *)nibWithClass:(Class)cls;
++ (nullable UINib *)nibWithClass:(nonnull Class)cls;
++ (nullable UINib *)nibWithClass:(nonnull Class)cls bundle:(nullable NSBundle *)bundle;
 
-//+ (NSArray *)objectsWithClass:(Class)cls;
-//+ (NSArray *)objectsWithClass:(Class)cls owner:(nullable id)ownerOrNil;
-//+ (NSArray *)objectsWithClass:(Class)cls owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil;
-+ (id)objectWithClass:(Class)cls;
-+ (id)objectWithClass:(Class)cls owner:(nullable id)ownerOrNil;
-+ (id)objectWithClass:(Class)cls owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil;
++ (nullable id)objectWithClass:(nonnull Class)cls;
++ (nullable id)objectWithClass:(nonnull Class)cls owner:(nullable id)ownerOrNil;
++ (nullable id)objectWithClass:(nonnull Class)cls owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil;
 
-//- (NSArray *)objectsWithClass:(Class)cls;
-//- (NSArray *)objectsWithClass:(Class)cls owner:(nullable id)ownerOrNil;
-//- (NSArray *)objectsWithClass:(Class)cls owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil;
-- (id)objectWithClass:(Class)cls;
-- (id)objectWithClass:(Class)cls owner:(nullable id)ownerOrNil;
-- (id)objectWithClass:(Class)cls owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil;
+- (nullable id)objectWithClass:(nonnull Class)cls;
+- (nullable id)objectWithClass:(nonnull Class)cls owner:(nullable id)ownerOrNil;
+- (nullable id)objectWithClass:(nonnull Class)cls owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil;
 
 @end

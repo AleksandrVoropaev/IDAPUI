@@ -23,21 +23,8 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 
 @implementation AVSortingArrayModel
 
-//+ (id)sortedArray:(AVUsers *)users withType:(AVArraySortType)sortType {
-//    AVSortingArrayModel *result = [self new];
-//    result = [(AVSortingArrayModel *)users copy];
-//    [result sortArrayWithType:sortType];
-//    
-//    return result;
-//}
-//
-
 + (id)sortedArray:(AVUsers *)users {
-    AVSortingArrayModel *result = [self new];
-    result = [(AVSortingArrayModel *)users copy];
-    [result sortArrayWithType:[result sortType]];
-    
-    return result;
+    return [[self alloc] initWithUsers:users];
 }
 
 - (instancetype)init {
@@ -46,6 +33,27 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
     self.isAscending = YES;
     
     return self;
+}
+
+- (instancetype)initWithUsers:(AVUsers *)users {
+    self = [self init];
+    self.users = users;
+    [self.array addObjectsFromArray:[users users]];
+    
+    return self;
+}
+
+- (void)setUsers:(AVUsers *)users {
+    if (_users != users) {
+        _users = users;
+        self.array = [NSMutableArray arrayWithArray:[users users]];
+    }
+}
+
+- (void)setArray:(NSMutableArray *)array {
+    if (_array != array) {
+        _array = array;
+    }
 }
 
 - (void)sortArrayWithType:(AVArraySortType)sortType {
