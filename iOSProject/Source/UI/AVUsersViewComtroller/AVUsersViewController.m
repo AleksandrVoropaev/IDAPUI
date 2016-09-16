@@ -111,6 +111,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.users removeObjectAtIndex:indexPath.row];
+//        [self.notSortedUsers removeObjectAtIndex:indexPath.row];
         [self.usersView.tableView deleteRowsAtIndexPaths:@[indexPath]
                                         withRowAnimation:YES];
     }
@@ -122,6 +123,8 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 {
     [self.users moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
                             toIndex:[destinationIndexPath indexAtPosition:1]];
+//    [self.notSortedUsers moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
+//                                     toIndex:[destinationIndexPath indexAtPosition:1]];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -138,6 +141,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (IBAction)onCreateButton:(id)sender {
     [self.users addObject:[AVUser new]];
+//    [self.notSortedUsers addObject:[AVUser new]];
     [self.usersView.tableView reloadData];
 }
 
