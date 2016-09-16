@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class AVUsers;
+@class AVSortingArrayModel;
 
 @interface AVUsersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) AVUsers    *users;
+@property (nonatomic, strong) AVUsers               *users;
+@property (nonatomic, strong) AVSortingArrayModel   *sortedUsers;
 
 //+ (instancetype)usersViewControllerWithModel:(AVUsers *)model;
 

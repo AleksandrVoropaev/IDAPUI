@@ -14,6 +14,7 @@
 
 - (NSArray *)objectsFromNibWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options {
     NSString *nibName = NSStringFromClass(class);
+    
     return [[NSBundle mainBundle] loadNibNamed:nibName owner:owner options:options];
 }
 

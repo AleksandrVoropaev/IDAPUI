@@ -10,10 +10,11 @@
 
 @interface AVUsers : AVArrayModel
 
-- (NSArray *)users;
-//+ (instancetype)usersWithCount:(NSUInteger)count;
++ (instancetype)usersWithUsers:(NSArray *)users;
++ (instancetype)usersWithCount:(NSUInteger)count;
 
-//- (instancetype)initWithCount:(NSUInteger)count;
-- (void)addUsersWithCount:(NSUInteger)count;
+- (NSArray *)users;
+- (void)addRandomUsersWithCount:(NSUInteger)count;
+- (void)addUsers:(NSArray *)users;
 
 @end

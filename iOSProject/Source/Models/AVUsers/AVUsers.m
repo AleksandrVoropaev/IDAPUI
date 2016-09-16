@@ -12,31 +12,48 @@
 
 @implementation AVUsers
 
-//+ (instancetype)usersWithCount:(NSUInteger)count {
-//    return [[self alloc] initWithCount:count];
-//}
++ (instancetype)usersWithUsers:(NSArray *)users {
+    return [[self alloc] initWithUsers:users];
+}
+
++ (instancetype)usersWithCount:(NSUInteger)count {
+    return [[self alloc] initWithCount:count];
+}
 
 - (instancetype)init {
     self = [super init];
-    [self addUsersWithCount:20];
+    [self addRandomUsersWithCount:20];
     
     return self;
 }
 
-//- (instancetype)initWithCount:(NSUInteger)count {
-//    self = [super init];
-//    [self addUsersWithCount:count];
-//    
-//    return self;
-//}
+- (instancetype)initWithUsers:(NSArray *)users {
+    self = [super init];
+    [self addUsers:users];
+    
+    return self;
+}
+
+- (instancetype)initWithCount:(NSUInteger)count {
+    self = [super init];
+    [self addRandomUsersWithCount:count];
+    
+    return self;
+}
 
 - (NSArray *)users {
     return [self objects];
 }
 
-- (void)addUsersWithCount:(NSUInteger)count {
+- (void)addRandomUsersWithCount:(NSUInteger)count {
     for (NSUInteger iterator = 0; iterator < count; iterator++) {
         [self addObject:[AVUser new]];
+    }
+}
+
+- (void)addUsers:(NSArray *)users {
+    for (AVUser *user in users) {
+        [self addObject:user];
     }
 }
 

@@ -16,21 +16,25 @@
 typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString *secondSurname);
 
 @interface AVSortingArrayModel ()
-@property (nonatomic, strong)   NSMutableArray  *array;
-@property (nonatomic, assign)   BOOL            isAscending;
-
+@property (nonatomic, strong)   NSMutableArray  *sortedArray;
 @end
 
 @implementation AVSortingArrayModel
 
-+ (id)sortedArray:(AVUsers *)users {
+#pragma mark -
+#pragma mark Class Methods
+
++ (instancetype)sortArray:(AVUsers *)users {
     return [[self alloc] initWithUsers:users];
 }
 
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
 - (instancetype)init {
     self = [super init];
-    self.array = [NSMutableArray array];
-    self.isAscending = YES;
+    self.sortedArray = [NSMutableArray array];
+    _sortType = AVArraySortTypeAscending;
     
     return self;
 }
@@ -38,29 +42,59 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 - (instancetype)initWithUsers:(AVUsers *)users {
     self = [self init];
     self.users = users;
-    [self.array addObjectsFromArray:[users users]];
     
     return self;
 }
 
+#pragma mark -
+#pragma mark Accessors
+
 - (void)setUsers:(AVUsers *)users {
     if (_users != users) {
         _users = users;
-        self.array = [NSMutableArray arrayWithArray:[users users]];
+        self.sortedArray = [NSMutableArray arrayWithArray:[users users]];
     }
 }
 
-- (void)setArray:(NSMutableArray *)array {
-    if (_array != array) {
-        _array = array;
+- (void)setSortedArray:(NSMutableArray *)sortedArray {
+    if (_sortedArray != sortedArray) {
+        _sortedArray = sortedArray;
+        [self resortArray];
     }
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (AVUsers *)sortedUsers {
+    return [AVUsers usersWithUsers:self.sortedArray];
+}
+
+- (AVUsers *)resortedUsers {
+    [self resortArray];
+    return [self sortedUsers];
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)resortArray {
+    [self sortArrayWithType:self.sortType];
+}
+
+- (AVArraySortType)sortType {
+    AVArraySortType sortType = _sortType;
+    _sortType = (_sortType + 1) % AVArraySortTypeCount;
+    
+    return sortType;
 }
 
 - (void)sortArrayWithType:(AVArraySortType)sortType {
-    [self.array sortUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
+    [self.sortedArray sortUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
         NSString *firstSurname = firstUser.surname;
         NSString *secondSurname = secondUser.surname;
         AVComparisonBlock comparisonBlock = [self blockForSortType:sortType];
+        
         return comparisonBlock(firstSurname, secondSurname);
     }];
 }
@@ -78,18 +112,5 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
     
     return nil;
 }
-
-- (AVArraySortType)sortType {
-    AVArraySortType sortType = AVArraySortTypeAscending;
-    if (self.isAscending) {
-        sortType = AVArraySortTypeAscending;
-    } else {
-        sortType = AVArraySortTypeDescending;
-    }
-    
-    self.isAscending = !self.isAscending;
-    return sortType;
-}
-
 
 @end

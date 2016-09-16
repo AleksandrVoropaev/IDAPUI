@@ -24,21 +24,15 @@
 AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView, usersView);
 
 @interface AVUsersViewController ()
-//@property (nonatomic, strong)   AVUsersView     *usersView;
-@property (nonatomic, assign)   NSUInteger      count;
+@property (nonatomic, assign)   NSUInteger              count;
+//@property (nonatomic, strong)   AVSortingArrayModel     *sortedUsers;
 
 @end
 
 @implementation AVUsersViewController
 
-//@dynamic usersView;
-
 #pragma mark -
 #pragma mark Class Methods
-
-//+ (instancetype)usersViewControllerWithModel:(AVUsers *)model {
-//    return [[self alloc] initWithModel:model];
-//}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -53,6 +47,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     self.users = [AVUsers new];
+    self.sortedUsers = [AVSortingArrayModel sortArray:self.users];
 
     return self;
 }
@@ -60,6 +55,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     self.users = [AVUsers new];
+    self.sortedUsers = [AVSortingArrayModel sortArray:self.users];
     
     return self;
 }
@@ -67,18 +63,8 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 #pragma mark -
 #pragma mark Accsessors
 
-//- (AVUsersView *)usersView {
-//    if ([self isViewLoaded] && [self.view isKindOfClass:[AVUsersView class]]) {
-//        return (AVUsersView *)self.view;
-//    }
-//    
-//    return nil;
-//}
-
 -(void)setUsers:(AVUsers *)users {
     if (_users != users) {
-        _users = nil;
-        _users = [AVUsers new];
         _users = users;
         [self.usersView.tableView reloadData];
     }
@@ -124,8 +110,6 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
         [self.usersView.tableView deleteRowsAtIndexPaths:@[indexPath]
                                         withRowAnimation:YES];
     }
-    
-//    [self.usersView.tableView reloadData];
 }
 
 - (void)    tableView:(UITableView *)tableView
@@ -134,12 +118,9 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 {
     [self.users moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
                             toIndex:[destinationIndexPath indexAtPosition:1]];
-//    [self.usersView.tableView reloadData];
 }
 
-- (BOOL)        tableView:(UITableView *)tableView
-    canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
@@ -148,7 +129,6 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (IBAction)onEditButton:(id)sender {
     BOOL editing = self.usersView.tableView.editing;
-    
     [self.usersView.tableView setEditing:!editing animated:YES];
 }
 
@@ -158,17 +138,11 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 }
 
 - (IBAction)onSortButton:(id)sender {
-    
-    AVUsers *sortedUsers = [AVSortingArrayModel sortedArray:self.users];
-    self.users = sortedUsers;
+    self.users = [self.sortedUsers resortedUsers];
     [self.usersView.tableView reloadData];
 }
 
 #pragma mark -
 #pragma mark Private
 
-//- (void)setModel:(AVUsers *)model {
-//    self.users = model;
-//}
-//
 @end

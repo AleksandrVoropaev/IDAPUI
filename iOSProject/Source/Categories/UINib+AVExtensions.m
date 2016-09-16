@@ -20,6 +20,7 @@
 
 + (UINib *)nibWithClass:(Class)cls bundle:(NSBundle *)bundleOrNil {
     NSString *nibName = NSStringFromClass(cls);
+    
     return [self nibWithNibName:nibName bundle:bundleOrNil];
 }
 
