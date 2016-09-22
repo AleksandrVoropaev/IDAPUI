@@ -20,6 +20,7 @@
 @implementation AVArrayModel
 
 @dynamic count;
+@dynamic objects;
 
 - (instancetype)init {
     self = [super init];
@@ -87,6 +88,11 @@
 
 - (void)removeAll {
     [self.array removeObjectsInArray:self.array];
+}
+
+- (void)replaceAllObjectsWithObjects:(NSArray *)objects {
+    [self removeAll];
+    [self addObjects:objects];
 }
 
 - (void)moveObjectFromIndex:(NSUInteger)baseIndex toIndex:(NSUInteger)targetIndex {

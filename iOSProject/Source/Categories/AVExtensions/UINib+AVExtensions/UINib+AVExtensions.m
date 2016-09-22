@@ -12,7 +12,8 @@
 
 @implementation UINib (AVExtensions)
 
-//+ (UINib *)nibWithNibName:(NSString *)name bundle:(nullable NSBundle *)bundleOrNil;
+#pragma mark -
+#pragma mark Class Methods
 
 + (UINib *)nibWithClass:(Class)cls {
     return [self nibWithClass:cls bundle:nil];
@@ -38,16 +39,19 @@
 }
 
 + (id)objectWithClass:(Class)class {
-    return [[self objectsWithClass:class] firstObject];
+    return [[self objectsWithClass:class] firstObjectWithClass:class];
 }
 
 + (id)objectWithClass:(Class)class owner:(nullable id)ownerOrNil {
-    return [[self objectsWithClass:class owner:ownerOrNil] firstObject];
+    return [[self objectsWithClass:class owner:ownerOrNil] firstObjectWithClass:class];
 }
 
 + (id)objectWithClass:(Class)class owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil {
-    return [[self objectsWithClass:class owner:ownerOrNil options:optionsOrNil] firstObject];
+    return [[self objectsWithClass:class owner:ownerOrNil options:optionsOrNil] firstObjectWithClass:class];
 }
+
+#pragma mark -
+#pragma mark Private
 
 - (NSArray *)objectsWithClass:(Class)class {
     return [self objectsWithClass:class owner:nil];
@@ -61,16 +65,19 @@
     return [self instantiateWithOwner:ownerOrNil options:optionsOrNil];
 }
 
+#pragma mark -
+#pragma mark Public
+
 - (id)objectWithClass:(Class)class {
-    return [[self objectsWithClass:class] firstObject];
+    return [[self objectsWithClass:class] firstObjectWithClass:class];
 }
 
 - (id)objectWithClass:(Class)class owner:(nullable id)ownerOrNil {
-    return [[self objectsWithClass:class owner:ownerOrNil] firstObject];
+    return [[self objectsWithClass:class owner:ownerOrNil] firstObjectWithClass:class];
 }
 
 - (id)objectWithClass:(Class)class owner:(nullable id)ownerOrNil options:(nullable NSDictionary *)optionsOrNil {
-    return [[self objectsWithClass:class owner:ownerOrNil options:optionsOrNil] firstObject];
+    return [[self objectsWithClass:class owner:ownerOrNil options:optionsOrNil] firstObjectWithClass:class];
 }
 
 @end

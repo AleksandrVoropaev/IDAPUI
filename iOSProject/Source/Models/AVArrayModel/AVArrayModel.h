@@ -13,9 +13,10 @@ typedef NS_ENUM(NSUInteger, AVArrayState) {
 };
 
 @interface AVArrayModel : AVObservableObject
-@property (nonatomic, readonly)   NSUInteger  count;
+@property (nonatomic, readonly)     NSUInteger  count;
+@property (nonatomic, readonly)     NSArray     *objects;
 
-- (NSArray *)objects;
+//- (NSArray *)objects;
 - (id)objectAtIndex:(NSUInteger)index;
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 
@@ -28,6 +29,8 @@ typedef NS_ENUM(NSUInteger, AVArrayState) {
 - (void)removeObjectAtIndex:(NSUInteger)index;
 - (void)removeObjects:(NSArray *)objects;
 - (void)removeAll;
+
+- (void)replaceAllObjectsWithObjects:(NSArray *)objects;
 
 - (void)moveObjectFromIndex:(NSUInteger)baseIndex toIndex:(NSUInteger)targetIndex;
 

@@ -15,12 +15,15 @@ typedef enum : NSUInteger {
 } AVArraySortType;
 
 @interface AVSortingArrayModel : AVArrayModel
-@property (nonatomic, strong)       AVUsers             *users;
-@property (nonatomic, assign)       AVArraySortType     sortType;
+//@property (nonatomic, strong)       AVUsers             *users;
+@property (nonatomic, readonly)     AVArraySortType     sortType;
 
-+ (instancetype)sortArray:(AVUsers *)users;
++ (instancetype)sortArray:(NSArray *)users;
 
-- (AVUsers *)sortedUsers;
-- (AVUsers *)resortedUsers;
+- (void)resortArray;
+- (void)sortArrayWithType:(AVArraySortType)sortType;
+
+//- (AVUsers *)sortedUsers;
+//- (AVUsers *)resortedUsers;
 
 @end

@@ -20,14 +20,22 @@
 #import "NSArray+AVExtensions.h"
 
 #import "AVRootViewMacro.h"
+#import "AVSwitchCaseMacro.h"
 
 AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView, usersView);
 
+typedef enum : NSUInteger {
+    AVUsersSortTypeAscending,
+    AVUsersSortTypeDescending,
+    AVUsersSortTypeNotSorted,
+    AVUsersSortTypeCount,
+} AVUsersSortType;
+
 @interface AVUsersViewController ()
-@property (nonatomic, assign)   NSUInteger              count;
 @property (nonatomic, strong)   AVSortingArrayModel     *sortedUsers;
 @property (nonatomic, strong)   AVUsers                 *notSortedUsers;
 @property (nonatomic, assign)   NSUInteger              iterator;
+@property (nonatomic, assign)   AVUsersSortType         sortType;
 
 @end
 
@@ -41,25 +49,33 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (instancetype)init {
     self = [super init];
-    self.users = [AVUsers new];
-    self.notSortedUsers = self.users;
-    self.sortedUsers = [AVSortingArrayModel sortArray:self.users];
+    AVUsers *users = [AVUsers new];
+    self.notSortedUsers = [AVUsers new];
+    [self.notSortedUsers replaceAllObjectsWithObjects:users.objects];
+    self.users = users;
+    self.sortedUsers = [AVSortingArrayModel sortArray:self.users.objects];
 
     return self;
 }
 
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    self.users = [AVUsers new];
-    self.sortedUsers = [AVSortingArrayModel sortArray:self.users];
+    AVUsers *users = [AVUsers new];
+    self.notSortedUsers = [AVUsers new];
+    [self.notSortedUsers replaceAllObjectsWithObjects:users.objects];
+    self.users = users;
+    self.sortedUsers = [AVSortingArrayModel sortArray:self.users.objects];
 
     return self;
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
-    self.users = [AVUsers new];
-    self.sortedUsers = [AVSortingArrayModel sortArray:self.users];
+    AVUsers *users = [AVUsers new];
+    self.notSortedUsers = [AVUsers new];
+    [self.notSortedUsers replaceAllObjectsWithObjects:users.objects];
+    self.users = users;
+    self.sortedUsers = [AVSortingArrayModel sortArray:self.users.objects];
     
     return self;
 }
@@ -100,7 +116,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
     Class cellClass = [AVUserCell class];
 
     AVUserCell *cell = [tableView dequeueReusableCellWithClass:cellClass];
-    cell.user = [self.users objectAtIndex:[indexPath indexAtPosition:1]];
+    cell.user = self.users[indexPath.row];
     
     return cell;
 }
@@ -140,27 +156,46 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 }
 
 - (IBAction)onCreateButton:(id)sender {
-    [self.users addObject:[AVUser new]];
-//    [self.notSortedUsers addObject:[AVUser new]];
+    AVUser *user = [AVUser new];
+    [self.users addObject:user];
+    [self.sortedUsers addObject:user];
+    [self.notSortedUsers addObject:user];
     [self.usersView.tableView reloadData];
 }
 
 - (IBAction)onSortButton:(id)sender {
-    if ([self needToSort]) {
-        self.users = [self.sortedUsers resortedUsers];
-    } else {
-        self.users = self.notSortedUsers;
+    self.sortType = (self.sortType + 1) % AVUsersSortTypeCount;
+    switch (self.sortType) {
+        AVSwitchCase(AVUsersSortTypeAscending, { [self resortUsers]; });
+        AVSwitchCase(AVUsersSortTypeDescending, { [self resortUsers]; });
+        AVSwitchCase(AVUsersSortTypeNotSorted, {
+            [self.users replaceAllObjectsWithObjects:self.notSortedUsers.objects];
+            [self.usersView.tableView reloadData];
+        });
+        AVSwitchCaseDefault({});
     }
+//    if ([self needToSort]) {
+//        [self.sortedUsers resortArray];
+//        [self.users replaceAllObjectsWithObjects:self.sortedUsers.objects];
+//        [self.usersView.tableView reloadData];
+//    } else {
+////        self.users = self.notSortedUsers;
+//        [self.users replaceAllObjectsWithObjects:self.notSortedUsers.objects];
+//        [self.usersView.tableView reloadData];
+//    }
 }
 
-- (BOOL)needToSort {
-    _iterator = (_iterator + 1) % 3;
-    if (_iterator > 2) {
-        _iterator = 0;
-    }
-    
-    return _iterator == 0 ? NO : YES;
+- (void)resortUsers {
+    [self.sortedUsers resortArray];
+    [self.users replaceAllObjectsWithObjects:self.sortedUsers.objects];
+    [self.usersView.tableView reloadData];
 }
+
+
+//- (BOOL)needToSort {
+//    _iterator = (_iterator + 1) % 3;
+//    return _iterator != 0;
+//}
 
 #pragma mark -
 #pragma mark Private

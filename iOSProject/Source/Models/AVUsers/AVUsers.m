@@ -22,7 +22,7 @@
 
 - (instancetype)init {
     self = [super init];
-    [self addRandomUsersWithCount:20];
+    [self addRandomUsersWithCount:5];
     
     return self;
 }

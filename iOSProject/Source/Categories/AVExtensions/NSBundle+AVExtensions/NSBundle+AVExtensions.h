@@ -10,9 +10,9 @@
 
 @interface NSBundle (AVExtensions)
 
-- (NSArray *)objectsFromNibWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options;
-- (NSArray *)objectsFromNibWithClass:(Class)class owner:(id)owner;
-- (NSArray *)objectsFromNibWithClass:(Class)class;
++ (id)objectFromNibWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options;
++ (id)objectFromNibWithClass:(Class)class owner:(id)owner;
++ (id)objectFromNibWithClass:(Class)class;
 
 - (id)objectFromNibWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options;
 - (id)objectFromNibWithClass:(Class)class owner:(id)owner;
