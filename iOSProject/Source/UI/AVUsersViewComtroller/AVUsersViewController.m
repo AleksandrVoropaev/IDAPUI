@@ -47,23 +47,13 @@ typedef enum : NSUInteger {
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)init {
-    self = [super init];
-
-    self.sortType = AVUsersSortTypeNotSorted;
-    self.users = [AVUsers new];
-    self.tableData = [AVSortingArrayModel new];
-    [self.tableData replaceAllObjectsWithObjects:self.users.objects];
-
-    return self;
-}
-
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 
     self.sortType = AVUsersSortTypeNotSorted;
     self.users = [AVUsers new];
     self.tableData = [AVSortingArrayModel new];
+//    self.tableData = [AVSortingArrayModel sortArray:self.users];
     [self.tableData replaceAllObjectsWithObjects:self.users.objects];
 
     return self;
@@ -75,6 +65,7 @@ typedef enum : NSUInteger {
     self.sortType = AVUsersSortTypeNotSorted;
     self.users = [AVUsers new];
     self.tableData = [AVSortingArrayModel new];
+//    self.tableData = [AVSortingArrayModel sortArray:self.users];
     [self.tableData replaceAllObjectsWithObjects:self.users.objects];
 
     return self;
@@ -190,7 +181,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)resortUsers {
-    [self.tableData resortArray];
+    [self.tableData resort];
     [self.usersView.tableView reloadData];
 }
 
