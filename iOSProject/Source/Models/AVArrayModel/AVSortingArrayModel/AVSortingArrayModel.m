@@ -95,29 +95,50 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 //    return sortType;
 //}
 
+//- (void)sortArrayWithType:(AVArraySortType)sortType {
+//    NSMutableArray *array = [NSMutableArray arrayWithArray:self.objects];
+//    [array sortUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
+//        NSString *firstSurname = firstUser.surname;
+//        NSString *secondSurname = secondUser.surname;
+//        AVComparisonBlock comparisonBlock = [self blockForSortType:sortType];
+//        
+//        return comparisonBlock(firstSurname, secondSurname);
+//    }];
+//    
+//    [self replaceAllObjectsWithObjects:array];
+//}
+//
+//- (AVComparisonBlock)blockForSortType:(AVArraySortType)sortType {
+//    switch (sortType) {
+//        AVSwitchCase(AVArraySortTypeAscending, { return ^NSComparisonResult(NSString *firstSurname, NSString *secondSurname){
+//            return [secondSurname compare:firstSurname];
+//        };});
+//        AVSwitchCase(AVArraySortTypeDescending, { return ^NSComparisonResult(NSString *firstSurname, NSString *secondSurname){
+//            return [firstSurname compare:secondSurname];
+//        };});
+//        AVSwitchCaseDefault({ return nil; });
+//    }
+//}
+
 - (void)sortArrayWithType:(AVArraySortType)sortType {
     NSMutableArray *array = [NSMutableArray arrayWithArray:self.objects];
     [array sortUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
         NSString *firstSurname = firstUser.surname;
         NSString *secondSurname = secondUser.surname;
-        AVComparisonBlock comparisonBlock = [self blockForSortType:sortType];
         
-        return comparisonBlock(firstSurname, secondSurname);
+        AVComparisonBlock comparisonBlock = ^NSComparisonResult(NSString *firstBlockSurname, NSString *secondBlockSurname) {
+            return [firstBlockSurname compare:secondBlockSurname];
+        };
+        
+        switch (self.sortType) {
+            AVSwitchCase(AVArraySortTypeAscending, { return comparisonBlock(secondSurname, firstSurname); };);
+            AVSwitchCase(AVArraySortTypeDescending, { return comparisonBlock(firstSurname, secondSurname); };);
+            AVSwitchCaseDefault({ return nil; });
+        }
     }];
     
     [self replaceAllObjectsWithObjects:array];
 }
 
-- (AVComparisonBlock)blockForSortType:(AVArraySortType)sortType {
-    switch (sortType) {
-        AVSwitchCase(AVArraySortTypeAscending, { return ^NSComparisonResult(NSString *firstSurname, NSString *secondSurname){
-            return [secondSurname compare:firstSurname];
-        };});
-        AVSwitchCase(AVArraySortTypeDescending, { return ^NSComparisonResult(NSString *firstSurname, NSString *secondSurname){
-            return [firstSurname compare:secondSurname];
-        };});
-        AVSwitchCaseDefault({ return nil; });
-    }
-}
 
 @end
