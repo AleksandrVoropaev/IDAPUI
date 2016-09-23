@@ -87,6 +87,7 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.tableData addObserver:self.usersView];
     [self.usersView.tableView reloadData];
     // Do any additional setup after loading the view from its nib.
 }
@@ -158,17 +159,18 @@ typedef enum : NSUInteger {
     
     AVUsersSortType sortType = (self.sortType + 1) % AVUsersSortTypeCount;
     self.sortType = sortType;
+    AVUsersView *usersView = self.usersView;
     
     switch (sortType) {
         case AVUsersSortTypeAscending:
         AVSwitchCase(AVUsersSortTypeDescending, {
-            [self.usersView changeButtonsVisibilityWithType:AVButtonsHiddenTypeSortVisible];
+            [usersView changeButtonsVisibilityWithType:AVButtonsHiddenTypeSortVisible];
             [self resortUsers];
         });
         AVSwitchCase(AVUsersSortTypeNotSorted, {
             [self.tableData replaceAllObjectsWithObjects:self.users.objects];
-            [self.usersView changeButtonsVisibilityWithType:AVButtonsHiddenTypeAllVisible];
-            [self.usersView.tableView reloadData];
+            [usersView changeButtonsVisibilityWithType:AVButtonsHiddenTypeAllVisible];
+            [usersView.tableView reloadData];
         });
         AVSwitchCaseDefault({});
     }
@@ -178,8 +180,5 @@ typedef enum : NSUInteger {
     [self.tableData resort];
     [self.usersView.tableView reloadData];
 }
-
-#pragma mark -
-#pragma mark Private
 
 @end

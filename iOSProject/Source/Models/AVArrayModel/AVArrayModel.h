@@ -9,12 +9,15 @@
 #import "AVObservableObject.h"
 
 typedef NS_ENUM(NSUInteger, AVArrayState) {
-    AVArrayStateDidChange
+    AVArrayStateDidDeleteObject,
+    AVArrayStateDidCreateObject,
+    AVArrayStateDidInsertObject
 };
 
 @interface AVArrayModel : AVObservableObject
 @property (nonatomic, readonly)     NSUInteger  count;
 @property (nonatomic, readonly)     NSArray     *objects;
+@property (nonatomic, strong)       NSIndexPath *changedObjectIndexPath;
 
 //- (NSArray *)objects;
 - (id)objectAtIndex:(NSUInteger)index;

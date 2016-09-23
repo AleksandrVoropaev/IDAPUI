@@ -53,6 +53,9 @@
 
 - (void)addObject:(id)object {
     [self.array addObject:object];
+//
+    self.changedObjectIndexPath = [NSIndexPath indexPathWithIndex:(self.count - 1)];
+    self.state = AVArrayStateDidCreateObject;
 }
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
@@ -69,6 +72,9 @@
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
     [self.array removeObjectAtIndex:index];
+//
+    self.changedObjectIndexPath = [NSIndexPath indexPathWithIndex:index];
+    self.state = AVArrayStateDidDeleteObject;
 }
 
 - (void)removeObjects:(NSArray *)objects {
@@ -92,7 +98,9 @@
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        AVSwitchCase(AVArrayStateDidChange, { return @selector(arrayDidChange); });
+        AVSwitchCase(AVArrayStateDidDeleteObject, { return @selector(AVArrayStateDidDeleteObject:); });
+        AVSwitchCase(AVArrayStateDidCreateObject, { return @selector(AVArrayStateDidCreateObject:); });
+        AVSwitchCase(AVArrayStateDidInsertObject, { return @selector(AVArrayStateDidInsertObject:); });
         AVSwitchCaseDefault({ return [super selectorForState:state]; })
     }
 }

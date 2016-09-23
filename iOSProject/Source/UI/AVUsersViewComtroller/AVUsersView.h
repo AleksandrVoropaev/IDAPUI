@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class AVUser;
+
 typedef enum : NSUInteger {
     AVButtonsHiddenTypeAllHidden,
     AVButtonsHiddenTypeAllVisible,
@@ -19,7 +21,16 @@ typedef enum : NSUInteger {
     AVButtonsHiddenTypeCreateHidden,
 } AVButtonsHiddenType;
 
-@interface AVUsersView : UIView
+@protocol AVArrayModelObserver <NSObject>
+
+@optional
+- (void)AVArrayStateDidDeleteObjectAtIndex:(NSIndexPath *)index;
+- (void)AVArrayStateDidCreateObject:(id)object;
+- (void)AVArrayStateDidInsertObject:(id)object atIndex:(NSIndexPath *)index;
+
+@end
+
+@interface AVUsersView : UIView <AVArrayModelObserver>
 @property (nonatomic, strong)   IBOutlet UITableView    *tableView;
 @property (nonatomic, strong)   IBOutlet UIButton       *editButton;
 @property (nonatomic, strong)   IBOutlet UIButton       *sortButton;

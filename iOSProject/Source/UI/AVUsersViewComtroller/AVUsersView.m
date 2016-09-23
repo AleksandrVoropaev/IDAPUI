@@ -8,6 +8,9 @@
 
 #import "AVUsersView.h"
 
+#import "AVUser.h"
+#import "AVArrayModel.h"
+
 #import "AVSwitchCaseMacro.h"
 
 @interface AVUsersView ()
@@ -36,6 +39,23 @@ NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString *secondS
         AVSwitchCase(AVButtonsHiddenTypeCreateHidden,   { AVButtonsVisibilityChangeBlock(NO, NO, YES); });
         AVSwitchCaseDefault({ });
     }
+}
+
+#pragma mark -
+#pragma mark Array Observation
+
+- (void)AVArrayStateDidDeleteObject:(AVArrayModel *)arrayModel {
+    NSArray *indexArray = [NSArray arrayWithObject:arrayModel.changedObjectIndexPath];
+    [self.tableView deleteRowsAtIndexPaths:indexArray withRowAnimation:YES];
+}
+
+- (void)AVArrayStateDidCreateObject:(AVArrayModel *)arrayModel {
+    [self AVArrayStateDidInsertObject:arrayModel];
+}
+
+- (void)AVArrayStateDidInsertObject:(AVArrayModel *)arrayModel {
+    NSArray *indexArray = [NSArray arrayWithObject:arrayModel.changedObjectIndexPath];
+    [self.tableView insertRowsAtIndexPaths:indexArray withRowAnimation:YES];
 }
 
 /*
