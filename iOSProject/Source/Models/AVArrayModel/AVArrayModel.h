@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, AVArrayState) {
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 
 - (void)addObject:(id)object;
-- (void)addObject:(id)object atIndex:(NSUInteger)index;
+- (void)insertObject:(id)object atIndex:(NSUInteger)index;
 - (void)addObjects:(NSArray *)objects;
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
 

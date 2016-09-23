@@ -160,20 +160,14 @@ typedef enum : NSUInteger {
     self.sortType = sortType;
     
     switch (sortType) {
-        AVSwitchCase(AVUsersSortTypeAscending, {
-            self.usersView.editButton.hidden = YES;
-            self.usersView.createButton.hidden = YES;
-            [self resortUsers];
-        });
+        case AVUsersSortTypeAscending:
         AVSwitchCase(AVUsersSortTypeDescending, {
-            self.usersView.editButton.hidden = YES;
-            self.usersView.createButton.hidden = YES;
+            [self.usersView changeButtonsVisibilityWithType:AVButtonsHiddenTypeSortVisible];
             [self resortUsers];
         });
         AVSwitchCase(AVUsersSortTypeNotSorted, {
             [self.tableData replaceAllObjectsWithObjects:self.users.objects];
-            self.usersView.editButton.hidden = NO;
-            self.usersView.createButton.hidden = NO;
+            [self.usersView changeButtonsVisibilityWithType:AVButtonsHiddenTypeAllVisible];
             [self.usersView.tableView reloadData];
         });
         AVSwitchCaseDefault({});

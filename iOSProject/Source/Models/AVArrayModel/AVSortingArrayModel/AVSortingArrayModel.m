@@ -50,20 +50,24 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 #pragma mark Accessors
 
 - (void)setUsers:(AVUsers *)users {
-    if (users != _users) {
-        _users = users;
-        if (_users) {
-            [self addObjects:users.objects];
-            [self sort];
+    @synchronized (self) {
+        if (users != _users) {
+            _users = users;
+            if (_users) {
+                [self addObjects:users.objects];
+                [self sort];
+            }
         }
     }
 }
 
 - (void)setSortType:(AVArraySortType)sortType {
-    if (_sortType != sortType) {
-        _sortType = sortType;
-        if (_sortType && self.objects) {
-            [self sort];
+    @synchronized (self) {
+        if (_sortType != sortType) {
+            _sortType = sortType;
+            if (_sortType && self.objects) {
+                [self sort];
+            }
         }
     }
 }
@@ -72,25 +76,31 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 #pragma mark Public
 
 - (void)sort {
-    [self sortWithType:self.sortType];
+    @synchronized (self) {
+        [self sortWithType:self.sortType];
+    }
 }
 
 - (void)resort {
-    AVArraySortType sortType = (self.sortType + 1) % AVArraySortTypeCount;
-    self.sortType = sortType;
-    [self sortWithType:sortType];
+    @synchronized (self) {
+        AVArraySortType sortType = (self.sortType + 1) % AVArraySortTypeCount;
+        self.sortType = sortType;
+        [self sortWithType:sortType];
+    }
 }
 
 - (void)sortWithType:(AVArraySortType)sortType {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.objects];
-    [array sortUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
-        NSString *firstSurname = firstUser.surname;
-        NSString *secondSurname = secondUser.surname;
+    @synchronized (self) {
+        NSMutableArray *array = [NSMutableArray arrayWithArray:self.objects];
+        [array sortUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
+            NSString *firstSurname = firstUser.surname;
+            NSString *secondSurname = secondUser.surname;
+            
+            return [self compareFirstSurname:firstSurname secondSurname:secondSurname sortType:sortType];
+        }];
         
-        return [self compareFirstSurname:firstSurname secondSurname:secondSurname sortType:sortType];
-    }];
-    
-    [self replaceAllObjectsWithObjects:array];
+        [self replaceAllObjectsWithObjects:array];
+    }
 }
 
 #pragma mark -

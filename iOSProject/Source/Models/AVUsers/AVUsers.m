@@ -10,6 +10,8 @@
 
 #import "AVUser.h"
 
+static const NSUInteger kAVRandomUsersCount = 5;
+
 @implementation AVUsers
 
 + (instancetype)usersWithUsers:(NSArray *)users {
@@ -22,7 +24,7 @@
 
 - (instancetype)init {
     self = [super init];
-    [self addRandomUsersWithCount:5];
+    [self addRandomUsersWithCount:kAVRandomUsersCount];
     
     return self;
 }

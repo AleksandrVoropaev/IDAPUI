@@ -10,6 +10,8 @@
 
 #import "AVUser.h"
 
+#import "NSMutableArray+AVExtensions.h"
+
 #import "AVSwitchCaseMacro.h"
 
 @interface AVArrayModel ()
@@ -53,20 +55,7 @@
     [self.array addObject:object];
 }
 
-- (void)addObject:(id)object atIndex:(NSUInteger)index {
-//    NSMutableArray *result = [NSMutableArray array];
-//    for (NSUInteger iterator = 0; iterator < index + 1; iterator++) {
-//        id obj = [self.array objectAtIndex:iterator];
-//        [result addObject:obj];
-//    }
-//
-//    [result addObject:object];
-//    
-//    for (NSUInteger iterator = index + 1; iterator < self.array.count; iterator++) {
-//        [result addObject:[self.array objectAtIndex:iterator]];
-//    }
-//
-//    self.array = result;
+- (void)insertObject:(id)object atIndex:(NSUInteger)index {
     [self.array insertObject:object atIndex:index];
 }
 
@@ -91,14 +80,14 @@
 }
 
 - (void)replaceAllObjectsWithObjects:(NSArray *)objects {
-    [self removeAll];
-    [self addObjects:objects];
+    @synchronized (self) {
+        [self removeAll];
+        [self addObjects:objects];
+    }
 }
 
 - (void)moveObjectFromIndex:(NSUInteger)baseIndex toIndex:(NSUInteger)targetIndex {
-//    [self addObject:[self objectAtIndex:baseIndex] atIndex:targetIndex];
-    [self addObject:[self objectAtIndex:baseIndex] atIndex:targetIndex + 1];
-    [self removeObjectAtIndex:baseIndex];
+    [self.array moveObjectFromIndex:baseIndex toIndex:targetIndex];
 }
 
 - (SEL)selectorForState:(NSUInteger)state {
