@@ -83,14 +83,6 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
     }
 }
 
-//- (void)resort {
-//    @synchronized (self) {
-//        AVArraySortType sortType = (self.sortType + 1) % AVArraySortTypeCount;
-//        self.sortType = sortType;
-//        [self sortWithType:sortType];
-//    }
-//}
-
 - (void)sortWithType:(AVArraySortType)sortType {
     @synchronized (self) {
         id result = [self.objects sortedArrayUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {

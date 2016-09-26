@@ -14,6 +14,7 @@
 #import "AVUserCell.h"
 #import "AVArrayModel.h"
 #import "AVSortingArrayModel.h"
+#import "AVArrayChangesObject.h"
 
 #import "UITableView+AVExtensions.h"
 #import "UINib+AVExtensions.h"
@@ -186,17 +187,17 @@ typedef enum : NSUInteger {
 #pragma mark -
 #pragma mark Array Observation
 
-- (void)arrayModel:(AVArrayModel *)arrayModel didDeleteObjectAtIndex:(NSIndexPath *)index  {
-    NSArray *indexArray = @[index];
+- (void)arrayModel:(AVArrayModel *)arrayModel didDeleteObjectAtIndex:(AVArrayChangesObject *)changes  {
+    NSArray *indexArray = @[changes.baseIndex];
     [self.usersView.tableView deleteRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
 }
 
-- (void)arrayModel:(AVArrayModel *)arrayModel didCreateObjectAtIndex:(id)index {
-    [self arrayModel:arrayModel didInsertObjectAtIndex:index];
+- (void)arrayModel:(AVArrayModel *)arrayModel didCreateObjectAtIndex:(AVArrayChangesObject *)changes {
+    [self arrayModel:arrayModel didInsertObjectAtIndex:changes];
 }
 
-- (void)arrayModel:(AVArrayModel *)arrayModel didInsertObjectAtIndex:(NSIndexPath *)index  {
-    NSArray *indexArray = @[index];
+- (void)arrayModel:(AVArrayModel *)arrayModel didInsertObjectAtIndex:(AVArrayChangesObject *)changes  {
+    NSArray *indexArray = @[changes.baseIndex];
     [self.usersView.tableView insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
 }
 

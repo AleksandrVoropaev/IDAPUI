@@ -51,6 +51,7 @@
 		1FE14ACA1D8054A6005D42AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14ABB1D8054A6005D42AA /* ViewController.m */; };
 		1FE14ACB1D8054A6005D42AA /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FE14ABC1D8054A6005D42AA /* ViewController.xib */; };
 		1FE14ACE1D8054E3005D42AA /* AVImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14ACD1D8054E3005D42AA /* AVImageView.m */; };
+		1FF6805C1D99270C00E63C16 /* AVArrayChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF6805B1D99270C00E63C16 /* AVArrayChangesObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,8 @@
 		1FE14ACC1D8054E3005D42AA /* AVImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVImageView.h; sourceTree = "<group>"; };
 		1FE14ACD1D8054E3005D42AA /* AVImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageView.m; sourceTree = "<group>"; };
 		1FE14ACF1D805D16005D42AA /* AVCompilerMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCompilerMacro.h; sourceTree = "<group>"; };
+		1FF6805A1D99270C00E63C16 /* AVArrayChangesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayChangesObject.h; sourceTree = "<group>"; };
+		1FF6805B1D99270C00E63C16 /* AVArrayChangesObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVArrayChangesObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -495,6 +498,7 @@
 		1FCAA6431D86FD0400708B7B /* AVArrayModel */ = {
 			isa = PBXGroup;
 			children = (
+				1FF680591D9926E600E63C16 /* AVArrayChangesObject */,
 				1F9B27F21D8AD8E6003C2223 /* AVSortingArrayModel */,
 				1FCAA6441D86FD9A00708B7B /* AVArrayModel.h */,
 				1FCAA6451D86FD9A00708B7B /* AVArrayModel.m */,
@@ -632,6 +636,15 @@
 				1FE14ACD1D8054E3005D42AA /* AVImageView.m */,
 			);
 			path = AVImageView;
+			sourceTree = "<group>";
+		};
+		1FF680591D9926E600E63C16 /* AVArrayChangesObject */ = {
+			isa = PBXGroup;
+			children = (
+				1FF6805A1D99270C00E63C16 /* AVArrayChangesObject.h */,
+				1FF6805B1D99270C00E63C16 /* AVArrayChangesObject.m */,
+			);
+			path = AVArrayChangesObject;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -793,6 +806,7 @@
 				1FE14A961D7FEE37005D42AA /* AVImageModel.m in Sources */,
 				1F2102101D915C7D00B05D6E /* NSArray+AVExtensions.m in Sources */,
 				1FE14AC31D8054A6005D42AA /* AVUsersView.m in Sources */,
+				1FF6805C1D99270C00E63C16 /* AVArrayChangesObject.m in Sources */,
 				1F0E88FD1D7EF7F9000A85E1 /* AVClusterAlphabet.m in Sources */,
 				1F9B27F51D8AD906003C2223 /* AVSortingArrayModel.m in Sources */,
 				1F2B57CC1D7057D70026A944 /* main.m in Sources */,

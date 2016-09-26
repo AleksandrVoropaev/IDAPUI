@@ -9,6 +9,7 @@
 #import "AVArrayModel.h"
 
 #import "AVUser.h"
+#import "AVArrayChangesObject.h"
 
 #import "NSMutableArray+AVExtensions.h"
 
@@ -60,14 +61,22 @@
 - (void)addObject:(id)object {
     @synchronized (self) {
         [self.array addObject:object];
-        [self notifyOfState:AVArrayStateDidCreateObject withObject:[NSIndexPath indexPathWithIndex:(self.count - 1)]];
+        AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
+                                                        baseIndex:[NSIndexPath indexPathWithIndex:(self.count - 1)]
+                                                                    destinationIndex:nil
+                                                                           arraySate:AVArrayStateDidCreateObject];
+        [self notifyOfState:AVArrayStateDidCreateObject withObject:changes];
     }
 }
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
     @synchronized (self) {
         [self.array insertObject:object atIndex:index];
-        [self notifyOfState:AVArrayStateDidInsertObject withObject:[NSIndexPath indexPathWithIndex:index]];
+        AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
+                                                        baseIndex:[NSIndexPath indexPathWithIndex:index]
+                                                                    destinationIndex:nil
+                                                                           arraySate:AVArrayStateDidInsertObject];
+        [self notifyOfState:AVArrayStateDidInsertObject withObject:changes];
     }
 }
 
@@ -85,8 +94,13 @@
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
     @synchronized (self) {
+        id object = [self.array objectAtIndex:index];
         [self.array removeObjectAtIndex:index];
-        [self notifyOfState:AVArrayStateDidDeleteObject withObject:[NSIndexPath indexPathWithIndex:index]];
+        AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
+                                                            baseIndex:[NSIndexPath indexPathWithIndex:index]
+                                                                    destinationIndex:nil
+                                                                           arraySate:AVArrayStateDidDeleteObject];
+        [self notifyOfState:AVArrayStateDidDeleteObject withObject:changes];
     }
 }
 
