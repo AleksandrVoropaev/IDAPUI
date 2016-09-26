@@ -19,44 +19,37 @@
 
 @implementation AVUsersView
 
-NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString *secondSurname);
-
-- (void)changeButtonsVisibilityWithType:(AVButtonsHiddenType)type {
-    void(^AVButtonsVisibilityChangeBlock)(BOOL editButtonHidden, BOOL sortButtonHidden, BOOL createButtonHidden) = ^(BOOL editButtonHidden, BOOL sortButtonHidden, BOOL createButtonHidden) {
-        self.editButton.hidden = editButtonHidden;
-        self.sortButton.hidden = sortButtonHidden;
-        self.createButton.hidden = createButtonHidden;
-    };
-    
-    switch (type) {
-        AVSwitchCase(AVButtonsHiddenTypeAllHidden,      { AVButtonsVisibilityChangeBlock(YES, YES, YES); });
-        AVSwitchCase(AVButtonsHiddenTypeAllVisible,     { AVButtonsVisibilityChangeBlock(NO, NO, NO); });
-        AVSwitchCase(AVButtonsHiddenTypeEditVisible,    { AVButtonsVisibilityChangeBlock(NO, YES, YES); });
-        AVSwitchCase(AVButtonsHiddenTypeSortVisible,    { AVButtonsVisibilityChangeBlock(YES, NO, YES); });
-        AVSwitchCase(AVButtonsHiddenTypeCreateVisible,  { AVButtonsVisibilityChangeBlock(YES, YES, NO); });
-        AVSwitchCase(AVButtonsHiddenTypeEditHidden,     { AVButtonsVisibilityChangeBlock(YES, NO, NO); });
-        AVSwitchCase(AVButtonsHiddenTypeSortHidden,     { AVButtonsVisibilityChangeBlock(NO, YES, NO); });
-        AVSwitchCase(AVButtonsHiddenTypeCreateHidden,   { AVButtonsVisibilityChangeBlock(NO, NO, YES); });
-        AVSwitchCaseDefault({ });
+- (void)setSorting:(BOOL)sorting {
+    if (_sorting != sorting) {
+        _sorting = sorting;
+        
+        self.editButton.hidden = sorting;
+        self.createButton.hidden = sorting;
     }
 }
 
-#pragma mark -
-#pragma mark Array Observation
+//NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString *secondSurname);
+//
+//- (void)changeButtonsVisibilityWithType:(AVButtonsHiddenType)type {
+//    void(^AVButtonsVisibilityChangeBlock)(BOOL editButtonHidden, BOOL sortButtonHidden, BOOL createButtonHidden) = ^(BOOL editButtonHidden, BOOL sortButtonHidden, BOOL createButtonHidden) {
+//        self.editButton.hidden = editButtonHidden;
+//        self.sortButton.hidden = sortButtonHidden;
+//        self.createButton.hidden = createButtonHidden;
+//    };
+//    
+//    switch (type) {
+//        AVSwitchCase(AVButtonsHiddenTypeAllHidden,      { AVButtonsVisibilityChangeBlock(YES, YES, YES); });
+//        AVSwitchCase(AVButtonsHiddenTypeAllVisible,     { AVButtonsVisibilityChangeBlock(NO, NO, NO); });
+//        AVSwitchCase(AVButtonsHiddenTypeEditVisible,    { AVButtonsVisibilityChangeBlock(NO, YES, YES); });
+//        AVSwitchCase(AVButtonsHiddenTypeSortVisible,    { AVButtonsVisibilityChangeBlock(YES, NO, YES); });
+//        AVSwitchCase(AVButtonsHiddenTypeCreateVisible,  { AVButtonsVisibilityChangeBlock(YES, YES, NO); });
+//        AVSwitchCase(AVButtonsHiddenTypeEditHidden,     { AVButtonsVisibilityChangeBlock(YES, NO, NO); });
+//        AVSwitchCase(AVButtonsHiddenTypeSortHidden,     { AVButtonsVisibilityChangeBlock(NO, YES, NO); });
+//        AVSwitchCase(AVButtonsHiddenTypeCreateHidden,   { AVButtonsVisibilityChangeBlock(NO, NO, YES); });
+//        AVSwitchCaseDefault({ });
+//    }
+//}
 
-- (void)AVArrayStateDidDeleteObject:(AVArrayModel *)arrayModel {
-    NSArray *indexArray = [NSArray arrayWithObject:arrayModel.changedObjectIndexPath];
-    [self.tableView deleteRowsAtIndexPaths:indexArray withRowAnimation:YES];
-}
-
-- (void)AVArrayStateDidCreateObject:(AVArrayModel *)arrayModel {
-    [self AVArrayStateDidInsertObject:arrayModel];
-}
-
-- (void)AVArrayStateDidInsertObject:(AVArrayModel *)arrayModel {
-    NSArray *indexArray = [NSArray arrayWithObject:arrayModel.changedObjectIndexPath];
-    [self.tableView insertRowsAtIndexPaths:indexArray withRowAnimation:YES];
-}
 
 /*
 // Only override drawRect: if you perform custom drawing.

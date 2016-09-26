@@ -11,7 +11,16 @@
 @class AVUsers;
 @class AVSortingArrayModel;
 
-@interface AVUsersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@protocol AVArrayModelObserver <NSObject>
+
+@optional
+- (void)arrayStateDidDeleteObjectAtIndex:(NSIndexPath *)index;
+- (void)arrayStateDidCreateObject:(id)object;
+- (void)arrayStateDidInsertObject:(id)object atIndex:(NSIndexPath *)index;
+
+@end
+
+@interface AVUsersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AVArrayModelObserver>
 @property (nonatomic, strong) AVUsers   *users;
 
 @end

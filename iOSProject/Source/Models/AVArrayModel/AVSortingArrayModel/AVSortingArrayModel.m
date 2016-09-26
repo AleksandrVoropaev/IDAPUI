@@ -16,7 +16,7 @@
 typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString *secondSurname);
 
 @interface AVSortingArrayModel ()
-@property (nonatomic, assign)   AVArraySortType     sortType;
+@property (nonatomic, strong)   AVUsers             *users;
 
 @end
 
@@ -25,7 +25,7 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)sortArray:(AVUsers *)users {
++ (instancetype)sortingArrayModel:(AVUsers *)users {
     return [[self alloc] initWithUsers:users];
 }
 
@@ -33,16 +33,18 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 #pragma mark Initializations and Deallocations
 
 - (instancetype)init {
-    self = [super init];
-    self.sortType = AVArraySortTypeAscending;
-    
-    return self;
+    return [self initWithUsers:nil];
 }
 
 - (instancetype)initWithUsers:(AVUsers *)users {
-    self = [self init];
-    self.users = users;
+    if (!users) {
+        return nil;
+    }
     
+    self = [super init];
+    self.users = users;
+    self.sortType = AVArraySortTypeAscending;
+
     return self;
 }
 
@@ -65,7 +67,7 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
     @synchronized (self) {
         if (_sortType != sortType) {
             _sortType = sortType;
-            if (_sortType && self.objects) {
+            if (self.objects) {
                 [self sort];
             }
         }
@@ -81,25 +83,23 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
     }
 }
 
-- (void)resort {
-    @synchronized (self) {
-        AVArraySortType sortType = (self.sortType + 1) % AVArraySortTypeCount;
-        self.sortType = sortType;
-        [self sortWithType:sortType];
-    }
-}
+//- (void)resort {
+//    @synchronized (self) {
+//        AVArraySortType sortType = (self.sortType + 1) % AVArraySortTypeCount;
+//        self.sortType = sortType;
+//        [self sortWithType:sortType];
+//    }
+//}
 
 - (void)sortWithType:(AVArraySortType)sortType {
     @synchronized (self) {
-        NSMutableArray *array = [NSMutableArray arrayWithArray:self.objects];
-        [array sortUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
-            NSString *firstSurname = firstUser.surname;
-            NSString *secondSurname = secondUser.surname;
-            
-            return [self compareFirstSurname:firstSurname secondSurname:secondSurname sortType:sortType];
+        id result = [self.objects sortedArrayUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
+            return [self compareFirstSurname:firstUser.surname
+                               secondSurname:secondUser.surname
+                                    sortType:sortType];
         }];
         
-        [self replaceAllObjectsWithObjects:array];
+        [self replaceAllObjectsWithObjects:result];
     }
 }
 

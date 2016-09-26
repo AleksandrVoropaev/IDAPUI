@@ -40,49 +40,66 @@
 }
 
 - (id)objectAtIndex:(NSUInteger)index {
-    return [self.array objectAtIndex:index];
+    @synchronized (self) {
+        return [self.array objectAtIndex:index];
+    }
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
-    return [self.array objectAtIndexedSubscript:index];
+    @synchronized (self) {
+        return [self.array objectAtIndexedSubscript:index];
+    }
 }
 
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
-    [self.array setObject:object atIndexedSubscript:index];
+    @synchronized (self) {
+        [self.array setObject:object atIndexedSubscript:index];
+    }
 }
 
 - (void)addObject:(id)object {
-    [self.array addObject:object];
-//
-    self.changedObjectIndexPath = [NSIndexPath indexPathWithIndex:(self.count - 1)];
-    self.state = AVArrayStateDidCreateObject;
+    @synchronized (self) {
+        [self.array addObject:object];
+        [self notifyOfState:AVArrayStateDidCreateObject withObject:[NSIndexPath indexPathWithIndex:(self.count - 1)]];
+    }
 }
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
-    [self.array insertObject:object atIndex:index];
+    @synchronized (self) {
+        [self.array insertObject:object atIndex:index];
+        [self notifyOfState:AVArrayStateDidInsertObject withObject:[NSIndexPath indexPathWithIndex:index]];
+    }
 }
 
 - (void)addObjects:(NSArray *)objects {
-    [self.array addObjectsFromArray:objects];
+    @synchronized (self) {
+        [self.array addObjectsFromArray:objects];
+    }
 }
 
 - (void)removeObject:(id)object {
-    [self.array removeObject:object];
+    @synchronized (self) {
+        [self.array removeObject:object];
+    }
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
-    [self.array removeObjectAtIndex:index];
-//
-    self.changedObjectIndexPath = [NSIndexPath indexPathWithIndex:index];
-    self.state = AVArrayStateDidDeleteObject;
+    @synchronized (self) {
+        [self.array removeObjectAtIndex:index];
+        [self notifyOfState:AVArrayStateDidDeleteObject withObject:[NSIndexPath indexPathWithIndex:index]];
+    }
 }
 
 - (void)removeObjects:(NSArray *)objects {
-    [self.array removeObjectsInArray:objects];
+    @synchronized (self) {
+        [self.array removeObjectsInArray:objects];
+    }
 }
 
 - (void)removeAll {
-    [self.array removeObjectsInArray:self.array];
+    @synchronized (self) {
+        [self.array removeObjectsInArray:self.array];
+    }
 }
 
 - (void)replaceAllObjectsWithObjects:(NSArray *)objects {
@@ -93,15 +110,19 @@
 }
 
 - (void)moveObjectFromIndex:(NSUInteger)baseIndex toIndex:(NSUInteger)targetIndex {
-    [self.array moveObjectFromIndex:baseIndex toIndex:targetIndex];
+    @synchronized (self) {
+        [self.array moveObjectFromIndex:baseIndex toIndex:targetIndex];
+    }
 }
 
 - (SEL)selectorForState:(NSUInteger)state {
-    switch (state) {
-        AVSwitchCase(AVArrayStateDidDeleteObject, { return @selector(AVArrayStateDidDeleteObject:); });
-        AVSwitchCase(AVArrayStateDidCreateObject, { return @selector(AVArrayStateDidCreateObject:); });
-        AVSwitchCase(AVArrayStateDidInsertObject, { return @selector(AVArrayStateDidInsertObject:); });
-        AVSwitchCaseDefault({ return [super selectorForState:state]; })
+    @synchronized (self) {
+        switch (state) {
+                AVSwitchCase(AVArrayStateDidDeleteObject, { return @selector(arrayModel:didDeleteObjectAtIndex:); });
+                AVSwitchCase(AVArrayStateDidCreateObject, { return @selector(arrayModel:didCreateObjectAtIndex:); });
+                AVSwitchCase(AVArrayStateDidInsertObject, { return @selector(arrayModel:didInsertObjectAtIndex:); });
+                AVSwitchCaseDefault({ return [super selectorForState:state]; })
+        }
     }
 }
 

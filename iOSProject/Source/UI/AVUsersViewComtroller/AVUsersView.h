@@ -10,32 +10,25 @@
 
 @class AVUser;
 
-typedef enum : NSUInteger {
-    AVButtonsHiddenTypeAllHidden,
-    AVButtonsHiddenTypeAllVisible,
-    AVButtonsHiddenTypeEditVisible,
-    AVButtonsHiddenTypeSortVisible,
-    AVButtonsHiddenTypeCreateVisible,
-    AVButtonsHiddenTypeEditHidden,
-    AVButtonsHiddenTypeSortHidden,
-    AVButtonsHiddenTypeCreateHidden,
-} AVButtonsHiddenType;
+//typedef enum : NSUInteger {
+//    AVButtonsHiddenTypeAllHidden,
+//    AVButtonsHiddenTypeAllVisible,
+//    AVButtonsHiddenTypeEditVisible,
+//    AVButtonsHiddenTypeSortVisible,
+//    AVButtonsHiddenTypeCreateVisible,
+//    AVButtonsHiddenTypeEditHidden,
+//    AVButtonsHiddenTypeSortHidden,
+//    AVButtonsHiddenTypeCreateHidden,
+//} AVButtonsHiddenType;
 
-@protocol AVArrayModelObserver <NSObject>
 
-@optional
-- (void)AVArrayStateDidDeleteObjectAtIndex:(NSIndexPath *)index;
-- (void)AVArrayStateDidCreateObject:(id)object;
-- (void)AVArrayStateDidInsertObject:(id)object atIndex:(NSIndexPath *)index;
-
-@end
-
-@interface AVUsersView : UIView <AVArrayModelObserver>
+@interface AVUsersView : UIView
 @property (nonatomic, strong)   IBOutlet UITableView    *tableView;
 @property (nonatomic, strong)   IBOutlet UIButton       *editButton;
 @property (nonatomic, strong)   IBOutlet UIButton       *sortButton;
 @property (nonatomic, strong)   IBOutlet UIButton       *createButton;
 
-- (void)changeButtonsVisibilityWithType:(AVButtonsHiddenType)type;
+@property (nonatomic, assign)   BOOL    sorting;
+//- (void)changeButtonsVisibilityWithType:(AVButtonsHiddenType)type;
 
 @end

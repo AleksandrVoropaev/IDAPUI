@@ -52,9 +52,9 @@ typedef enum : NSUInteger {
 
     self.sortType = AVUsersSortTypeNotSorted;
     self.users = [AVUsers new];
-    self.tableData = [AVSortingArrayModel new];
-//    self.tableData = [AVSortingArrayModel sortArray:self.users];
+    self.tableData = [AVSortingArrayModel sortingArrayModel:self.users];
     [self.tableData replaceAllObjectsWithObjects:self.users.objects];
+    [self.tableData addObserver:self];
 
     return self;
 }
@@ -64,9 +64,10 @@ typedef enum : NSUInteger {
 
     self.sortType = AVUsersSortTypeNotSorted;
     self.users = [AVUsers new];
-    self.tableData = [AVSortingArrayModel new];
-//    self.tableData = [AVSortingArrayModel sortArray:self.users];
+    self.tableData = [AVSortingArrayModel sortingArrayModel:self.users];
+//    self.tableData = [AVSortingArrayModel new];
     [self.tableData replaceAllObjectsWithObjects:self.users.objects];
+    [self.tableData addObserver:self];
 
     return self;
 }
@@ -87,7 +88,6 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableData addObserver:self.usersView];
     [self.usersView.tableView reloadData];
     // Do any additional setup after loading the view from its nib.
 }
@@ -164,12 +164,14 @@ typedef enum : NSUInteger {
     switch (sortType) {
         case AVUsersSortTypeAscending:
         AVSwitchCase(AVUsersSortTypeDescending, {
-            [usersView changeButtonsVisibilityWithType:AVButtonsHiddenTypeSortVisible];
+//            [usersView changeButtonsVisibilityWithType:AVButtonsHiddenTypeSortVisible];
+            usersView.sorting = YES;
             [self resortUsers];
         });
         AVSwitchCase(AVUsersSortTypeNotSorted, {
             [self.tableData replaceAllObjectsWithObjects:self.users.objects];
-            [usersView changeButtonsVisibilityWithType:AVButtonsHiddenTypeAllVisible];
+//            [usersView changeButtonsVisibilityWithType:AVButtonsHiddenTypeAllVisible];
+            usersView.sorting = NO;
             [usersView.tableView reloadData];
         });
         AVSwitchCaseDefault({});
@@ -177,8 +179,26 @@ typedef enum : NSUInteger {
 }
 
 - (void)resortUsers {
-    [self.tableData resort];
+    self.tableData.sortType = (self.tableData.sortType + 1) % AVArraySortTypeCount;
     [self.usersView.tableView reloadData];
 }
+
+#pragma mark -
+#pragma mark Array Observation
+
+- (void)arrayModel:(AVArrayModel *)arrayModel didDeleteObjectAtIndex:(NSIndexPath *)index  {
+    NSArray *indexArray = @[index];
+    [self.usersView.tableView deleteRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)arrayModel:(AVArrayModel *)arrayModel didCreateObjectAtIndex:(id)index {
+    [self arrayModel:arrayModel didInsertObjectAtIndex:index];
+}
+
+- (void)arrayModel:(AVArrayModel *)arrayModel didInsertObjectAtIndex:(NSIndexPath *)index  {
+    NSArray *indexArray = @[index];
+    [self.usersView.tableView insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
+}
+
 
 @end
