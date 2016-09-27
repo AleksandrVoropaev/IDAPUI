@@ -10,9 +10,18 @@
 
 typedef NS_ENUM(NSUInteger, AVArrayState) {
     AVArrayStateDidDeleteObject,
-    AVArrayStateDidCreateObject,
-    AVArrayStateDidInsertObject
+    AVArrayStateDidInsertObject,
+    AVArrayStateDidMoveObject
 };
+
+@protocol AVArrayModelObserver <NSObject>
+
+@optional
+- (void)arrayStateDidDeleteObjectAtIndex:(NSIndexPath *)index;
+- (void)arrayStateDidCreateObject:(id)object;
+- (void)arrayStateDidInsertObject:(id)object atIndex:(NSIndexPath *)index;
+
+@end
 
 @interface AVArrayModel : AVObservableObject
 @property (nonatomic, readonly)     NSUInteger  count;

@@ -14,34 +14,60 @@ static const NSUInteger kAVRandomUsersCount = 5;
 
 @implementation AVUsers
 
-+ (instancetype)usersWithUsers:(NSArray *)users {
-    return [[self alloc] initWithUsers:users];
+#pragma mark -
+#pragma mark Class Methods
+
++ (instancetype)users {
+    return [self new];
 }
+
+//+ (instancetype)usersWithUsers:(NSArray *)users {
+//    return [[self alloc] initWithUsers:users];
+//}
 
 + (instancetype)usersWithCount:(NSUInteger)count {
     return [[self alloc] initWithCount:count];
 }
 
+//- (instancetype)init {
+//    self = [super init];
+//    
+//    [self performBlockWitouthNotifications:^{
+//        [self addRandomUsersWithCount:kAVRandomUsersCount];
+//    }];
+//    
+//    return self;
+//}
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
 - (instancetype)init {
-    self = [super init];
-    [self addRandomUsersWithCount:kAVRandomUsersCount];
-    
-    return self;
+    return [self initWithCount:kAVRandomUsersCount];
 }
 
-- (instancetype)initWithUsers:(NSArray *)users {
-    self = [super init];
-    [self addUsers:users];
-    
-    return self;
-}
+//- (instancetype)initWithUsers:(NSArray *)users {
+//    self = [super init];
+//    
+//    [self performBlockWitouthNotifications:^{
+//        [self addUsers:users];
+//    }];
+//    
+//    return self;
+//}
 
 - (instancetype)initWithCount:(NSUInteger)count {
     self = [super init];
-    [self addRandomUsersWithCount:count];
+    
+    [self performBlockWitouthNotifications:^{
+        [self addRandomUsersWithCount:count];
+    }];
     
     return self;
 }
+
+#pragma mark -
+#pragma mark Public
 
 - (NSArray *)users {
     return [self objects];

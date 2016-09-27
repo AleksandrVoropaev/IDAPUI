@@ -12,8 +12,7 @@
 #import "AVUsers.h"
 #import "AVUsersView.h"
 #import "AVUserCell.h"
-#import "AVArrayModel.h"
-#import "AVSortingArrayModel.h"
+#import "AVUsersSortingArrayModel.h"
 #import "AVArrayChangesObject.h"
 
 #import "UITableView+AVExtensions.h"
@@ -33,8 +32,8 @@ typedef enum : NSUInteger {
 } AVUsersSortType;
 
 @interface AVUsersViewController ()
-@property (nonatomic, strong)   AVSortingArrayModel     *tableData;
-@property (nonatomic, assign)   AVUsersSortType         sortType;
+@property (nonatomic, strong)   AVUsersSortingArrayModel    *tableData;
+@property (nonatomic, assign)   AVUsersSortType             sortType;
 
 @end
 
@@ -50,27 +49,22 @@ typedef enum : NSUInteger {
 
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-
-    self.sortType = AVUsersSortTypeNotSorted;
-    self.users = [AVUsers new];
-    self.tableData = [AVSortingArrayModel sortingArrayModel:self.users];
-    [self.tableData replaceAllObjectsWithObjects:self.users.objects];
-    [self.tableData addObserver:self];
-
+    [self initialize];
+    
     return self;
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
-
-    self.sortType = AVUsersSortTypeNotSorted;
-    self.users = [AVUsers new];
-    self.tableData = [AVSortingArrayModel sortingArrayModel:self.users];
-//    self.tableData = [AVSortingArrayModel new];
-    [self.tableData replaceAllObjectsWithObjects:self.users.objects];
-    [self.tableData addObserver:self];
+    [self initialize];
 
     return self;
+}
+
+- (void)initialize {
+    self.sortType = AVUsersSortTypeNotSorted;
+    self.users = [AVUsers new];
+    self.tableData = [AVUsersSortingArrayModel sortingArrayModel:self.users];
 }
 
 #pragma mark -
@@ -80,6 +74,14 @@ typedef enum : NSUInteger {
     if (_users != users) {
         _users = users;
         [self.usersView.tableView reloadData];
+    }
+}
+
+- (void)setTableData:(AVUsersSortingArrayModel *)tableData {
+    if (_tableData != tableData) {
+        [_tableData removeObserver:self];
+        _tableData = tableData;
+        [_tableData addObserver:self];
     }
 }
 
@@ -149,10 +151,11 @@ typedef enum : NSUInteger {
 }
 
 - (IBAction)onCreateButton:(id)sender {
-    AVUser *user = [AVUser new];
-    [self.users addObject:user];
-    [self.tableData addObject:user];
-    [self.usersView.tableView reloadData];
+    [self.users addObject:[AVUser new]];
+//    AVUser *user = [AVUser new];
+//    [self.users addObject:user];
+//    [self.tableData addObject:user];
+//    [self.usersView.tableView reloadData];
 }
 
 - (IBAction)onSortButton:(id)sender {
@@ -165,15 +168,12 @@ typedef enum : NSUInteger {
     switch (sortType) {
         case AVUsersSortTypeAscending:
         AVSwitchCase(AVUsersSortTypeDescending, {
-//            [usersView changeButtonsVisibilityWithType:AVButtonsHiddenTypeSortVisible];
             usersView.sorting = YES;
             [self resortUsers];
         });
         AVSwitchCase(AVUsersSortTypeNotSorted, {
-            [self.tableData replaceAllObjectsWithObjects:self.users.objects];
-//            [usersView changeButtonsVisibilityWithType:AVButtonsHiddenTypeAllVisible];
             usersView.sorting = NO;
-            [usersView.tableView reloadData];
+            [self resortUsers];
         });
         AVSwitchCaseDefault({});
     }
@@ -181,7 +181,7 @@ typedef enum : NSUInteger {
 
 - (void)resortUsers {
     self.tableData.sortType = (self.tableData.sortType + 1) % AVArraySortTypeCount;
-    [self.usersView.tableView reloadData];
+//    [self.usersView.tableView reloadData];
 }
 
 #pragma mark -
@@ -190,10 +190,6 @@ typedef enum : NSUInteger {
 - (void)arrayModel:(AVArrayModel *)arrayModel didDeleteObjectAtIndex:(AVArrayChangesObject *)changes  {
     NSArray *indexArray = @[changes.baseIndex];
     [self.usersView.tableView deleteRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
-}
-
-- (void)arrayModel:(AVArrayModel *)arrayModel didCreateObjectAtIndex:(AVArrayChangesObject *)changes {
-    [self arrayModel:arrayModel didInsertObjectAtIndex:changes];
 }
 
 - (void)arrayModel:(AVArrayModel *)arrayModel didInsertObjectAtIndex:(AVArrayChangesObject *)changes  {

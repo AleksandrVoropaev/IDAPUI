@@ -6,18 +6,18 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
-#import "AVUsers.h"
+#import "AVArrayModel.h"
 
 typedef enum : NSUInteger {
     AVArraySortTypeAscending,
     AVArraySortTypeDescending,
+    AVArraySortTypeNotSorted,
     AVArraySortTypeCount,
 } AVArraySortType;
 
 @interface AVSortingArrayModel : AVArrayModel
-@property (nonatomic, readonly) AVUsers             *users;
 @property (nonatomic, assign)   AVArraySortType     sortType;
 
-+ (instancetype)sortingArrayModel:(AVUsers *)users;
++ (instancetype)sortingArrayModel:(id)objects;
 
 @end

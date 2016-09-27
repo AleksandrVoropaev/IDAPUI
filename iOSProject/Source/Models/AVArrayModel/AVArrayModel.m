@@ -25,12 +25,18 @@
 @dynamic count;
 @dynamic objects;
 
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
 - (instancetype)init {
     self = [super init];
     self.array = [NSMutableArray array];
     
     return self;
 }
+
+#pragma mark -
+#pragma mark Accessors
 
 - (NSUInteger)count {
     return self.array.count;
@@ -58,61 +64,73 @@
     }
 }
 
-- (void)addObject:(id)object {
-    @synchronized (self) {
-        [self.array addObject:object];
-        AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
-                                                        baseIndex:[NSIndexPath indexPathWithIndex:(self.count - 1)]
-                                                                    destinationIndex:nil
-                                                                           arraySate:AVArrayStateDidCreateObject];
-        [self notifyOfState:AVArrayStateDidCreateObject withObject:changes];
-    }
-}
+#pragma mark -
+#pragma mark Public
 
+// add/insert
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
     @synchronized (self) {
         [self.array insertObject:object atIndex:index];
         AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
-                                                        baseIndex:[NSIndexPath indexPathWithIndex:index]
-                                                                    destinationIndex:nil
-                                                                           arraySate:AVArrayStateDidInsertObject];
+                                                                baseIndex:index
+                                                         destinationIndex:nil
+                                                                arraySate:AVArrayStateDidInsertObject];
         [self notifyOfState:AVArrayStateDidInsertObject withObject:changes];
     }
 }
 
+- (void)addObject:(id)object {
+    [self insertObject:object atIndex:self.count];
+}
+
 - (void)addObjects:(NSArray *)objects {
     @synchronized (self) {
-        [self.array addObjectsFromArray:objects];
+        for (id object in objects) {
+            [self addObject:object];
+        }
+    }
+}
+
+// remove
+- (void)removeObjectAtIndex:(NSUInteger)index {
+    @synchronized (self) {
+        id object = self.array[index];
+        [self.array removeObjectAtIndex:index];
+        AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
+                                                                    baseIndex:index
+                                                            destinationIndex:nil
+                                                                   arraySate:AVArrayStateDidDeleteObject];
+        [self notifyOfState:AVArrayStateDidDeleteObject withObject:changes];
     }
 }
 
 - (void)removeObject:(id)object {
     @synchronized (self) {
-        [self.array removeObject:object];
-    }
-}
-
-- (void)removeObjectAtIndex:(NSUInteger)index {
-    @synchronized (self) {
-        id object = [self.array objectAtIndex:index];
-        [self.array removeObjectAtIndex:index];
-        AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
-                                                            baseIndex:[NSIndexPath indexPathWithIndex:index]
-                                                                    destinationIndex:nil
-                                                                           arraySate:AVArrayStateDidDeleteObject];
-        [self notifyOfState:AVArrayStateDidDeleteObject withObject:changes];
+        if (![self.array containsObject:object]) {
+            return;
+        }
+        
+        [self removeObjectAtIndex:[self.array indexOfObject:object]];
     }
 }
 
 - (void)removeObjects:(NSArray *)objects {
     @synchronized (self) {
-        [self.array removeObjectsInArray:objects];
+        for (id object in objects) {
+            [self removeObject:object];
+        }
     }
 }
 
 - (void)removeAll {
     @synchronized (self) {
-        [self.array removeObjectsInArray:self.array];
+//        for (id object in self.array) {
+//            [self removeObject:object];
+//        }
+        NSUInteger count = self.count;
+        for (NSUInteger iterator = 0; iterator < count; iterator++) {
+            [self removeObjectAtIndex:(count - iterator - 1)];
+        }
     }
 }
 
@@ -126,14 +144,22 @@
 - (void)moveObjectFromIndex:(NSUInteger)baseIndex toIndex:(NSUInteger)targetIndex {
     @synchronized (self) {
         [self.array moveObjectFromIndex:baseIndex toIndex:targetIndex];
+        AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:[self objectAtIndex:baseIndex]
+                                                       baseIndex:baseIndex
+                                                destinationIndex:targetIndex
+                                                       arraySate:AVArrayStateDidMoveObject];
+        [self notifyOfState:AVArrayStateDidMoveObject withObject:changes];
     }
 }
+
+#pragma mark -
+#pragma mark Observation
 
 - (SEL)selectorForState:(NSUInteger)state {
     @synchronized (self) {
         switch (state) {
                 AVSwitchCase(AVArrayStateDidDeleteObject, { return @selector(arrayModel:didDeleteObjectAtIndex:); });
-                AVSwitchCase(AVArrayStateDidCreateObject, { return @selector(arrayModel:didCreateObjectAtIndex:); });
+//                AVSwitchCase(AVArrayStateDidCreateObject, { return @selector(arrayModel:didCreateObjectAtIndex:); });
                 AVSwitchCase(AVArrayStateDidInsertObject, { return @selector(arrayModel:didInsertObjectAtIndex:); });
                 AVSwitchCaseDefault({ return [super selectorForState:state]; })
         }

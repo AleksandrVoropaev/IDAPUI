@@ -6,34 +6,36 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
-#import "AVArrayChangesObject.h"
+#import "AVArrayOneIndexChangesObject.h"
 
-@implementation AVArrayChangesObject
+@interface AVArrayOneIndexChangesObject ()
+@property (nonatomic, strong)   id              object;
+@property (nonatomic, assign)   NSUInteger      *index;
+@property (nonatomic, assign)   AVArrayState    arraySate;
+
+@end
+@implementation AVArrayOneIndexChangesObject
 
 + (instancetype)arrayChangedWithObject:(id)object
-                             baseIndex:(NSIndexPath *)baseIndex
-                      destinationIndex:(NSIndexPath *)destinationIndex
+                                 index:(NSUInteger)index
                              arraySate:(AVArrayState)arraySate
 {
     return [[self alloc] initWithObject:object
-                              baseIndex:baseIndex
-                       destinationIndex:destinationIndex
+                                  index:index
                               arraySate:arraySate];
 }
 
 - (instancetype)initWithObject:(id)object
-                     baseIndex:(NSIndexPath *)baseIndex
-              destinationIndex:(NSIndexPath *)destinationIndex
+                         index:(NSUInteger)index
                      arraySate:(AVArrayState)arraySate
 {
-    if (!object | !baseIndex | !arraySate) {
+    if (!object | !index | !arraySate) {
         return nil;
     }
     
     self = [super init];
     self.object = object;
-    self.baseIndex = baseIndex;
-    self.destinationIndex = destinationIndex;
+    self.index = index;
     self.arraySate = arraySate;
     
     return self;

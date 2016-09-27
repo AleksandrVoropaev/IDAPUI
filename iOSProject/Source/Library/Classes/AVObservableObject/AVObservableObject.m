@@ -9,7 +9,8 @@
 #import "AVObservableObject.h"
 
 @interface AVObservableObject ()
-@property (nonatomic, retain) NSMutableSet *mutableObserverSet;
+@property (nonatomic, retain)   NSMutableSet    *mutableObserverSet;
+@property (nonatomic, assign)   BOOL            notifying;
 
 - (void)notifyOfStateChangewithSelector:(SEL)selector;
 
@@ -29,6 +30,7 @@
 - (instancetype)init {
     self = [super init];
     self.mutableObserverSet = [NSMutableSet set];
+    self.notifying = YES;
     
     return self;
 }
@@ -47,6 +49,10 @@
         if (state != _state) {
             _state = state;
             
+            if (!self.notifying) {
+                return;
+            }
+
             [self notifyOfStateChangewithSelector:[self selectorForState:state]];
         }
     }
@@ -57,6 +63,10 @@
         if (state != _state) {
             _state = state;
             
+            if (!self.notifying) {
+                return;
+            }
+
             [self notifyOfState:state withObject:object];
         }
     }
@@ -105,6 +115,22 @@
     }
 }
 
+- (void)performBlockWithNotifications:(void(^)(void))block {
+    [self performBlock:block notifying:YES];
+}
+
+- (void)performBlockWitouthNotifications:(void(^)(void))block {
+    [self performBlock:block notifying:NO];
+}
+
+- (void)performBlock:(void (^)(void))block notifying:(BOOL)notifying {
+    BOOL baseNotifyingStatus = self.notifying;
+    
+    self.notifying = notifying;
+    block();
+    self.notifying = baseNotifyingStatus;
+}
+
 #pragma mark -
 #pragma mark Private
 
@@ -113,12 +139,13 @@
 }
 
 - (void)notifyOfStateChangewithSelector:(SEL)selector {
-    NSMutableSet *observerSet = self.mutableObserverSet;
-    for (id observer in observerSet) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self];
-        }
-    }
+    [self notifyOfStateChangewithSelector:selector object:nil];
+//    NSMutableSet *observerSet = self.mutableObserverSet;
+//    for (id observer in observerSet) {
+//        if ([observer respondsToSelector:selector]) {
+//            [observer performSelector:selector withObject:self];
+//        }
+//    }
 }
 
 - (void)notifyOfStateChangewithSelector:(SEL)selector object:(id)object {
