@@ -8,18 +8,18 @@
 
 #import "AVObservableObject.h"
 
-typedef NS_ENUM(NSUInteger, AVArrayState) {
-    AVArrayStateDidDeleteObject,
-    AVArrayStateDidInsertObject,
-    AVArrayStateDidMoveObject
+@class AVArrayChangesObject;
+
+typedef NS_ENUM(NSUInteger, AVArrayModelChange) {
+    AVArrayModelChangeDidDeleteObject,
+    AVArrayModelChangeDidInsertObject,
+    AVArrayModelChangeDidMoveObject
 };
 
 @protocol AVArrayModelObserver <NSObject>
 
 @optional
-- (void)arrayStateDidDeleteObjectAtIndex:(NSIndexPath *)index;
-- (void)arrayStateDidCreateObject:(id)object;
-- (void)arrayStateDidInsertObject:(id)object atIndex:(NSIndexPath *)index;
+- (void)arrayModelDidChange:(AVArrayChangesObject *)change;
 
 @end
 

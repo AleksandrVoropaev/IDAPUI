@@ -10,33 +10,31 @@
 
 @interface AVArrayOneIndexChangesObject ()
 @property (nonatomic, strong)   id              object;
-@property (nonatomic, assign)   NSUInteger      *index;
-@property (nonatomic, assign)   AVArrayState    arraySate;
+@property (nonatomic, assign)   NSUInteger      index;
 
 @end
 @implementation AVArrayOneIndexChangesObject
 
 + (instancetype)arrayChangedWithObject:(id)object
                                  index:(NSUInteger)index
-                             arraySate:(AVArrayState)arraySate
+                           changesType:(AVArrayModelChange)changesType
 {
     return [[self alloc] initWithObject:object
                                   index:index
-                              arraySate:arraySate];
+                            changesType:changesType];
 }
 
 - (instancetype)initWithObject:(id)object
                          index:(NSUInteger)index
-                     arraySate:(AVArrayState)arraySate
+                   changesType:(AVArrayModelChange)changesType
 {
-    if (!object | !index | !arraySate) {
+    if (!object | !index | !changesType) {
         return nil;
     }
     
-    self = [super init];
+    self = [super initWithChangesType:changesType];
     self.object = object;
     self.index = index;
-    self.arraySate = arraySate;
     
     return self;
 }

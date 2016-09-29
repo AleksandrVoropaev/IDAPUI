@@ -11,26 +11,38 @@
 #import "AVArrayOneIndexChangesObject.h"
 #import "AVArrayTwoIndexesChangesObject.h"
 
+@interface AVArrayChangesObject ()
+@property (nonatomic, assign)   AVArrayModelChange  changesType;
+
+@end
+
 @implementation AVArrayChangesObject
 
 + (id)arrayChangedWithObject:(id)object
                        index:(NSUInteger)index
-                   arraySate:(AVArrayState)arraySate
+                 changesType:(AVArrayModelChange)changesType
 {
     return [AVArrayOneIndexChangesObject arrayChangedWithObject:object
                                                           index:index
-                                                      arraySate:arraySate];
+                                                    changesType:changesType];
 }
 
 + (id)arrayChangedWithObject:(id)object
                        index:(NSUInteger)index
                  targetIndex:(NSUInteger)targetIndex
-                   arraySate:(AVArrayState)arraySate
+                 changesType:(AVArrayModelChange)changesType
 {
     return [AVArrayTwoIndexesChangesObject arrayChangedWithObject:object
                                                             index:index
                                                       targetIndex:targetIndex
-                                                        arraySate:arraySate];
+                                                      changesType:changesType];
+}
+
+- (instancetype)initWithChangesType:(AVArrayModelChange)changesType {
+    self = [super init];
+    self.changesType = changesType;
+    
+    return self;
 }
 
 @end

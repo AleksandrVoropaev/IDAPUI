@@ -16,8 +16,11 @@ typedef enum : NSUInteger {
 } AVArraySortType;
 
 @interface AVSortingArrayModel : AVArrayModel
-@property (nonatomic, assign)   AVArraySortType     sortType;
+@property (nonatomic, readonly) AVArrayModel    *model;
+@property (nonatomic, assign)   AVArraySortType sortType;
 
 + (instancetype)sortingArrayModel:(id)objects;
+
+- (NSArray<NSSortDescriptor *> *)sortDescriptorsWithSortType:(AVArraySortType)sortType; // need to overrite in subclasses
 
 @end

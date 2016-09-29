@@ -12,33 +12,31 @@
 
 #import "AVSwitchCaseMacro.h"
 
-//typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString *secondSurname);
+@interface AVSortingArrayModel ()
+@property (nonatomic, strong)   AVArrayModel  *model;
+
+@end
 
 @implementation AVSortingArrayModel
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)sortingArrayModel:(id)objects {
-    return [[self alloc] initWithObjects:objects];
++ (instancetype)sortingArrayModel:(AVArrayModel *)model {
+    return [[self alloc] initWithModel:model];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-//- (instancetype)init {
-//    self = [super init];
-//    
-//    return self;
-//}
-
-- (instancetype)initWithObjects:(id)objects {
-    if (!objects) {
+- (instancetype)initWithModel:(AVArrayModel *)model {
+    if (!model) {
         return nil;
     }
     
     self = [super init];
-    [self addObjects:objects];
+    self.model = model;
+    [self addObjects:model.objects];
     self.sortType = AVArraySortTypeAscending;
 
     return self;
@@ -46,18 +44,6 @@
 
 #pragma mark -
 #pragma mark Accessors
-
-//- (void)setUsers:(AVUsers *)users {
-//    @synchronized (self) {
-//        if (users != _users) {
-//            _users = users;
-//            if (_users) {
-//                [self addObjects:users.objects];
-//                [self sort];
-//            }
-//        }
-//    }
-//}
 
 - (void)setSortType:(AVArraySortType)sortType {
     @synchronized (self) {
@@ -74,17 +60,18 @@
 #pragma mark Public
 
 - (void)sortWithType:(AVArraySortType)sortType {
-//     Need to overrite in subclasses
-    
-//    @synchronized (self) {
-//        id result = [self.objects sortedArrayUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
-//            return [self compareFirstSurname:firstUser.surname
-//                               secondSurname:secondUser.surname
-//                                    sortType:sortType];
-//        }];
-//        
-//        [self replaceAllObjectsWithObjects:result];
-//    }
+    @synchronized (self) {
+        id result = self.model.objects;
+        if (sortType != AVArraySortTypeNotSorted) {
+            result = [result sortedArrayUsingDescriptors:[self sortDescriptorsWithSortType:sortType]];
+        }
+        
+        [self replaceAllObjectsWithObjects:result];
+    }
+}
+
+- (NSArray<NSSortDescriptor *> *)sortDescriptorsWithSortType:(AVArraySortType)sortType {
+    return nil; // need to overrite in subclasses
 }
 
 #pragma mark -
@@ -93,20 +80,5 @@
 - (void)sort {
     [self sortWithType:self.sortType];
 }
-
-//- (NSComparisonResult)compareFirstSurname:(NSString *)firstSurname
-//                            secondSurname:(NSString *)secondSurname
-//                                 sortType:(AVArraySortType)sortType
-//{
-//    AVComparisonBlock comparisonBlock = ^NSComparisonResult(NSString *firstBlockSurname, NSString *secondBlockSurname) {
-//        return [firstBlockSurname compare:secondBlockSurname];
-//    };
-//    
-//    switch (self.sortType) {
-//        AVSwitchCase(AVArraySortTypeAscending, { return comparisonBlock(secondSurname, firstSurname); };);
-//        AVSwitchCase(AVArraySortTypeDescending, { return comparisonBlock(firstSurname, secondSurname); };);
-//        AVSwitchCaseDefault({ return nil; });
-//    }
-//}
 
 @end

@@ -8,15 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AVArrayChangesObject.h"
+
 #import "AVArrayModel.h"
 
-@interface AVArrayOneIndexChangesObject : NSObject
+@interface AVArrayOneIndexChangesObject : AVArrayChangesObject
 @property (nonatomic, readonly)   id            object;
-@property (nonatomic, readonly)   NSUInteger    *index;
-@property (nonatomic, readonly)   AVArrayState  arraySate;
+@property (nonatomic, readonly)   NSUInteger    index;
 
 + (instancetype)arrayChangedWithObject:(id)object
                                  index:(NSUInteger)index
-                             arraySate:(AVArrayState)arraySate;
+                           changesType:(AVArrayModelChange)changesType;
+
+- (instancetype)initWithObject:(id)object
+                         index:(NSUInteger)index
+                   changesType:(AVArrayModelChange)changesType;
 
 @end

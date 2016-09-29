@@ -11,14 +11,17 @@
 #import "AVArrayModel.h"
 
 @interface AVArrayChangesObject : NSObject
+@property (nonatomic, readonly) AVArrayModelChange  changesType;
 
 + (id)arrayChangedWithObject:(id)object
                        index:(NSUInteger)index
-                   arraySate:(AVArrayState)arraySate;
+                 changesType:(AVArrayModelChange)changesType;
 
 + (id)arrayChangedWithObject:(id)object
                        index:(NSUInteger)index
                  targetIndex:(NSUInteger)targetIndex
-                   arraySate:(AVArrayState)arraySate;
+                 changesType:(AVArrayModelChange)changesType;
+
+- (instancetype)initWithChangesType:(AVArrayModelChange)changesType;
 
 @end

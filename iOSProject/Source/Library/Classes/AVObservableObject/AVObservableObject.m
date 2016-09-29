@@ -10,7 +10,7 @@
 
 @interface AVObservableObject ()
 @property (nonatomic, retain)   NSMutableSet    *mutableObserverSet;
-@property (nonatomic, assign)   BOOL            notifying;
+@property (nonatomic, assign)   BOOL            shouldNotify;
 
 - (void)notifyOfStateChangewithSelector:(SEL)selector;
 
@@ -30,7 +30,7 @@
 - (instancetype)init {
     self = [super init];
     self.mutableObserverSet = [NSMutableSet set];
-    self.notifying = YES;
+    self.shouldNotify = YES;
     
     return self;
 }
@@ -49,10 +49,6 @@
         if (state != _state) {
             _state = state;
             
-            if (!self.notifying) {
-                return;
-            }
-
             [self notifyOfStateChangewithSelector:[self selectorForState:state]];
         }
     }
@@ -62,10 +58,6 @@
     @synchronized (self) {
         if (state != _state) {
             _state = state;
-            
-            if (!self.notifying) {
-                return;
-            }
 
             [self notifyOfState:state withObject:object];
         }
@@ -77,9 +69,7 @@
 }
 
 - (void)notifyOfState:(NSUInteger)state withObject:(id)object {
-    @synchronized (self) {
-        [self notifyOfStateChangewithSelector:[self selectorForState:state] object:object];
-    }
+    [self notifyOfStateChangewithSelector:[self selectorForState:state] object:object];
 }
 
 #pragma mark -
@@ -124,11 +114,13 @@
 }
 
 - (void)performBlock:(void (^)(void))block notifying:(BOOL)notifying {
-    BOOL baseNotifyingStatus = self.notifying;
-    
-    self.notifying = notifying;
-    block();
-    self.notifying = baseNotifyingStatus;
+    @synchronized (self) {
+        BOOL currentNotificationStatus = self.shouldNotify;
+        
+        self.shouldNotify = notifying;
+        block();
+        self.shouldNotify = currentNotificationStatus;
+    }
 }
 
 #pragma mark -
@@ -140,19 +132,19 @@
 
 - (void)notifyOfStateChangewithSelector:(SEL)selector {
     [self notifyOfStateChangewithSelector:selector object:nil];
-//    NSMutableSet *observerSet = self.mutableObserverSet;
-//    for (id observer in observerSet) {
-//        if ([observer respondsToSelector:selector]) {
-//            [observer performSelector:selector withObject:self];
-//        }
-//    }
 }
 
 - (void)notifyOfStateChangewithSelector:(SEL)selector object:(id)object {
-    NSMutableSet *observerSet = self.mutableObserverSet;
-    for (id observer in observerSet) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self withObject:object];
+    @synchronized (self) {
+        if (!self.shouldNotify) {
+            return;
+        }
+        
+        NSMutableSet *observerSet = self.mutableObserverSet;
+        for (id observer in observerSet) {
+            if ([observer respondsToSelector:selector]) {
+                [observer performSelector:selector withObject:self withObject:object];
+            }
         }
     }
 }

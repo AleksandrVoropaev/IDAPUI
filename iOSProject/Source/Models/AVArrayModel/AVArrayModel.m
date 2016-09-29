@@ -72,10 +72,9 @@
     @synchronized (self) {
         [self.array insertObject:object atIndex:index];
         AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
-                                                                baseIndex:index
-                                                         destinationIndex:nil
-                                                                arraySate:AVArrayStateDidInsertObject];
-        [self notifyOfState:AVArrayStateDidInsertObject withObject:changes];
+                                                                               index:index
+                                                                         changesType:AVArrayModelChangeDidInsertObject];
+        [self notifyOfState:AVArrayModelChangeDidInsertObject withObject:changes];
     }
 }
 
@@ -97,10 +96,9 @@
         id object = self.array[index];
         [self.array removeObjectAtIndex:index];
         AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
-                                                                    baseIndex:index
-                                                            destinationIndex:nil
-                                                                   arraySate:AVArrayStateDidDeleteObject];
-        [self notifyOfState:AVArrayStateDidDeleteObject withObject:changes];
+                                                                               index:index
+                                                                         changesType:AVArrayModelChangeDidDeleteObject];
+        [self notifyOfState:AVArrayModelChangeDidDeleteObject withObject:changes];
     }
 }
 
@@ -145,10 +143,10 @@
     @synchronized (self) {
         [self.array moveObjectFromIndex:baseIndex toIndex:targetIndex];
         AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:[self objectAtIndex:baseIndex]
-                                                       baseIndex:baseIndex
-                                                destinationIndex:targetIndex
-                                                       arraySate:AVArrayStateDidMoveObject];
-        [self notifyOfState:AVArrayStateDidMoveObject withObject:changes];
+                                                                               index:baseIndex
+                                                                         targetIndex:targetIndex
+                                                                         changesType:AVArrayModelChangeDidMoveObject];
+        [self notifyOfState:AVArrayModelChangeDidMoveObject withObject:changes];
     }
 }
 
@@ -158,9 +156,8 @@
 - (SEL)selectorForState:(NSUInteger)state {
     @synchronized (self) {
         switch (state) {
-                AVSwitchCase(AVArrayStateDidDeleteObject, { return @selector(arrayModel:didDeleteObjectAtIndex:); });
-//                AVSwitchCase(AVArrayStateDidCreateObject, { return @selector(arrayModel:didCreateObjectAtIndex:); });
-                AVSwitchCase(AVArrayStateDidInsertObject, { return @selector(arrayModel:didInsertObjectAtIndex:); });
+                AVSwitchCase(AVArrayModelChangeDidDeleteObject, { return @selector(arrayModel:didDeleteObjectAtIndex:); });
+                AVSwitchCase(AVArrayModelChangeDidInsertObject, { return @selector(arrayModel:didInsertObjectAtIndex:); });
                 AVSwitchCaseDefault({ return [super selectorForState:state]; })
         }
     }

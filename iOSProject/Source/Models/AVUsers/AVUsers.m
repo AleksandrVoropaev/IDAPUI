@@ -10,6 +10,8 @@
 
 #import "AVUser.h"
 
+#import "NSArray+AVExtensions.h"
+
 static const NSUInteger kAVRandomUsersCount = 5;
 
 @implementation AVUsers
@@ -21,23 +23,9 @@ static const NSUInteger kAVRandomUsersCount = 5;
     return [self new];
 }
 
-//+ (instancetype)usersWithUsers:(NSArray *)users {
-//    return [[self alloc] initWithUsers:users];
-//}
-
 + (instancetype)usersWithCount:(NSUInteger)count {
     return [[self alloc] initWithCount:count];
 }
-
-//- (instancetype)init {
-//    self = [super init];
-//    
-//    [self performBlockWitouthNotifications:^{
-//        [self addRandomUsersWithCount:kAVRandomUsersCount];
-//    }];
-//    
-//    return self;
-//}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -45,16 +33,6 @@ static const NSUInteger kAVRandomUsersCount = 5;
 - (instancetype)init {
     return [self initWithCount:kAVRandomUsersCount];
 }
-
-//- (instancetype)initWithUsers:(NSArray *)users {
-//    self = [super init];
-//    
-//    [self performBlockWitouthNotifications:^{
-//        [self addUsers:users];
-//    }];
-//    
-//    return self;
-//}
 
 - (instancetype)initWithCount:(NSUInteger)count {
     self = [super init];
@@ -69,14 +47,16 @@ static const NSUInteger kAVRandomUsersCount = 5;
 #pragma mark -
 #pragma mark Public
 
-- (NSArray *)users {
-    return [self objects];
-}
-
 - (void)addRandomUsersWithCount:(NSUInteger)count {
-    for (NSUInteger iterator = 0; iterator < count; iterator++) {
-        [self addObject:[AVUser new]];
-    }
+    id result = [NSMutableArray arrayWithCount:count factoryBlock:^id{
+        return [AVUser new];
+    }];
+    
+    [self addObjects:result];
+
+//    for (NSUInteger iterator = 0; iterator < count; iterator++) {
+//        [self addObject:[AVUser new]];
+//    }
 }
 
 - (void)addUsers:(NSArray *)users {

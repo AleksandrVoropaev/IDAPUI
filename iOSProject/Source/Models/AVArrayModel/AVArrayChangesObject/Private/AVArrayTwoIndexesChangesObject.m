@@ -9,33 +9,34 @@
 #import "AVArrayTwoIndexesChangesObject.h"
 
 @interface AVArrayTwoIndexesChangesObject ()
-@property (nonatomic, assign)   NSUInteger      *destinationIndex;
-@property (nonatomic, strong)   id              object;
-@property (nonatomic, assign)   NSUInteger      *index;
-@property (nonatomic, assign)   AVArrayState    arraySate;
+@property (nonatomic, assign)   NSUInteger  targetIndex;
 
 @end
 
 @implementation AVArrayTwoIndexesChangesObject
 
 + (instancetype)arrayChangedWithObject:(id)object
-                                index:(NSUInteger)index
-                          targetIndex:(NSUInteger)targetIndex
-                            arraySate:(AVArrayState)arraySate
+                                 index:(NSUInteger)index
+                           targetIndex:(NSUInteger)targetIndex
+                           changesType:(AVArrayModelChange)changesType
 {
-    
+    return [[self alloc] initWithObject:object index:index targetIndex:targetIndex changesType:changesType];
 }
 
 - (instancetype)initWithObject:(id)object
-                                index:(NSUInteger)index
-                          targetIndex:(NSUInteger)targetIndex
-                            arraySate:(AVArrayState)arraySate
+                         index:(NSUInteger)index
+                   targetIndex:(NSUInteger)targetIndex
+                   changesType:(AVArrayModelChange)changesType
 {
-    self = [super init];
-    self.index = index;
-    
+    if (!targetIndex) {
+        return nil;
+    }
+
+    self = [super initWithObject:object index:index changesType:changesType];
+    self.targetIndex = targetIndex;
     
     return self;
 }
+
 
 @end

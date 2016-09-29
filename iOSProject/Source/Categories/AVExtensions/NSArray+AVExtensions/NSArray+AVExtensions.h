@@ -12,7 +12,7 @@ typedef BOOL(^AVArrayFilterBlock)(id object);
 
 @interface NSArray (AVExtensions)
 
-+ (NSArray *)arrayWithCount:(NSUInteger)count factoryBlock:(id(^)(void))objectsParameters;
++ (instancetype)arrayWithCount:(NSUInteger)count factoryBlock:(id(^)(void))objectsParameters;
 
 - (NSArray *)filteredArrayUsingBlock:(AVArrayFilterBlock)block;
 - (void)performEachObjectUsingBlock:(void (^)(id object))operationBlock;

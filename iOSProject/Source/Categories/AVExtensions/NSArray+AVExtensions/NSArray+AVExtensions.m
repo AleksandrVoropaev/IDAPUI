@@ -10,7 +10,7 @@
 
 @implementation NSArray (AVExtensions)
 
-+ (NSArray *)arrayWithCount:(NSUInteger)count factoryBlock:(id (^)(void))objectsParametersBlock {
++ (instancetype)arrayWithCount:(NSUInteger)count factoryBlock:(id (^)(void))objectsParametersBlock {
     if (!objectsParametersBlock) {
         return nil;
     }
