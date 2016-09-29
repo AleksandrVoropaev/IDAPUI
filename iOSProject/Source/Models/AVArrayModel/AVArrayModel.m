@@ -122,9 +122,6 @@
 
 - (void)removeAll {
     @synchronized (self) {
-//        for (id object in self.array) {
-//            [self removeObject:object];
-//        }
         NSUInteger count = self.count;
         for (NSUInteger iterator = 0; iterator < count; iterator++) {
             [self removeObjectAtIndex:(count - iterator - 1)];

@@ -38,5 +38,11 @@
     return self;
 }
 
+- (void)applyToTableView:(UITableView *)tableView {
+    if (self.changesType == AVArrayModelChangeDidMoveObject) {
+        [tableView moveRowAtIndexPath:[NSIndexPath indexPathWithIndex:self.index]
+                          toIndexPath:[NSIndexPath indexPathWithIndex:self.targetIndex]];
+    }
+}
 
 @end

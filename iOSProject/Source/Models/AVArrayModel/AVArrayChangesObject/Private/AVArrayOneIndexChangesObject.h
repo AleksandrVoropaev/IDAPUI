@@ -6,7 +6,7 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import "AVArrayChangesObject.h"
 
@@ -23,5 +23,7 @@
 - (instancetype)initWithObject:(id)object
                          index:(NSUInteger)index
                    changesType:(AVArrayModelChange)changesType;
+
+- (void)applyToTableView:(UITableView *)tableView;
 
 @end

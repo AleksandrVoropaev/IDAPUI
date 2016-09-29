@@ -28,7 +28,6 @@ typedef NS_ENUM(NSUInteger, AVArrayModelChange) {
 @property (nonatomic, readonly)     NSArray     *objects;
 @property (nonatomic, strong)       NSIndexPath *changedObjectIndexPath;
 
-//- (NSArray *)objects;
 - (id)objectAtIndex:(NSUInteger)index;
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 

@@ -8,6 +8,8 @@
 
 #import "AVArrayOneIndexChangesObject.h"
 
+#import "AVSwitchCaseMacro.h"
+
 @interface AVArrayOneIndexChangesObject ()
 @property (nonatomic, strong)   id              object;
 @property (nonatomic, assign)   NSUInteger      index;
@@ -37,6 +39,38 @@
     self.index = index;
     
     return self;
+}
+
+- (void)applyToTableView:(UITableView *)tableView {
+//    if (self.changesType == AVArrayModelChangeDidDeleteObject) {
+//        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:self.index]]
+//                         withRowAnimation:UITableViewRowAnimationFade];
+//    }
+//    
+//    if (self.changesType == AVArrayModelChangeDidInsertObject) {
+//        [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:self.index]]
+//                         withRowAnimation:UITableViewRowAnimationFade];
+//    }
+//    
+    [tableView performSelector:[self selectorForState:self.changesType] withObject:tableView];
+}
+
+- (SEL)selectorForState:(AVArrayModelChange)modelChange {
+    switch (modelChange) {
+            AVSwitchCase(AVArrayModelChangeDidDeleteObject, { return @selector(applyDeletionToTableView:); });
+            AVSwitchCase(AVArrayModelChangeDidInsertObject, { return @selector(applyInsertionToTableView:); });
+            AVSwitchCaseDefault({ return nil; });
+    }
+}
+
+- (void)applyInsertionToTableView:(UITableView *)tableView {
+    [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:self.index]]
+                     withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)applyDeletionToTableView:(UITableView *)tableView {
+    [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:self.index]]
+                     withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end
