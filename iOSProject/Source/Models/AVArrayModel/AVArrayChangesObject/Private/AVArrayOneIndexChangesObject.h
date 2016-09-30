@@ -12,7 +12,7 @@
 
 #import "AVArrayModel.h"
 
-#import "AVArrayOneIndexChangesObject+AVTableViewExtension.h"
+//#import "AVArrayOneIndexChangesObject+AVTableViewExtension.h"
 
 @interface AVArrayOneIndexChangesObject : AVArrayChangesObject
 @property (nonatomic, readonly)   id            object;

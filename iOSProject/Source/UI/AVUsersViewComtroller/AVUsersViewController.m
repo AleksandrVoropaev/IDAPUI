@@ -15,6 +15,10 @@
 #import "AVUsersSortingArrayModel.h"
 #import "AVArrayChangesObject.h"
 #import "AVArrayOneIndexChangesObject.h"
+#import "AVArrayTwoIndexesChangesObject.h"
+#import "AVArrayChangesObject+AVTableViewExtension.h"
+#import "AVArrayOneIndexChangesObject+AVTableViewExtension.h"
+#import "AVArrayTwoIndexesChangesObject+AVTableViewExtension.h"
 
 #import "UITableView+AVExtensions.h"
 #import "UINib+AVExtensions.h"
@@ -64,8 +68,9 @@ typedef enum : NSUInteger {
 
 - (void)initialize {
     self.sortType = AVUsersSortTypeNotSorted;
-    self.users = [AVUsers new];
-    self.tableData = [AVUsersSortingArrayModel sortingArrayModel:self.users];
+    AVUsers *users = [AVUsers new];
+    self.tableData = [AVUsersSortingArrayModel sortingArrayModel:users];
+    self.users = users;
 }
 
 #pragma mark -
@@ -155,10 +160,6 @@ typedef enum : NSUInteger {
 
 - (IBAction)onCreateButton:(id)sender {
     [self.users addObject:[AVUser new]];
-//    AVUser *user = [AVUser new];
-//    [self.users addObject:user];
-//    [self.tableData addObject:user];
-//    [self.usersView.tableView reloadData];
 }
 
 - (IBAction)onSortButton:(id)sender {
