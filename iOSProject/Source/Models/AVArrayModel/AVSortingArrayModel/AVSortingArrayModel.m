@@ -36,7 +36,6 @@
     
     self = [super init];
     self.model = model;
-    [self addObjects:model.objects];
     self.sortType = AVArraySortTypeAscending;
 
     return self;
@@ -44,6 +43,13 @@
 
 #pragma mark -
 #pragma mark Accessors
+
+- (void)setModel:(AVArrayModel *)model {
+    if (_model != model) {
+        _model = model;
+        [self addObjects:model.objects];
+    }
+}
 
 - (void)setSortType:(AVArraySortType)sortType {
     @synchronized (self) {

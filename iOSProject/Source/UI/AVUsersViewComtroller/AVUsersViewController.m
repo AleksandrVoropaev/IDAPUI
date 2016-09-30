@@ -158,7 +158,7 @@ typedef enum : NSUInteger {
 //    AVUser *user = [AVUser new];
 //    [self.users addObject:user];
 //    [self.tableData addObject:user];
-//    [self.usersView.tableView reloadData];
+    [self.usersView.tableView reloadData];
 }
 
 - (IBAction)onSortButton:(id)sender {
@@ -190,15 +190,22 @@ typedef enum : NSUInteger {
 #pragma mark -
 #pragma mark Array Observation
 
-- (void)arrayModel:(AVArrayModel *)arrayModel didDeleteObjectAtIndex:(AVArrayOneIndexChangesObject *)changes  {
-    NSArray *indexArray = @[[NSIndexPath indexPathWithIndex:changes.index]];
-    [self.usersView.tableView deleteRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
+//- (void)arrayModel:(AVArrayModel *)arrayModel didDeleteObjectAtIndex:(AVArrayOneIndexChangesObject *)changes  {
+//    NSArray *indexArray = @[[NSIndexPath indexPathWithIndex:changes.index]];
+//    [self.usersView.tableView deleteRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
+//}
+//
+//- (void)arrayModel:(AVArrayModel *)arrayModel didInsertObjectAtIndex:(AVArrayOneIndexChangesObject *)changes  {
+//    NSArray *indexArray = @[[NSIndexPath indexPathWithIndex:changes.index]];
+//    [self.usersView.tableView insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
+//}
+
+- (void)arrayModel:(AVArrayModel *)arrayModel didChange:(__kindof AVArrayChangesObject *)changes {
+    [changes applyToTableView:self.usersView.tableView];
+//    NSArray *indexArray = @[[NSIndexPath indexPathWithIndex:((AVArrayOneIndexChangesObject *)changes).index]];
+//    [self.usersView.tableView deleteRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
 }
 
-- (void)arrayModel:(AVArrayModel *)arrayModel didInsertObjectAtIndex:(AVArrayOneIndexChangesObject *)changes  {
-    NSArray *indexArray = @[[NSIndexPath indexPathWithIndex:changes.index]];
-    [self.usersView.tableView insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
-}
 
 
 @end

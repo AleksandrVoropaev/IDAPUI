@@ -24,6 +24,4 @@
                          index:(NSUInteger)index
                    changesType:(AVArrayModelChange)changesType;
 
-- (void)applyToTableView:(UITableView *)tableView;
-
 @end

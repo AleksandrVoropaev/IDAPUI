@@ -6,9 +6,17 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import "AVArrayModel.h"
+
+#import "AVArrayChangesObject+AVCategoryForUITableView.h"
+
+typedef NS_ENUM(NSUInteger, AVArrayModelChange) {
+    AVArrayModelChangeDidDeleteObject,
+    AVArrayModelChangeDidInsertObject,
+    AVArrayModelChangeDidMoveObject
+};
 
 @interface AVArrayChangesObject : NSObject
 @property (nonatomic, readonly) AVArrayModelChange  changesType;
@@ -21,7 +29,5 @@
                        index:(NSUInteger)index
                  targetIndex:(NSUInteger)targetIndex
                  changesType:(AVArrayModelChange)changesType;
-
-- (instancetype)initWithChangesType:(AVArrayModelChange)changesType;
 
 @end

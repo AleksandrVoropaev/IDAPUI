@@ -17,8 +17,6 @@
 + (instancetype)arrayChangedWithObject:(id)object
                                  index:(NSUInteger)index
                            targetIndex:(NSUInteger)targetIndex
-                             arraySate:(AVArrayModelChange)arraySate;
-
-- (void)applyToTableView:(UITableView *)tableView;
+                           changesType:(AVArrayModelChange)changesType;
 
 @end

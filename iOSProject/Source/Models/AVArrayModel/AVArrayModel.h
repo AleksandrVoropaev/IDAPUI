@@ -9,17 +9,12 @@
 #import "AVObservableObject.h"
 
 @class AVArrayChangesObject;
-
-typedef NS_ENUM(NSUInteger, AVArrayModelChange) {
-    AVArrayModelChangeDidDeleteObject,
-    AVArrayModelChangeDidInsertObject,
-    AVArrayModelChangeDidMoveObject
-};
+@class AVArrayModel;
 
 @protocol AVArrayModelObserver <NSObject>
 
 @optional
-- (void)arrayModelDidChange:(AVArrayChangesObject *)change;
+- (void)arrayModel:(AVArrayModel *)model didChange:(AVArrayChangesObject *)change;
 
 @end
 

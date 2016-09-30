@@ -34,6 +34,8 @@
 		1F6AE9DD1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9DA1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m */; };
 		1F6AE9DE1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9DC1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m */; };
 		1F6AE9E11D9AD26E00B43386 /* AVArrayChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9E01D9AD26E00B43386 /* AVArrayChangesObject.m */; };
+		1F6AE9E51D9E31D300B43386 /* NSObject+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9E41D9E31D300B43386 /* NSObject+AVExtensions.m */; };
+		1F6AE9E91D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9E81D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.m */; };
 		1F9B27F51D8AD906003C2223 /* AVSortingArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9B27F41D8AD906003C2223 /* AVSortingArrayModel.m */; };
 		1FA16A1E1D95562400F7C27E /* NSMutableArray+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA16A1D1D95562400F7C27E /* NSMutableArray+AVExtensions.m */; };
 		1FCAA6461D86FD9B00708B7B /* AVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAA6451D86FD9A00708B7B /* AVArrayModel.m */; };
@@ -132,6 +134,10 @@
 		1F6AE9DC1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVArrayTwoIndexesChangesObject.m; sourceTree = "<group>"; };
 		1F6AE9DF1D9AD26E00B43386 /* AVArrayChangesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayChangesObject.h; sourceTree = "<group>"; };
 		1F6AE9E01D9AD26E00B43386 /* AVArrayChangesObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVArrayChangesObject.m; sourceTree = "<group>"; };
+		1F6AE9E31D9E31D300B43386 /* NSObject+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AVExtensions.h"; sourceTree = "<group>"; };
+		1F6AE9E41D9E31D300B43386 /* NSObject+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AVExtensions.m"; sourceTree = "<group>"; };
+		1F6AE9E71D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVArrayChangesObject+AVCategoryForUITableView.h"; sourceTree = "<group>"; };
+		1F6AE9E81D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVArrayChangesObject+AVCategoryForUITableView.m"; sourceTree = "<group>"; };
 		1F9B27F31D8AD906003C2223 /* AVSortingArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVSortingArrayModel.h; sourceTree = "<group>"; };
 		1F9B27F41D8AD906003C2223 /* AVSortingArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVSortingArrayModel.m; sourceTree = "<group>"; };
 		1FA16A1C1D95562400F7C27E /* NSMutableArray+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AVExtensions.h"; sourceTree = "<group>"; };
@@ -344,6 +350,7 @@
 			children = (
 				1F2101F81D915C7D00B05D6E /* NSArray+AVExtensions */,
 				1FA16A1B1D95562400F7C27E /* NSMutableArray+AVExtensions */,
+				1F6AE9E21D9E31D300B43386 /* NSObject+AVExtensions */,
 				1F2101FB1D915C7D00B05D6E /* NSBundle+AVExtensions */,
 				1F2101FE1D915C7D00B05D6E /* NSString+AVExtensions */,
 				1F2102011D915C7D00B05D6E /* NSString+AVRandomName */,
@@ -507,6 +514,25 @@
 			);
 			path = Private;
 			sourceTree = "<group>";
+		};
+		1F6AE9E21D9E31D300B43386 /* NSObject+AVExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				1F6AE9E31D9E31D300B43386 /* NSObject+AVExtensions.h */,
+				1F6AE9E41D9E31D300B43386 /* NSObject+AVExtensions.m */,
+			);
+			path = "NSObject+AVExtensions";
+			sourceTree = "<group>";
+		};
+		1F6AE9E61D9E426A00B43386 /* TableViewCategory */ = {
+			isa = PBXGroup;
+			children = (
+				1F6AE9E71D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.h */,
+				1F6AE9E81D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.m */,
+			);
+			name = TableViewCategory;
+			path = Source/Models/AVArrayModel/TableViewCategory;
+			sourceTree = SOURCE_ROOT;
 		};
 		1F9B27F21D8AD8E6003C2223 /* AVSortingArrayModel */ = {
 			isa = PBXGroup;
@@ -672,6 +698,7 @@
 		1FF680591D9926E600E63C16 /* AVArrayChangesObject */ = {
 			isa = PBXGroup;
 			children = (
+				1F6AE9E61D9E426A00B43386 /* TableViewCategory */,
 				1F6AE9DF1D9AD26E00B43386 /* AVArrayChangesObject.h */,
 				1F6AE9E01D9AD26E00B43386 /* AVArrayChangesObject.m */,
 				1F6AE9D81D9AD23000B43386 /* Private */,
@@ -817,9 +844,11 @@
 				1F2102121D915C7D00B05D6E /* NSString+AVExtensions.m in Sources */,
 				1FE14AC01D8054A6005D42AA /* AVSquareMovingViewController.m in Sources */,
 				1F0E88FF1D7EF7F9000A85E1 /* AVStringsAlphabet.m in Sources */,
+				1F6AE9E51D9E31D300B43386 /* NSObject+AVExtensions.m in Sources */,
 				1FCAA6461D86FD9B00708B7B /* AVArrayModel.m in Sources */,
 				1FE14AC21D8054A6005D42AA /* AVSquareView.m in Sources */,
 				1F2102171D915C7D00B05D6E /* UIWindow+AVExtensions.m in Sources */,
+				1F6AE9E91D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.m in Sources */,
 				1FE14AC91D8054A6005D42AA /* AVLabelView.m in Sources */,
 				1F6AE9DE1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m in Sources */,
 				1F6AE9DD1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m in Sources */,

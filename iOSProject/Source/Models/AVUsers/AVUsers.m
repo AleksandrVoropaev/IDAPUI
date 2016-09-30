@@ -11,6 +11,7 @@
 #import "AVUser.h"
 
 #import "NSArray+AVExtensions.h"
+#import "NSObject+AVExtensions.h"
 
 static const NSUInteger kAVRandomUsersCount = 5;
 
@@ -23,9 +24,9 @@ static const NSUInteger kAVRandomUsersCount = 5;
     return [self new];
 }
 
-+ (instancetype)usersWithCount:(NSUInteger)count {
-    return [[self alloc] initWithCount:count];
-}
+//+ (instancetype)usersWithCount:(NSUInteger)count {
+//    return [[self alloc] initWithCount:count];
+//}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -48,11 +49,12 @@ static const NSUInteger kAVRandomUsersCount = 5;
 #pragma mark Public
 
 - (void)addRandomUsersWithCount:(NSUInteger)count {
-    id result = [NSMutableArray arrayWithCount:count factoryBlock:^id{
-        return [AVUser new];
-    }];
-    
-    [self addObjects:result];
+    [self addObjects:[AVUser objectsWithCount:count]];
+//    id result = [NSMutableArray arrayWithCount:count factoryBlock:^id{
+//        return [AVUser new];
+//    }];
+//    
+//    [self addObjects:result];
 
 //    for (NSUInteger iterator = 0; iterator < count; iterator++) {
 //        [self addObject:[AVUser new]];

@@ -10,6 +10,6 @@
 
 @interface UITableView (AVExtensions)
 
-- (nullable __kindof UITableViewCell *)dequeueReusableCellWithClass:(Class)cls;
+- (nullable __kindof UITableViewCell *)dequeueReusableCellWithClass:(nonnull Class)cls;
 
 @end

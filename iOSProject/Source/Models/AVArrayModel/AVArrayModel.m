@@ -152,11 +152,12 @@
 
 - (SEL)selectorForState:(NSUInteger)state {
     @synchronized (self) {
-        switch (state) {
-                AVSwitchCase(AVArrayModelChangeDidDeleteObject, { return @selector(arrayModel:didDeleteObjectAtIndex:); });
-                AVSwitchCase(AVArrayModelChangeDidInsertObject, { return @selector(arrayModel:didInsertObjectAtIndex:); });
-                AVSwitchCaseDefault({ return [super selectorForState:state]; })
-        }
+        return @selector(arrayModel:didChange:);
+//        switch (state) {
+//            AVSwitchCase(AVArrayModelChangeDidDeleteObject, { return @selector(arrayModel:didChange:); });
+//            AVSwitchCase(AVArrayModelChangeDidInsertObject, { return @selector(arrayModel:didChange:); });
+//            AVSwitchCaseDefault({ return [super selectorForState:state]; })
+//        }
     }
 }
 
