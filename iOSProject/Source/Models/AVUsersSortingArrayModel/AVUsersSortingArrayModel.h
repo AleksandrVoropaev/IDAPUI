@@ -10,8 +10,8 @@
 
 @class AVUsers;
 
-@interface AVUsersSortingArrayModel : AVSortingArrayModel
-@property (nonatomic, readonly) AVUsers             *users;
+@interface AVUsersSortingArrayModel : AVSortingArrayModel <AVArrayModelObserver>
+@property (nonatomic, readonly) AVUsers *users;
 
 + (instancetype)sortingArrayModel:(AVUsers *)users;
 

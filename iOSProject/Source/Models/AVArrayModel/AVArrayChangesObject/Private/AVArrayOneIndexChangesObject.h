@@ -1,5 +1,5 @@
 //
-//  AVArrayChangesObject.h
+//  AVArrayOneIndexChangesObject.h
 //  iOSProject
 //
 //  Created by Aleksandr Voropaev on 9/26/16.
@@ -11,6 +11,8 @@
 #import "AVArrayChangesObject.h"
 
 #import "AVArrayModel.h"
+
+#import "AVArrayOneIndexChangesObject+AVTableViewExtension.h"
 
 @interface AVArrayOneIndexChangesObject : AVArrayChangesObject
 @property (nonatomic, readonly)   id            object;

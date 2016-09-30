@@ -30,12 +30,15 @@
 		1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57CE1D7057D70026A944 /* AppDelegate.m */; };
 		1F2B57E51D7057D70026A944 /* iOSProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57E41D7057D70026A944 /* iOSProjectTests.m */; };
 		1F2B57F01D7057D70026A944 /* iOSProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */; };
+		1F68041C1D9E758100288137 /* AVArrayChangesObject+AVCategoryForUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F68041B1D9E758100288137 /* AVArrayChangesObject+AVCategoryForUITableView.m */; };
+		1F68041F1D9E75D600288137 /* AVArrayChangesObject+AVTableViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F68041E1D9E75D600288137 /* AVArrayChangesObject+AVTableViewExtension.m */; };
+		1F6804231D9E787C00288137 /* AVArrayOneIndexChangesObject+AVTableViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6804221D9E787C00288137 /* AVArrayOneIndexChangesObject+AVTableViewExtension.m */; };
+		1F6804261D9E78DD00288137 /* AVArrayTwoIndexesChangesObject+AVTableViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6804251D9E78DD00288137 /* AVArrayTwoIndexesChangesObject+AVTableViewExtension.m */; };
 		1F6AE9D41D9AB9BE00B43386 /* AVUsersSortingArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9D31D9AB9BE00B43386 /* AVUsersSortingArrayModel.m */; };
 		1F6AE9DD1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9DA1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m */; };
 		1F6AE9DE1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9DC1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m */; };
 		1F6AE9E11D9AD26E00B43386 /* AVArrayChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9E01D9AD26E00B43386 /* AVArrayChangesObject.m */; };
 		1F6AE9E51D9E31D300B43386 /* NSObject+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9E41D9E31D300B43386 /* NSObject+AVExtensions.m */; };
-		1F6AE9E91D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9E81D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.m */; };
 		1F9B27F51D8AD906003C2223 /* AVSortingArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9B27F41D8AD906003C2223 /* AVSortingArrayModel.m */; };
 		1FA16A1E1D95562400F7C27E /* NSMutableArray+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA16A1D1D95562400F7C27E /* NSMutableArray+AVExtensions.m */; };
 		1FCAA6461D86FD9B00708B7B /* AVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAA6451D86FD9A00708B7B /* AVArrayModel.m */; };
@@ -126,6 +129,14 @@
 		1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSProjectUITests.m; sourceTree = "<group>"; };
 		1F2B57F11D7057D70026A944 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F2B57FD1D70822E0026A944 /* iOS Study Plan.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
+		1F68041A1D9E758100288137 /* AVArrayChangesObject+AVCategoryForUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVArrayChangesObject+AVCategoryForUITableView.h"; sourceTree = "<group>"; };
+		1F68041B1D9E758100288137 /* AVArrayChangesObject+AVCategoryForUITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVArrayChangesObject+AVCategoryForUITableView.m"; sourceTree = "<group>"; };
+		1F68041D1D9E75D600288137 /* AVArrayChangesObject+AVTableViewExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVArrayChangesObject+AVTableViewExtension.h"; sourceTree = "<group>"; };
+		1F68041E1D9E75D600288137 /* AVArrayChangesObject+AVTableViewExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVArrayChangesObject+AVTableViewExtension.m"; sourceTree = "<group>"; };
+		1F6804211D9E787C00288137 /* AVArrayOneIndexChangesObject+AVTableViewExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVArrayOneIndexChangesObject+AVTableViewExtension.h"; sourceTree = "<group>"; };
+		1F6804221D9E787C00288137 /* AVArrayOneIndexChangesObject+AVTableViewExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVArrayOneIndexChangesObject+AVTableViewExtension.m"; sourceTree = "<group>"; };
+		1F6804241D9E78DD00288137 /* AVArrayTwoIndexesChangesObject+AVTableViewExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVArrayTwoIndexesChangesObject+AVTableViewExtension.h"; sourceTree = "<group>"; };
+		1F6804251D9E78DD00288137 /* AVArrayTwoIndexesChangesObject+AVTableViewExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVArrayTwoIndexesChangesObject+AVTableViewExtension.m"; sourceTree = "<group>"; };
 		1F6AE9D21D9AB9BE00B43386 /* AVUsersSortingArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVUsersSortingArrayModel.h; sourceTree = "<group>"; };
 		1F6AE9D31D9AB9BE00B43386 /* AVUsersSortingArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVUsersSortingArrayModel.m; sourceTree = "<group>"; };
 		1F6AE9D91D9AD23000B43386 /* AVArrayOneIndexChangesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayOneIndexChangesObject.h; sourceTree = "<group>"; };
@@ -136,8 +147,6 @@
 		1F6AE9E01D9AD26E00B43386 /* AVArrayChangesObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVArrayChangesObject.m; sourceTree = "<group>"; };
 		1F6AE9E31D9E31D300B43386 /* NSObject+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AVExtensions.h"; sourceTree = "<group>"; };
 		1F6AE9E41D9E31D300B43386 /* NSObject+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AVExtensions.m"; sourceTree = "<group>"; };
-		1F6AE9E71D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVArrayChangesObject+AVCategoryForUITableView.h"; sourceTree = "<group>"; };
-		1F6AE9E81D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVArrayChangesObject+AVCategoryForUITableView.m"; sourceTree = "<group>"; };
 		1F9B27F31D8AD906003C2223 /* AVSortingArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVSortingArrayModel.h; sourceTree = "<group>"; };
 		1F9B27F41D8AD906003C2223 /* AVSortingArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVSortingArrayModel.m; sourceTree = "<group>"; };
 		1FA16A1C1D95562400F7C27E /* NSMutableArray+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AVExtensions.h"; sourceTree = "<group>"; };
@@ -527,8 +536,14 @@
 		1F6AE9E61D9E426A00B43386 /* TableViewCategory */ = {
 			isa = PBXGroup;
 			children = (
-				1F6AE9E71D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.h */,
-				1F6AE9E81D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.m */,
+				1F68041A1D9E758100288137 /* AVArrayChangesObject+AVCategoryForUITableView.h */,
+				1F68041B1D9E758100288137 /* AVArrayChangesObject+AVCategoryForUITableView.m */,
+				1F68041D1D9E75D600288137 /* AVArrayChangesObject+AVTableViewExtension.h */,
+				1F68041E1D9E75D600288137 /* AVArrayChangesObject+AVTableViewExtension.m */,
+				1F6804211D9E787C00288137 /* AVArrayOneIndexChangesObject+AVTableViewExtension.h */,
+				1F6804221D9E787C00288137 /* AVArrayOneIndexChangesObject+AVTableViewExtension.m */,
+				1F6804241D9E78DD00288137 /* AVArrayTwoIndexesChangesObject+AVTableViewExtension.h */,
+				1F6804251D9E78DD00288137 /* AVArrayTwoIndexesChangesObject+AVTableViewExtension.m */,
 			);
 			name = TableViewCategory;
 			path = Source/Models/AVArrayModel/TableViewCategory;
@@ -848,8 +863,9 @@
 				1FCAA6461D86FD9B00708B7B /* AVArrayModel.m in Sources */,
 				1FE14AC21D8054A6005D42AA /* AVSquareView.m in Sources */,
 				1F2102171D915C7D00B05D6E /* UIWindow+AVExtensions.m in Sources */,
-				1F6AE9E91D9E42B200B43386 /* AVArrayChangesObject+AVCategoryForUITableView.m in Sources */,
+				1F68041F1D9E75D600288137 /* AVArrayChangesObject+AVTableViewExtension.m in Sources */,
 				1FE14AC91D8054A6005D42AA /* AVLabelView.m in Sources */,
+				1F68041C1D9E758100288137 /* AVArrayChangesObject+AVCategoryForUITableView.m in Sources */,
 				1F6AE9DE1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m in Sources */,
 				1F6AE9DD1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m in Sources */,
 				1F2102111D915C7D00B05D6E /* NSBundle+AVExtensions.m in Sources */,
@@ -864,10 +880,12 @@
 				1F6AE9D41D9AB9BE00B43386 /* AVUsersSortingArrayModel.m in Sources */,
 				1FA16A1E1D95562400F7C27E /* NSMutableArray+AVExtensions.m in Sources */,
 				1FCAA64A1D8714E700708B7B /* AVUsers.m in Sources */,
+				1F6804261D9E78DD00288137 /* AVArrayTwoIndexesChangesObject+AVTableViewExtension.m in Sources */,
 				1F0E88FE1D7EF7F9000A85E1 /* AVRangeAlphabet.m in Sources */,
 				1FE14ACE1D8054E3005D42AA /* AVImageView.m in Sources */,
 				1F0E88EE1D7EF0AB000A85E1 /* AVUser.m in Sources */,
 				1FE14A961D7FEE37005D42AA /* AVImageModel.m in Sources */,
+				1F6804231D9E787C00288137 /* AVArrayOneIndexChangesObject+AVTableViewExtension.m in Sources */,
 				1F2102101D915C7D00B05D6E /* NSArray+AVExtensions.m in Sources */,
 				1FE14AC31D8054A6005D42AA /* AVUsersView.m in Sources */,
 				1F0E88FD1D7EF7F9000A85E1 /* AVClusterAlphabet.m in Sources */,

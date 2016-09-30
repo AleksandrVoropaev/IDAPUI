@@ -15,6 +15,7 @@
 @property (nonatomic, assign)   NSUInteger      index;
 
 @end
+
 @implementation AVArrayOneIndexChangesObject
 
 + (instancetype)arrayChangedWithObject:(id)object

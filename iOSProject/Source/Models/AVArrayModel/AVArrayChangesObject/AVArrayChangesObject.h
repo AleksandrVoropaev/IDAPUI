@@ -10,7 +10,7 @@
 
 #import "AVArrayModel.h"
 
-#import "AVArrayChangesObject+AVCategoryForUITableView.h"
+#import "AVArrayChangesObject+AVTableViewExtension.h"
 
 typedef NS_ENUM(NSUInteger, AVArrayModelChange) {
     AVArrayModelChangeDidDeleteObject,
@@ -29,5 +29,7 @@ typedef NS_ENUM(NSUInteger, AVArrayModelChange) {
                        index:(NSUInteger)index
                  targetIndex:(NSUInteger)targetIndex
                  changesType:(AVArrayModelChange)changesType;
+
+- (instancetype)initWithChangesType:(AVArrayModelChange)changesType;
 
 @end

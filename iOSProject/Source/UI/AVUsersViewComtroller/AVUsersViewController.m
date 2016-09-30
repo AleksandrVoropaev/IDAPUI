@@ -73,10 +73,10 @@ typedef enum : NSUInteger {
 
 - (void)setUsers:(AVUsers *)users {
     if (_users != users) {
-        [_users removeObserver:self];
+        [_users removeObserver:self.tableData];
         _users = users;
-        [_users addObserver:self];
-//        [self.usersView.tableView reloadData];
+        [_users addObserver:self.tableData];
+        [self.usersView.tableView reloadData];
     }
 }
 
@@ -158,7 +158,7 @@ typedef enum : NSUInteger {
 //    AVUser *user = [AVUser new];
 //    [self.users addObject:user];
 //    [self.tableData addObject:user];
-    [self.usersView.tableView reloadData];
+//    [self.usersView.tableView reloadData];
 }
 
 - (IBAction)onSortButton:(id)sender {

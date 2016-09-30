@@ -101,6 +101,12 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
     }
 }
 
+#pragma mark -
+#pragma mark Observation
 
+- (void)arrayModel:(AVArrayModel *)model didChange:(AVArrayChangesObject *)change {
+    [self removeAll];
+    self.users = (AVUsers *)model;
+}
 
 @end
