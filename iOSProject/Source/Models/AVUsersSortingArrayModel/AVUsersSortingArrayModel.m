@@ -43,7 +43,6 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
     
     self = [super init];
     self.users = users;
-//    self.sortType = AVArraySortTypeNotSorted;
 
     return self;
 }

@@ -12,9 +12,6 @@
 
 + (instancetype)users;
 
-//+ (instancetype)usersWithCount:(NSUInteger)count;
-
-//- (void)addRandomUsersWithCount:(NSUInteger)count;
 - (void)addUsers:(NSArray *)users;
 
 @end

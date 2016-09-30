@@ -10,8 +10,6 @@
 
 #import "AVArrayModel.h"
 
-//#import "AVArrayChangesObject+AVTableViewExtension.h"
-
 typedef NS_ENUM(NSUInteger, AVArrayModelChange) {
     AVArrayModelChangeDidDeleteObject,
     AVArrayModelChangeDidInsertObject,

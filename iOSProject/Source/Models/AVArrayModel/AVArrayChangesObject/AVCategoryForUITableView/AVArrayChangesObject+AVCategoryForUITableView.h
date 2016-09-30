@@ -13,6 +13,7 @@
 #import "UITableView+AVExtensions.h"
 
 @interface AVArrayChangesObject (AVCategoryForUITableView)
+
 // Need to overwrite in subclasses. Don't call it directly
 - (void)applyToTableView:(UITableView *)tableView;
 

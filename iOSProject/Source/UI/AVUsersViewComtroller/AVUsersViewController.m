@@ -17,9 +17,6 @@
 #import "AVArrayOneIndexChangesObject.h"
 #import "AVArrayTwoIndexesChangesObject.h"
 #import "AVArrayChangesObject+AVCategoryForUITableView.h"
-//#import "AVArrayChangesObject+AVTableViewExtension.h"
-//#import "AVArrayOneIndexChangesObject+AVTableViewExtension.h"
-//#import "AVArrayTwoIndexesChangesObject+AVTableViewExtension.h"
 
 #import "UITableView+AVExtensions.h"
 #import "UINib+AVExtensions.h"
@@ -30,22 +27,12 @@
 
 AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView, usersView);
 
-//typedef enum : NSUInteger {
-//    AVUsersSortTypeAscending,
-//    AVUsersSortTypeDescending,
-//    AVUsersSortTypeNotSorted,
-//    AVUsersSortTypeCount,
-//} AVUsersSortType;
-
 @interface AVUsersViewController ()
 @property (nonatomic, strong)   AVUsersSortingArrayModel    *tableData;
-//@property (nonatomic, assign)   AVUsersSortType             sortType;
 
 @end
 
 @implementation AVUsersViewController
-
-//@dynamic tableData;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -68,7 +55,6 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 }
 
 - (void)initialize {
-//    self.sortType = AVUsersSortTypeNotSorted;
     AVUsers *users = [AVUsers new];
     self.tableData = [AVUsersSortingArrayModel sortingArrayModel:users];
     self.users = users;
@@ -130,10 +116,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
         forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        [self.users removeObjectAtIndex:indexPath.row];
         [self.users removeObjectAtIndex:indexPath.row];
-//        [self.usersView.tableView deleteRowsAtIndexPaths:@[indexPath]
-//                                        withRowAnimation:YES];
     }
 }
 
@@ -141,8 +124,6 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
    moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
           toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-//    [self.users moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
-//                            toIndex:[destinationIndexPath indexAtPosition:1]];
     [self.tableData moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
                                 toIndex:[destinationIndexPath indexAtPosition:1]];
 }
@@ -162,30 +143,12 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 - (IBAction)onCreateButton:(id)sender {
     AVUser *user = [AVUser new];
     [self.users addObject:user];
-//    [self.tableData addObject:user];
-//    [self.tableData addObject:[AVUser new]];
 }
 
 - (IBAction)onSortButton:(id)sender {
     [self.usersView.tableView setEditing:NO animated:YES];
     
     [self resortUsers];
-//    AVUsersSortType sortType = (self.sortType + 1) % AVUsersSortTypeCount;
-//    self.sortType = sortType;
-//    AVUsersView *usersView = self.usersView;
-//    
-//    switch (sortType) {
-//        case AVUsersSortTypeAscending:
-//        AVSwitchCase(AVUsersSortTypeDescending, {
-//            usersView.sorting = YES;
-//            [self resortUsers];
-//        });
-//        AVSwitchCase(AVUsersSortTypeNotSorted, {
-//            usersView.sorting = NO;
-//            [self resortUsers];
-//        });
-//        AVSwitchCaseDefault({});
-//    }
 }
 
 - (void)resortUsers {
@@ -199,28 +162,13 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
     }
     
     self.usersView.sorting = sorting;
-//    [self.usersView.tableView reloadData];
 }
 
 #pragma mark -
 #pragma mark Array Observation
 
-//- (void)arrayModel:(AVArrayModel *)arrayModel didDeleteObjectAtIndex:(AVArrayOneIndexChangesObject *)changes  {
-//    NSArray *indexArray = @[[NSIndexPath indexPathWithIndex:changes.index]];
-//    [self.usersView.tableView deleteRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
-//}
-//
-//- (void)arrayModel:(AVArrayModel *)arrayModel didInsertObjectAtIndex:(AVArrayOneIndexChangesObject *)changes  {
-//    NSArray *indexArray = @[[NSIndexPath indexPathWithIndex:changes.index]];
-//    [self.usersView.tableView insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
-//}
-
 - (void)arrayModel:(AVArrayModel *)arrayModel didChange:(__kindof AVArrayChangesObject *)changes {
     [changes applyToTableView:self.usersView.tableView];
-//    NSArray *indexArray = @[[NSIndexPath indexPathWithIndex:((AVArrayOneIndexChangesObject *)changes).index]];
-//    [self.usersView.tableView deleteRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
 }
-
-
 
 @end
