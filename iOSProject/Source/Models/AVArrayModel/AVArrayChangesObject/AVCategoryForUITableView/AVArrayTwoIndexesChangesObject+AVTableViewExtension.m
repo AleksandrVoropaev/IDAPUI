@@ -12,8 +12,8 @@
 
 - (void)applyToTableView:(UITableView *)tableView {
     if (self.changesType == AVArrayModelChangeDidMoveObject) {
-        [tableView moveRowAtIndexPath:[NSIndexPath indexPathWithIndex:self.index]
-                          toIndexPath:[NSIndexPath indexPathWithIndex:self.targetIndex]];
+        [tableView moveRowAtIndexPath:[NSIndexPath indexPathForRow:self.index inSection:0]
+                          toIndexPath:[NSIndexPath indexPathForRow:self.targetIndex inSection:0]];
     }
 }
 

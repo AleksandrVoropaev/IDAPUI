@@ -12,12 +12,12 @@
 
 - (void)applyToTableView:(UITableView *)tableView {
     if (self.changesType == AVArrayModelChangeDidDeleteObject) {
-        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:self.index]]
+        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.index inSection:0]]
                          withRowAnimation:UITableViewRowAnimationFade];
     }
 
     if (self.changesType == AVArrayModelChangeDidInsertObject) {
-        [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:self.index]]
+        [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.index inSection:0]]
                          withRowAnimation:UITableViewRowAnimationFade];
     }
 }

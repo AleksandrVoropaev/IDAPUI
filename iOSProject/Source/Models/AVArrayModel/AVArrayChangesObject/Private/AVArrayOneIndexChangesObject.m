@@ -31,9 +31,9 @@
                          index:(NSUInteger)index
                    changesType:(AVArrayModelChange)changesType
 {
-    if (!object | !index | !changesType) {
-        return nil;
-    }
+//    if (!object) {
+//        return nil;
+//    }
     
     self = [super initWithChangesType:changesType];
     self.object = object;

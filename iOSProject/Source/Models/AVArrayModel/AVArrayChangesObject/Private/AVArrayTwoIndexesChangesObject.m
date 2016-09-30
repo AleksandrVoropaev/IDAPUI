@@ -28,9 +28,9 @@
                    targetIndex:(NSUInteger)targetIndex
                    changesType:(AVArrayModelChange)changesType
 {
-    if (!targetIndex) {
-        return nil;
-    }
+//    if (!targetIndex) {
+//        return nil;
+//    }
 
     self = [super initWithObject:object index:index changesType:changesType];
     self.targetIndex = targetIndex;

@@ -24,4 +24,10 @@
     return cell;
 }
 
+- (void)updateWithChangesBlock:(void (^)(void))block {
+    [self beginUpdates];
+    block();
+    [self endUpdates];
+}
+
 @end

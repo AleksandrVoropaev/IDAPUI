@@ -11,5 +11,6 @@
 @interface UITableView (AVExtensions)
 
 - (nullable __kindof UITableViewCell *)dequeueReusableCellWithClass:(nonnull Class)cls;
+- (void)updateWithChangesBlock:(void(^)(void))block;
 
 @end

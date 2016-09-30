@@ -43,7 +43,7 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
     
     self = [super init];
     self.users = users;
-    self.sortType = AVArraySortTypeNotSorted;
+//    self.sortType = AVArraySortTypeNotSorted;
 
     return self;
 }
@@ -68,11 +68,14 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 
 - (void)sortWithType:(AVArraySortType)sortType {
     @synchronized (self) {
-        id result = [self.objects sortedArrayUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
-            return [self compareFirstSurname:firstUser.surname
-                               secondSurname:secondUser.surname
-                                    sortType:sortType];
-        }];
+        id result = self.users.objects;
+        if (sortType != AVArraySortTypeNotSorted) {
+            result = [self.objects sortedArrayUsingComparator:^NSComparisonResult(AVUser *firstUser, AVUser *secondUser) {
+                return [self compareFirstSurname:firstUser.surname
+                                   secondSurname:secondUser.surname
+                                        sortType:sortType];
+            }];
+        }
         
         [self replaceAllObjectsWithObjects:result];
     }
@@ -104,9 +107,9 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 #pragma mark -
 #pragma mark Observation
 
-- (void)arrayModel:(AVArrayModel *)model didChange:(AVArrayChangesObject *)change {
-    [self removeAll];
-    self.users = (AVUsers *)model;
+- (void)arrayModel:(AVUsers *)model didChange:(AVArrayChangesObject *)change {
+    [self replaceAllObjectsWithObjects:model.objects];
+    self.users = model;
 }
 
 @end

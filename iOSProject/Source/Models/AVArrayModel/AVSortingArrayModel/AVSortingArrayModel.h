@@ -9,9 +9,9 @@
 #import "AVArrayModel.h"
 
 typedef enum : NSUInteger {
+    AVArraySortTypeNotSorted,
     AVArraySortTypeAscending,
     AVArraySortTypeDescending,
-    AVArraySortTypeNotSorted,
     AVArraySortTypeCount,
 } AVArraySortType;
 

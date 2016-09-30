@@ -16,9 +16,10 @@
 #import "AVArrayChangesObject.h"
 #import "AVArrayOneIndexChangesObject.h"
 #import "AVArrayTwoIndexesChangesObject.h"
-#import "AVArrayChangesObject+AVTableViewExtension.h"
-#import "AVArrayOneIndexChangesObject+AVTableViewExtension.h"
-#import "AVArrayTwoIndexesChangesObject+AVTableViewExtension.h"
+#import "AVArrayChangesObject+AVCategoryForUITableView.h"
+//#import "AVArrayChangesObject+AVTableViewExtension.h"
+//#import "AVArrayOneIndexChangesObject+AVTableViewExtension.h"
+//#import "AVArrayTwoIndexesChangesObject+AVTableViewExtension.h"
 
 #import "UITableView+AVExtensions.h"
 #import "UINib+AVExtensions.h"
@@ -29,16 +30,16 @@
 
 AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView, usersView);
 
-typedef enum : NSUInteger {
-    AVUsersSortTypeAscending,
-    AVUsersSortTypeDescending,
-    AVUsersSortTypeNotSorted,
-    AVUsersSortTypeCount,
-} AVUsersSortType;
+//typedef enum : NSUInteger {
+//    AVUsersSortTypeAscending,
+//    AVUsersSortTypeDescending,
+//    AVUsersSortTypeNotSorted,
+//    AVUsersSortTypeCount,
+//} AVUsersSortType;
 
 @interface AVUsersViewController ()
 @property (nonatomic, strong)   AVUsersSortingArrayModel    *tableData;
-@property (nonatomic, assign)   AVUsersSortType             sortType;
+//@property (nonatomic, assign)   AVUsersSortType             sortType;
 
 @end
 
@@ -67,7 +68,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)initialize {
-    self.sortType = AVUsersSortTypeNotSorted;
+//    self.sortType = AVUsersSortTypeNotSorted;
     AVUsers *users = [AVUsers new];
     self.tableData = [AVUsersSortingArrayModel sortingArrayModel:users];
     self.users = users;
@@ -129,10 +130,10 @@ typedef enum : NSUInteger {
         forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        [self.users removeObjectAtIndex:indexPath.row];
         [self.users removeObjectAtIndex:indexPath.row];
-        [self.tableData removeObjectAtIndex:indexPath.row];
-        [self.usersView.tableView deleteRowsAtIndexPaths:@[indexPath]
-                                        withRowAnimation:YES];
+//        [self.usersView.tableView deleteRowsAtIndexPaths:@[indexPath]
+//                                        withRowAnimation:YES];
     }
 }
 
@@ -140,8 +141,8 @@ typedef enum : NSUInteger {
    moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
           toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    [self.users moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
-                            toIndex:[destinationIndexPath indexAtPosition:1]];
+//    [self.users moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
+//                            toIndex:[destinationIndexPath indexAtPosition:1]];
     [self.tableData moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
                                 toIndex:[destinationIndexPath indexAtPosition:1]];
 }
@@ -159,32 +160,45 @@ typedef enum : NSUInteger {
 }
 
 - (IBAction)onCreateButton:(id)sender {
-    [self.users addObject:[AVUser new]];
+    AVUser *user = [AVUser new];
+    [self.users addObject:user];
+//    [self.tableData addObject:user];
+//    [self.tableData addObject:[AVUser new]];
 }
 
 - (IBAction)onSortButton:(id)sender {
     [self.usersView.tableView setEditing:NO animated:YES];
     
-    AVUsersSortType sortType = (self.sortType + 1) % AVUsersSortTypeCount;
-    self.sortType = sortType;
-    AVUsersView *usersView = self.usersView;
-    
-    switch (sortType) {
-        case AVUsersSortTypeAscending:
-        AVSwitchCase(AVUsersSortTypeDescending, {
-            usersView.sorting = YES;
-            [self resortUsers];
-        });
-        AVSwitchCase(AVUsersSortTypeNotSorted, {
-            usersView.sorting = NO;
-            [self resortUsers];
-        });
-        AVSwitchCaseDefault({});
-    }
+    [self resortUsers];
+//    AVUsersSortType sortType = (self.sortType + 1) % AVUsersSortTypeCount;
+//    self.sortType = sortType;
+//    AVUsersView *usersView = self.usersView;
+//    
+//    switch (sortType) {
+//        case AVUsersSortTypeAscending:
+//        AVSwitchCase(AVUsersSortTypeDescending, {
+//            usersView.sorting = YES;
+//            [self resortUsers];
+//        });
+//        AVSwitchCase(AVUsersSortTypeNotSorted, {
+//            usersView.sorting = NO;
+//            [self resortUsers];
+//        });
+//        AVSwitchCaseDefault({});
+//    }
 }
 
 - (void)resortUsers {
-    self.tableData.sortType = (self.tableData.sortType + 1) % AVArraySortTypeCount;
+    AVArraySortType sortType = self.tableData.sortType;
+    sortType = (sortType + 1) % AVArraySortTypeCount;
+    self.tableData.sortType = sortType;
+    
+    BOOL sorting = YES;
+    if (sortType == AVArraySortTypeNotSorted) {
+        sorting = NO;
+    }
+    
+    self.usersView.sorting = sorting;
 //    [self.usersView.tableView reloadData];
 }
 
