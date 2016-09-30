@@ -35,9 +35,6 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 @implementation AVUsersViewController
 
 #pragma mark -
-#pragma mark Class Methods
-
-#pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil {
@@ -124,8 +121,8 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
    moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
           toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    [self.tableData moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
-                                toIndex:[destinationIndexPath indexAtPosition:1]];
+    [self.users moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
+                            toIndex:[destinationIndexPath indexAtPosition:1]];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {

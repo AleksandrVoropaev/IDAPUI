@@ -10,8 +10,8 @@
 
 typedef enum : NSUInteger {
     AVArraySortTypeNotSorted,
-    AVArraySortTypeAscending,
     AVArraySortTypeDescending,
+    AVArraySortTypeAscending,
     AVArraySortTypeCount,
 } AVArraySortType;
 
