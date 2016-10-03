@@ -109,7 +109,7 @@
     [self performBlock:block notifying:YES];
 }
 
-- (void)performBlockWitouthNotifications:(void(^)(void))block {
+- (void)performBlockWithoutNotifications:(void(^)(void))block {
     [self performBlock:block notifying:NO];
 }
 

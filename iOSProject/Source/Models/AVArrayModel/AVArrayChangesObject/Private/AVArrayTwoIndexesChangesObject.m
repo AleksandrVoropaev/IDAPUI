@@ -9,7 +9,7 @@
 #import "AVArrayTwoIndexesChangesObject.h"
 
 @interface AVArrayTwoIndexesChangesObject ()
-@property (nonatomic, retain) id          secondObject;
+@property (nonatomic, strong)   id          secondObject;
 @property (nonatomic, assign)   NSUInteger  targetIndex;
 
 @end

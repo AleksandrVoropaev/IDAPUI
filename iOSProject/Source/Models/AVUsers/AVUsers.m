@@ -34,7 +34,7 @@ static const NSUInteger kAVRandomUsersCount = 5;
 - (instancetype)initWithCount:(NSUInteger)count {
     self = [super init];
     
-    [self performBlockWitouthNotifications:^{
+    [self performBlockWithoutNotifications:^{
         [self addRandomUsersWithCount:count];
     }];
     

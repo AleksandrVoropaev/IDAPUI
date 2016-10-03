@@ -23,7 +23,7 @@
 - (void)notifyOfState:(NSUInteger)state withObject:(id)object;
 
 - (void)performBlockWithNotifications:(void(^)(void))block;
-- (void)performBlockWitouthNotifications:(void(^)(void))block;
+- (void)performBlockWithoutNotifications:(void(^)(void))block;
 
 //This method is intended for subclassing. Never call it directly!
 - (SEL)selectorForState:(NSUInteger)state;

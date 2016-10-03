@@ -78,7 +78,7 @@
         AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
                                                                                index:index
                                                                          changesType:AVArrayModelChangeDidInsertObject];
-        [self notifyOfState:AVArrayModelChangeDidInsertObject withObject:changes];
+        [self notifyOfState:AVArrayModelStateDidChangeWithChangesObject withObject:changes];
     }
 }
 
@@ -102,7 +102,7 @@
         AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
                                                                                index:index
                                                                          changesType:AVArrayModelChangeDidDeleteObject];
-        [self notifyOfState:AVArrayModelChangeDidDeleteObject withObject:changes];
+        [self notifyOfState:AVArrayModelStateDidChangeWithChangesObject withObject:changes];
     }
 }
 

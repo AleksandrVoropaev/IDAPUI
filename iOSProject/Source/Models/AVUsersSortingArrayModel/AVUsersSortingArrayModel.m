@@ -110,7 +110,10 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 #pragma mark Observation
 
 - (void)arrayModel:(AVUsers *)model didChangeWithChangesObject:(AVArrayChangesObject *)changes {
-    [changes applyToModel:model];
+    [self performBlockWithoutNotifications:^{
+        [changes applyToModel:model];
+    }];
+    
     self.users = model;
 }
 
