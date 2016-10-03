@@ -10,10 +10,6 @@
 
 #import "AVArrayChangesObject.h"
 
-#import "AVArrayModel.h"
-
-//#import "AVArrayOneIndexChangesObject+AVTableViewExtension.h"
-
 @interface AVArrayOneIndexChangesObject : AVArrayChangesObject
 @property (nonatomic, readonly)   id            object;
 @property (nonatomic, readonly)   NSUInteger    index;

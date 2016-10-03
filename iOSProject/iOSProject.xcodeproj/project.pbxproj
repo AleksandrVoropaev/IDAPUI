@@ -126,6 +126,7 @@
 		1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSProjectUITests.m; sourceTree = "<group>"; };
 		1F2B57F11D7057D70026A944 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F2B57FD1D70822E0026A944 /* iOS Study Plan.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
+		1F397DBB1DA2735500AE8272 /* AVBlockMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVBlockMacro.h; sourceTree = "<group>"; };
 		1F53F4551D9E9BB800E91BC7 /* AVArrayChangesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayChangesObject.h; sourceTree = "<group>"; };
 		1F53F4561D9E9BB800E91BC7 /* AVArrayChangesObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVArrayChangesObject.m; sourceTree = "<group>"; };
 		1F53F4591D9E9BDD00E91BC7 /* AVArrayChangesObject+AVCategoryForUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVArrayChangesObject+AVCategoryForUITableView.h"; sourceTree = "<group>"; };
@@ -255,6 +256,7 @@
 				1F0E88DD1D7ED07B000A85E1 /* AVRootViewMacro.h */,
 				1FE14A9F1D8037EE005D42AA /* AVWeakifyStrongify.h */,
 				1FE14ACF1D805D16005D42AA /* AVCompilerMacro.h */,
+				1F397DBB1DA2735500AE8272 /* AVBlockMacro.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";

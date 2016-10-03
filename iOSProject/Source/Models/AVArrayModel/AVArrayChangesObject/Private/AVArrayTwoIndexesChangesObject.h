@@ -10,12 +10,9 @@
 
 #import "AVArrayOneIndexChangesObject.h"
 
-#import "AVArrayModel.h"
-
-//#import "AVArrayTwoIndexesChangesObject+AVTableViewExtension.h"
-
 @interface AVArrayTwoIndexesChangesObject : AVArrayOneIndexChangesObject
-@property (nonatomic, readonly)   NSUInteger    targetIndex;
+@property (nonatomic, readonly) id          secondObject;
+@property (nonatomic, readonly) NSUInteger  targetIndex;
 
 + (instancetype)arrayChangedWithObject:(id)object
                                  index:(NSUInteger)index

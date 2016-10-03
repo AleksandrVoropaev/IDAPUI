@@ -6,9 +6,7 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-#import "AVArrayModel.h"
+#import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, AVArrayModelChange) {
     AVArrayModelChangeDidDeleteObject,
@@ -25,6 +23,7 @@ typedef NS_ENUM(NSUInteger, AVArrayModelChange) {
 
 + (id)arrayChangedWithObject:(id)object
                        index:(NSUInteger)index
+                secondObject:(id)secondObject
                  targetIndex:(NSUInteger)targetIndex
                  changesType:(AVArrayModelChange)changesType;
 

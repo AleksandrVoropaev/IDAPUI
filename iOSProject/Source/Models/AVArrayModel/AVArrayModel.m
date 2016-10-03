@@ -39,11 +39,15 @@
 #pragma mark Accessors
 
 - (NSUInteger)count {
-    return self.array.count;
+    @synchronized (self) {
+        return self.array.count;
+    }
 }
 
 - (NSArray *)objects {
-    return [self.array copy];
+    @synchronized (self) {
+        return [self.array copy];
+    }
 }
 
 - (id)objectAtIndex:(NSUInteger)index {
@@ -141,9 +145,10 @@
         [self.array moveObjectFromIndex:baseIndex toIndex:targetIndex];
         AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:[self objectAtIndex:baseIndex]
                                                                                index:baseIndex
+                                                                        secondObject:[self objectAtIndex:targetIndex]
                                                                          targetIndex:targetIndex
                                                                          changesType:AVArrayModelChangeDidMoveObject];
-        [self notifyOfState:AVArrayModelChangeDidMoveObject withObject:changes];
+        [self notifyOfState:AVArrayModelStateDidChangeWithChangesObject withObject:changes];
     }
 }
 
@@ -151,8 +156,13 @@
 #pragma mark Observation
 
 - (SEL)selectorForState:(NSUInteger)state {
-    @synchronized (self) {
-        return @selector(arrayModel:didChange:);
+    switch (state) {
+        AVSwitchCase(AVArrayModelStateDidChangeWithChangesObject,
+        {
+            return @selector(arrayModel:didChangeWithChangesObject:);
+        });
+        
+        AVSwitchCaseDefault({ return [super selectorForState:state]; });
     }
 }
 

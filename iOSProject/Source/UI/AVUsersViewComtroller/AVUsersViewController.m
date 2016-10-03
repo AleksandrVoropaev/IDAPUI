@@ -53,7 +53,6 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (void)initialize {
     AVUsers *users = [AVUsers new];
-    self.tableData = [AVUsersSortingArrayModel sortingArrayModel:users];
     self.users = users;
 }
 
@@ -62,10 +61,10 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (void)setUsers:(AVUsers *)users {
     if (_users != users) {
-        [_users removeObserver:self.tableData];
+//        [_users removeObserver:self.tableData];
         _users = users;
-        [_users addObserver:self.tableData];
-        [self.usersView.tableView reloadData];
+//        [_users addObserver:self.tableData];
+        self.tableData = [AVUsersSortingArrayModel sortingArrayModelWithModel:users];
     }
 }
 
@@ -74,6 +73,8 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
         [_tableData removeObserver:self];
         _tableData = tableData;
         [_tableData addObserver:self];
+        
+        [self.usersView.tableView reloadData];
     }
 }
 
@@ -164,7 +165,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 #pragma mark -
 #pragma mark Array Observation
 
-- (void)arrayModel:(AVArrayModel *)arrayModel didChange:(__kindof AVArrayChangesObject *)changes {
+- (void)arrayModel:(AVArrayModel *)arrayModel didChangeWithChangesObject:(AVArrayChangesObject *)changes {
     [changes applyToTableView:self.usersView.tableView];
 }
 

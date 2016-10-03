@@ -10,21 +10,15 @@
 #import "AVArrayOneIndexChangesObject.h"
 #import "AVArrayTwoIndexesChangesObject.h"
 
+#import "AVArrayModel.h"
+
 #import "UITableView+AVExtensions.h"
 
 @interface AVArrayChangesObject (AVCategoryForUITableView)
 
 // Need to overwrite in subclasses. Don't call it directly
 - (void)applyToTableView:(UITableView *)tableView;
-
-@end
-
-@interface AVArrayOneIndexChangesObject (AVCategoryForUITableView)
-- (void)applyToTableView:(UITableView *)tableView;
-
-@end
-
-@interface AVArrayTwoIndexesChangesObject (AVCategoryForUITableView)
-- (void)applyToTableView:(UITableView *)tableView;
+- (void)applyToTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation;
+- (void)applyToModel:(AVArrayModel *)model;
 
 @end

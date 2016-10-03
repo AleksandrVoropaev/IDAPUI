@@ -23,6 +23,10 @@
 }
 
 - (void)updateWithChangesBlock:(void (^)(void))block {
+    if (!block) {
+        return;
+    }
+    
     [self beginUpdates];
     block();
     [self endUpdates];

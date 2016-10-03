@@ -29,11 +29,13 @@
 
 + (id)arrayChangedWithObject:(id)object
                        index:(NSUInteger)index
+                secondObject:(id)secondObject
                  targetIndex:(NSUInteger)targetIndex
                  changesType:(AVArrayModelChange)changesType
 {
     return [AVArrayTwoIndexesChangesObject arrayChangedWithObject:object
                                                             index:index
+                                                     secondObject:(id)secondObject
                                                       targetIndex:targetIndex
                                                       changesType:changesType];
 }

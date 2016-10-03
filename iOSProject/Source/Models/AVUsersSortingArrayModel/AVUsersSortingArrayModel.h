@@ -13,7 +13,7 @@
 @interface AVUsersSortingArrayModel : AVSortingArrayModel <AVArrayModelObserver>
 @property (nonatomic, readonly) AVUsers *users;
 
-+ (instancetype)sortingArrayModel:(AVUsers *)users;
++ (instancetype)sortingArrayModelWithModel:(AVUsers *)users;
 
 - (void)sortWithType:(AVArraySortType)sortType;
 

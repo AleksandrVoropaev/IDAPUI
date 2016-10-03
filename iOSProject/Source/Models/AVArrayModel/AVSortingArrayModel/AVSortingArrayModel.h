@@ -19,7 +19,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, readonly) AVArrayModel    *model;
 @property (nonatomic, assign)   AVArraySortType sortType;
 
-+ (instancetype)sortingArrayModel:(id)objects;
++ (instancetype)sortingArrayModelWithModel:(id)objects;
 
 - (NSArray<NSSortDescriptor *> *)sortDescriptorsWithSortType:(AVArraySortType)sortType; // need to overrite in subclasses
 

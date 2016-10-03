@@ -11,6 +11,7 @@
 #import "AVUser.h"
 #import "AVUsers.h"
 
+#import "AVArrayChangesObject+AVCategoryForUITableView.h"
 #import "AVSwitchCaseMacro.h"
 
 typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString *secondSurname);
@@ -25,7 +26,7 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)sortingArrayModel:(AVUsers *)users {
++ (instancetype)sortingArrayModelWithModel:(AVUsers *)users {
     return [[self alloc] initWithUsers:users];
 }
 
@@ -53,7 +54,9 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 - (void)setUsers:(AVUsers *)users {
     @synchronized (self) {
         if (users != _users) {
+            [_users removeObserver:self];
             _users = users;
+            [_users addObserver:self];
             if (_users) {
                 [self addObjects:users.objects];
                 [self sort];
@@ -106,8 +109,8 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 #pragma mark -
 #pragma mark Observation
 
-- (void)arrayModel:(AVUsers *)model didChange:(AVArrayChangesObject *)change {
-    [self replaceAllObjectsWithObjects:model.objects];
+- (void)arrayModel:(AVUsers *)model didChangeWithChangesObject:(AVArrayChangesObject *)changes {
+    [changes applyToModel:model];
     self.users = model;
 }
 

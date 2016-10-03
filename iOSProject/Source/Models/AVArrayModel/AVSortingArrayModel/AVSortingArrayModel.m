@@ -22,12 +22,16 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)sortingArrayModel:(AVArrayModel *)model {
++ (instancetype)sortingArrayModelWithModel:(AVArrayModel *)model {
     return [[self alloc] initWithModel:model];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
+
+//- (void)dealloc {
+//    [self.model removeObserver:self];
+//}
 
 - (instancetype)initWithModel:(AVArrayModel *)model {
     if (!model) {
@@ -36,6 +40,7 @@
     
     self = [super init];
     self.model = model;
+//    [model addObserver:self];
     self.sortType = AVArraySortTypeAscending;
 
     return self;
@@ -46,7 +51,9 @@
 
 - (void)setModel:(AVArrayModel *)model {
     if (_model != model) {
+        [_model removeObserver:self];
         _model = model;
+        [model addObserver:self];
         [self addObjects:model.objects];
     }
 }
