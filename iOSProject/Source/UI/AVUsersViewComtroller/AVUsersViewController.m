@@ -17,6 +17,7 @@
 #import "AVArrayOneIndexChangesObject.h"
 #import "AVArrayTwoIndexesChangesObject.h"
 #import "AVArrayChangesObject+UITableView.h"
+#import "AVArrayChangesObject+AVArrayModel.h"
 
 #import "UITableView+AVExtensions.h"
 #import "UINib+AVExtensions.h"
@@ -114,7 +115,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
         forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.users removeObjectAtIndex:indexPath.row];
+        [self.tableData removeObjectAtIndex:indexPath.row];
     }
 }
 
@@ -122,7 +123,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
    moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
           toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    [self.users moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
+    [self.tableData moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
                             toIndex:[destinationIndexPath indexAtPosition:1]];
 }
 
@@ -140,7 +141,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (IBAction)onCreateButton:(id)sender {
     AVUser *user = [AVUser new];
-    [self.users addObject:user];
+    [self.tableData addObject:user];
 }
 
 - (IBAction)onSortButton:(id)sender {
@@ -167,6 +168,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (void)arrayModel:(AVArrayModel *)arrayModel didChangeWithChangesObject:(AVArrayChangesObject *)changes {
     [changes applyToTableView:self.usersView.tableView];
+    [changes applyToModel:self.tableData.users];
 }
 
 @end
