@@ -153,7 +153,7 @@
 - (void)notifyOfChangesWithObject:(id)object index:(NSUInteger)index changesType:(AVArrayModelChange)changesType {
     AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangeWithObject:object
                                                                           index:index
-                                                                    changesType:AVArrayModelChangeDidInsertObject];
+                                                                    changesType:changesType];
     [self notifyOfStateChangeWithChangesObject:changes];
 }
 

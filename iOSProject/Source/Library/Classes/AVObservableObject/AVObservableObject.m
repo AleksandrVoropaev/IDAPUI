@@ -120,8 +120,8 @@
         BOOL currentNotificationStatus = self.shouldNotify;
         
         self.shouldNotify = notifying;
-//        block();
-        AVPerformBlockWithArguments(block);
+        block();
+//        AVPerformBlockWithArguments(block);
         self.shouldNotify = currentNotificationStatus;
     }
 }

@@ -36,19 +36,19 @@
 
 - (void)applyToTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation {
     id paths = @[[NSIndexPath indexPathForRow:self.index inSection:0]];
-//    AVBoilerPlate(AVSwitchCase(AVArrayModelChangeDidDeleteObject, { [tableView deleteRowsAtIndexPaths:paths
-//                                                                                     withRowAnimation:animation]; });
-//                  AVSwitchCase(AVArrayModelChangeDidInsertObject, { [tableView insertRowsAtIndexPaths:paths
-//                                                                                     withRowAnimation:animation]; }););
-    [tableView updateWithChangesBlock:^{
-        switch (self.changesType) {
-            AVSwitchCase(AVArrayModelChangeDidDeleteObject,
-                 { [tableView deleteRowsAtIndexPaths:paths withRowAnimation:animation]; });
-            AVSwitchCase(AVArrayModelChangeDidInsertObject,
-                 { [tableView insertRowsAtIndexPaths:paths withRowAnimation:animation]; });
-            AVSwitchCaseDefault({ return; });
-        }
-    }];
+    AVBoilerPlate(AVSwitchCase(AVArrayModelChangeDidDeleteObject, { [tableView deleteRowsAtIndexPaths:paths
+                                                                                     withRowAnimation:animation]; });
+                  AVSwitchCase(AVArrayModelChangeDidInsertObject, { [tableView insertRowsAtIndexPaths:paths
+                                                                                     withRowAnimation:animation]; }););
+//    [tableView updateWithChangesBlock:^{
+//        switch (self.changesType) {
+//            AVSwitchCase(AVArrayModelChangeDidDeleteObject,
+//                 { [tableView deleteRowsAtIndexPaths:paths withRowAnimation:animation]; });
+//            AVSwitchCase(AVArrayModelChangeDidInsertObject,
+//                 { [tableView insertRowsAtIndexPaths:paths withRowAnimation:animation]; });
+//            AVSwitchCaseDefault({ return; });
+//        }
+//    }];
 }
 
 @end
