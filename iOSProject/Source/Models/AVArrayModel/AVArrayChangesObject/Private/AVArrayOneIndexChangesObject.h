@@ -14,9 +14,9 @@
 @property (nonatomic, readonly)   id            object;
 @property (nonatomic, readonly)   NSUInteger    index;
 
-+ (instancetype)arrayChangedWithObject:(id)object
-                                 index:(NSUInteger)index
-                           changesType:(AVArrayModelChange)changesType;
++ (instancetype)arrayChangeWithObject:(id)object
+                                index:(NSUInteger)index
+                          changesType:(AVArrayModelChange)changesType;
 
 - (instancetype)initWithObject:(id)object
                          index:(NSUInteger)index

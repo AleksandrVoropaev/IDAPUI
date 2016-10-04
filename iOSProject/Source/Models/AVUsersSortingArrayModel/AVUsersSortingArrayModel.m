@@ -11,7 +11,8 @@
 #import "AVUser.h"
 #import "AVUsers.h"
 
-#import "AVArrayChangesObject+AVCategoryForUITableView.h"
+#import "AVArrayChangesObject+UITableView.h"
+#import "AVArrayChangesObject+AVArrayModel.h"
 #import "AVSwitchCaseMacro.h"
 
 typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString *secondSurname);
@@ -33,6 +34,9 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (void)dealloc {
+    self.users = nil;
+}
 - (instancetype)init {
     return [self initWithUsers:nil];
 }
@@ -110,11 +114,12 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 #pragma mark Observation
 
 - (void)arrayModel:(AVUsers *)model didChangeWithChangesObject:(AVArrayChangesObject *)changes {
-    [self performBlockWithoutNotifications:^{
-        [changes applyToModel:model];
-    }];
-    
-    self.users = model;
+    if (self.model == model) {
+        [self performBlockWithoutNotifications:^{
+            [changes applyToModel:self.model];
+        }];
+    }
+//    self.users = model;
 }
 
 @end

@@ -16,7 +16,7 @@
 #import "AVArrayChangesObject.h"
 #import "AVArrayOneIndexChangesObject.h"
 #import "AVArrayTwoIndexesChangesObject.h"
-#import "AVArrayChangesObject+AVCategoryForUITableView.h"
+#import "AVArrayChangesObject+UITableView.h"
 
 #import "UITableView+AVExtensions.h"
 #import "UINib+AVExtensions.h"

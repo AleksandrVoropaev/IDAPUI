@@ -18,9 +18,9 @@
 
 @implementation AVArrayOneIndexChangesObject
 
-+ (instancetype)arrayChangedWithObject:(id)object
-                                 index:(NSUInteger)index
-                           changesType:(AVArrayModelChange)changesType
++ (instancetype)arrayChangeWithObject:(id)object
+                                index:(NSUInteger)index
+                          changesType:(AVArrayModelChange)changesType
 {
     return [[self alloc] initWithObject:object
                                   index:index

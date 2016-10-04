@@ -16,11 +16,11 @@
 
 @implementation AVArrayTwoIndexesChangesObject
 
-+ (instancetype)arrayChangedWithObject:(id)object
-                                 index:(NSUInteger)index
-                          secondObject:(id)secondObject
-                           targetIndex:(NSUInteger)targetIndex
-                           changesType:(AVArrayModelChange)changesType
++ (instancetype)arrayChangeWithObject:(id)object
+                                index:(NSUInteger)index
+                         secondObject:(id)secondObject
+                          targetIndex:(NSUInteger)targetIndex
+                          changesType:(AVArrayModelChange)changesType
 {
     return [[self alloc] initWithObject:object
                                   index:index

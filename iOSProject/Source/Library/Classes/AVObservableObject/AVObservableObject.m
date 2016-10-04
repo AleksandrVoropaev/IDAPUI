@@ -8,6 +8,8 @@
 
 #import "AVObservableObject.h"
 
+#import "AVBlockMacro.h"
+
 @interface AVObservableObject ()
 @property (nonatomic, retain)   NSMutableSet    *mutableObserverSet;
 @property (nonatomic, assign)   BOOL            shouldNotify;
@@ -118,7 +120,8 @@
         BOOL currentNotificationStatus = self.shouldNotify;
         
         self.shouldNotify = notifying;
-        block();
+//        block();
+        AVPerformBlockWithArguments(block);
         self.shouldNotify = currentNotificationStatus;
     }
 }

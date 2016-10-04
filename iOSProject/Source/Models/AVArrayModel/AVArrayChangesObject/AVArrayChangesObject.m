@@ -18,26 +18,26 @@
 
 @implementation AVArrayChangesObject
 
-+ (id)arrayChangedWithObject:(id)object
++ (id)arrayChangeWithObject:(id)object
                        index:(NSUInteger)index
                  changesType:(AVArrayModelChange)changesType
 {
-    return [AVArrayOneIndexChangesObject arrayChangedWithObject:object
-                                                          index:index
-                                                    changesType:changesType];
+    return [AVArrayOneIndexChangesObject arrayChangeWithObject:object
+                                                         index:index
+                                                   changesType:changesType];
 }
 
-+ (id)arrayChangedWithObject:(id)object
++ (id)arrayChangeWithObject:(id)object
                        index:(NSUInteger)index
                 secondObject:(id)secondObject
                  targetIndex:(NSUInteger)targetIndex
                  changesType:(AVArrayModelChange)changesType
 {
-    return [AVArrayTwoIndexesChangesObject arrayChangedWithObject:object
-                                                            index:index
-                                                     secondObject:(id)secondObject
-                                                      targetIndex:targetIndex
-                                                      changesType:changesType];
+    return [AVArrayTwoIndexesChangesObject arrayChangeWithObject:object
+                                                           index:index
+                                                    secondObject:(id)secondObject
+                                                     targetIndex:targetIndex
+                                                     changesType:changesType];
 }
 
 - (instancetype)initWithChangesType:(AVArrayModelChange)changesType {

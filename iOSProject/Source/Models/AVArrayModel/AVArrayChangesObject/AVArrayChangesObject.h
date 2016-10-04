@@ -17,11 +17,11 @@ typedef NS_ENUM(NSUInteger, AVArrayModelChange) {
 @interface AVArrayChangesObject : NSObject
 @property (nonatomic, readonly) AVArrayModelChange  changesType;
 
-+ (id)arrayChangedWithObject:(id)object
++ (id)arrayChangeWithObject:(id)object
                        index:(NSUInteger)index
                  changesType:(AVArrayModelChange)changesType;
 
-+ (id)arrayChangedWithObject:(id)object
++ (id)arrayChangeWithObject:(id)object
                        index:(NSUInteger)index
                 secondObject:(id)secondObject
                  targetIndex:(NSUInteger)targetIndex

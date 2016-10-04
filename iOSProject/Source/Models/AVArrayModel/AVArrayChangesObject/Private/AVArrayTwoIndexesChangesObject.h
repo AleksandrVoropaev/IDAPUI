@@ -14,9 +14,10 @@
 @property (nonatomic, readonly) id          secondObject;
 @property (nonatomic, readonly) NSUInteger  targetIndex;
 
-+ (instancetype)arrayChangedWithObject:(id)object
-                                 index:(NSUInteger)index
-                           targetIndex:(NSUInteger)targetIndex
-                           changesType:(AVArrayModelChange)changesType;
++ (instancetype)arrayChangeWithObject:(id)object
+                                index:(NSUInteger)index
+                         secondObject:(id)secondObject
+                          targetIndex:(NSUInteger)targetIndex
+                          changesType:(AVArrayModelChange)changesType;
 
 @end

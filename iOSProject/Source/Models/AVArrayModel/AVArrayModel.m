@@ -75,10 +75,7 @@
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
     @synchronized (self) {
         [self.array insertObject:object atIndex:index];
-        AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
-                                                                               index:index
-                                                                         changesType:AVArrayModelChangeDidInsertObject];
-        [self notifyOfState:AVArrayModelStateDidChangeWithChangesObject withObject:changes];
+        [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidInsertObject];
     }
 }
 
@@ -99,10 +96,7 @@
     @synchronized (self) {
         id object = self.array[index];
         [self.array removeObjectAtIndex:index];
-        AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:object
-                                                                               index:index
-                                                                         changesType:AVArrayModelChangeDidDeleteObject];
-        [self notifyOfState:AVArrayModelStateDidChangeWithChangesObject withObject:changes];
+        [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidDeleteObject];
     }
 }
 
@@ -143,13 +137,24 @@
 - (void)moveObjectFromIndex:(NSUInteger)baseIndex toIndex:(NSUInteger)targetIndex {
     @synchronized (self) {
         [self.array moveObjectFromIndex:baseIndex toIndex:targetIndex];
-        AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangedWithObject:[self objectAtIndex:baseIndex]
-                                                                               index:baseIndex
-                                                                        secondObject:[self objectAtIndex:targetIndex]
-                                                                         targetIndex:targetIndex
-                                                                         changesType:AVArrayModelChangeDidMoveObject];
-        [self notifyOfState:AVArrayModelStateDidChangeWithChangesObject withObject:changes];
+        AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangeWithObject:[self objectAtIndex:baseIndex]
+                                                                              index:baseIndex
+                                                                       secondObject:[self objectAtIndex:targetIndex]
+                                                                        targetIndex:targetIndex
+                                                                        changesType:AVArrayModelChangeDidMoveObject];
+        [self notifyOfStateChangeWithChangesObject:changes];
     }
+}
+
+- (void)notifyOfStateChangeWithChangesObject:(id)changes {
+    [self notifyOfState:AVArrayModelStateDidChangeWithChangesObject withObject:changes];
+}
+
+- (void)notifyOfChangesWithObject:(id)object index:(NSUInteger)index changesType:(AVArrayModelChange)changesType {
+    AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangeWithObject:object
+                                                                          index:index
+                                                                    changesType:AVArrayModelChangeDidInsertObject];
+    [self notifyOfStateChangeWithChangesObject:changes];
 }
 
 #pragma mark -
