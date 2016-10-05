@@ -59,7 +59,8 @@
             [_model addObserver:self];
             if (_model) {
                 [self addObjects:model.objects];
-                [self sort];
+//                [self sort];
+                [self sortInBackground];
             }
         }
     }
@@ -70,7 +71,8 @@
         if (_sortType != sortType) {
             _sortType = sortType;
             if (self.objects) {
-                [self sort];
+//                [self sort];
+                [self sortInBackground];
             }
         }
     }
@@ -86,7 +88,8 @@
             result = [result sortedArrayUsingDescriptors:[self sortDescriptorsWithSortType:sortType]];
         }
         
-        [self replaceAllObjectsWithObjects:result];
+        [self performSelectorOnMainThread:@selector(replaceAllObjectsWithObjects:) withObject:result waitUntilDone:NO];
+//        [self replaceAllObjectsWithObjects:result];
     }
 }
 
@@ -96,6 +99,10 @@
 
 #pragma mark -
 #pragma mark Private
+
+- (void)sortInBackground {
+    [self performSelectorInBackground:@selector(sort) withObject:self];
+}
 
 - (void)sort {
     [self sortWithType:self.sortType];
