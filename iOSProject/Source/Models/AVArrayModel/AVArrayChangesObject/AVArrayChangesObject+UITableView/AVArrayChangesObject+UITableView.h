@@ -14,14 +14,6 @@
 
 #import "UITableView+AVExtensions.h"
 
-#define AVBoilerPlate(...) \
-[tableView updateWithChangesBlock:^{ \
-switch (self.changesType) { \
-        __VA_ARGS__; \
-        AVSwitchCaseDefault({ return; }); \
-} \
-}];
-
 @interface AVArrayChangesObject (UITableView)
 
 // Need to overwrite in subclasses. Don't call it directly

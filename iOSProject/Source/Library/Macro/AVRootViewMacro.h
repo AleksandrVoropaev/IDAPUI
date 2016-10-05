@@ -10,7 +10,7 @@
     @property (nonatomic, readonly) viewClass *viewProperty;
 
 #define AVRootViewGetter(viewClass, propertyName) \
-@dynamic propertyName; \
+    @dynamic propertyName; \
     - (viewClass *)propertyName { \
         if ([self isViewLoaded] && [self.view isKindOfClass:[viewClass class]]) { \
             return (viewClass *)self.view; \

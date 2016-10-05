@@ -12,6 +12,7 @@
 
 @interface AVArrayChangesObject (AVArrayModel)
 
+// Need to overwrite in subclasses. Don't call it directly
 - (void)applyToModel:(AVArrayModel *)model;
 
 @end

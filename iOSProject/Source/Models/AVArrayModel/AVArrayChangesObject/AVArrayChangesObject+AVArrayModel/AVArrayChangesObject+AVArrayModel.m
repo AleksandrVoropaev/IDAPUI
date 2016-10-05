@@ -6,20 +6,26 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
+#define AVImplementationSynthesize(className, ...) \
+    @interface className (AVArrayModel) \
+    @end \
+    @implementation className (AVArrayModel) \
+    - (void)applyToModel:(AVArrayModel *)model { \
+        id object = self.object; \
+        NSUInteger index = self.index; \
+        switch (self.changesType) { \
+                __VA_ARGS__ \
+                AVSwitchCaseDefault({ return; }); \
+        } \
+    } \
+    @end
+
 #import "AVArrayChangesObject+AVArrayModel.h"
 
 #import "AVArrayOneIndexChangesObject.h"
 #import "AVArrayTwoIndexesChangesObject.h"
 
 #import "AVSwitchCaseMacro.h"
-
-@interface AVArrayOneIndexChangesObject (AVArrayModel)
-
-@end
-
-@interface AVArrayTwoIndexesChangesObject (AVArrayModel)
-
-@end
 
 @implementation AVArrayChangesObject (AVArrayModel)
 
@@ -29,29 +35,12 @@
 
 @end
 
-@implementation AVArrayOneIndexChangesObject (AVArrayModel)
+AVImplementationSynthesize(AVArrayOneIndexChangesObject,
+                           AVSwitchCase(AVArrayModelChangeDidDeleteObject,
+                                        { [model removeObject:object]; });
+                           AVSwitchCase(AVArrayModelChangeDidInsertObject,
+                                        { [model insertObject:object atIndex:index]; }););
 
-- (void)applyToModel:(AVArrayModel *)model {
-    id object = self.object;
-    NSUInteger index = self.index;
-    switch (self.changesType) {
-        AVSwitchCase(AVArrayModelChangeDidDeleteObject, { [model removeObject:object]; });
-        AVSwitchCase(AVArrayModelChangeDidInsertObject, { [model insertObject:object atIndex:index]; });
-        AVSwitchCaseDefault({ return; });
-    }
-}
-
-@end
-
-@implementation AVArrayTwoIndexesChangesObject (AVArrayModel)
-
-- (void)applyToModel:(AVArrayModel *)model {
-    NSUInteger index = self.index;
-    NSUInteger targetIndex = self.targetIndex;
-    switch (self.changesType) {
-        AVSwitchCase(AVArrayModelChangeDidMoveObject, { [model moveObjectFromIndex:index toIndex:targetIndex]; });
-        AVSwitchCaseDefault({ return; });
-    }
-}
-
-@end
+AVImplementationSynthesize(AVArrayTwoIndexesChangesObject,
+                           AVSwitchCase(AVArrayModelChangeDidMoveObject,
+                                        { [model moveObjectFromIndex:index toIndex:self.targetIndex]; }););

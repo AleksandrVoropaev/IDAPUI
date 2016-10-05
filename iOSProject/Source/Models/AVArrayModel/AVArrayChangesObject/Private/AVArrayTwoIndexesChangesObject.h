@@ -11,12 +11,12 @@
 #import "AVArrayOneIndexChangesObject.h"
 
 @interface AVArrayTwoIndexesChangesObject : AVArrayOneIndexChangesObject
-@property (nonatomic, readonly) id          secondObject;
+@property (nonatomic, readonly) id          targetObject;
 @property (nonatomic, readonly) NSUInteger  targetIndex;
 
 + (instancetype)arrayChangeWithObject:(id)object
                                 index:(NSUInteger)index
-                         secondObject:(id)secondObject
+                         targetObject:(id)secondObject
                           targetIndex:(NSUInteger)targetIndex
                           changesType:(AVArrayModelChange)changesType;
 

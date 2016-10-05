@@ -18,14 +18,14 @@ typedef NS_ENUM(NSUInteger, AVArrayModelChange) {
 @property (nonatomic, readonly) AVArrayModelChange  changesType;
 
 + (id)arrayChangeWithObject:(id)object
-                       index:(NSUInteger)index
-                 changesType:(AVArrayModelChange)changesType;
+                      index:(NSUInteger)index
+                changesType:(AVArrayModelChange)changesType;
 
 + (id)arrayChangeWithObject:(id)object
-                       index:(NSUInteger)index
-                secondObject:(id)secondObject
-                 targetIndex:(NSUInteger)targetIndex
-                 changesType:(AVArrayModelChange)changesType;
+                      index:(NSUInteger)index
+               targetObject:(id)secondObject
+                targetIndex:(NSUInteger)targetIndex
+                changesType:(AVArrayModelChange)changesType;
 
 - (instancetype)initWithChangesType:(AVArrayModelChange)changesType;
 

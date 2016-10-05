@@ -19,8 +19,8 @@
 @implementation AVArrayChangesObject
 
 + (id)arrayChangeWithObject:(id)object
-                       index:(NSUInteger)index
-                 changesType:(AVArrayModelChange)changesType
+                      index:(NSUInteger)index
+                changesType:(AVArrayModelChange)changesType
 {
     return [AVArrayOneIndexChangesObject arrayChangeWithObject:object
                                                          index:index
@@ -28,14 +28,14 @@
 }
 
 + (id)arrayChangeWithObject:(id)object
-                       index:(NSUInteger)index
-                secondObject:(id)secondObject
-                 targetIndex:(NSUInteger)targetIndex
-                 changesType:(AVArrayModelChange)changesType
+                      index:(NSUInteger)index
+               targetObject:(id)secondObject
+                targetIndex:(NSUInteger)targetIndex
+                changesType:(AVArrayModelChange)changesType
 {
     return [AVArrayTwoIndexesChangesObject arrayChangeWithObject:object
                                                            index:index
-                                                    secondObject:(id)secondObject
+                                                    targetObject:(id)secondObject
                                                      targetIndex:targetIndex
                                                      changesType:changesType];
 }

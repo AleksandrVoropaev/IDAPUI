@@ -9,7 +9,7 @@
 #import "AVArrayTwoIndexesChangesObject.h"
 
 @interface AVArrayTwoIndexesChangesObject ()
-@property (nonatomic, strong)   id          secondObject;
+@property (nonatomic, strong)   id          targetObject;
 @property (nonatomic, assign)   NSUInteger  targetIndex;
 
 @end
@@ -18,25 +18,25 @@
 
 + (instancetype)arrayChangeWithObject:(id)object
                                 index:(NSUInteger)index
-                         secondObject:(id)secondObject
+                         targetObject:(id)secondObject
                           targetIndex:(NSUInteger)targetIndex
                           changesType:(AVArrayModelChange)changesType
 {
     return [[self alloc] initWithObject:object
                                   index:index
-                           secondObject:secondObject
+                           targetObject:secondObject
                             targetIndex:targetIndex
                             changesType:changesType];
 }
 
 - (instancetype)initWithObject:(id)object
                          index:(NSUInteger)index
-                  secondObject:(id)secondObject
+                  targetObject:(id)secondObject
                    targetIndex:(NSUInteger)targetIndex
                    changesType:(AVArrayModelChange)changesType
 {
     self = [super initWithObject:object index:index changesType:changesType];
-    self.secondObject = secondObject;
+    self.targetObject = secondObject;
     self.targetIndex = targetIndex;
     
     return self;

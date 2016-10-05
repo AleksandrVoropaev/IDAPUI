@@ -11,7 +11,6 @@
 #import "AVUser.h"
 #import "AVUsers.h"
 
-#import "AVArrayChangesObject+UITableView.h"
 #import "AVArrayChangesObject+AVArrayModel.h"
 #import "AVSwitchCaseMacro.h"
 
@@ -114,11 +113,9 @@ typedef NSComparisonResult(^AVComparisonBlock)(NSString *firstSurname, NSString 
 #pragma mark Observation
 
 - (void)arrayModel:(AVUsers *)model didChangeWithChangesObject:(AVArrayChangesObject *)changes {
-//    if (self.users == model) {
-//        [self performBlockWithoutNotifications:^{
-//            [changes applyToModel:self.users];
-//        }];
-//    }
+    if (self.users == model) {
+        [changes applyToModel:self];
+    }
 }
 
 @end

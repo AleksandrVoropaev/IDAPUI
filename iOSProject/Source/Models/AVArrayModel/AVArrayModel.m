@@ -136,12 +136,12 @@
 
 - (void)moveObjectFromIndex:(NSUInteger)baseIndex toIndex:(NSUInteger)targetIndex {
     @synchronized (self) {
-        [self.array moveObjectFromIndex:baseIndex toIndex:targetIndex];
         AVArrayChangesObject *changes = [AVArrayChangesObject arrayChangeWithObject:[self objectAtIndex:baseIndex]
                                                                               index:baseIndex
-                                                                       secondObject:[self objectAtIndex:targetIndex]
+                                                                       targetObject:[self objectAtIndex:targetIndex]
                                                                         targetIndex:targetIndex
                                                                         changesType:AVArrayModelChangeDidMoveObject];
+        [self.array moveObjectFromIndex:baseIndex toIndex:targetIndex];
         [self notifyOfStateChangeWithChangesObject:changes];
     }
 }

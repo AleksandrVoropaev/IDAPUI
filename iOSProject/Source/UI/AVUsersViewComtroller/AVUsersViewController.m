@@ -40,19 +40,19 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    [self initialize];
+    [self initProperties];
     
     return self;
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
-    [self initialize];
+    [self initProperties];
 
     return self;
 }
 
-- (void)initialize {
+- (void)initProperties {
     AVUsers *users = [AVUsers new];
     self.users = users;
 }
@@ -62,9 +62,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (void)setUsers:(AVUsers *)users {
     if (_users != users) {
-//        [_users removeObserver:self.tableData];
         _users = users;
-//        [_users addObserver:self.tableData];
         self.tableData = [AVUsersSortingArrayModel sortingArrayModelWithModel:users];
     }
 }
@@ -115,7 +113,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
         forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.tableData removeObjectAtIndex:indexPath.row];
+        [self.users removeObjectAtIndex:indexPath.row];
     }
 }
 
@@ -123,7 +121,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
    moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
           toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    [self.tableData moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
+    [self.users moveObjectFromIndex:[sourceIndexPath indexAtPosition:1]
                             toIndex:[destinationIndexPath indexAtPosition:1]];
 }
 
@@ -141,7 +139,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (IBAction)onCreateButton:(id)sender {
     AVUser *user = [AVUser new];
-    [self.tableData addObject:user];
+    [self.users addObject:user];
 }
 
 - (IBAction)onSortButton:(id)sender {
@@ -168,7 +166,6 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (void)arrayModel:(AVArrayModel *)arrayModel didChangeWithChangesObject:(AVArrayChangesObject *)changes {
     [changes applyToTableView:self.usersView.tableView];
-    [changes applyToModel:self.tableData.users];
 }
 
 @end
