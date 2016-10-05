@@ -29,9 +29,13 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-//- (void)dealloc {
-//    [self.model removeObserver:self];
-//}
+- (void)dealloc {
+    self.model = nil;
+}
+
+- (instancetype)init {
+    return [self initWithModel:nil];
+}
 
 - (instancetype)initWithModel:(AVArrayModel *)model {
     if (!model) {
@@ -40,8 +44,6 @@
     
     self = [super init];
     self.model = model;
-//    [model addObserver:self];
-    self.sortType = AVArraySortTypeAscending;
 
     return self;
 }
@@ -50,11 +52,16 @@
 #pragma mark Accessors
 
 - (void)setModel:(AVArrayModel *)model {
-    if (_model != model) {
-        [_model removeObserver:self];
-        _model = model;
-        [model addObserver:self];
-        [self addObjects:model.objects];
+    @synchronized (self) {
+        if (_model != model) {
+            [_model removeObserver:self];
+            _model = model;
+            [_model addObserver:self];
+            if (_model) {
+                [self addObjects:model.objects];
+                [self sort];
+            }
+        }
     }
 }
 
