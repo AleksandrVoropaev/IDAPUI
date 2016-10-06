@@ -27,6 +27,12 @@ static const NSUInteger kAVRandomUsersCount = 5;
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (void)dealloc {
+    [self encodeWithCoder:(nonnull NSCoder *)];
+    
+    [super dealloc];
+}
+
 - (instancetype)init {
     return [self initWithCount:kAVRandomUsersCount];
 }
@@ -39,6 +45,19 @@ static const NSUInteger kAVRandomUsersCount = 5;
     }];
     
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    
+    self.objects = [aDecoder decodeArrayOfObjCType:<#(nonnull const char *)#> count:<#(NSUInteger)#> at:<#(nonnull void *)#>];
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    NSInteger count = 5;
+    [aCoder encodeArrayOfObjCType:@"NSArray" count:count at:(__bridge const void * _Nonnull)(self.objects)];
 }
 
 #pragma mark -
