@@ -11,7 +11,7 @@
 
 @class AVImageModel;
 
-@interface AVUser : NSObject
+@interface AVUser : NSObject <NSCoding>
 @property (nonatomic, copy)     NSString        *name;
 @property (nonatomic, copy)     NSString        *surname;
 @property (nonatomic, readonly) NSString        *fullname;

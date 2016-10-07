@@ -8,7 +8,7 @@
 
 #import "AVArrayModel.h"
 
-@interface AVUsers : AVArrayModel <NSCoding>
+@interface AVUsers : AVArrayModel
 
 + (instancetype)users;
 

@@ -43,6 +43,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    [((AVUsersViewController *)self.window.rootViewController).users save];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -57,9 +58,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [((AVUsersViewController *)self.window.rootViewController).users save];
-//    AVUsers *users = ((AVUsersViewController *)self.window.rootViewController).users;
-//    [NSKeyedArchiver archiveRootObject:users toFile:@"/Users/Aleksandr/IDAPUI/iOSProject/Source/Models/data.plist"];
-
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

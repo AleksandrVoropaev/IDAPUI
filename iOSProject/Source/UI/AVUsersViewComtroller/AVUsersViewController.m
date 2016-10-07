@@ -53,13 +53,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 }
 
 - (void)initProperties {
-//    AVUsers *users = [AVUsers new];
-    AVUsers *users = [NSKeyedUnarchiver unarchiveObjectWithFile:@"/Users/Aleksandr/IDAPUI/iOSProject/Source/Models/data.plist"];
-    if (!users) {
-        users = [AVUsers new];
-    }
-    
-    self.users = users;
+    self.users = [AVUsers new];
 }
 
 #pragma mark -

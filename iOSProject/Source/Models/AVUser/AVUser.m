@@ -32,7 +32,6 @@
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-//    self = [super init];
     self.name = [aDecoder decodeObjectForKey:@"name"];
     self.surname = [aDecoder decodeObjectForKey:@"surname"];
 
