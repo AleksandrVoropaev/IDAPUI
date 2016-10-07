@@ -31,6 +31,19 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+//    self = [super init];
+    self.name = [aDecoder decodeObjectForKey:@"name"];
+    self.surname = [aDecoder decodeObjectForKey:@"surname"];
+
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.name forKey:@"surname"];
+}
+
 #pragma mark -
 #pragma mark Accessors
 

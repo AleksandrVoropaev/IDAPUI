@@ -28,9 +28,7 @@ static const NSUInteger kAVRandomUsersCount = 5;
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-//    [self encodeWithCoder:(nonnull NSCoder *)];
-//    
-//    [super dealloc];
+    [self save];
 }
 
 - (instancetype)init {
@@ -40,25 +38,21 @@ static const NSUInteger kAVRandomUsersCount = 5;
 - (instancetype)initWithCount:(NSUInteger)count {
     self = [super init];
     
-    [self performBlockWithoutNotifications:^{
-        [self addRandomUsersWithCount:count];
-    }];
+//    [self performBlockWithoutNotifications:^{
+//        [self addRandomUsersWithCount:count];
+//    }];
     
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super init];
-    
-    NSUInteger count = 5;
-//    [self addObjects:[aDecoder decodeArrayOfObjCType:"NSArray" count:count at:CFBridgingRetain((self.objects))]];
+    [self addObjects:[aDecoder decodeObject]];
     
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    NSInteger count = 5;
-    [aCoder encodeArrayOfObjCType:"NSArray" count:count at:CFBridgingRetain(self.objects)];
+    [aCoder encodeObject:self.objects];
 }
 
 #pragma mark -
@@ -72,6 +66,10 @@ static const NSUInteger kAVRandomUsersCount = 5;
     for (AVUser *user in users) {
         [self addObject:user];
     }
+}
+
+- (void)save {
+    [NSKeyedArchiver archiveRootObject:self toFile:@"/Users/Aleksandr/IDAPUI/iOSProject/Source/Models/data.plist"];
 }
 
 @end

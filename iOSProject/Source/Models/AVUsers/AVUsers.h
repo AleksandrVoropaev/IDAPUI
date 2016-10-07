@@ -13,5 +13,6 @@
 + (instancetype)users;
 
 - (void)addUsers:(NSArray *)users;
+- (void)save;
 
 @end

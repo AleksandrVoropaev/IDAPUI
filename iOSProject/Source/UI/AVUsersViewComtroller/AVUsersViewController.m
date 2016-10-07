@@ -53,7 +53,12 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 }
 
 - (void)initProperties {
-    AVUsers *users = [AVUsers new];
+//    AVUsers *users = [AVUsers new];
+    AVUsers *users = [NSKeyedUnarchiver unarchiveObjectWithFile:@"/Users/Aleksandr/IDAPUI/iOSProject/Source/Models/data.plist"];
+    if (!users) {
+        users = [AVUsers new];
+    }
+    
     self.users = users;
 }
 
@@ -166,6 +171,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (void)arrayModel:(AVArrayModel *)arrayModel didChangeWithChangesObject:(AVArrayChangesObject *)changes {
     [changes applyToTableView:self.usersView.tableView];
+//    [self.users save];
 }
 
 @end

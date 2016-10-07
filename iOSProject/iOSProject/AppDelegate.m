@@ -56,6 +56,10 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    [((AVUsersViewController *)self.window.rootViewController).users save];
+//    AVUsers *users = ((AVUsersViewController *)self.window.rootViewController).users;
+//    [NSKeyedArchiver archiveRootObject:users toFile:@"/Users/Aleksandr/IDAPUI/iOSProject/Source/Models/data.plist"];
+
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
