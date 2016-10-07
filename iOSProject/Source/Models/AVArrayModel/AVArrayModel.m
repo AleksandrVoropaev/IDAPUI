@@ -10,6 +10,7 @@
 
 #import "AVUser.h"
 #import "AVArrayChangesObject.h"
+#import "AVGCD.h"
 
 #import "NSMutableArray+AVExtensions.h"
 
@@ -74,8 +75,16 @@
 // add/insert
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
     @synchronized (self) {
-        [self.array insertObject:object atIndex:index];
-        [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidInsertObject];
+        AVDispatchSyncBlockOnDefaultPriorityQueue(^{
+            [self.array insertObject:object atIndex:index];
+
+            AVDispatchSyncBlockOnMainQueue(^{
+                [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidInsertObject];
+            });
+        });
+        
+//        [self.array insertObject:object atIndex:index];
+//        [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidInsertObject];
     }
 }
 
@@ -94,9 +103,18 @@
 // remove
 - (void)removeObjectAtIndex:(NSUInteger)index {
     @synchronized (self) {
-        id object = self.array[index];
-        [self.array removeObjectAtIndex:index];
-        [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidDeleteObject];
+        AVDispatchSyncBlockOnDefaultPriorityQueue(^{
+            id object = self.array[index];
+            [self.array removeObjectAtIndex:index];
+            
+            AVDispatchSyncBlockOnMainQueue(^{
+                [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidDeleteObject];
+            });
+        });
+
+//        id object = self.array[index];
+//        [self.array removeObjectAtIndex:index];
+//        [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidDeleteObject];
     }
 }
 

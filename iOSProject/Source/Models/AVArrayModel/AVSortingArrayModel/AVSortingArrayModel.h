@@ -21,8 +21,6 @@ typedef enum : NSUInteger {
 
 + (instancetype)sortingArrayModelWithModel:(id)objects;
 
-- (void)sortWithType:(AVArraySortType)sortType;
-
 // need to overrite in subclasses
 - (NSArray<NSSortDescriptor *> *)sortDescriptorsWithSortType:(AVArraySortType)sortType;
 

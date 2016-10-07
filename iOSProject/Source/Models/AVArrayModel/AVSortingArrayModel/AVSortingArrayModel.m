@@ -9,6 +9,7 @@
 #import "AVSortingArrayModel.h"
 
 #import "AVArrayModel.h"
+#import "AVGCD.h"
 
 #import "AVSwitchCaseMacro.h"
 
@@ -58,9 +59,8 @@
             _model = model;
             [_model addObserver:self];
             if (_model) {
-                [self addObjects:model.objects];
-//                [self sort];
-                [self sortInBackground];
+                [self replaceAllObjectsWithObjects:_model.objects];
+                [self sortWithType:_sortType];
             }
         }
     }
@@ -71,8 +71,7 @@
         if (_sortType != sortType) {
             _sortType = sortType;
             if (self.objects) {
-//                [self sort];
-                [self sortInBackground];
+                [self sortWithType:_sortType];
             }
         }
     }
@@ -83,29 +82,22 @@
 
 - (void)sortWithType:(AVArraySortType)sortType {
     @synchronized (self) {
-        id result = self.model.objects;
-        if (sortType != AVArraySortTypeNotSorted) {
-            result = [result sortedArrayUsingDescriptors:[self sortDescriptorsWithSortType:sortType]];
-        }
-        
-        [self performSelectorOnMainThread:@selector(replaceAllObjectsWithObjects:) withObject:result waitUntilDone:NO];
-//        [self replaceAllObjectsWithObjects:result];
+        AVDispatchAsyncBlockOnDefaultPriorityQueue(^{
+            id result = self.model.objects;
+            if (sortType != AVArraySortTypeNotSorted) {
+                result = [result sortedArrayUsingDescriptors:[self sortDescriptorsWithSortType:sortType]];
+            }
+            
+            
+            AVDispatchAsyncBlockOnMainQueue(^{
+                [self replaceAllObjectsWithObjects:result];
+            });
+        });
     }
 }
 
 - (NSArray<NSSortDescriptor *> *)sortDescriptorsWithSortType:(AVArraySortType)sortType {
     return nil; // need to overrite in subclasses
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (void)sortInBackground {
-    [self performSelectorInBackground:@selector(sort) withObject:self];
-}
-
-- (void)sort {
-    [self sortWithType:self.sortType];
 }
 
 @end

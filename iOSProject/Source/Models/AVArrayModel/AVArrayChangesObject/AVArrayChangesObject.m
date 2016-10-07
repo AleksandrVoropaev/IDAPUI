@@ -35,7 +35,7 @@
 {
     return [AVArrayTwoIndexesChangesObject arrayChangeWithObject:object
                                                            index:index
-                                                    targetObject:(id)secondObject
+                                                    targetObject:secondObject
                                                      targetIndex:targetIndex
                                                      changesType:changesType];
 }
