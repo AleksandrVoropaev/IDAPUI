@@ -18,6 +18,7 @@
 #import "AVArrayTwoIndexesChangesObject.h"
 #import "AVArrayChangesObject+UITableView.h"
 #import "AVArrayChangesObject+AVArrayModel.h"
+#import "AVGCD.h"
 
 #import "UITableView+AVExtensions.h"
 #import "UINib+AVExtensions.h"
@@ -40,14 +41,14 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    [self initProperties];
+//    [self initProperties];
     
     return self;
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
-    [self initProperties];
+//    [self initProperties];
 
     return self;
 }
@@ -164,8 +165,9 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 #pragma mark Array Observation
 
 - (void)arrayModel:(AVArrayModel *)arrayModel didChangeWithChangesObject:(AVArrayChangesObject *)changes {
-    [changes applyToTableView:self.usersView.tableView];
-//    [self.users save];
+    AVDispatchSyncBlockOnMainQueue(^{
+        [changes applyToTableView:self.usersView.tableView];
+    });
 }
 
 @end

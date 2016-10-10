@@ -77,14 +77,8 @@
     @synchronized (self) {
         AVDispatchSyncBlockOnDefaultPriorityQueue(^{
             [self.array insertObject:object atIndex:index];
-
-            AVDispatchSyncBlockOnMainQueue(^{
-                [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidInsertObject];
-            });
+            [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidInsertObject];
         });
-        
-//        [self.array insertObject:object atIndex:index];
-//        [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidInsertObject];
     }
 }
 
@@ -106,15 +100,8 @@
         AVDispatchSyncBlockOnDefaultPriorityQueue(^{
             id object = self.array[index];
             [self.array removeObjectAtIndex:index];
-            
-            AVDispatchSyncBlockOnMainQueue(^{
-                [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidDeleteObject];
-            });
+            [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidDeleteObject];
         });
-
-//        id object = self.array[index];
-//        [self.array removeObjectAtIndex:index];
-//        [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidDeleteObject];
     }
 }
 

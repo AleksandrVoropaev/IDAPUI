@@ -12,6 +12,9 @@
 
 #import "NSString+AVRandomName.h"
 
+static NSString * const kNameKey = @"name";
+static NSString * const kSurnameKey = @"surname";
+
 @implementation AVUser
 
 @dynamic fullname;
@@ -32,15 +35,15 @@
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self.name = [aDecoder decodeObjectForKey:@"name"];
-    self.surname = [aDecoder decodeObjectForKey:@"surname"];
+    self.name = [aDecoder decodeObjectForKey:kNameKey];
+    self.surname = [aDecoder decodeObjectForKey:kSurnameKey];
 
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.name forKey:@"name"];
-    [aCoder encodeObject:self.name forKey:@"surname"];
+    [aCoder encodeObject:self.name forKey:kNameKey];
+    [aCoder encodeObject:self.name forKey:kSurnameKey];
 }
 
 #pragma mark -

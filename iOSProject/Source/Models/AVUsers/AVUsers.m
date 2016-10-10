@@ -37,18 +37,10 @@ static const NSUInteger kAVRandomUsersCount = 5;
     if (objects && objects.count) {
         [self addObjects:objects];
     } else {
-        return [self initWithCount:kAVRandomUsersCount];
+        [self performBlockWithoutNotifications:^{
+            [self addRandomUsersWithCount:kAVRandomUsersCount];
+        }];
     }
-    
-    return self;
-}
-
-- (instancetype)initWithCount:(NSUInteger)count {
-    self = [super init];
-    
-    [self performBlockWithoutNotifications:^{
-        [self addRandomUsersWithCount:count];
-    }];
     
     return self;
 }

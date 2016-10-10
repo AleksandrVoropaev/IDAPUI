@@ -6,6 +6,13 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
+#import "AVArrayChangesObject+AVArrayModel.h"
+
+#import "AVArrayOneIndexChangesObject.h"
+#import "AVArrayTwoIndexesChangesObject.h"
+
+#import "AVSwitchCaseMacro.h"
+
 #define AVArrayModelCategoryInterfaceSynthesize(className) \
     @interface className (AVArrayModel) \
     @end \
@@ -20,13 +27,6 @@
 #define AVApplyToModelImplementationSynthesize(className, ...) \
     AVArrayModelCategoryInterfaceSynthesize(className); \
     AVArrayModelCategoryImplementationSynthesize(className, __VA_ARGS__);
-
-#import "AVArrayChangesObject+AVArrayModel.h"
-
-#import "AVArrayOneIndexChangesObject.h"
-#import "AVArrayTwoIndexesChangesObject.h"
-
-#import "AVSwitchCaseMacro.h"
 
 AVArrayModelCategoryImplementationSynthesize(AVArrayChangesObject, {
     return;

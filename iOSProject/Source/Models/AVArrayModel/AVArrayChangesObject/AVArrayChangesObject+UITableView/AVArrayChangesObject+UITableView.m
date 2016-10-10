@@ -6,6 +6,10 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
+#import "AVArrayChangesObject+UITableView.h"
+
+#import "AVSwitchCaseMacro.h"
+
 #define AVArrayModelCategoryInterfaceSynthesize(className) \
     @interface className (UITableView) \
     @end \
@@ -23,11 +27,6 @@
 #define AVApplyToTableViewImplementationSynthesize(className, ...) \
     AVArrayModelCategoryInterfaceSynthesize(className); \
     AVArrayModelCategoryImplementationSynthesize(className, __VA_ARGS__);
-
-
-#import "AVArrayChangesObject+UITableView.h"
-
-#import "AVSwitchCaseMacro.h"
 
 AVArrayModelCategoryImplementationSynthesize(AVArrayChangesObject, {
     [tableView updateWithChangesBlock:^{

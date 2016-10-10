@@ -15,6 +15,7 @@
 #import "UIWindow+AVExtensions.h"
 
 @interface AppDelegate ()
+@property (nonatomic, strong)   AVUsersViewController   *usersViewController;
 
 @end
 
@@ -28,10 +29,11 @@
     
 //    AVSquareMovingViewController *controller = [AVSquareMovingViewController new];
 //    AVUsersViewController *controller = [AVUsersViewController new];
-    AVUsersViewController *controller = [AVUsersViewController new];
+    self.usersViewController = [AVUsersViewController new];
 
-    window.rootViewController = controller;
+    window.rootViewController = self.usersViewController;
     [window makeKeyAndVisible];
+    self.usersViewController.users = [AVUsers new];
     
     // Override point for customization after application launch.
     return YES;
@@ -43,7 +45,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [((AVUsersViewController *)self.window.rootViewController).users save];
+    [self.usersViewController.users save];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -57,7 +59,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [((AVUsersViewController *)self.window.rootViewController).users save];
+    [self.usersViewController.users save];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
