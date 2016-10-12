@@ -33,7 +33,10 @@ static const NSUInteger kAVRandomUsersCount = 5;
 
 - (instancetype)init {
     self = [super init];
-    NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:@"/Users/Aleksandr/IDAPUI/iOSProject/Source/Models/data.plist"];
+//    NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:@"/Users/Aleksandr/IDAPUI/iOSProject/Source/Models/data.plist"];
+//    NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:NSSearchPathForDirectoriesInDomains(<#NSSearchPathDirectory directory#>, NSSearchPathDomainMask domainMask, <#BOOL expandTilde#>)];
+    NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:[self applicationDataFilePath]];
+
     if (objects && objects.count) {
         [self addObjects:objects];
     } else {
@@ -60,6 +63,39 @@ static const NSUInteger kAVRandomUsersCount = 5;
 
 - (void)save {
     [NSKeyedArchiver archiveRootObject:self.objects toFile:@"/Users/Aleksandr/IDAPUI/iOSProject/Source/Models/data.plist"];
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (NSURL *)applicationDataDirectory {
+    NSFileManager* sharedFM = [NSFileManager defaultManager];
+    NSArray* possibleURLs = [sharedFM URLsForDirectory:NSApplicationSupportDirectory
+                                             inDomains:NSUserDomainMask];
+    NSURL* appSupportDir = nil;
+    NSURL* appDirectory = nil;
+    
+    if ([possibleURLs count] >= 1) {
+        // Use the first directory (if multiple are returned)
+        appSupportDir = [possibleURLs objectAtIndex:0];
+    }
+    
+    // If a valid app support directory exists, add the
+    // app's bundle ID to it to specify the final directory.
+    if (appSupportDir) {
+        NSString* appBundleID = [[NSBundle mainBundle] bundleIdentifier];
+        appDirectory = [appSupportDir URLByAppendingPathComponent:appBundleID];
+    }
+    
+    return appDirectory;
+}
+
+- (NSString *)applicationDataFilePath {
+    NSString *dataDirectoryPath = [NSString stringWithContentsOfURL:[self applicationDataDirectory] encoding:NSUTF8StringEncoding error:NULL];
+    
+    NSString *fitePath = [dataDirectoryPath stringByAppendingPathComponent:@"data.plist"];
+    NSLog(@"%@", fitePath);
+    return [dataDirectoryPath stringByAppendingPathComponent:@"data.plist"];
 }
 
 @end

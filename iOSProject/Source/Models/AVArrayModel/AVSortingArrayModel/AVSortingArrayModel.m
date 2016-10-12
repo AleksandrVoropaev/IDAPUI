@@ -88,7 +88,8 @@
                 result = [result sortedArrayUsingDescriptors:[self sortDescriptorsWithSortType:sortType]];
             }
             
-            
+//            [self replaceAllObjectsWithObjects:result];
+
             AVDispatchAsyncBlockOnMainQueue(^{
                 [self replaceAllObjectsWithObjects:result];
             });

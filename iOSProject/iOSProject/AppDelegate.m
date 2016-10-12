@@ -16,6 +16,7 @@
 
 @interface AppDelegate ()
 @property (nonatomic, strong)   AVUsersViewController   *usersViewController;
+@property (nonatomic, strong)   AVUsers                 *users;
 
 @end
 
@@ -33,7 +34,8 @@
 
     window.rootViewController = self.usersViewController;
     [window makeKeyAndVisible];
-    self.usersViewController.users = [AVUsers new];
+    self.users = [AVUsers new];
+    self.usersViewController.users = self.users;
     
     // Override point for customization after application launch.
     return YES;
@@ -45,7 +47,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [self.usersViewController.users save];
+    [self.users save];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -59,7 +61,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [self.usersViewController.users save];
+    [self.users save];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

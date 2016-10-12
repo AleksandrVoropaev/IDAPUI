@@ -10,9 +10,12 @@
 
 #import "AVUser.h"
 #import "AVUsers.h"
+#import "AVGCD.h"
 
 #import "AVArrayChangesObject+AVArrayModel.h"
 #import "AVSwitchCaseMacro.h"
+
+static NSString * const kSortingKey = @"surname";
 
 @implementation AVUsersSortingArrayModel
 
@@ -21,7 +24,7 @@
 
 - (NSArray<NSSortDescriptor *> *)sortDescriptorsWithSortType:(AVArraySortType)sortType {
     BOOL ascending = sortType == AVArraySortTypeAscending ? YES : NO;
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"surname" ascending:ascending];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:kSortingKey ascending:ascending];
     return @[sortDescriptor];
 }
 
@@ -30,6 +33,10 @@
 
 - (void)arrayModel:(AVUsers *)model didChangeWithChangesObject:(AVArrayChangesObject *)changes {
     if (self.model == model) {
+//        AVDispatchAsyncBlockOnMainQueue(^{
+//            [changes applyToModel:self];
+//        });
+
         [changes applyToModel:self];
     }
 }
