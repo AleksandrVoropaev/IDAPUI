@@ -11,6 +11,7 @@
 #import "AVImageModelDispatcher.h"
 
 #import "AVWeakifyStrongify.h"
+#import "AVSwitchCaseMacro.h"
 
 @interface AVImageModel ()
 @property (nonatomic, strong) UIImage       *image;
@@ -96,7 +97,7 @@
     
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         AVStrongify(self)
-        self.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
+        self.image = [UIImage imageWithContentsOfFile:self.url.path];
 //        __strong AVImageModel *strongSelf = weakSelf;
 //        strongSelf.image = [UIImage imageWithContentsOfFile:[strongSelf.url absoluteString]];
     }];
@@ -112,6 +113,15 @@
     };
 
     return operation;
+}
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+            AVSwitchCase(AVImageModelUnloaded, { return nil; });
+            AVSwitchCase(AVImageModelLoading, { return nil; });
+            AVSwitchCase(AVImageModelFailedLoading, { return @selector(load); });
+            AVSwitchCaseDefault({ return nil; });
+    }
 }
 
 @end

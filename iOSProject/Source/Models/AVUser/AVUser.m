@@ -66,7 +66,7 @@ static NSString * const kSurnameKey = @"surname";
 
 - (AVImageModel *)imageModel {
     NSURL *url = [[NSBundle mainBundle] URLForResource:kImageFileName withExtension:kImageFileExtension];
-    
+
     return [AVImageModel imageWithURL:url];
 }
 

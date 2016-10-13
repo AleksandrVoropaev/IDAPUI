@@ -19,6 +19,7 @@
 #import "AVArrayChangesObject+UITableView.h"
 #import "AVArrayChangesObject+AVArrayModel.h"
 #import "AVGCD.h"
+#import "AVLoadingView.h"
 
 #import "UITableView+AVExtensions.h"
 #import "UINib+AVExtensions.h"
@@ -31,6 +32,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 @interface AVUsersViewController ()
 @property (nonatomic, strong)   AVUsersSortingArrayModel    *tableData;
+@property (nonatomic, strong)   AVLoadingView               *loadingView;
 
 @end
 
@@ -82,10 +84,16 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.loadingView = [AVLoadingView loadingViewForView:self.usersView];
+    [self.loadingView becomeVisible];
+
     [self.usersView.tableView reloadData];
     // Do any additional setup after loading the view from its nib.
 }
+
+//- (void)viewDidAppear:(BOOL)animated {
+////    [self.loadingView becomeInvisible];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
