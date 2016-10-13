@@ -14,6 +14,7 @@
 #import "NSObject+AVExtensions.h"
 
 static const NSUInteger kAVRandomUsersCount = 5;
+static NSString * const kDataFileName = @"data.plist";
 
 @implementation AVUsers
 
@@ -62,7 +63,7 @@ static const NSUInteger kAVRandomUsersCount = 5;
 }
 
 - (void)save {
-    [NSKeyedArchiver archiveRootObject:self.objects toFile:@"/Users/Aleksandr/IDAPUI/iOSProject/Source/Models/data.plist"];
+    [NSKeyedArchiver archiveRootObject:self.objects toFile:[self applicationDataFilePath]];
 }
 
 #pragma mark -
@@ -87,15 +88,20 @@ static const NSUInteger kAVRandomUsersCount = 5;
         appDirectory = [appSupportDir URLByAppendingPathComponent:appBundleID];
     }
     
+    if (![sharedFM fileExistsAtPath:appDirectory.path]) {
+        [sharedFM createDirectoryAtPath:appDirectory.path
+            withIntermediateDirectories:YES
+                             attributes:nil
+                                  error:nil];
+    }
+    
     return appDirectory;
 }
 
 - (NSString *)applicationDataFilePath {
-    NSString *dataDirectoryPath = [NSString stringWithContentsOfURL:[self applicationDataDirectory] encoding:NSUTF8StringEncoding error:NULL];
+    NSString *dataDirectoryPath = [self applicationDataDirectory].path;
     
-    NSString *fitePath = [dataDirectoryPath stringByAppendingPathComponent:@"data.plist"];
-    NSLog(@"%@", fitePath);
-    return [dataDirectoryPath stringByAppendingPathComponent:@"data.plist"];
+    return [dataDirectoryPath stringByAppendingPathComponent:kDataFileName];
 }
 
 @end
