@@ -12,6 +12,7 @@
 
 #import "NSArray+AVExtensions.h"
 #import "NSObject+AVExtensions.h"
+#import "NSFileManager+AVExtensions.h"
 
 static const NSUInteger kAVRandomUsersCount = 5;
 static NSString * const kDataFileName = @"data.plist";
@@ -29,14 +30,13 @@ static NSString * const kDataFileName = @"data.plist";
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self save];
 }
 
 - (instancetype)init {
     self = [super init];
-//    NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:@"/Users/Aleksandr/IDAPUI/iOSProject/Source/Models/data.plist"];
-//    NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:NSSearchPathForDirectoriesInDomains(<#NSSearchPathDirectory directory#>, NSSearchPathDomainMask domainMask, <#BOOL expandTilde#>)];
-    NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:[self applicationDataFilePath]];
+    NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSFileManager applicationDataFilePath:kDataFileName]];
 
     if (objects && objects.count) {
         [self addObjects:objects];
@@ -46,6 +46,16 @@ static NSString * const kDataFileName = @"data.plist";
         }];
     }
     
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self
+               selector:@selector(save)
+                   name:UIApplicationDidEnterBackgroundNotification
+                 object:nil];
+    [center addObserver:self
+               selector:@selector(save)
+                   name:UIApplicationWillTerminateNotification
+                 object:nil];
+
     return self;
 }
 
@@ -63,45 +73,7 @@ static NSString * const kDataFileName = @"data.plist";
 }
 
 - (void)save {
-    [NSKeyedArchiver archiveRootObject:self.objects toFile:[self applicationDataFilePath]];
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (NSURL *)applicationDataDirectory {
-    NSFileManager* sharedFM = [NSFileManager defaultManager];
-    NSArray* possibleURLs = [sharedFM URLsForDirectory:NSApplicationSupportDirectory
-                                             inDomains:NSUserDomainMask];
-    NSURL* appSupportDir = nil;
-    NSURL* appDirectory = nil;
-    
-    if ([possibleURLs count] >= 1) {
-        // Use the first directory (if multiple are returned)
-        appSupportDir = [possibleURLs objectAtIndex:0];
-    }
-    
-    // If a valid app support directory exists, add the
-    // app's bundle ID to it to specify the final directory.
-    if (appSupportDir) {
-        NSString* appBundleID = [[NSBundle mainBundle] bundleIdentifier];
-        appDirectory = [appSupportDir URLByAppendingPathComponent:appBundleID];
-    }
-    
-    if (![sharedFM fileExistsAtPath:appDirectory.path]) {
-        [sharedFM createDirectoryAtPath:appDirectory.path
-            withIntermediateDirectories:YES
-                             attributes:nil
-                                  error:nil];
-    }
-    
-    return appDirectory;
-}
-
-- (NSString *)applicationDataFilePath {
-    NSString *dataDirectoryPath = [self applicationDataDirectory].path;
-    
-    return [dataDirectoryPath stringByAppendingPathComponent:kDataFileName];
+    [NSKeyedArchiver archiveRootObject:self.objects toFile:[NSFileManager applicationDataFilePath:kDataFileName]];
 }
 
 @end

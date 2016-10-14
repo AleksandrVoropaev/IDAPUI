@@ -60,6 +60,7 @@
 		1FE14ACB1D8054A6005D42AA /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FE14ABC1D8054A6005D42AA /* ViewController.xib */; };
 		1FE14ACE1D8054E3005D42AA /* AVImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14ACD1D8054E3005D42AA /* AVImageView.m */; };
 		1FF0A2481DAF915F00E3B851 /* AVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0A2471DAF915F00E3B851 /* AVLoadingView.m */; };
+		1FF0A24F1DB0EFA000E3B851 /* NSFileManager+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0A24E1DB0EFA000E3B851 /* NSFileManager+AVExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +189,8 @@
 		1FE14ACF1D805D16005D42AA /* AVCompilerMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCompilerMacro.h; sourceTree = "<group>"; };
 		1FF0A2461DAF915F00E3B851 /* AVLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVLoadingView.h; sourceTree = "<group>"; };
 		1FF0A2471DAF915F00E3B851 /* AVLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVLoadingView.m; sourceTree = "<group>"; };
+		1FF0A24D1DB0EFA000E3B851 /* NSFileManager+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+AVExtensions.h"; sourceTree = "<group>"; };
+		1FF0A24E1DB0EFA000E3B851 /* NSFileManager+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+AVExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +364,7 @@
 			children = (
 				1F2101F81D915C7D00B05D6E /* NSArray+AVExtensions */,
 				1FA16A1B1D95562400F7C27E /* NSMutableArray+AVExtensions */,
+				1FF0A24C1DB0EFA000E3B851 /* NSFileManager+AVExtensions */,
 				1F6AE9E21D9E31D300B43386 /* NSObject+AVExtensions */,
 				1F2101FB1D915C7D00B05D6E /* NSBundle+AVExtensions */,
 				1F2101FE1D915C7D00B05D6E /* NSString+AVExtensions */,
@@ -733,6 +737,15 @@
 			path = AVImageView;
 			sourceTree = "<group>";
 		};
+		1FF0A24C1DB0EFA000E3B851 /* NSFileManager+AVExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				1FF0A24D1DB0EFA000E3B851 /* NSFileManager+AVExtensions.h */,
+				1FF0A24E1DB0EFA000E3B851 /* NSFileManager+AVExtensions.m */,
+			);
+			path = "NSFileManager+AVExtensions";
+			sourceTree = "<group>";
+		};
 		1FF680591D9926E600E63C16 /* AVArrayChangesObject */ = {
 			isa = PBXGroup;
 			children = (
@@ -920,6 +933,7 @@
 				1F0E88E21D7EDE84000A85E1 /* AVTableViewCell.m in Sources */,
 				1F53F4571D9E9BB800E91BC7 /* AVArrayChangesObject.m in Sources */,
 				1FE14ACA1D8054A6005D42AA /* ViewController.m in Sources */,
+				1FF0A24F1DB0EFA000E3B851 /* NSFileManager+AVExtensions.m in Sources */,
 				1F0E88FC1D7EF7F9000A85E1 /* AVAlphabet.m in Sources */,
 				1F2102141D915C7D00B05D6E /* UINib+AVExtensions.m in Sources */,
 				1F2102131D915C7D00B05D6E /* NSString+AVRandomName.m in Sources */,

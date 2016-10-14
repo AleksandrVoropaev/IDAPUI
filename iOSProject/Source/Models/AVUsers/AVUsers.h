@@ -6,9 +6,11 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
+//#import <UIKit/UIKit.h>
+
 #import "AVArrayModel.h"
 
-@interface AVUsers : AVArrayModel
+@interface AVUsers : AVArrayModel //<UIApplicationDelegate>
 
 + (instancetype)users;
 
