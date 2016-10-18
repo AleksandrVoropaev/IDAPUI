@@ -8,7 +8,7 @@
 
 #import "AVLoadingView.h"
 
-const NSTimeInterval kAVLoadingViewDuration = 3;
+const NSTimeInterval kAVLoadingViewDuration = 10;
 const NSTimeInterval kAVLoadingViewDelay = 0;
 const NSUInteger kAlphaVisible = .7;
 const NSUInteger kAlphaInvisible = 0;
@@ -27,6 +27,7 @@ const NSUInteger kAlphaInvisible = 0;
 
 - (instancetype)initWithView:(UIView *)view {
     self = [super init];
+    self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleWidth & UIViewAutoresizingFlexibleHeight;
     self.frame = self.superview.bounds;
     self.backgroundColor = [UIColor blackColor];
     self.alpha = kAlphaInvisible;
@@ -38,30 +39,54 @@ const NSUInteger kAlphaInvisible = 0;
 #pragma mark -
 #pragma mark Public
 
-- (void)becomeVisible {
-//    NSLog(@"%@", self.superview);
-    [self.superview bringSubviewToFront:self];
+- (void)setVisible:(BOOL)visible {
+    if (_visible != visible) {
+        _visible = visible;
+    }
+    
+    if (visible) {
+        [self.superview bringSubviewToFront:self];
+    }
+    
     [UIView animateWithDuration:kAVLoadingViewDuration
                           delay:kAVLoadingViewDelay
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         self.alpha = kAlphaVisible;
+                         self.alpha = visible ? kAlphaVisible : kAlphaInvisible;
                      }
-                     completion:^(BOOL finished) {
-                         [self becomeInvisible];
-                     }];
+                     completion:nil];
+    
+    if (!visible) {
+        [self.superview sendSubviewToBack:self];
+    }
+}
+
+- (void)becomeVisible {
+////    NSLog(@"%@", self.superview);
+//    [self.superview bringSubviewToFront:self];
+//    [UIView animateWithDuration:kAVLoadingViewDuration
+//                          delay:kAVLoadingViewDelay
+//                        options:UIViewAnimationOptionBeginFromCurrentState
+//                     animations:^{
+//                         self.alpha = kAlphaVisible;
+//                     }
+//                     completion:nil];
+//    self.visible = YES;
+    self.visible = YES;
 }
 
 - (void)becomeInvisible {
-    [UIView animateWithDuration:kAVLoadingViewDuration
-                          delay:kAVLoadingViewDelay
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{
-                         self.alpha = kAlphaInvisible;
-                     }
-                     completion:^(BOOL finished) {
-                         [self.superview sendSubviewToBack:self];
-                     }];
+//    [UIView animateWithDuration:kAVLoadingViewDuration
+//                          delay:kAVLoadingViewDelay
+//                        options:UIViewAnimationOptionBeginFromCurrentState
+//                     animations:^{
+//                         self.alpha = kAlphaInvisible;
+//                     }
+//                     completion:^(BOOL finished) {
+//                         [self.superview sendSubviewToBack:self];
+//                         self.visible = NO;
+//                     }];
+    self.visible = NO;
 }
 
 @end

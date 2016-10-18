@@ -59,6 +59,9 @@
 		1FE14ACA1D8054A6005D42AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14ABB1D8054A6005D42AA /* ViewController.m */; };
 		1FE14ACB1D8054A6005D42AA /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FE14ABC1D8054A6005D42AA /* ViewController.xib */; };
 		1FE14ACE1D8054E3005D42AA /* AVImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14ACD1D8054E3005D42AA /* AVImageView.m */; };
+		1FEFB5441DB6464C00C39542 /* AVViewWithLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFB5431DB6464C00C39542 /* AVViewWithLoadingView.m */; };
+		1FEFB5481DB64F5100C39542 /* AVLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FEFB5471DB64F5100C39542 /* AVLoadingView.xib */; };
+		1FEFB54C1DB6649D00C39542 /* AVModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFB54B1DB6649D00C39542 /* AVModel.m */; };
 		1FF0A2481DAF915F00E3B851 /* AVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0A2471DAF915F00E3B851 /* AVLoadingView.m */; };
 		1FF0A24F1DB0EFA000E3B851 /* NSFileManager+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0A24E1DB0EFA000E3B851 /* NSFileManager+AVExtensions.m */; };
 /* End PBXBuildFile section */
@@ -187,6 +190,11 @@
 		1FE14ACC1D8054E3005D42AA /* AVImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVImageView.h; sourceTree = "<group>"; };
 		1FE14ACD1D8054E3005D42AA /* AVImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageView.m; sourceTree = "<group>"; };
 		1FE14ACF1D805D16005D42AA /* AVCompilerMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCompilerMacro.h; sourceTree = "<group>"; };
+		1FEFB5421DB6464C00C39542 /* AVViewWithLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVViewWithLoadingView.h; sourceTree = "<group>"; };
+		1FEFB5431DB6464C00C39542 /* AVViewWithLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVViewWithLoadingView.m; sourceTree = "<group>"; };
+		1FEFB5471DB64F5100C39542 /* AVLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVLoadingView.xib; sourceTree = "<group>"; };
+		1FEFB54A1DB6649D00C39542 /* AVModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVModel.h; sourceTree = "<group>"; };
+		1FEFB54B1DB6649D00C39542 /* AVModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVModel.m; sourceTree = "<group>"; };
 		1FF0A2461DAF915F00E3B851 /* AVLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVLoadingView.h; sourceTree = "<group>"; };
 		1FF0A2471DAF915F00E3B851 /* AVLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVLoadingView.m; sourceTree = "<group>"; };
 		1FF0A24D1DB0EFA000E3B851 /* NSFileManager+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+AVExtensions.h"; sourceTree = "<group>"; };
@@ -252,6 +260,7 @@
 		1F0DCDAB1D79CA7200FD425C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1FEFB5491DB6648400C39542 /* AVModel */,
 				1FCAA6431D86FD0400708B7B /* AVArrayModel */,
 				1F0E88EB1D7EF090000A85E1 /* AVUser */,
 				1FCAA6471D8714C800708B7B /* AVUsers */,
@@ -588,6 +597,7 @@
 			children = (
 				1FF0A2461DAF915F00E3B851 /* AVLoadingView.h */,
 				1FF0A2471DAF915F00E3B851 /* AVLoadingView.m */,
+				1FEFB5471DB64F5100C39542 /* AVLoadingView.xib */,
 			);
 			path = AVLoadingView;
 			sourceTree = "<group>";
@@ -724,6 +734,7 @@
 			children = (
 				1FE14ABE1D8054A6005D42AA /* AVImageView */,
 				1FC63A241DAF8E8400AFC72E /* AVLoadingView */,
+				1FEFB5411DB6460D00C39542 /* AVViewWithLoadingView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -735,6 +746,24 @@
 				1FE14ACD1D8054E3005D42AA /* AVImageView.m */,
 			);
 			path = AVImageView;
+			sourceTree = "<group>";
+		};
+		1FEFB5411DB6460D00C39542 /* AVViewWithLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				1FEFB5421DB6464C00C39542 /* AVViewWithLoadingView.h */,
+				1FEFB5431DB6464C00C39542 /* AVViewWithLoadingView.m */,
+			);
+			path = AVViewWithLoadingView;
+			sourceTree = "<group>";
+		};
+		1FEFB5491DB6648400C39542 /* AVModel */ = {
+			isa = PBXGroup;
+			children = (
+				1FEFB54A1DB6649D00C39542 /* AVModel.h */,
+				1FEFB54B1DB6649D00C39542 /* AVModel.m */,
+			);
+			path = AVModel;
 			sourceTree = "<group>";
 		};
 		1FF0A24C1DB0EFA000E3B851 /* NSFileManager+AVExtensions */ = {
@@ -869,6 +898,7 @@
 				1FE14AC71D8054A6005D42AA /* AVUserCell.xib in Resources */,
 				1FE14AC51D8054A6005D42AA /* AVUsersViewController.xib in Resources */,
 				1FE14AC11D8054A6005D42AA /* AVSquareMovingViewController.xib in Resources */,
+				1FEFB5481DB64F5100C39542 /* AVLoadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,6 +925,7 @@
 			files = (
 				1F2102121D915C7D00B05D6E /* NSString+AVExtensions.m in Sources */,
 				1FE14AC01D8054A6005D42AA /* AVSquareMovingViewController.m in Sources */,
+				1FEFB54C1DB6649D00C39542 /* AVModel.m in Sources */,
 				1F0E88FF1D7EF7F9000A85E1 /* AVStringsAlphabet.m in Sources */,
 				1FF0A2481DAF915F00E3B851 /* AVLoadingView.m in Sources */,
 				1FA245331DA7AE5600A975A1 /* AVGCD.m in Sources */,
@@ -910,6 +941,7 @@
 				1FE14AC61D8054A6005D42AA /* AVUserCell.m in Sources */,
 				1F2102161D915C7D00B05D6E /* UIViewController+AVExtensions.m in Sources */,
 				1F0E89031D7EF828000A85E1 /* AVRandom.m in Sources */,
+				1FEFB5441DB6464C00C39542 /* AVViewWithLoadingView.m in Sources */,
 				1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */,
 				1FE14A9A1D800ACD005D42AA /* AVObservableObject.m in Sources */,
 				1FE14AC81D8054A6005D42AA /* AVDraggableView.m in Sources */,

@@ -36,24 +36,33 @@ static NSString * const kDataFileName = @"data.plist";
 
 - (instancetype)init {
     self = [super init];
-    NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSFileManager applicationDataFilePath:kDataFileName]];
 
-    if (objects && objects.count) {
-        [self addObjects:objects];
-    } else {
-        [self performBlockWithoutNotifications:^{
-            [self addRandomUsersWithCount:kAVRandomUsersCount];
-        }];
-    }
+    [self load];
     
+//    self.localeChangeObserver = [center addObserverForName:NSCurrentLocaleDidChangeNotification
+//                                                    object:nil
+//                                                     queue:mainQueue
+//                                                usingBlock:^(NSNotification *note) {
+//                                                    NSLog(@"The user's locale changed to: %@", [[NSLocale currentLocale] localeIdentifier]);
+//                                                }];
+
+
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self
-               selector:@selector(save)
-                   name:UIApplicationDidEnterBackgroundNotification
-                 object:nil];
+    NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+//    [center addObserverForName:NSCurrentLocaleDidChangeNotification
+//                        object:nil
+//                         queue:mainQueue
+//                    usingBlock:^(NSNotification * _Nonnull note) {
+//                        [self save];
+//                    }];
     [center addObserver:self
                selector:@selector(save)
                    name:UIApplicationWillTerminateNotification
+                 object:nil];
+    
+    [center addObserver:self
+               selector:@selector(save)
+                   name:UIApplicationDidEnterBackgroundNotification
                  object:nil];
 
     return self;
@@ -69,6 +78,18 @@ static NSString * const kDataFileName = @"data.plist";
 - (void)addUsers:(NSArray *)users {
     for (AVUser *user in users) {
         [self addObject:user];
+    }
+}
+
+- (void)load {
+    NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSFileManager applicationDataFilePath:kDataFileName]];
+
+    if (objects && objects.count) {
+        [self addObjects:objects];
+    } else {
+        [self performBlockWithoutNotifications:^{
+            [self addRandomUsersWithCount:kAVRandomUsersCount];
+        }];
     }
 }
 

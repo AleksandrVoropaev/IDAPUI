@@ -32,7 +32,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 @interface AVUsersViewController ()
 @property (nonatomic, strong)   AVUsersSortingArrayModel    *tableData;
-@property (nonatomic, strong)   AVLoadingView               *loadingView;
+//@property (nonatomic, strong)   AVLoadingView               *loadingView;
 
 @end
 
@@ -55,9 +55,9 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
     return self;
 }
 
-- (void)initProperties {
-    self.users = [AVUsers new];
-}
+//- (void)initProperties {
+//    self.users = [AVUsers new];
+//}
 
 #pragma mark -
 #pragma mark Accsessors
@@ -84,10 +84,12 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.loadingView = [AVLoadingView loadingViewForView:self.usersView];
-    [self.loadingView becomeVisible];
+//    self.loadingView = [AVLoadingView loadingViewForView:self.usersView];
+//    [self.loadingView becomeVisible];
 
+    [self.usersView showLoadingView];
     [self.usersView.tableView reloadData];
+    [self.usersView hideLoadingView];
     // Do any additional setup after loading the view from its nib.
 }
 

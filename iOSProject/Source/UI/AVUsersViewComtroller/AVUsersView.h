@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "AVViewWithLoadingView.h"
+
 @class AVUser;
 
-@interface AVUsersView : UIView
+@interface AVUsersView : AVViewWithLoadingView
 @property (nonatomic, strong)   IBOutlet UITableView    *tableView;
 @property (nonatomic, strong)   IBOutlet UIButton       *editButton;
 @property (nonatomic, strong)   IBOutlet UIButton       *sortButton;
