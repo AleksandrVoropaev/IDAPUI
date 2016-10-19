@@ -19,6 +19,11 @@ static NSString * const kDataFileName = @"data.plist";
 //static NSArray *kNotificationsNames = @[UIApplicationWillTerminateNotification,
 //                                                     UIApplicationDidEnterBackgroundNotification];
 
+@interface AVUsers ()
+@property (nonatomic, strong)   NSMutableDictionary *observers;
+@property (nonatomic, readonly) NSArray             *notificationsNames;
+
+@end
 
 @implementation AVUsers
 
@@ -33,41 +38,26 @@ static NSString * const kDataFileName = @"data.plist";
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    NSArray *notificationsNames = @[UIApplicationWillTerminateNotification,
-                                    UIApplicationDidEnterBackgroundNotification];
-    [self removeObservationWithNotificationNames:notificationsNames];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self
-//                                                    name:UIApplicationWillTerminateNotification
-//                                                  object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self
-//                                                    name:UIApplicationDidEnterBackgroundNotification
-//                                                  object:nil];
+    [self removeObservationWithNotificationNames:self.notificationsNames];
+
     [self save];
 }
 
 - (instancetype)init {
     self = [super init];
-
     [self load];
-    NSArray *notificationsNames = @[UIApplicationWillTerminateNotification,
-                                    UIApplicationDidEnterBackgroundNotification];
-    [self addObservationWithNotificationNames:notificationsNames];
-//    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-//    [center addObserverForName:UIApplicationWillTerminateNotification
-//                        object:nil
-//                         queue:nil
-//                    usingBlock:^(NSNotification * _Nonnull note) {
-//                        [self save];
-//                    }];
-//    
-//    [center addObserverForName:UIApplicationDidEnterBackgroundNotification
-//                        object:nil
-//                         queue:nil
-//                    usingBlock:^(NSNotification * _Nonnull note) {
-//                        [self save];
-//                    }];
+
+    [self addObservationWithNotificationNames:self.notificationsNames];
 
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSArray *)notificationsNames {
+    return @[UIApplicationWillTerminateNotification,
+             UIApplicationDidEnterBackgroundNotification];
 }
 
 #pragma mark -
@@ -86,20 +76,22 @@ static NSString * const kDataFileName = @"data.plist";
 - (void)addObservationWithNotificationNames:(NSArray *)notificationNames {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     for (NSString *name in notificationNames) {
-        [center addObserverForName:name
-                            object:nil
-                             queue:nil
-                        usingBlock:^(NSNotification * _Nonnull note) {
-                            [self save];
-                        }];
+        [self.observers setObject:[center addObserverForName:name
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification * _Nonnull note) {
+                                                      [self save];
+                                                  }]
+                           forKey:name];
     }
 }
 
 - (void)removeObservationWithNotificationNames:(NSArray *)notificationNames {
     for (NSString *name in notificationNames) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self
+        [[NSNotificationCenter defaultCenter] removeObserver:[self.observers objectForKey:name]
                                                         name:name
                                                       object:nil];
+        [self.observers removeObjectForKey:name];
     }
 }
 
