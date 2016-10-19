@@ -10,16 +10,16 @@
 
 @interface NSFileManager (AVExtensions)
 
-+ (NSURL *)URLForApplicationDataDirectory:(NSSearchPathDirectory)directory
-                                inDomains:(NSSearchPathDomainMask)domainMask;
++ (NSURL *)applicationDataDirectoryURL:(NSSearchPathDirectory)directory
+                             inDomains:(NSSearchPathDomainMask)domainMask;
 
 + (NSURL *)specifyURL:(NSURL *)url withFolderName:(NSString *)folderName;
 + (NSURL *)specifyURLWithBundleID:(NSURL *)url;
 
-+ (NSURL *)URLForApplicationSupportDirectory;
-+ (NSURL *)URLForApplicationSupportDirectoryWithFolderName:(NSString *)folderName;
-+ (NSURL *)URLForLibraryDirectory;
-+ (NSURL *)URLForLibraryDirectoryWithFolderName:(NSString *)folderName;
++ (NSURL *)applicationSupportDirectoryURL;
++ (NSURL *)applicationSupportDirectoryURLWithFolderName:(NSString *)folderName;
++ (NSURL *)libraryDirectoryURL;
++ (NSURL *)libraryDirectoryURLWithFolderName:(NSString *)folderName;
 
 + (NSString *)applicationDataFilePath:(NSString *)fileName;
 

@@ -12,22 +12,21 @@ static NSString * const kDataFolderName = @"addData";
 
 @implementation NSFileManager (AVExtensions)
 
-+ (NSURL *)URLForApplicationDataDirectory:(NSSearchPathDirectory)directory
-                                inDomains:(NSSearchPathDomainMask)domainMask
++ (NSURL *)applicationDataDirectoryURL:(NSSearchPathDirectory)directory
+                             inDomains:(NSSearchPathDomainMask)domainMask
 {
-    NSFileManager* sharedFM = [NSFileManager defaultManager];
-    NSArray* possibleURLs = [sharedFM URLsForDirectory:directory
-                                             inDomains:domainMask];
-    NSURL* appDirectory = nil;
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    NSArray* possibleURLs = [fileManager URLsForDirectory:directory
+                                                inDomains:domainMask];
+    NSURL* applicationDirectory = nil;
     
     if ([possibleURLs count] >= 1) {
-        // Use the first directory (if multiple are returned)
-        appDirectory = [possibleURLs objectAtIndex:0];
+        applicationDirectory = [possibleURLs objectAtIndex:0];
     }
     
-    [self createFolderIfDoesNotExistsAtPath:appDirectory.path];
+    [self createFolderIfDoesNotExistsAtPath:applicationDirectory.path];
     
-    return appDirectory;
+    return applicationDirectory;
 }
 
 + (NSURL *)specifyURL:(NSURL *)url withFolderName:(NSString *)folderName {
@@ -38,41 +37,50 @@ static NSString * const kDataFolderName = @"addData";
     return [self specifyURL:url withFolderName:[[NSBundle mainBundle] bundleIdentifier]];
 }
 
-+ (NSURL *)URLForApplicationSupportDirectory {
-    return [self URLForApplicationDataDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask];
++ (NSURL *)applicationSupportDirectoryURL {
+    static dispatch_once_t onceToken;
+    static NSURL *applicationSupportDirectory = nil;
+    dispatch_once(&onceToken, ^{
+        applicationSupportDirectory = [self applicationDataDirectoryURL:NSApplicationSupportDirectory
+                                                              inDomains:NSUserDomainMask];
+    });
+    
+    return applicationSupportDirectory;
 }
 
-+ (NSURL *)URLForApplicationSupportDirectoryWithFolderName:(NSString *)folderName {
-    return [self specifyURL:[self URLForApplicationSupportDirectory] withFolderName:folderName];
++ (NSURL *)applicationSupportDirectoryURLWithFolderName:(NSString *)folderName {
+    return [self specifyURL:[self applicationSupportDirectoryURL] withFolderName:folderName];
 }
 
-+ (NSURL *)URLForLibraryDirectory {
-    return [self URLForApplicationDataDirectory:NSLibraryDirectory inDomains:NSUserDomainMask];
++ (NSURL *)libraryDirectoryURL {
+    static dispatch_once_t onceToken;
+    static NSURL *libraryDirectory = nil;
+    dispatch_once(&onceToken, ^{
+        libraryDirectory = [self applicationDataDirectoryURL:NSLibraryDirectory inDomains:NSUserDomainMask];
+    });
+    
+    return libraryDirectory;
 }
 
-+ (NSURL *)URLForLibraryDirectoryWithFolderName:(NSString *)folderName {
-    return [self specifyURL:[self URLForLibraryDirectory] withFolderName:folderName];
++ (NSURL *)libraryDirectoryURLWithFolderName:(NSString *)folderName {
+    return [self specifyURL:[self libraryDirectoryURL] withFolderName:folderName];
 }
 
 + (NSString *)applicationDataFilePath:(NSString *)fileName {
-    NSString *dataDirectoryPath = [self URLForLibraryDirectoryWithFolderName:kDataFolderName].path;
+    NSString *dataDirectoryPath = [self libraryDirectoryURLWithFolderName:kDataFolderName].path;
     [self createFolderIfDoesNotExistsAtPath:dataDirectoryPath];
     
     return [dataDirectoryPath stringByAppendingPathComponent:fileName];
 }
 
 + (void)createFolderIfDoesNotExistsAtPath:(NSString *)path {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        
-        if (![fileManager fileExistsAtPath:path]) {
-            [fileManager createDirectoryAtPath:path
-                   withIntermediateDirectories:YES
-                                    attributes:nil
-                                         error:nil];
-        }
-    });
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:path]) {
+        [fileManager createDirectoryAtPath:path
+               withIntermediateDirectories:YES
+                                attributes:nil
+                                     error:nil];
+    }
 }
 
 @end
