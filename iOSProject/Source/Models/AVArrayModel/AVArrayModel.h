@@ -8,6 +8,8 @@
 
 #import "AVObservableObject.h"
 
+#import "AVModel.h"
+
 typedef NS_ENUM(NSUInteger, AVArrayModelState) {
     AVArrayModelStateDidChangeWithChangesObject,
 };
@@ -22,7 +24,7 @@ typedef NS_ENUM(NSUInteger, AVArrayModelState) {
 
 @end
 
-@interface AVArrayModel : AVObservableObject
+@interface AVArrayModel : AVModel
 @property (nonatomic, readonly)     NSUInteger  count;
 @property (nonatomic, readonly)     NSArray     *objects;
 @property (nonatomic, strong)       NSIndexPath *changedObjectIndexPath;

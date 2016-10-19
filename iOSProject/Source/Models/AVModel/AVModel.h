@@ -9,25 +9,27 @@
 #import "AVObservableObject.h"
 
 typedef NS_ENUM(NSInteger, AVModelState) {
-    AVModelStateLoaded,
+    AVModelStateUnloaded,
     AVModelStateLoading,
-    AVModelStateNotLoaded,
+    AVModelStateLoaded,
     AVModelStateFailedLoading,
     AVModelStateCount
 };
 
+@class AVModel;
+
 @protocol AVModelObserver <NSObject>
 @optional
-- (void)modelDidLoaded;
-- (void)modelIsLoading;
-- (void)modelNotLoaded;
-- (void)modelDidFailedLoading;
+- (void)modelDidLoad:(AVModel *)model;
+- (void)modelWillLoad:(AVModel *)model;
+- (void)modelDidUnload:(AVModel *)model;
+- (void)modelDidFailLoading:(AVModel *)model;
 
 @end
 
 @interface AVModel : AVObservableObject
 
 - (void)load;
-- (void)save;
+- (void)performLoading;
 
 @end

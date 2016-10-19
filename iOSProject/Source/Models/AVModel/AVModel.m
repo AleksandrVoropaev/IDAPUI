@@ -9,23 +9,34 @@
 #import "AVModel.h"
 
 #import "AVSwitchCaseMacro.h"
+#import "AVGCD.h"
 
 @implementation AVModel
 
 - (void)load {
-    
+    NSInteger state = self.state;
+    if (state == AVModelStateUnloaded || state == AVModelStateFailedLoading) {
+//        AVDispatchAsyncBlockOnDefaultPriorityQueue(^{
+//            [self performLoading];
+//            AVDispatchAsyncBlockOnMainQueue(^{
+//                [self notifyOfState:AVModelStateLoading];
+//            });
+//        });
+        [self performLoading];
+        [self notifyOfState:AVModelStateLoading];
+    }
 }
 
-- (void)save {
+- (void)performLoading {
     
 }
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        AVSwitchCase(AVModelStateLoaded, { return @selector(modelDidLoaded); });
-        AVSwitchCase(AVModelStateLoading, { return @selector(modelIsLoading); });
-        AVSwitchCase(AVModelStateNotLoaded, { return @selector(modelNotLoaded); });
-        AVSwitchCase(AVModelStateFailedLoading, { return @selector(modelDidFailedLoading); });
+        AVSwitchCase(AVModelStateLoaded, { return @selector(modelDidLoad:); });
+        AVSwitchCase(AVModelStateLoading, { return @selector(modelWillLoad:); });
+        AVSwitchCase(AVModelStateUnloaded, { return @selector(modelDidUnload:); });
+        AVSwitchCase(AVModelStateFailedLoading, { return @selector(modelDidFailLoading:); });
         AVSwitchCaseDefault({ return [super selectorForState:state]; });
     }
 }

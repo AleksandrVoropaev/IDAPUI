@@ -24,18 +24,24 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     UIWindow *window  = [UIWindow window];
     self.window = window;
     
 //    AVSquareMovingViewController *controller = [AVSquareMovingViewController new];
-//    AVUsersViewController *controller = [AVUsersViewController new];
-    self.usersViewController = [AVUsersViewController new];
+    AVUsers *users = [AVUsers users];
+    self.users = users;
+    
+//    [users load];
 
-    window.rootViewController = self.usersViewController;
+    AVUsersViewController *controller = [AVUsersViewController new];
+    self.usersViewController = controller;
+    
+    controller.users = users;
+    
+//    [users load];
+
+    window.rootViewController = controller;
     [window makeKeyAndVisible];
-    self.users = [AVUsers new];
-    self.usersViewController.users = self.users;
     
     // Override point for customization after application launch.
     return YES;
@@ -47,7 +53,6 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-//    [self.users save];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -61,7 +66,6 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-//    [self.users save];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

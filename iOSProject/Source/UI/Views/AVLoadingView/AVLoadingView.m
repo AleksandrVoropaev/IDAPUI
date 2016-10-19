@@ -54,11 +54,11 @@ const NSUInteger kAlphaInvisible = 0;
                      animations:^{
                          self.alpha = visible ? kAlphaVisible : kAlphaInvisible;
                      }
-                     completion:nil];
-    
-    if (!visible) {
-        [self.superview sendSubviewToBack:self];
-    }
+                     completion:^(BOOL finished) {
+                         if (!visible) {
+                             [self.superview sendSubviewToBack:self];
+                         }
+                     }];
 }
 
 - (void)becomeVisible {

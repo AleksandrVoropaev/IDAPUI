@@ -39,43 +39,27 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 @implementation AVUsersViewController
 
 #pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    [self initProperties];
-    
-    return self;
-}
-
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-//    [self initProperties];
-
-    return self;
-}
-
-//- (void)initProperties {
-//    self.users = [AVUsers new];
-//}
-
-#pragma mark -
 #pragma mark Accsessors
 
 - (void)setUsers:(AVUsers *)users {
     if (_users != users) {
         _users = users;
+        if ([self isViewLoaded]) {
+            [_users load];
+        }
+        
         self.tableData = [AVUsersSortingArrayModel sortingArrayModelWithModel:users];
     }
 }
 
 - (void)setTableData:(AVUsersSortingArrayModel *)tableData {
     if (_tableData != tableData) {
+//        [tableData.model load];
         [_tableData removeObserver:self];
         _tableData = tableData;
         [_tableData addObserver:self];
-        
-        [self.usersView.tableView reloadData];
+//        [_tableData.model load];
+//        [self.usersView.tableView reloadData];
     }
 }
 
@@ -163,10 +147,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
     sortType = (sortType + 1) % AVArraySortTypeCount;
     self.tableData.sortType = sortType;
     
-    BOOL sorting = YES;
-    if (sortType == AVArraySortTypeNotSorted) {
-        sorting = NO;
-    }
+    BOOL sorting = !(sortType == AVArraySortTypeNotSorted);
     
     self.usersView.sorting = sorting;
 }

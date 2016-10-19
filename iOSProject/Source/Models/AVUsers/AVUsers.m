@@ -16,8 +16,6 @@
 
 static const NSUInteger kAVRandomUsersCount = 5;
 static NSString * const kDataFileName = @"data.plist";
-//static NSArray *kNotificationsNames = @[UIApplicationWillTerminateNotification,
-//                                                     UIApplicationDidEnterBackgroundNotification];
 
 @interface AVUsers ()
 @property (nonatomic, strong)   NSMutableDictionary *observers;
@@ -45,7 +43,6 @@ static NSString * const kDataFileName = @"data.plist";
 
 - (instancetype)init {
     self = [super init];
-    [self load];
 
     [self addObservationWithNotificationNames:self.notificationsNames];
 
@@ -95,7 +92,7 @@ static NSString * const kDataFileName = @"data.plist";
     }
 }
 
-- (void)load {
+- (void)performLoading {
     NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSFileManager applicationDataFilePath:kDataFileName]];
 
     if (objects && objects.count) {
