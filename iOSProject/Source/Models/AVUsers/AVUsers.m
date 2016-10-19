@@ -16,6 +16,9 @@
 
 static const NSUInteger kAVRandomUsersCount = 5;
 static NSString * const kDataFileName = @"data.plist";
+//static NSArray *kNotificationsNames = @[UIApplicationWillTerminateNotification,
+//                                                     UIApplicationDidEnterBackgroundNotification];
+
 
 @implementation AVUsers
 
@@ -30,7 +33,15 @@ static NSString * const kDataFileName = @"data.plist";
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    NSArray *notificationsNames = @[UIApplicationWillTerminateNotification,
+                                    UIApplicationDidEnterBackgroundNotification];
+    [self removeObservationWithNotificationNames:notificationsNames];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self
+//                                                    name:UIApplicationWillTerminateNotification
+//                                                  object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self
+//                                                    name:UIApplicationDidEnterBackgroundNotification
+//                                                  object:nil];
     [self save];
 }
 
@@ -38,32 +49,23 @@ static NSString * const kDataFileName = @"data.plist";
     self = [super init];
 
     [self load];
-    
-//    self.localeChangeObserver = [center addObserverForName:NSCurrentLocaleDidChangeNotification
-//                                                    object:nil
-//                                                     queue:mainQueue
-//                                                usingBlock:^(NSNotification *note) {
-//                                                    NSLog(@"The user's locale changed to: %@", [[NSLocale currentLocale] localeIdentifier]);
-//                                                }];
-
-
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
-//    [center addObserverForName:NSCurrentLocaleDidChangeNotification
+    NSArray *notificationsNames = @[UIApplicationWillTerminateNotification,
+                                    UIApplicationDidEnterBackgroundNotification];
+    [self addObservationWithNotificationNames:notificationsNames];
+//    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+//    [center addObserverForName:UIApplicationWillTerminateNotification
 //                        object:nil
-//                         queue:mainQueue
+//                         queue:nil
 //                    usingBlock:^(NSNotification * _Nonnull note) {
 //                        [self save];
 //                    }];
-    [center addObserver:self
-               selector:@selector(save)
-                   name:UIApplicationWillTerminateNotification
-                 object:nil];
-    
-    [center addObserver:self
-               selector:@selector(save)
-                   name:UIApplicationDidEnterBackgroundNotification
-                 object:nil];
+//    
+//    [center addObserverForName:UIApplicationDidEnterBackgroundNotification
+//                        object:nil
+//                         queue:nil
+//                    usingBlock:^(NSNotification * _Nonnull note) {
+//                        [self save];
+//                    }];
 
     return self;
 }
@@ -78,6 +80,26 @@ static NSString * const kDataFileName = @"data.plist";
 - (void)addUsers:(NSArray *)users {
     for (AVUser *user in users) {
         [self addObject:user];
+    }
+}
+
+- (void)addObservationWithNotificationNames:(NSArray *)notificationNames {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    for (NSString *name in notificationNames) {
+        [center addObserverForName:name
+                            object:nil
+                             queue:nil
+                        usingBlock:^(NSNotification * _Nonnull note) {
+                            [self save];
+                        }];
+    }
+}
+
+- (void)removeObservationWithNotificationNames:(NSArray *)notificationNames {
+    for (NSString *name in notificationNames) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:name
+                                                      object:nil];
     }
 }
 

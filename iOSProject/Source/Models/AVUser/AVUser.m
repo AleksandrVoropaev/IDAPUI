@@ -42,8 +42,6 @@ static NSString * const kSurnameKey = @"surname";
     self.name = AVDecode(kNameKey);
     self.surname = AVDecode(kSurnameKey);
 #undef AVDecode
-//    self.name = [aDecoder decodeObjectForKey:kNameKey];
-//    self.surname = [aDecoder decodeObjectForKey:kSurnameKey];
 
     return self;
 }
@@ -53,8 +51,6 @@ static NSString * const kSurnameKey = @"surname";
     AVEncode(self.name, kNameKey);
     AVEncode(self.surname, kSurnameKey);
 #undef AVEncode
-//    [aCoder encodeObject:self.name forKey:kNameKey];
-//    [aCoder encodeObject:self.name forKey:kSurnameKey];
 }
 
 #pragma mark -

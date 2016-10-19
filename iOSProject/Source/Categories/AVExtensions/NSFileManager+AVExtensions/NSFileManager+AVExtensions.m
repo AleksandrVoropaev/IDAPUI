@@ -8,7 +8,7 @@
 
 #import "NSFileManager+AVExtensions.h"
 
-static NSString * const kDataFolderName = @"addData";
+static NSString * const kDataFolderName = @"appData";
 
 @implementation NSFileManager (AVExtensions)
 
@@ -67,8 +67,12 @@ static NSString * const kDataFolderName = @"addData";
 }
 
 + (NSString *)applicationDataFilePath:(NSString *)fileName {
-    NSString *dataDirectoryPath = [self libraryDirectoryURLWithFolderName:kDataFolderName].path;
-    [self createFolderIfDoesNotExistsAtPath:dataDirectoryPath];
+    static dispatch_once_t onceToken;
+    static NSString *dataDirectoryPath = nil;
+    dispatch_once(&onceToken, ^{
+        dataDirectoryPath = [self libraryDirectoryURLWithFolderName:kDataFolderName].path;
+        [self createFolderIfDoesNotExistsAtPath:dataDirectoryPath];
+    });
     
     return [dataDirectoryPath stringByAppendingPathComponent:fileName];
 }
