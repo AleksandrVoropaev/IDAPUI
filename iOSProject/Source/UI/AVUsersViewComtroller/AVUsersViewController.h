@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 #import "AVArrayModel.h"
+#import "AVModel.h"
 
 @class AVUsers;
 
-@interface AVUsersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AVArrayModelObserver>
+@interface AVUsersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AVArrayModelObserver, AVModelObserver>
 @property (nonatomic, strong) AVUsers   *users;
 
 @end

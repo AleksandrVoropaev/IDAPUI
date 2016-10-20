@@ -43,6 +43,7 @@ static NSString * const kDataFileName = @"data.plist";
 
 - (instancetype)init {
     self = [super init];
+    self.observers = [NSMutableDictionary dictionary];
 
     [self addObservationWithNotificationNames:self.notificationsNames];
 
@@ -102,6 +103,8 @@ static NSString * const kDataFileName = @"data.plist";
             [self addRandomUsersWithCount:kAVRandomUsersCount];
         }];
     }
+    
+    self.state = AVModelStateLoaded;
 }
 
 - (void)save {

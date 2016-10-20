@@ -7,6 +7,7 @@
 //
 
 #import "AVLoadingView.h"
+#import "NSBundle+AVExtensions.h"
 
 const NSTimeInterval kAVLoadingViewDuration = 10;
 const NSTimeInterval kAVLoadingViewDelay = 0;
@@ -26,7 +27,8 @@ const NSUInteger kAlphaInvisible = 0;
 #pragma mark Initialization and Deallocation
 
 - (instancetype)initWithView:(UIView *)view {
-    self = [super init];
+//    self = [super init];
+    self = [NSBundle objectFromNibWithClass:self.class];
     self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleWidth & UIViewAutoresizingFlexibleHeight;
     self.frame = self.superview.bounds;
     self.backgroundColor = [UIColor blackColor];

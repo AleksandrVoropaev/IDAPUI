@@ -18,6 +18,22 @@
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    self.loadingView = [AVLoadingView loadingViewForView:self];
+    [self showLoadingView];
+
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    self.loadingView = [AVLoadingView loadingViewForView:self];
+    [self showLoadingView];
+
+    return self;
+}
+
 - (void)showLoadingView {
     [self.loadingView becomeVisible];
 }

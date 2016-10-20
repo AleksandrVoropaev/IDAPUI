@@ -15,8 +15,6 @@
 + (instancetype)users;
 
 - (void)addUsers:(NSArray *)users;
-- (void)load;
-- (void)save;
 
 - (void)addObservationWithNotificationNames:(NSArray *)notificationNames;
 - (void)removeObservationWithNotificationNames:(NSArray *)notificationNames;

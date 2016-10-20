@@ -32,7 +32,6 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 @interface AVUsersViewController ()
 @property (nonatomic, strong)   AVUsersSortingArrayModel    *tableData;
-//@property (nonatomic, strong)   AVLoadingView               *loadingView;
 
 @end
 
@@ -43,7 +42,9 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (void)setUsers:(AVUsers *)users {
     if (_users != users) {
+        [_users removeObserver:self];
         _users = users;
+        [_users addObserver:self];
         if ([self isViewLoaded]) {
             [_users load];
         }
@@ -54,12 +55,9 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (void)setTableData:(AVUsersSortingArrayModel *)tableData {
     if (_tableData != tableData) {
-//        [tableData.model load];
         [_tableData removeObserver:self];
         _tableData = tableData;
         [_tableData addObserver:self];
-//        [_tableData.model load];
-//        [self.usersView.tableView reloadData];
     }
 }
 
@@ -68,18 +66,18 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.loadingView = [AVLoadingView loadingViewForView:self.usersView];
-//    [self.loadingView becomeVisible];
-
-    [self.usersView showLoadingView];
-    [self.usersView.tableView reloadData];
-    [self.usersView hideLoadingView];
+    
+    [self.users load];
+    
+//    [self.usersView.tableView reloadData];
     // Do any additional setup after loading the view from its nib.
 }
 
-//- (void)viewDidAppear:(BOOL)animated {
-////    [self.loadingView becomeInvisible];
-//}
+- (void)load {
+    AVUsers *users = self.users;
+    [users load];
+    self.tableData = [AVUsersSortingArrayModel sortingArrayModelWithModel:users];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -159,6 +157,22 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
     AVDispatchSyncBlockOnMainQueue(^{
         [changes applyToTableView:self.usersView.tableView];
     });
+}
+
+#pragma mark -
+#pragma mark Model Observation
+
+- (void)modelWillLoad:(AVModel *)model {
+    [self.usersView showLoadingView];
+}
+
+- (void)modelDidLoad:(AVModel *)model {
+    [self.usersView.tableView reloadData];
+    [self.usersView hideLoadingView];
+}
+
+- (void)modelDidFailLoading:(AVModel *)model {
+    [self.users load];
 }
 
 @end

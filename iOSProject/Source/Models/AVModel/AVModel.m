@@ -22,8 +22,10 @@
 //                [self notifyOfState:AVModelStateLoading];
 //            });
 //        });
+//        [self notifyOfState:AVModelStateLoading];
+        self.state = AVModelStateLoading;
         [self performLoading];
-        [self notifyOfState:AVModelStateLoading];
+//        self.state = AVModelStateLoaded;
     }
 }
 
