@@ -16,16 +16,13 @@
 - (void)load {
     NSInteger state = self.state;
     if (state == AVModelStateUnloaded || state == AVModelStateFailedLoading) {
-//        AVDispatchAsyncBlockOnDefaultPriorityQueue(^{
-//            [self performLoading];
-//            AVDispatchAsyncBlockOnMainQueue(^{
-//                [self notifyOfState:AVModelStateLoading];
-//            });
-//        });
-//        [self notifyOfState:AVModelStateLoading];
-        self.state = AVModelStateLoading;
-        [self performLoading];
-//        self.state = AVModelStateLoaded;
+        AVDispatchSyncBlockOnDefaultPriorityQueue(^{
+            self.state = AVModelStateLoading;
+            [self performLoading];
+            AVDispatchSyncBlockOnMainQueue(^{
+                self.state = AVModelStateLoaded;
+            });
+        });
     }
 }
 

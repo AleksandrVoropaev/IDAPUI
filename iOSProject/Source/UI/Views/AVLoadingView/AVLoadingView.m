@@ -27,7 +27,6 @@ const NSUInteger kAlphaInvisible = 0;
 #pragma mark Initialization and Deallocation
 
 - (instancetype)initWithView:(UIView *)view {
-//    self = [super init];
     self = [NSBundle objectFromNibWithClass:self.class];
     self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleWidth & UIViewAutoresizingFlexibleHeight;
     self.frame = self.superview.bounds;
@@ -64,30 +63,10 @@ const NSUInteger kAlphaInvisible = 0;
 }
 
 - (void)becomeVisible {
-////    NSLog(@"%@", self.superview);
-//    [self.superview bringSubviewToFront:self];
-//    [UIView animateWithDuration:kAVLoadingViewDuration
-//                          delay:kAVLoadingViewDelay
-//                        options:UIViewAnimationOptionBeginFromCurrentState
-//                     animations:^{
-//                         self.alpha = kAlphaVisible;
-//                     }
-//                     completion:nil];
-//    self.visible = YES;
     self.visible = YES;
 }
 
 - (void)becomeInvisible {
-//    [UIView animateWithDuration:kAVLoadingViewDuration
-//                          delay:kAVLoadingViewDelay
-//                        options:UIViewAnimationOptionBeginFromCurrentState
-//                     animations:^{
-//                         self.alpha = kAlphaInvisible;
-//                     }
-//                     completion:^(BOOL finished) {
-//                         [self.superview sendSubviewToBack:self];
-//                         self.visible = NO;
-//                     }];
     self.visible = NO;
 }
 
