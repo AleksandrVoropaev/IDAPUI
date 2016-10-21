@@ -75,10 +75,8 @@
 // add/insert
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
     @synchronized (self) {
-        AVDispatchSyncBlockOnDefaultPriorityQueue(^{
-            [self.array insertObject:object atIndex:index];
-            [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidInsertObject];
-        });
+        [self.array insertObject:object atIndex:index];
+        [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidInsertObject];
     }
 }
 
@@ -97,11 +95,9 @@
 // remove
 - (void)removeObjectAtIndex:(NSUInteger)index {
     @synchronized (self) {
-        AVDispatchSyncBlockOnDefaultPriorityQueue(^{
-            id object = self.array[index];
-            [self.array removeObjectAtIndex:index];
-            [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidDeleteObject];
-        });
+        id object = self.array[index];
+        [self.array removeObjectAtIndex:index];
+        [self notifyOfChangesWithObject:object index:index changesType:AVArrayModelChangeDidDeleteObject];
     }
 }
 

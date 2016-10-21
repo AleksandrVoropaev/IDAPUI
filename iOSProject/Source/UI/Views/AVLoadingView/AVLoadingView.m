@@ -26,14 +26,14 @@ const NSUInteger kAlphaInvisible = 0;
 #pragma mark -
 #pragma mark Initialization and Deallocation
 
-- (instancetype)initWithView:(UIView *)view {
+- (instancetype)initWithView:(UIView *)superview {
     self = [NSBundle objectFromNibWithClass:self.class];
     self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleWidth & UIViewAutoresizingFlexibleHeight;
-    self.frame = self.superview.bounds;
+    self.frame = superview.bounds;
     self.backgroundColor = [UIColor blackColor];
     self.alpha = kAlphaInvisible;
-    [view addSubview:self];
-    
+    [superview addSubview:self];
+
     return self;
 }
 

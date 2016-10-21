@@ -10,6 +10,6 @@
 
 @class AVUsers;
 
-@interface AVUsersSortingArrayModel : AVSortingArrayModel <AVArrayModelObserver>
+@interface AVUsersSortingArrayModel : AVSortingArrayModel <AVArrayModelObserver, AVModelObserver>
 
 @end

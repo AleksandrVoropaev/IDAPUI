@@ -67,16 +67,8 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.users load];
-    
-//    [self.usersView.tableView reloadData];
+    [self.users load];    
     // Do any additional setup after loading the view from its nib.
-}
-
-- (void)load {
-    AVUsers *users = self.users;
-    [users load];
-    self.tableData = [AVUsersSortingArrayModel sortingArrayModelWithModel:users];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -154,25 +146,39 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 #pragma mark Array Observation
 
 - (void)arrayModel:(AVArrayModel *)arrayModel didChangeWithChangesObject:(AVArrayChangesObject *)changes {
-    AVDispatchSyncBlockOnMainQueue(^{
-        [changes applyToTableView:self.usersView.tableView];
-    });
+    if (arrayModel == self.tableData) {
+        AVDispatchSyncBlockOnMainQueue(^{
+            [changes applyToTableView:self.usersView.tableView];
+        });
+    }
 }
 
 #pragma mark -
 #pragma mark Model Observation
 
 - (void)modelWillLoad:(AVModel *)model {
-    [self.usersView showLoadingView];
+    if (model == self.users) {
+        AVDispatchSyncBlockOnMainQueue(^{
+            [self.usersView showLoadingView];
+        });
+    }
 }
 
 - (void)modelDidLoad:(AVModel *)model {
-    [self.usersView.tableView reloadData];
-    [self.usersView hideLoadingView];
+    if (model == self.users) {
+        AVDispatchSyncBlockOnMainQueue(^{
+            [self.usersView.tableView reloadData];
+            [self.usersView hideLoadingView];
+        });
+    }
 }
 
 - (void)modelDidFailLoading:(AVModel *)model {
-    [self.users load];
+    if (model == self.users) {
+        AVDispatchSyncBlockOnMainQueue(^{
+            [self.users load];
+        });
+    }
 }
 
 @end

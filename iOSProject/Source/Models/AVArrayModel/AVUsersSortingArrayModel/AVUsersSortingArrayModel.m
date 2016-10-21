@@ -23,7 +23,7 @@ static NSString * const kSortingKey = @"surname";
 #pragma mark Overwrite SuperClass methods
 
 - (NSArray<NSSortDescriptor *> *)sortDescriptorsWithSortType:(AVArraySortType)sortType {
-    BOOL ascending = sortType == AVArraySortTypeAscending ? YES : NO;
+    BOOL ascending = sortType == AVArraySortTypeAscending;
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:kSortingKey ascending:ascending];
     return @[sortDescriptor];
 }
@@ -33,12 +33,14 @@ static NSString * const kSortingKey = @"surname";
 
 - (void)arrayModel:(AVUsers *)model didChangeWithChangesObject:(AVArrayChangesObject *)changes {
     if (self.model == model) {
-//        AVDispatchAsyncBlockOnMainQueue(^{
-//            [changes applyToModel:self];
-//        });
-
         [changes applyToModel:self];
     }
 }
+
+//- (void)modelDidLoad:(AVModel *)model {
+//    if (self.model == model) {
+//        
+//    }
+//}
 
 @end

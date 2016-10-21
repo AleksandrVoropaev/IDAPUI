@@ -14,15 +14,16 @@
 @implementation AVModel
 
 - (void)load {
-    NSInteger state = self.state;
-    if (state == AVModelStateUnloaded || state == AVModelStateFailedLoading) {
-        AVDispatchSyncBlockOnDefaultPriorityQueue(^{
+    @synchronized (self) {
+        NSInteger state = self.state;
+        if (state == AVModelStateUnloaded || state == AVModelStateFailedLoading) {
             self.state = AVModelStateLoading;
-            [self performLoading];
-            AVDispatchSyncBlockOnMainQueue(^{
-                self.state = AVModelStateLoaded;
+            AVDispatchSyncBlockOnDefaultPriorityQueue(^{
+                [self performLoading];
             });
-        });
+        } else {
+            [self notifyOfState:state];
+        }
     }
 }
 

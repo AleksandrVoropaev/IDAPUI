@@ -82,17 +82,18 @@
 
 - (void)sortWithType:(AVArraySortType)sortType {
     @synchronized (self) {
-        AVDispatchAsyncBlockOnDefaultPriorityQueue(^{
+//        AVDispatchAsyncBlockOnDefaultPriorityQueue(^{
+        AVDispatchSyncBlockOnDefaultPriorityQueue(^{
             id result = self.model.objects;
             if (sortType != AVArraySortTypeNotSorted) {
                 result = [result sortedArrayUsingDescriptors:[self sortDescriptorsWithSortType:sortType]];
             }
             
-//            [self replaceAllObjectsWithObjects:result];
+            [self replaceAllObjectsWithObjects:result];
 
-            AVDispatchAsyncBlockOnMainQueue(^{
-                [self replaceAllObjectsWithObjects:result];
-            });
+//            AVDispatchAsyncBlockOnMainQueue(^{
+//                [self replaceAllObjectsWithObjects:result];
+//            });
         });
     }
 }

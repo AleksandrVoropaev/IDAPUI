@@ -10,28 +10,27 @@
 
 @implementation AVViewWithLoadingView
 
-- (instancetype)init {
-    self = [super init];
-    self.loadingView = [AVLoadingView loadingViewForView:self];
-    [self showLoadingView];
-    
-    return self;
-}
-
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    self.loadingView = [AVLoadingView loadingViewForView:self];
-    [self showLoadingView];
+    if (!self.loadingView) {
+        self.loadingView = [AVLoadingView loadingViewForView:self];
+    }
 
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
-    self.loadingView = [AVLoadingView loadingViewForView:self];
-    [self showLoadingView];
 
     return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    if (!self.loadingView) {
+        self.loadingView = [AVLoadingView loadingViewForView:self];
+    }
 }
 
 - (void)showLoadingView {
