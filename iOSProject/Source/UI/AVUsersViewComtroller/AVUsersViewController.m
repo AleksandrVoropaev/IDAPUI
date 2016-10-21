@@ -49,7 +49,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
             [_users load];
         }
         
-        self.tableData = [AVUsersSortingArrayModel sortingArrayModelWithModel:users];
+//        self.tableData = [AVUsersSortingArrayModel sortingArrayModelWithModel:users];
     }
 }
 
@@ -167,6 +167,7 @@ AVRootViewPrivateInterfaceWithDynamicProperty(AVUsersViewController, AVUsersView
 - (void)modelDidLoad:(AVModel *)model {
     if (model == self.users) {
         AVDispatchSyncBlockOnMainQueue(^{
+            self.tableData = [AVUsersSortingArrayModel sortingArrayModelWithModel:self.users];
             [self.usersView.tableView reloadData];
             [self.usersView hideLoadingView];
         });

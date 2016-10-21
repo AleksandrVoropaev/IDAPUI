@@ -11,8 +11,8 @@
 
 const NSTimeInterval kAVLoadingViewDuration = 10;
 const NSTimeInterval kAVLoadingViewDelay = 0;
-const NSUInteger kAlphaVisible = .7;
-const NSUInteger kAlphaInvisible = 0;
+const NSUInteger kAlphaVisible = .8;
+const NSUInteger kAlphaInvisible = .2;
 
 @implementation AVLoadingView
 
@@ -29,9 +29,13 @@ const NSUInteger kAlphaInvisible = 0;
 - (instancetype)initWithView:(UIView *)superview {
     self = [NSBundle objectFromNibWithClass:self.class];
     self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleWidth & UIViewAutoresizingFlexibleHeight;
+    UIActivityIndicatorView *indicator = self.activityIndicator;
+    indicator.opaque = YES;
+//    indicator.animati
     self.frame = superview.bounds;
-    self.backgroundColor = [UIColor blackColor];
+    self.backgroundColor = [UIColor yellowColor];
     self.alpha = kAlphaInvisible;
+    
     [superview addSubview:self];
 
     return self;

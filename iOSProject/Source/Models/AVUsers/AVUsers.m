@@ -14,7 +14,7 @@
 #import "NSObject+AVExtensions.h"
 #import "NSFileManager+AVExtensions.h"
 
-static const NSUInteger kAVRandomUsersCount = 1000;
+static const NSUInteger kAVRandomUsersCount = 10;
 static NSString * const kDataFileName = @"data.plist";
 
 @interface AVUsers ()
@@ -104,13 +104,14 @@ static NSString * const kDataFileName = @"data.plist";
         }];
     }
     
+    sleep(5);
     self.state = AVModelStateLoaded;
 }
 
 - (void)save {
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
-    [self removeAll];
+//    [self removeAll];
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
 

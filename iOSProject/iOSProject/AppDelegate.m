@@ -31,18 +31,16 @@
     AVUsers *users = [AVUsers users];
     self.users = users;
     
-//    [users load];
-
     AVUsersViewController *controller = [AVUsersViewController new];
     self.usersViewController = controller;
     
-    controller.users = users;
-    
-//    [users load];
+//    controller.users = users;
 
     window.rootViewController = controller;
     [window makeKeyAndVisible];
     
+    controller.users = users;
+
     // Override point for customization after application launch.
     return YES;
 }
