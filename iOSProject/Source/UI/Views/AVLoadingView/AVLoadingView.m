@@ -9,7 +9,7 @@
 #import "AVLoadingView.h"
 #import "NSBundle+AVExtensions.h"
 
-const NSTimeInterval kAVLoadingViewDuration = 10;
+const NSTimeInterval kAVLoadingViewDuration = 1;
 const NSTimeInterval kAVLoadingViewDelay = 0;
 const NSUInteger kAlphaVisible = .8;
 const NSUInteger kAlphaInvisible = .2;
@@ -29,16 +29,18 @@ const NSUInteger kAlphaInvisible = .2;
 - (instancetype)initWithView:(UIView *)superview {
     self = [NSBundle objectFromNibWithClass:self.class];
     self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleWidth & UIViewAutoresizingFlexibleHeight;
-    UIActivityIndicatorView *indicator = self.activityIndicator;
-    indicator.opaque = YES;
-//    indicator.animati
     self.frame = superview.bounds;
-    self.backgroundColor = [UIColor yellowColor];
-    self.alpha = kAlphaInvisible;
     
     [superview addSubview:self];
 
     return self;
+}
+
+-(void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.backgroundColor = [UIColor yellowColor];
+    self.alpha = kAlphaInvisible;
 }
 
 #pragma mark -
@@ -59,11 +61,12 @@ const NSUInteger kAlphaInvisible = .2;
                      animations:^{
                          self.alpha = visible ? kAlphaVisible : kAlphaInvisible;
                      }
-                     completion:^(BOOL finished) {
-                         if (!visible) {
-                             [self.superview sendSubviewToBack:self];
-                         }
-                     }];
+                     completion:nil];
+//                     completion:^(BOOL finished) {
+//                         if (!visible) {
+//                             [self.superview sendSubviewToBack:self];
+//                         }
+//                     }];
 }
 
 - (void)becomeVisible {

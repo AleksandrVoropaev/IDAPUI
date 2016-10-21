@@ -44,7 +44,6 @@
 		1FCAA64A1D8714E700708B7B /* AVUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAA6491D8714E700708B7B /* AVUsers.m */; };
 		1FE14A961D7FEE37005D42AA /* AVImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14A951D7FEE37005D42AA /* AVImageModel.m */; };
 		1FE14A9A1D800ACD005D42AA /* AVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14A991D800ACD005D42AA /* AVObservableObject.m */; };
-		1FE14A9E1D801DA4005D42AA /* AVImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14A9D1D801DA4005D42AA /* AVImageModelDispatcher.m */; };
 		1FE14ABF1D8054A6005D42AA /* AVSquareMovingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14AA31D8054A6005D42AA /* AVSquareMovingView.m */; };
 		1FE14AC01D8054A6005D42AA /* AVSquareMovingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14AA51D8054A6005D42AA /* AVSquareMovingViewController.m */; };
 		1FE14AC11D8054A6005D42AA /* AVSquareMovingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FE14AA61D8054A6005D42AA /* AVSquareMovingViewController.xib */; };
@@ -162,8 +161,6 @@
 		1FE14A951D7FEE37005D42AA /* AVImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageModel.m; sourceTree = "<group>"; };
 		1FE14A981D800ACD005D42AA /* AVObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVObservableObject.h; sourceTree = "<group>"; };
 		1FE14A991D800ACD005D42AA /* AVObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVObservableObject.m; sourceTree = "<group>"; };
-		1FE14A9C1D801DA4005D42AA /* AVImageModelDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVImageModelDispatcher.h; sourceTree = "<group>"; };
-		1FE14A9D1D801DA4005D42AA /* AVImageModelDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageModelDispatcher.m; sourceTree = "<group>"; };
 		1FE14A9F1D8037EE005D42AA /* AVWeakifyStrongify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVWeakifyStrongify.h; sourceTree = "<group>"; };
 		1FE14AA21D8054A6005D42AA /* AVSquareMovingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVSquareMovingView.h; sourceTree = "<group>"; };
 		1FE14AA31D8054A6005D42AA /* AVSquareMovingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVSquareMovingView.m; sourceTree = "<group>"; };
@@ -626,7 +623,6 @@
 		1FE14A931D7FEE37005D42AA /* AVImageModel */ = {
 			isa = PBXGroup;
 			children = (
-				1FE14A9B1D801D38005D42AA /* Private */,
 				1FE14A941D7FEE37005D42AA /* AVImageModel.h */,
 				1FE14A951D7FEE37005D42AA /* AVImageModel.m */,
 			);
@@ -640,15 +636,6 @@
 				1FE14A991D800ACD005D42AA /* AVObservableObject.m */,
 			);
 			path = AVObservableObject;
-			sourceTree = "<group>";
-		};
-		1FE14A9B1D801D38005D42AA /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				1FE14A9C1D801DA4005D42AA /* AVImageModelDispatcher.h */,
-				1FE14A9D1D801DA4005D42AA /* AVImageModelDispatcher.m */,
-			);
-			path = Private;
 			sourceTree = "<group>";
 		};
 		1FE14AA01D8054A6005D42AA /* UI */ = {
@@ -945,7 +932,6 @@
 				1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */,
 				1FE14A9A1D800ACD005D42AA /* AVObservableObject.m in Sources */,
 				1FE14AC81D8054A6005D42AA /* AVDraggableView.m in Sources */,
-				1FE14A9E1D801DA4005D42AA /* AVImageModelDispatcher.m in Sources */,
 				1F397DC01DA3C6A000AE8272 /* AVArrayChangesObject+UITableView.m in Sources */,
 				1FA16A1E1D95562400F7C27E /* NSMutableArray+AVExtensions.m in Sources */,
 				1FAF90C01DA5304300DFB062 /* AVUsersSortingArrayModel.m in Sources */,
