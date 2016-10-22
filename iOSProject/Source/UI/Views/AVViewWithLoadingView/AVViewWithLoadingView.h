@@ -11,9 +11,10 @@
 #import "AVLoadingView.h"
 
 @interface AVViewWithLoadingView : UIView
-@property (nonatomic, strong)   AVLoadingView                       *loadingView;
+@property (nonatomic, strong)   AVLoadingView   *loadingView;
 
 - (void)showLoadingView;
 - (void)hideLoadingView;
+- (id)actualLoadingView;
 
 @end

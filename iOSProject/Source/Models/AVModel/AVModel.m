@@ -18,7 +18,7 @@
         NSInteger state = self.state;
         if (state == AVModelStateUnloaded || state == AVModelStateFailedLoading) {
             self.state = AVModelStateLoading;
-            AVDispatchSyncBlockOnDefaultPriorityQueue(^{
+            AVDispatchAsyncBlockOnDefaultPriorityQueue(^{
                 [self performLoading];
             });
         } else {

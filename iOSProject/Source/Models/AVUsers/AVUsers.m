@@ -94,6 +94,8 @@ static NSString * const kDataFileName = @"data.plist";
 }
 
 - (void)performLoading {
+    sleep(5);
+
     NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSFileManager applicationDataFilePath:kDataFileName]];
 
     if (objects && objects.count) {
@@ -104,7 +106,6 @@ static NSString * const kDataFileName = @"data.plist";
         }];
     }
     
-    sleep(5);
     self.state = AVModelStateLoaded;
 }
 

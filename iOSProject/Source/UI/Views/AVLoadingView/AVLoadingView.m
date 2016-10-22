@@ -9,10 +9,11 @@
 #import "AVLoadingView.h"
 #import "NSBundle+AVExtensions.h"
 
-const NSTimeInterval kAVLoadingViewDuration = 1;
+const NSTimeInterval kAVLoadingViewDurationWithAnimation = 1;
+const NSTimeInterval kAVLoadingViewDurationWithoutAnimation = 0;
 const NSTimeInterval kAVLoadingViewDelay = 0;
-const NSUInteger kAlphaVisible = .8;
-const NSUInteger kAlphaInvisible = .2;
+const NSUInteger kAlphaVisible = 1.0;
+const NSUInteger kAlphaInvisible = 0.0;
 
 @implementation AVLoadingView
 
@@ -28,53 +29,58 @@ const NSUInteger kAlphaInvisible = .2;
 
 - (instancetype)initWithView:(UIView *)superview {
     self = [NSBundle objectFromNibWithClass:self.class];
-    self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleWidth & UIViewAutoresizingFlexibleHeight;
-    self.frame = superview.bounds;
-    
+    self.autoresizingMask = UIViewAutoresizingFlexibleWidth & UIViewAutoresizingFlexibleHeight;
+//    self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin &
+//                            UIViewAutoresizingFlexibleWidth &
+//                            UIViewAutoresizingFlexibleRightMargin &
+//                            UIViewAutoresizingFlexibleTopMargin &
+//                            UIViewAutoresizingFlexibleHeight &
+//                            UIViewAutoresizingFlexibleBottomMargin;
+
+    self.alpha = kAlphaInvisible;
+
     [superview addSubview:self];
+    
+    self.frame = superview.bounds;
 
     return self;
-}
-
--(void)awakeFromNib {
-    [super awakeFromNib];
-    
-    self.backgroundColor = [UIColor yellowColor];
-    self.alpha = kAlphaInvisible;
 }
 
 #pragma mark -
 #pragma mark Public
 
 - (void)setVisible:(BOOL)visible {
+    [self setVisible:visible animated:YES];
+}
+
+- (void)setVisible:(BOOL)visible animated:(BOOL)animated {
+    [self setVisible:visible animated:animated completionHandler:nil];
+}
+
+- (void)setVisible:(BOOL)visible animated:(BOOL)animated completionHandler:(void (^)(void))completion {
     if (_visible != visible) {
         _visible = visible;
+        
+        if (visible) {
+            [self.superview bringSubviewToFront:self];
+        }
+        
+        [UIView animateWithDuration:animated ? kAVLoadingViewDurationWithAnimation : kAVLoadingViewDurationWithoutAnimation
+                              delay:kAVLoadingViewDelay
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             self.alpha = visible ? kAlphaVisible : kAlphaInvisible;
+                         }
+                         completion:^(BOOL finished) {
+                             if (!visible) {
+                                 [self.superview sendSubviewToBack:self];
+                             }
+                             
+                             if (completion) {
+                                 completion();
+                             }
+                         }];
     }
-    
-    if (visible) {
-        [self.superview bringSubviewToFront:self];
-    }
-    
-    [UIView animateWithDuration:kAVLoadingViewDuration
-                          delay:kAVLoadingViewDelay
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{
-                         self.alpha = visible ? kAlphaVisible : kAlphaInvisible;
-                     }
-                     completion:nil];
-//                     completion:^(BOOL finished) {
-//                         if (!visible) {
-//                             [self.superview sendSubviewToBack:self];
-//                         }
-//                     }];
-}
-
-- (void)becomeVisible {
-    self.visible = YES;
-}
-
-- (void)becomeInvisible {
-    self.visible = NO;
 }
 
 @end

@@ -12,9 +12,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (!self.loadingView) {
-        self.loadingView = [AVLoadingView loadingViewForView:self];
-    }
+    self.loadingView = [self actualLoadingView];
 
     return self;
 }
@@ -29,16 +27,21 @@
     [super awakeFromNib];
     
     if (!self.loadingView) {
-        self.loadingView = [AVLoadingView loadingViewForView:self];
+        self.loadingView = [self actualLoadingView];
+        self.loadingView.frame = self.bounds;
     }
 }
 
 - (void)showLoadingView {
-    [self.loadingView becomeVisible];
+    self.loadingView.visible = YES;
 }
 
 - (void)hideLoadingView {
-    [self.loadingView becomeInvisible];
+    self.loadingView.visible = NO;
+}
+
+- (id)actualLoadingView {
+    return [AVLoadingView loadingViewForView:self];
 }
 
 @end

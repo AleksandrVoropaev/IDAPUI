@@ -54,10 +54,10 @@
 
 - (void)dump {
     UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSFileManager applicationDataFilePath:self.imageName]];
-    
-    if (!image) {
-        image = [NSData]
-    }
+//    
+//    if (!image) {
+//        image = [NSData]
+//    }
     
     sleep(5);
     self.state = AVModelStateLoaded;

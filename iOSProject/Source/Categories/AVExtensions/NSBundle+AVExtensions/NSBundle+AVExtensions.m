@@ -27,8 +27,6 @@
 
 + (id)objectFromNibWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options {
     NSString *nibName = NSStringFromClass(class);
-    NSBundle *mainB = [self mainBundle];
-    NSArray *nibs = [mainB loadNibNamed:nibName owner:owner options:options];
     return [[[self mainBundle] loadNibNamed:nibName owner:owner options:options] firstObjectWithClass:class];
 }
 
