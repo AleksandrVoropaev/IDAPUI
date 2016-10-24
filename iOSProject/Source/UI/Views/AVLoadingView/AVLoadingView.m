@@ -29,19 +29,16 @@ const NSUInteger kAlphaInvisible = 0.0;
 
 - (instancetype)initWithView:(UIView *)superview {
     self = [NSBundle objectFromNibWithClass:self.class];
-    self.autoresizingMask = UIViewAutoresizingFlexibleWidth & UIViewAutoresizingFlexibleHeight;
-//    self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin &
-//                            UIViewAutoresizingFlexibleWidth &
-//                            UIViewAutoresizingFlexibleRightMargin &
-//                            UIViewAutoresizingFlexibleTopMargin &
-//                            UIViewAutoresizingFlexibleHeight &
-//                            UIViewAutoresizingFlexibleBottomMargin;
-
+    self.frame = superview.bounds;
+    self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin
+                            | UIViewAutoresizingFlexibleWidth
+                            | UIViewAutoresizingFlexibleRightMargin
+                            | UIViewAutoresizingFlexibleTopMargin
+                            | UIViewAutoresizingFlexibleHeight
+                            | UIViewAutoresizingFlexibleBottomMargin;
     self.alpha = kAlphaInvisible;
 
     [superview addSubview:self];
-    
-    self.frame = superview.bounds;
 
     return self;
 }

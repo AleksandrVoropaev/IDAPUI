@@ -17,7 +17,7 @@
 + (instancetype)imageWithURL:(NSURL *)url;
 
 - (instancetype)initWithURL:(NSURL *)url;
-- (void)dump; //unload from RAM or/and save to hard drive
-//- (void)cancel; duplicating ()dump
+
+- (void)performLoadingWithCompletionHandler:(void(^)(UIImage *image, id error))completion;
 
 @end

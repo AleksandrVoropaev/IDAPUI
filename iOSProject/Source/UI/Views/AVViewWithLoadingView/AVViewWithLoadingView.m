@@ -28,7 +28,6 @@
     
     if (!self.loadingView) {
         self.loadingView = [self actualLoadingView];
-        self.loadingView.frame = self.bounds;
     }
 }
 

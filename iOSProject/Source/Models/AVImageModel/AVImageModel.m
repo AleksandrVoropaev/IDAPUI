@@ -10,13 +10,13 @@
 
 #import "NSFileManager+AVExtensions.h"
 #import "AVSwitchCaseMacro.h"
+#import "AVGCD.h"
+#import "AVWeakifyStrongify.h"
 
 @interface AVImageModel ()
 @property (nonatomic, strong)   UIImage     *image;
 @property (nonatomic, strong)   NSString    *imageName;
 @property (nonatomic, strong)   NSURL       *url;
-
-- (NSOperation *)imageLoadingOperation;
 
 @end
 
@@ -49,7 +49,33 @@
 #pragma mark Public
 
 - (void)performLoading {
+//    AVWeakify(self);
+//    [self performLoadingWithCompletionHandler:^(UIImage *image, id error) {
+//        AVStrongifyAndReturnIfNil(self);
+//        
+//        [self finalizeLoadingImage:image error:error];
+//    }];
     
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"image" ofType:@"jpeg"];
+//    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSFileManager applicationDataFilePath:self.imageName]];
+    if (image) {
+        self.image = image;
+    } else {
+        AVDispatchAsyncBlockOnDefaultPriorityQueue(^{
+//            [NSURLSession]
+            [NSURL];
+        })
+    }
+}
+
+- (void)performLoadingWithCompletionHandler:(void (^)(UIImage *, id))completion {
+    
+}
+
+- (void)finalizeLoadingImage:(UIImage *)image error:(id)error {
+    self.image = image;
+    self.state = image ? AVModelStateLoaded : AVModelStateFailedLoading;
 }
 
 - (void)dump {
