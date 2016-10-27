@@ -70,7 +70,9 @@
 
 - (void)setImageModel:(AVImageModel *)imageModel {
     if (_imageModel != imageModel) {
+        [_imageModel removeObserver:self];
         _imageModel = imageModel;
+        [_imageModel addObserver:self];
         
         [imageModel load];
     }
@@ -83,5 +85,13 @@
 #pragma mark -
 #pragma mark Private
 
+#pragma mark -
+#pragma mark Image Model Observation
+
+- (void)modelDidLoad:(AVImageModel *)model {
+    if (model == self.imageModel) {
+        self.contentImageView.image = model.image;
+    }
+}
 
 @end

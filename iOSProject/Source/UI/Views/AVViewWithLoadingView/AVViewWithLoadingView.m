@@ -10,6 +10,9 @@
 
 @implementation AVViewWithLoadingView
 
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     self.loadingView = [self actualLoadingView];
@@ -17,11 +20,20 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
+#pragma mark -
+#pragma mark Accessors
 
-    return self;
+- (void)setLoadingView:(AVLoadingView *)loadingView {
+    if (loadingView != _loadingView) {
+        [_loadingView removeFromSuperview];
+        _loadingView = loadingView;
+        [self addSubview:_loadingView];
+//        [self bringSubviewToFront:_loadingView];
+    }
 }
+
+#pragma mark -
+#pragma mark View Lifecycle
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -30,6 +42,9 @@
         self.loadingView = [self actualLoadingView];
     }
 }
+
+#pragma mark -
+#pragma mark Public
 
 - (void)showLoadingView {
     self.loadingView.visible = YES;

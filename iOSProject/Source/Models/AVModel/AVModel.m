@@ -16,8 +16,8 @@
 - (void)load {
     @synchronized (self) {
         NSInteger state = self.state;
-        if (state == AVModelStateUnloaded || state == AVModelStateFailedLoading) {
-            self.state = AVModelStateLoading;
+        if (state == AVModelStateDidUnload || state == AVModelStateDidFailLoading) {
+            self.state = AVModelStateWillLoad;
             AVDispatchAsyncBlockOnDefaultPriorityQueue(^{
                 [self performLoading];
             });
@@ -33,10 +33,10 @@
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        AVSwitchCase(AVModelStateLoaded, { return @selector(modelDidLoad:); });
-        AVSwitchCase(AVModelStateLoading, { return @selector(modelWillLoad:); });
-        AVSwitchCase(AVModelStateUnloaded, { return @selector(modelDidUnload:); });
-        AVSwitchCase(AVModelStateFailedLoading, { return @selector(modelDidFailLoading:); });
+        AVSwitchCase(AVModelStateDidLoad, { return @selector(modelDidLoad:); });
+        AVSwitchCase(AVModelStateWillLoad, { return @selector(modelWillLoad:); });
+        AVSwitchCase(AVModelStateDidUnload, { return @selector(modelDidUnload:); });
+        AVSwitchCase(AVModelStateDidFailLoading, { return @selector(modelDidFailLoading:); });
         AVSwitchCaseDefault({ return [super selectorForState:state]; });
     }
 }

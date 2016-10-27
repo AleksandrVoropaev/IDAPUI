@@ -14,7 +14,6 @@
 
 + (instancetype)loadingViewForView:(UIView *)view;
 
-- (void)setVisible:(BOOL)visible;
 - (void)setVisible:(BOOL)visible animated:(BOOL)animated;
 - (void)setVisible:(BOOL)visible animated:(BOOL)animated completionHandler:(void (^)(void))completion;
 

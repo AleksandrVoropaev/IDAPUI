@@ -56,37 +56,18 @@
 //        [self finalizeLoadingImage:image error:error];
 //    }];
     
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"image" ofType:@"jpeg"];
-//    UIImage *image = [UIImage imageWithContentsOfFile:path];
-    UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSFileManager applicationDataFilePath:self.imageName]];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"userImage" ofType:@"png"];
+    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    if (!image) {
+        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.url]];
+    }
+    
     if (image) {
         self.image = image;
+        self.state = AVModelStateDidLoad;
     } else {
-        AVDispatchAsyncBlockOnDefaultPriorityQueue(^{
-//            [NSURLSession]
-            [NSURL];
-        })
+        self.state = AVModelStateDidFailLoading;
     }
-}
-
-- (void)performLoadingWithCompletionHandler:(void (^)(UIImage *, id))completion {
-    
-}
-
-- (void)finalizeLoadingImage:(UIImage *)image error:(id)error {
-    self.image = image;
-    self.state = image ? AVModelStateLoaded : AVModelStateFailedLoading;
-}
-
-- (void)dump {
-    UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSFileManager applicationDataFilePath:self.imageName]];
-//    
-//    if (!image) {
-//        image = [NSData]
-//    }
-    
-    sleep(5);
-    self.state = AVModelStateLoaded;
 }
 
 #pragma mark -

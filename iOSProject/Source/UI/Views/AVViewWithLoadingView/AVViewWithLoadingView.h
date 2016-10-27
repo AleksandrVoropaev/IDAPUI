@@ -11,10 +11,12 @@
 #import "AVLoadingView.h"
 
 @interface AVViewWithLoadingView : UIView
-@property (nonatomic, strong)   AVLoadingView   *loadingView;
+@property (nonatomic, strong)   IBOutlet AVLoadingView  *loadingView;
 
 - (void)showLoadingView;
 - (void)hideLoadingView;
+
+// Method to overwrite in subclasses if you want to use your own loading view. Returns actual loading view.
 - (id)actualLoadingView;
 
 @end

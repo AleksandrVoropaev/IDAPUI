@@ -18,6 +18,4 @@
 
 - (instancetype)initWithURL:(NSURL *)url;
 
-- (void)performLoadingWithCompletionHandler:(void(^)(UIImage *image, id error))completion;
-
 @end

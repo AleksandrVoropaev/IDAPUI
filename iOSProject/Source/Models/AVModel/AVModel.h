@@ -9,10 +9,10 @@
 #import "AVObservableObject.h"
 
 typedef NS_ENUM(NSInteger, AVModelState) {
-    AVModelStateUnloaded,
-    AVModelStateLoading,
-    AVModelStateLoaded,
-    AVModelStateFailedLoading,
+    AVModelStateDidUnload,
+    AVModelStateWillLoad,
+    AVModelStateDidLoad,
+    AVModelStateDidFailLoading,
     AVModelStateCount
 };
 

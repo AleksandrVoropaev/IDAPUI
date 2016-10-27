@@ -106,7 +106,7 @@ static NSString * const kDataFileName = @"data.plist";
         }];
     }
     
-    self.state = AVModelStateLoaded;
+    self.state = AVModelStateDidLoad;
 }
 
 - (void)save {
