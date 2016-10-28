@@ -15,7 +15,10 @@
 
 @interface AVImageModel ()
 @property (nonatomic, strong)   UIImage     *image;
+@property (nonatomic, strong)   NSData      *imageData;
 @property (nonatomic, strong)   NSString    *imageName;
+@property (nonatomic, strong)   NSString    *imageExtension;
+@property (nonatomic, strong)   NSString    *imageNameWithoutExtension;
 @property (nonatomic, strong)   NSURL       *url;
 
 @end
@@ -43,35 +46,22 @@
 #pragma mark Accessors
 
 - (NSString *)imageName {
-    NSLog(@"%@.%@", [self imageNameWithoutExtension], [self imageExtension]);
     return [NSString stringWithFormat:@"%@.%@", [self imageNameWithoutExtension], [self imageExtension]];
 }
 
 - (NSString *)imageNameWithoutExtension {
     NSString *path = self.url.absoluteString;
-//    NSLog(@"%@", path);
-    
     NSString *pathWithoutExtension = path.stringByDeletingPathExtension;
-//    NSLog(@"%@", pathWithoutExtension);
-    
-    NSString *pathWithoutSlashes = [pathWithoutExtension stringByReplacingOccurrencesOfString:@"/" withString:@""];
-//    NSLog(@"%@", pathWithoutSlashes);
-    
-    NSString *pathWithoutColon = [pathWithoutSlashes stringByReplacingOccurrencesOfString:@":" withString:@""];
-//    NSLog(@"%@", pathWithoutColon);
-    
-    NSString *pathWithoutDots = [pathWithoutColon stringByReplacingOccurrencesOfString:@"." withString:@""];
-//    NSLog(@"%@", pathWithoutDots);
-    
+    NSString *pathWithoutSymbols = [self deleteSymbols:@[@"/", @":", @".", @"-"] inString:pathWithoutExtension];
     NSCharacterSet *characters = [NSCharacterSet URLPathAllowedCharacterSet];
-    NSString *pathWithEncoding = [pathWithoutDots stringByAddingPercentEncodingWithAllowedCharacters:characters];
-    NSLog(@"%@", pathWithEncoding);
+    NSString *pathWithEncoding = [pathWithoutSymbols stringByAddingPercentEncodingWithAllowedCharacters:characters];
     
+//    NSLog(@"%@", pathWithEncoding);
+
     return pathWithEncoding;
 }
 
 - (NSString *)imageExtension {
-    NSLog(@"%@", self.url.path.pathExtension);
     return self.url.path.pathExtension;
 }
 
@@ -79,36 +69,47 @@
 #pragma mark Public
 
 - (void)performLoading {
-//    @synchronized (self) {
-//        NSString *path = [[NSBundle mainBundle] pathForResource:[self imageNameWithoutExtension] ofType:[self imageExtension]];
-//    NSString *path = [[NSBundle mainBundle] pathForResource:self.imageName ofType:[self imageExtension]];
-//    NSString *path = [[NSBundle mainBundle] pathForResource:nil ofType:[self imageExtension]];
-    NSString *path = [[NSBundle mainBundle] pathForResource:[NSFileManager applicationDataFilePath:self.imageName].stringByDeletingPathExtension ofType:[self imageExtension]];
-    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    @synchronized (self) {
+        NSString *path = [NSFileManager applicationDataFilePath:self.imageName];
+        UIImage *image = [UIImage imageWithContentsOfFile:path];
         if (!image) {
-            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.url]];
+            NSData *imageData = [NSData dataWithContentsOfURL:self.url];
+            image = [UIImage imageWithData:imageData];
+            if (image) {
+                self.imageData = imageData;
+                [self cacheImage:image];
+            }
         }
         
         if (image) {
             self.image = image;
-            [self cacheImage:image];
             self.state = AVModelStateDidLoad;
         } else {
             self.state = AVModelStateDidFailLoading;
         }
-//    }
+    }
 }
 
 #pragma mark -
 #pragma mark Private
 
 - (void)cacheImage:(UIImage *)image {
-    NSData *imageData = UIImagePNGRepresentation(image);
-    NSString *str = [NSFileManager applicationDataFilePath:[self imageName]];
-    NSLog(@"%@", str);
-
-    BOOL result = [imageData writeToFile:[NSFileManager applicationDataFilePath:[self imageName]] atomically:YES];
+    BOOL result = [self.imageData writeToFile:[NSFileManager applicationDataFilePath:self.imageName] atomically:YES];
     NSLog(@"%i", result);
+}
+
+- (NSString *)deleteSymbol:(NSString *)symbol inString:(NSString *)string {
+    return [string stringByReplacingOccurrencesOfString:symbol withString:@""];
+}
+
+- (NSString *)deleteSymbols:(NSArray *)symbols inString:(NSString *)string {
+    for (NSString *symbol in symbols) {
+        string = [self deleteSymbol:symbol inString:string];
+    }
+    
+//    NSLog(@"%@", string);
+    
+    return string;
 }
 
 @end

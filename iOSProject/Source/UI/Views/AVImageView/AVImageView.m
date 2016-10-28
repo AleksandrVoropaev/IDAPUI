@@ -9,10 +9,9 @@
 #import "AVImageView.h"
 
 #import "AVImageModel.h"
-//#import "AVObservableObject.h"
+#import "AVGCD.h"
 
 @interface AVImageView ()
-//@property (nonatomic, strong)   AVObservableObject  *observer;
 
 - (void)initSubviews;
 
@@ -90,7 +89,9 @@
 
 - (void)modelDidLoad:(AVImageModel *)model {
     if (model == self.imageModel) {
-        self.contentImageView.image = model.image;
+        AVDispatchAsyncBlockOnMainQueue(^{
+            self.contentImageView.image = model.image;
+        });
     }
 }
 
