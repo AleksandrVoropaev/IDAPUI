@@ -43,42 +43,35 @@
 #pragma mark Accessors
 
 - (NSString *)imageName {
-    return self.url.path;
+    NSString *path = self.url.absoluteString;
+    NSLog(@"%@", path);
+    
+    NSCharacterSet *characters = [NSCharacterSet URLPathAllowedCharacterSet];
+    NSString *pathWithEncoding = [self.url.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:characters];
+    NSLog(@"%@", pathWithEncoding);
+    NSString *pathWithoutSlashes = [self.url.absoluteString stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    NSLog(@"%@", pathWithoutSlashes);
+
+    NSString *pathExtension = self.url.pathExtension;
+    NSLog(@"%@", pathExtension);
+    NSString *lastPathComponentWithoutExt = self.url.lastPathComponent.stringByDeletingPathExtension;
+    NSLog(@"%@", lastPathComponentWithoutExt);
+
+    return pathWithoutSlashes;
 }
 #pragma mark -
 #pragma mark Public
 
 - (void)performLoading {
-//    AVWeakify(self);
-//    [self performLoadingWithCompletionHandler:^(UIImage *image, id error) {
-//        AVStrongifyAndReturnIfNil(self);
-//        
-//        [self finalizeLoadingImage:image error:error];
-//    }];
-//    NSURL *url = [[NSBundle mainBundle] URLForResource:kImageFileName withExtension:kImageFileExtension];
     NSString *path = [[NSBundle mainBundle] pathForResource:self.imageName ofType:@"png"];
     UIImage *image = [UIImage imageWithContentsOfFile:path];
     if (!image) {
-        //
-        
-//        dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
-//        
-//        // execute a task on that queue asynchronously
-//        dispatch_async(myqueue, ^{
-//            NSURL *url = [NSURL URLWithString:[urlstring stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];;
-//            NSData *data = [NSData dataWithContentsOfURL:url];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                Image.image = [UIImage imageWithData:data]; //UI updates should be done on the main thread
-//            });
-//        });
-
-        
-        //
         image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.url]];
     }
     
     if (image) {
         self.image = image;
+        [self cacheImage:image];
         self.state = AVModelStateDidLoad;
     } else {
         self.state = AVModelStateDidFailLoading;
@@ -88,5 +81,13 @@
 #pragma mark -
 #pragma mark Private
 
+- (void)cacheImage:(UIImage *)image {
+    NSData *imageData = UIImagePNGRepresentation(image);
+    NSString *str = [NSFileManager applicationDataFilePath:[self imageName]];
+    NSLog(@"%@", str);
+
+    BOOL result = [imageData writeToFile:[NSFileManager applicationDataFilePath:[self imageName]] atomically:YES];
+    NSLog(@"%i", result);
+}
 
 @end
