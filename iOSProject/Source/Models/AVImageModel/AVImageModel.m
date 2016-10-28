@@ -44,7 +44,7 @@
 
 - (NSString *)imageName {
     NSLog(@"%@.%@", [self imageNameWithoutExtension], [self imageExtension]);
-    return [NSString stringWithFormat:@"%@.%@", [self imageName], [self imageExtension]];
+    return [NSString stringWithFormat:@"%@.%@", [self imageNameWithoutExtension], [self imageExtension]];
 }
 
 - (NSString *)imageNameWithoutExtension {
@@ -80,9 +80,11 @@
 
 - (void)performLoading {
 //    @synchronized (self) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:[self imageNameWithoutExtension] ofType:[self imageExtension]];
-        //    NSString *path = [[NSBundle mainBundle] pathForResource:self.imageName ofType:[self imageExtension]];
-        UIImage *image = [UIImage imageWithContentsOfFile:path];
+//        NSString *path = [[NSBundle mainBundle] pathForResource:[self imageNameWithoutExtension] ofType:[self imageExtension]];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:self.imageName ofType:[self imageExtension]];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:nil ofType:[self imageExtension]];
+    NSString *path = [[NSBundle mainBundle] pathForResource:[NSFileManager applicationDataFilePath:self.imageName].stringByDeletingPathExtension ofType:[self imageExtension]];
+    UIImage *image = [UIImage imageWithContentsOfFile:path];
         if (!image) {
             image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.url]];
         }
