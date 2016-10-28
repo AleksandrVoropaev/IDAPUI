@@ -49,21 +49,36 @@
     NSCharacterSet *characters = [NSCharacterSet URLPathAllowedCharacterSet];
     NSString *pathWithEncoding = [self.url.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:characters];
     NSLog(@"%@", pathWithEncoding);
-    NSString *pathWithoutSlashes = [self.url.absoluteString stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    NSString *pathWithoutSlashes = [pathWithEncoding stringByReplacingOccurrencesOfString:@"/" withString:@""];
     NSLog(@"%@", pathWithoutSlashes);
 
-    NSString *pathExtension = self.url.pathExtension;
-    NSLog(@"%@", pathExtension);
-    NSString *lastPathComponentWithoutExt = self.url.lastPathComponent.stringByDeletingPathExtension;
-    NSLog(@"%@", lastPathComponentWithoutExt);
+//    NSString *pathExtension = self.url.pathExtension;
+//    NSLog(@"%@", pathExtension);
+//    NSString *lastPathComponentWithoutExt = self.url.lastPathComponent.stringByDeletingPathExtension;
+//    NSLog(@"%@", lastPathComponentWithoutExt);
 
     return pathWithoutSlashes;
 }
+
+- (NSString *)imageNameWithoutExtension {
+    NSCharacterSet *characters = [NSCharacterSet URLPathAllowedCharacterSet];
+    NSString *pathWithEncoding = [self.url.absoluteString.stringByDeletingPathExtension stringByAddingPercentEncodingWithAllowedCharacters:characters];
+    NSLog(@"%@", pathWithEncoding);
+
+    return pathWithEncoding;
+}
+
+- (NSString *)imageExtension {
+    NSLog(@"%@", self.url.path.pathExtension);
+    return self.url.path.pathExtension;
+}
+
 #pragma mark -
 #pragma mark Public
 
 - (void)performLoading {
-    NSString *path = [[NSBundle mainBundle] pathForResource:self.imageName ofType:@"png"];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:[self imageNameWithoutExtension] ofType:[self imageExtension]];
+    NSString *path = [[NSBundle mainBundle] pathForResource:self.imageName ofType:[self imageExtension]];
     UIImage *image = [UIImage imageWithContentsOfFile:path];
     if (!image) {
         image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.url]];
