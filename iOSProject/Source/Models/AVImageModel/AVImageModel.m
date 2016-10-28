@@ -43,28 +43,30 @@
 #pragma mark Accessors
 
 - (NSString *)imageName {
-    NSString *path = self.url.absoluteString;
-    NSLog(@"%@", path);
-    
-    NSCharacterSet *characters = [NSCharacterSet URLPathAllowedCharacterSet];
-    NSString *pathWithEncoding = [self.url.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:characters];
-    NSLog(@"%@", pathWithEncoding);
-    NSString *pathWithoutSlashes = [pathWithEncoding stringByReplacingOccurrencesOfString:@"/" withString:@""];
-    NSLog(@"%@", pathWithoutSlashes);
-
-//    NSString *pathExtension = self.url.pathExtension;
-//    NSLog(@"%@", pathExtension);
-//    NSString *lastPathComponentWithoutExt = self.url.lastPathComponent.stringByDeletingPathExtension;
-//    NSLog(@"%@", lastPathComponentWithoutExt);
-
-    return pathWithoutSlashes;
+    NSLog(@"%@.%@", [self imageNameWithoutExtension], [self imageExtension]);
+    return [NSString stringWithFormat:@"%@.%@", [self imageName], [self imageExtension]];
 }
 
 - (NSString *)imageNameWithoutExtension {
+    NSString *path = self.url.absoluteString;
+//    NSLog(@"%@", path);
+    
+    NSString *pathWithoutExtension = path.stringByDeletingPathExtension;
+//    NSLog(@"%@", pathWithoutExtension);
+    
+    NSString *pathWithoutSlashes = [pathWithoutExtension stringByReplacingOccurrencesOfString:@"/" withString:@""];
+//    NSLog(@"%@", pathWithoutSlashes);
+    
+    NSString *pathWithoutColon = [pathWithoutSlashes stringByReplacingOccurrencesOfString:@":" withString:@""];
+//    NSLog(@"%@", pathWithoutColon);
+    
+    NSString *pathWithoutDots = [pathWithoutColon stringByReplacingOccurrencesOfString:@"." withString:@""];
+//    NSLog(@"%@", pathWithoutDots);
+    
     NSCharacterSet *characters = [NSCharacterSet URLPathAllowedCharacterSet];
-    NSString *pathWithEncoding = [self.url.absoluteString.stringByDeletingPathExtension stringByAddingPercentEncodingWithAllowedCharacters:characters];
+    NSString *pathWithEncoding = [pathWithoutDots stringByAddingPercentEncodingWithAllowedCharacters:characters];
     NSLog(@"%@", pathWithEncoding);
-
+    
     return pathWithEncoding;
 }
 
@@ -77,20 +79,22 @@
 #pragma mark Public
 
 - (void)performLoading {
-//    NSString *path = [[NSBundle mainBundle] pathForResource:[self imageNameWithoutExtension] ofType:[self imageExtension]];
-    NSString *path = [[NSBundle mainBundle] pathForResource:self.imageName ofType:[self imageExtension]];
-    UIImage *image = [UIImage imageWithContentsOfFile:path];
-    if (!image) {
-        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.url]];
-    }
-    
-    if (image) {
-        self.image = image;
-        [self cacheImage:image];
-        self.state = AVModelStateDidLoad;
-    } else {
-        self.state = AVModelStateDidFailLoading;
-    }
+//    @synchronized (self) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:[self imageNameWithoutExtension] ofType:[self imageExtension]];
+        //    NSString *path = [[NSBundle mainBundle] pathForResource:self.imageName ofType:[self imageExtension]];
+        UIImage *image = [UIImage imageWithContentsOfFile:path];
+        if (!image) {
+            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.url]];
+        }
+        
+        if (image) {
+            self.image = image;
+            [self cacheImage:image];
+            self.state = AVModelStateDidLoad;
+        } else {
+            self.state = AVModelStateDidFailLoading;
+        }
+//    }
 }
 
 #pragma mark -
