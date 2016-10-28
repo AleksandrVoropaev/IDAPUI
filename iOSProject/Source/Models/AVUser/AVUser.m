@@ -12,6 +12,8 @@
 
 #import "NSString+AVRandomName.h"
 
+static NSString * const kImageFileURL = @"http://www.freeiconspng.com/uploads/person-outline-icon-png-person-outline-icon-png-person-17.png";
+
 static NSString * const kImageFileName = @"userImage";
 static NSString * const kImageFileExtension = @"png";
 
@@ -61,7 +63,9 @@ static NSString * const kSurnameKey = @"surname";
 }
 
 - (AVImageModel *)imageModel {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:kImageFileName withExtension:kImageFileExtension];
+    NSURL *url = [NSURL URLWithString:kImageFileURL];
+
+//    NSURL *url = [[NSBundle mainBundle] URLForResource:kImageFileName withExtension:kImageFileExtension];
 
     return [AVImageModel imageWithURL:url];
 }

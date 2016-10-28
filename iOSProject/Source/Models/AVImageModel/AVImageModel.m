@@ -55,10 +55,25 @@
 //        
 //        [self finalizeLoadingImage:image error:error];
 //    }];
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"userImage" ofType:@"png"];
+//    NSURL *url = [[NSBundle mainBundle] URLForResource:kImageFileName withExtension:kImageFileExtension];
+    NSString *path = [[NSBundle mainBundle] pathForResource:self.imageName ofType:@"png"];
     UIImage *image = [UIImage imageWithContentsOfFile:path];
     if (!image) {
+        //
+        
+//        dispatch_queue_t myqueue = dispatch_queue_create("myqueue", NULL);
+//        
+//        // execute a task on that queue asynchronously
+//        dispatch_async(myqueue, ^{
+//            NSURL *url = [NSURL URLWithString:[urlstring stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];;
+//            NSData *data = [NSData dataWithContentsOfURL:url];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                Image.image = [UIImage imageWithData:data]; //UI updates should be done on the main thread
+//            });
+//        });
+
+        
+        //
         image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.url]];
     }
     
