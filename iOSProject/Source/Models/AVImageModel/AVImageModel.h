@@ -17,5 +17,6 @@
 + (instancetype)imageWithURL:(NSURL *)url;
 
 - (instancetype)initWithURL:(NSURL *)url;
+- (void)cancelLoading;
 
 @end

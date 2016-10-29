@@ -90,6 +90,13 @@
     }
 }
 
+- (void)cancelLoading {
+    [self deleteCachedImage];
+    self.imageData = nil;
+    self.image = nil;
+    self.state = AVModelStateDidUnload;
+}
+
 #pragma mark -
 #pragma mark Private
 
@@ -110,6 +117,10 @@
 //    NSLog(@"%@", string);
     
     return string;
+}
+
+- (void)deleteCachedImage {
+    [[NSFileManager defaultManager] removeItemAtPath:[NSFileManager applicationDataFilePath:self.imageName] error:nil];
 }
 
 @end

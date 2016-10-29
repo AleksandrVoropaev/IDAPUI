@@ -32,6 +32,7 @@
 		1F2B57F01D7057D70026A944 /* iOSProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */; };
 		1F397DC01DA3C6A000AE8272 /* AVArrayChangesObject+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F397DBF1DA3C6A000AE8272 /* AVArrayChangesObject+UITableView.m */; };
 		1F397DC31DA3C6D600AE8272 /* AVArrayChangesObject+AVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F397DC21DA3C6D600AE8272 /* AVArrayChangesObject+AVArrayModel.m */; };
+		1F46F4EC1DC4A42B00542BCF /* AVImageModelsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46F4EB1DC4A42B00542BCF /* AVImageModelsCache.m */; };
 		1F53F4571D9E9BB800E91BC7 /* AVArrayChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F53F4561D9E9BB800E91BC7 /* AVArrayChangesObject.m */; };
 		1F6AE9DD1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9DA1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m */; };
 		1F6AE9DE1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9DC1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m */; };
@@ -137,6 +138,8 @@
 		1F397DBF1DA3C6A000AE8272 /* AVArrayChangesObject+UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVArrayChangesObject+UITableView.m"; sourceTree = "<group>"; };
 		1F397DC11DA3C6D600AE8272 /* AVArrayChangesObject+AVArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVArrayChangesObject+AVArrayModel.h"; sourceTree = "<group>"; };
 		1F397DC21DA3C6D600AE8272 /* AVArrayChangesObject+AVArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVArrayChangesObject+AVArrayModel.m"; sourceTree = "<group>"; };
+		1F46F4EA1DC4A42B00542BCF /* AVImageModelsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVImageModelsCache.h; sourceTree = "<group>"; };
+		1F46F4EB1DC4A42B00542BCF /* AVImageModelsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageModelsCache.m; sourceTree = "<group>"; };
 		1F53F4551D9E9BB800E91BC7 /* AVArrayChangesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayChangesObject.h; sourceTree = "<group>"; };
 		1F53F4561D9E9BB800E91BC7 /* AVArrayChangesObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVArrayChangesObject.m; sourceTree = "<group>"; };
 		1F6AE9D91D9AD23000B43386 /* AVArrayOneIndexChangesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayOneIndexChangesObject.h; sourceTree = "<group>"; };
@@ -625,6 +628,8 @@
 			children = (
 				1FE14A941D7FEE37005D42AA /* AVImageModel.h */,
 				1FE14A951D7FEE37005D42AA /* AVImageModel.m */,
+				1F46F4EA1DC4A42B00542BCF /* AVImageModelsCache.h */,
+				1F46F4EB1DC4A42B00542BCF /* AVImageModelsCache.m */,
 			);
 			path = AVImageModel;
 			sourceTree = "<group>";
@@ -929,6 +934,7 @@
 				1F2102161D915C7D00B05D6E /* UIViewController+AVExtensions.m in Sources */,
 				1F0E89031D7EF828000A85E1 /* AVRandom.m in Sources */,
 				1FEFB5441DB6464C00C39542 /* AVViewWithLoadingView.m in Sources */,
+				1F46F4EC1DC4A42B00542BCF /* AVImageModelsCache.m in Sources */,
 				1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */,
 				1FE14A9A1D800ACD005D42AA /* AVObservableObject.m in Sources */,
 				1FE14AC81D8054A6005D42AA /* AVDraggableView.m in Sources */,
