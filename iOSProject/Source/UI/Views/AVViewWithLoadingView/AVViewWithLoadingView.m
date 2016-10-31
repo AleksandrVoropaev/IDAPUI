@@ -28,7 +28,6 @@
         [_loadingView removeFromSuperview];
         _loadingView = loadingView;
         [self addSubview:_loadingView];
-//        [self bringSubviewToFront:_loadingView];
     }
 }
 

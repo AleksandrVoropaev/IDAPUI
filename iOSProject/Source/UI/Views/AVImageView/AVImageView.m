@@ -22,10 +22,6 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)dealloc {
-    
-}
-
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     [self initSubviews];
@@ -35,7 +31,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
+    self.loadingView.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+
     if (!self.contentImageView) {
         [self initSubviews];
     }
@@ -87,10 +85,33 @@
 #pragma mark -
 #pragma mark Image Model Observation
 
+- (void)modelWillLoad:(AVModel *)model {
+    if (model == self.imageModel) {
+        AVDispatchAsyncBlockOnMainQueue(^{
+            [self showLoadingView];
+        });
+    }
+}
+
 - (void)modelDidLoad:(AVImageModel *)model {
     if (model == self.imageModel) {
         AVDispatchAsyncBlockOnMainQueue(^{
             self.contentImageView.image = model.image;
+            [self hideLoadingView];
+        });
+    }
+}
+
+- (void)modelDidFailLoading:(AVModel *)model {
+    if (model == self.imageModel) {
+        [self.imageModel load];
+    }
+}
+
+- (void)modelDidUnload:(AVModel *)model {
+    if (model == self.imageModel) {
+        AVDispatchAsyncBlockOnMainQueue(^{
+            self.contentImageView.image = nil;
         });
     }
 }

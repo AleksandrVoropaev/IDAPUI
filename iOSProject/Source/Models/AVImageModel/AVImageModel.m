@@ -82,6 +82,9 @@
 #pragma mark Public
 
 - (void)performLoading {
+    //need to remove -------------------------------------
+    sleep(2);
+    //----------------------------------------------------
     @synchronized (self) {
         NSString *path = [NSFileManager applicationDataFilePath:self.imageName];
         UIImage *image = [UIImage imageWithContentsOfFile:path];

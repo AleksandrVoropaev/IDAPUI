@@ -94,7 +94,9 @@ static NSString * const kDataFileName = @"data.plist";
 }
 
 - (void)performLoading {
-    sleep(5);
+    //need to remove -------------------------------------
+    sleep(2);
+    //----------------------------------------------------
 
     NSArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSFileManager applicationDataFilePath:kDataFileName]];
 

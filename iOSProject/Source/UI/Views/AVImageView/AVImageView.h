@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 #import "AVModel.h"
+#import "AVViewWithLoadingView.h"
+
 @class AVImageModel;
 
-@interface AVImageView : UIView <AVModelObserver>
+@interface AVImageView : AVViewWithLoadingView <AVModelObserver>
 @property (nonatomic, strong)   IBOutlet UIImageView    *contentImageView;
 @property (nonatomic, strong)   AVImageModel            *imageModel;
 
