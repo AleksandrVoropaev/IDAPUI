@@ -21,15 +21,6 @@
 #pragma mark Class Methods
 
 + (instancetype)cache {
-//    AVWeakify(self);
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        AVStrongify(self);
-//        return [[self alloc] init];
-//    });
-
-//    return [[self alloc] init];
-
     static dispatch_once_t onceToken;
     static AVImageModelsCache *imageModelCache = nil;
     AVWeakify(self);
@@ -59,17 +50,6 @@
         if (![self containsImageModelWithURL:url]) {
             [self.cache setObject:model forKey:url];
         }
-    }
-}
-
-- (void)addImageModelWithURL:(NSURL *)url {
-    @synchronized (self) {
-        if ([self containsImageModelWithURL:url]) {
-            return;
-        }
-        
-        AVImageModel *model = [AVImageModel imageWithURL:url];
-        [self addImageModel:model withURL:url];
     }
 }
 
@@ -120,21 +100,8 @@
     }
 }
 
-//- (AVImageModel *)imageModelWithURL:(NSURL *)url {
-//    if ([self containsImageModelWithURL:url]) {
-//        return [self.cache objectForKey:url];
-//    }
-//    
-//    AVImageModel *imageModel = [AVImageModel imageWithURL:url];
-//    [self addImageModel:imageModel];
-//    
-//    return imageModel;
-//}
-
 - (AVImageModel *)imageModelWithURL:(NSURL *)url {
     @synchronized (self) {
-        [self addImageModelWithURL:url];
-        
         return [self.cache objectForKey:url];
     }
 }

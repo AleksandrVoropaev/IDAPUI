@@ -12,6 +12,7 @@
 #import "AVSwitchCaseMacro.h"
 #import "AVGCD.h"
 #import "AVWeakifyStrongify.h"
+#import "AVImageModelsCache.h"
 
 @interface AVImageModel ()
 @property (nonatomic, strong)   UIImage     *image;
@@ -35,9 +36,21 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (void)dealloc {
+    AVImageModelsCache *imageModelCache = [AVImageModelsCache cache];
+    [imageModelCache removeImageModel:self];
+}
+
 - (instancetype)initWithURL:(NSURL *)url {
+    AVImageModelsCache *imageModelCache = [AVImageModelsCache cache];
+    self = [imageModelCache imageModelWithURL:url];
+    if (self) {
+        return self;
+    }
+    
     self = [super init];
     self.url = url;
+    [imageModelCache addImageModel:self withURL:url];
     
     return self;
 }

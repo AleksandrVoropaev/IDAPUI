@@ -13,7 +13,6 @@
 
 #import "NSString+AVRandomName.h"
 
-//static NSString * const kImageFileURL = @"http://www.freeiconspng.com/uploads/person-outline-icon-png-person-outline-icon-png-person-17.png";
 static NSString * const kImageFileURL = @"https://pixabay.com/static/uploads/photo/2014/04/03/00/35/owl-308773_960_720.png";
 static NSString * const kImageFileName = @"userImage";
 static NSString * const kImageFileExtension = @"png";
@@ -65,10 +64,8 @@ static NSString * const kSurnameKey = @"surname";
 
 - (AVImageModel *)imageModel {
     NSURL *url = [NSURL URLWithString:kImageFileURL];
-    AVImageModelsCache *imageModelCache = [AVImageModelsCache cache];
-    AVImageModel *imageModel = [imageModelCache imageModelWithURL:url];
 
-    return imageModel;
+    return [AVImageModel imageWithURL:url];
 }
 
 @end
