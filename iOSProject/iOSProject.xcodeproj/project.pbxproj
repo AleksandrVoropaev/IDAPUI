@@ -18,6 +18,7 @@
 		1F0E890C1D7EFAEF000A85E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F0E89071D7EFAEF000A85E1 /* LaunchScreen.storyboard */; };
 		1F0E890D1D7EFAEF000A85E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F0E89091D7EFAEF000A85E1 /* Main.storyboard */; };
 		1F0E89101D7EFBD0000A85E1 /* userImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F0E890F1D7EFBD0000A85E1 /* userImage.png */; };
+		1F1E02E41DC73C7A00ABC346 /* AVContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1E02E31DC73C7A00ABC346 /* AVContext.m */; };
 		1F2102101D915C7D00B05D6E /* NSArray+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2101FA1D915C7D00B05D6E /* NSArray+AVExtensions.m */; };
 		1F2102111D915C7D00B05D6E /* NSBundle+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2101FD1D915C7D00B05D6E /* NSBundle+AVExtensions.m */; };
 		1F2102121D915C7D00B05D6E /* NSString+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2102001D915C7D00B05D6E /* NSString+AVExtensions.m */; };
@@ -32,6 +33,7 @@
 		1F2B57F01D7057D70026A944 /* iOSProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B57EF1D7057D70026A944 /* iOSProjectUITests.m */; };
 		1F397DC01DA3C6A000AE8272 /* AVArrayChangesObject+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F397DBF1DA3C6A000AE8272 /* AVArrayChangesObject+UITableView.m */; };
 		1F397DC31DA3C6D600AE8272 /* AVArrayChangesObject+AVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F397DC21DA3C6D600AE8272 /* AVArrayChangesObject+AVArrayModel.m */; };
+		1F3E62D51DC73D8B009DD1AD /* AVFacebookLoginContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E62D41DC73D8B009DD1AD /* AVFacebookLoginContext.m */; };
 		1F46F4EC1DC4A42B00542BCF /* AVImageModelsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46F4EB1DC4A42B00542BCF /* AVImageModelsCache.m */; };
 		1F53F4571D9E9BB800E91BC7 /* AVArrayChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F53F4561D9E9BB800E91BC7 /* AVArrayChangesObject.m */; };
 		1F6AE9DD1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9DA1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m */; };
@@ -105,6 +107,8 @@
 		1F0E89081D7EFAEF000A85E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F0E890A1D7EFAEF000A85E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		1F0E890F1D7EFBD0000A85E1 /* userImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userImage.png; sourceTree = "<group>"; };
+		1F1E02E21DC73C7A00ABC346 /* AVContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVContext.h; sourceTree = "<group>"; };
+		1F1E02E31DC73C7A00ABC346 /* AVContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVContext.m; sourceTree = "<group>"; };
 		1F2101F91D915C7D00B05D6E /* NSArray+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AVExtensions.h"; sourceTree = "<group>"; };
 		1F2101FA1D915C7D00B05D6E /* NSArray+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AVExtensions.m"; sourceTree = "<group>"; };
 		1F2101FC1D915C7D00B05D6E /* NSBundle+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+AVExtensions.h"; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 		1F397DBF1DA3C6A000AE8272 /* AVArrayChangesObject+UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVArrayChangesObject+UITableView.m"; sourceTree = "<group>"; };
 		1F397DC11DA3C6D600AE8272 /* AVArrayChangesObject+AVArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVArrayChangesObject+AVArrayModel.h"; sourceTree = "<group>"; };
 		1F397DC21DA3C6D600AE8272 /* AVArrayChangesObject+AVArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVArrayChangesObject+AVArrayModel.m"; sourceTree = "<group>"; };
+		1F3E62D31DC73D8B009DD1AD /* AVFacebookLoginContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFacebookLoginContext.h; sourceTree = "<group>"; };
+		1F3E62D41DC73D8B009DD1AD /* AVFacebookLoginContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFacebookLoginContext.m; sourceTree = "<group>"; };
 		1F46F4EA1DC4A42B00542BCF /* AVImageModelsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVImageModelsCache.h; sourceTree = "<group>"; };
 		1F46F4EB1DC4A42B00542BCF /* AVImageModelsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageModelsCache.m; sourceTree = "<group>"; };
 		1F53F4551D9E9BB800E91BC7 /* AVArrayChangesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayChangesObject.h; sourceTree = "<group>"; };
@@ -260,6 +266,7 @@
 		1F0DCDAB1D79CA7200FD425C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1F1E02E11DC73C7A00ABC346 /* AVContext */,
 				1FEFB5491DB6648400C39542 /* AVModel */,
 				1FCAA6431D86FD0400708B7B /* AVArrayModel */,
 				1F0E88EB1D7EF090000A85E1 /* AVUser */,
@@ -366,6 +373,16 @@
 				1F0E890F1D7EFBD0000A85E1 /* userImage.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		1F1E02E11DC73C7A00ABC346 /* AVContext */ = {
+			isa = PBXGroup;
+			children = (
+				1F3E62D21DC73D8B009DD1AD /* AVFacebookLoginContext */,
+				1F1E02E21DC73C7A00ABC346 /* AVContext.h */,
+				1F1E02E31DC73C7A00ABC346 /* AVContext.m */,
+			);
+			path = AVContext;
 			sourceTree = "<group>";
 		};
 		1F2101F71D915C7D00B05D6E /* AVExtensions */ = {
@@ -534,6 +551,15 @@
 				1F397DBF1DA3C6A000AE8272 /* AVArrayChangesObject+UITableView.m */,
 			);
 			path = "AVArrayChangesObject+UITableView";
+			sourceTree = "<group>";
+		};
+		1F3E62D21DC73D8B009DD1AD /* AVFacebookLoginContext */ = {
+			isa = PBXGroup;
+			children = (
+				1F3E62D31DC73D8B009DD1AD /* AVFacebookLoginContext.h */,
+				1F3E62D41DC73D8B009DD1AD /* AVFacebookLoginContext.m */,
+			);
+			path = AVFacebookLoginContext;
 			sourceTree = "<group>";
 		};
 		1F6AE9D81D9AD23000B43386 /* Private */ = {
@@ -923,6 +949,7 @@
 				1FA245331DA7AE5600A975A1 /* AVGCD.m in Sources */,
 				1F6AE9E51D9E31D300B43386 /* NSObject+AVExtensions.m in Sources */,
 				1FCAA6461D86FD9B00708B7B /* AVArrayModel.m in Sources */,
+				1F3E62D51DC73D8B009DD1AD /* AVFacebookLoginContext.m in Sources */,
 				1FE14AC21D8054A6005D42AA /* AVSquareView.m in Sources */,
 				1F2102171D915C7D00B05D6E /* UIWindow+AVExtensions.m in Sources */,
 				1FE14AC91D8054A6005D42AA /* AVLabelView.m in Sources */,
@@ -933,6 +960,7 @@
 				1FE14AC61D8054A6005D42AA /* AVUserCell.m in Sources */,
 				1F2102161D915C7D00B05D6E /* UIViewController+AVExtensions.m in Sources */,
 				1F0E89031D7EF828000A85E1 /* AVRandom.m in Sources */,
+				1F1E02E41DC73C7A00ABC346 /* AVContext.m in Sources */,
 				1FEFB5441DB6464C00C39542 /* AVViewWithLoadingView.m in Sources */,
 				1F46F4EC1DC4A42B00542BCF /* AVImageModelsCache.m in Sources */,
 				1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */,
