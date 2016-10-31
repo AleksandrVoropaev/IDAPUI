@@ -1,0 +1,5 @@
+target 'iOSProject' do
+    pod ‘Kiwi’
+    pod 'FBSDKCoreKit'
+    pod 'FBSDKLoginKit'
+end

@@ -12,6 +12,8 @@
 #import "AVUsersViewController.h"
 #import "AVUsers.h"
 
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 #import "UIWindow+AVExtensions.h"
 
 @interface AppDelegate ()
@@ -41,6 +43,10 @@
     
     controller.users = users;
 
+//    Facebook ineractions
+//    [[FBSDKApplicationDelegate sharedInstance] application:application
+//                             didFinishLaunchingWithOptions:launchOptions];
+    
     // Override point for customization after application launch.
     return YES;
 }
@@ -60,11 +66,28 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+//    To see how many people are using application
+    [FBSDKAppEvents activateApp];
+    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+//    Facebook ineractions
+//- (BOOL)application:(UIApplication *)application
+//            openURL:(NSURL *)url
+//            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+//    
+//    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+//                                                                  openURL:url
+//                                                        sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+//                                                               annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+//                    ];
+//    // Add any custom logic here.
+//    return handled;
+//}
 
 @end

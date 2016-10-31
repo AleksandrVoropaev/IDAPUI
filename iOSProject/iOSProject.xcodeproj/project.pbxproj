@@ -35,6 +35,10 @@
 		1F397DC31DA3C6D600AE8272 /* AVArrayChangesObject+AVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F397DC21DA3C6D600AE8272 /* AVArrayChangesObject+AVArrayModel.m */; };
 		1F3E62D51DC73D8B009DD1AD /* AVFacebookLoginContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E62D41DC73D8B009DD1AD /* AVFacebookLoginContext.m */; };
 		1F46F4EC1DC4A42B00542BCF /* AVImageModelsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46F4EB1DC4A42B00542BCF /* AVImageModelsCache.m */; };
+		1F4BC67E1DC7989800179A47 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4BC67A1DC7989800179A47 /* Bolts.framework */; };
+		1F4BC67F1DC7989800179A47 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4BC67B1DC7989800179A47 /* FBSDKCoreKit.framework */; };
+		1F4BC6801DC7989800179A47 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4BC67C1DC7989800179A47 /* FBSDKLoginKit.framework */; };
+		1F4BC6811DC7989800179A47 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4BC67D1DC7989800179A47 /* FBSDKShareKit.framework */; };
 		1F53F4571D9E9BB800E91BC7 /* AVArrayChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F53F4561D9E9BB800E91BC7 /* AVArrayChangesObject.m */; };
 		1F6AE9DD1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9DA1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m */; };
 		1F6AE9DE1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9DC1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m */; };
@@ -66,6 +70,7 @@
 		1FEFB54C1DB6649D00C39542 /* AVModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFB54B1DB6649D00C39542 /* AVModel.m */; };
 		1FF0A2481DAF915F00E3B851 /* AVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0A2471DAF915F00E3B851 /* AVLoadingView.m */; };
 		1FF0A24F1DB0EFA000E3B851 /* NSFileManager+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0A24E1DB0EFA000E3B851 /* NSFileManager+AVExtensions.m */; };
+		43A0E418221CE0E5836A9DE6 /* libPods-iOSProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7F16B65A0D8A5B2AFAB341 /* libPods-iOSProject.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +91,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0045E93BF48A32DD87676818 /* Pods-iOSProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProject/Pods-iOSProject.release.xcconfig"; sourceTree = "<group>"; };
 		1F0E88DB1D7ECFA5000A85E1 /* AVSwitchCaseMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVSwitchCaseMacro.h; sourceTree = "<group>"; };
 		1F0E88DC1D7ECFD6000A85E1 /* AVCGRectMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCGRectMacro.h; sourceTree = "<group>"; };
 		1F0E88DD1D7ED07B000A85E1 /* AVRootViewMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVRootViewMacro.h; sourceTree = "<group>"; };
@@ -146,6 +152,10 @@
 		1F3E62D41DC73D8B009DD1AD /* AVFacebookLoginContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFacebookLoginContext.m; sourceTree = "<group>"; };
 		1F46F4EA1DC4A42B00542BCF /* AVImageModelsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVImageModelsCache.h; sourceTree = "<group>"; };
 		1F46F4EB1DC4A42B00542BCF /* AVImageModelsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageModelsCache.m; sourceTree = "<group>"; };
+		1F4BC67A1DC7989800179A47 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		1F4BC67B1DC7989800179A47 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		1F4BC67C1DC7989800179A47 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		1F4BC67D1DC7989800179A47 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		1F53F4551D9E9BB800E91BC7 /* AVArrayChangesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayChangesObject.h; sourceTree = "<group>"; };
 		1F53F4561D9E9BB800E91BC7 /* AVArrayChangesObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVArrayChangesObject.m; sourceTree = "<group>"; };
 		1F6AE9D91D9AD23000B43386 /* AVArrayOneIndexChangesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayOneIndexChangesObject.h; sourceTree = "<group>"; };
@@ -205,6 +215,8 @@
 		1FF0A2471DAF915F00E3B851 /* AVLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVLoadingView.m; sourceTree = "<group>"; };
 		1FF0A24D1DB0EFA000E3B851 /* NSFileManager+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+AVExtensions.h"; sourceTree = "<group>"; };
 		1FF0A24E1DB0EFA000E3B851 /* NSFileManager+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+AVExtensions.m"; sourceTree = "<group>"; };
+		8D7F16B65A0D8A5B2AFAB341 /* libPods-iOSProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFBD274CF63F37DE180663FE /* Pods-iOSProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProject/Pods-iOSProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +224,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43A0E418221CE0E5836A9DE6 /* libPods-iOSProject.a in Frameworks */,
+				1F4BC67F1DC7989800179A47 /* FBSDKCoreKit.framework in Frameworks */,
+				1F4BC6811DC7989800179A47 /* FBSDKShareKit.framework in Frameworks */,
+				1F4BC6801DC7989800179A47 /* FBSDKLoginKit.framework in Frameworks */,
+				1F4BC67E1DC7989800179A47 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +502,8 @@
 				1F2B57C81D7057D70026A944 /* Products */,
 				1F0E89041D7EFA89000A85E1 /* Resources */,
 				1F2B57FD1D70822E0026A944 /* iOS Study Plan.txt */,
+				DDE03CD08243E078BF4B2A76 /* Pods */,
+				DE683E97C6E6FE9298FB49C4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -805,6 +824,27 @@
 			path = AVArrayChangesObject;
 			sourceTree = "<group>";
 		};
+		DDE03CD08243E078BF4B2A76 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BFBD274CF63F37DE180663FE /* Pods-iOSProject.debug.xcconfig */,
+				0045E93BF48A32DD87676818 /* Pods-iOSProject.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DE683E97C6E6FE9298FB49C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1F4BC67A1DC7989800179A47 /* Bolts.framework */,
+				1F4BC67B1DC7989800179A47 /* FBSDKCoreKit.framework */,
+				1F4BC67C1DC7989800179A47 /* FBSDKLoginKit.framework */,
+				1F4BC67D1DC7989800179A47 /* FBSDKShareKit.framework */,
+				8D7F16B65A0D8A5B2AFAB341 /* libPods-iOSProject.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -812,9 +852,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F2B57F41D7057D70026A944 /* Build configuration list for PBXNativeTarget "iOSProject" */;
 			buildPhases = (
+				86F86705F16702A8725D1AEF /* [CP] Check Pods Manifest.lock */,
 				1F2B57C31D7057D70026A944 /* Sources */,
 				1F2B57C41D7057D70026A944 /* Frameworks */,
 				1F2B57C51D7057D70026A944 /* Resources */,
+				755AD7F8A4C4CDE1569EDC0D /* [CP] Embed Pods Frameworks */,
+				F29599ECFFFA003792636872 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -867,7 +910,7 @@
 		1F2B57BF1D7057D70026A944 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Aleksandr Voropaev";
 				TargetAttributes = {
 					1F2B57C61D7057D70026A944 = {
@@ -935,6 +978,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		755AD7F8A4C4CDE1569EDC0D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSProject/Pods-iOSProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86F86705F16702A8725D1AEF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F29599ECFFFA003792636872 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSProject/Pods-iOSProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1F2B57C31D7057D70026A944 /* Sources */ = {
@@ -1057,8 +1148,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1101,8 +1194,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1127,8 +1222,13 @@
 		};
 		1F2B57F51D7057D70026A944 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFBD274CF63F37DE180663FE /* Pods-iOSProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = iOSProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AV.iOSProject;
@@ -1138,8 +1238,14 @@
 		};
 		1F2B57F61D7057D70026A944 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0045E93BF48A32DD87676818 /* Pods-iOSProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "\"/Users/Aleksandr/Documents/FacebookSDK\"";
 				INFOPLIST_FILE = iOSProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AV.iOSProject;

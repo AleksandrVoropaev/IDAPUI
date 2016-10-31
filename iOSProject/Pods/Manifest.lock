@@ -1,0 +1,27 @@
+PODS:
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
+  - FBSDKCoreKit (4.17.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.17.0):
+    - FBSDKCoreKit
+  - Kiwi (2.4.0)
+
+DEPENDENCIES:
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - Kiwi
+
+SPEC CHECKSUMS:
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  FBSDKCoreKit: 30a21d2d7b92984b3d80497113433c00824c35e9
+  FBSDKLoginKit: 42b7129ac0373ca99eaf4cbebf4d07bd42371f59
+  Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
+
+PODFILE CHECKSUM: 8d21bf978f8fed2ec2a1c42aa7c16645d08296a7
+
+COCOAPODS: 1.1.1
