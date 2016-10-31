@@ -42,13 +42,13 @@
 }
 
 - (instancetype)initWithURL:(NSURL *)url {
+    self = [super init];
     AVImageModelsCache *imageModelCache = [AVImageModelsCache cache];
-    self = [imageModelCache imageModelWithURL:url];
-    if (self) {
+    if ([imageModelCache containsImageModelWithURL:url]) {
+        self = [imageModelCache imageModelWithURL:url];
         return self;
     }
     
-    self = [super init];
     self.url = url;
     [imageModelCache addImageModel:self withURL:url];
     
