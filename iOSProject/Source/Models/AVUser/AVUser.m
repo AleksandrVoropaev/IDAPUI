@@ -9,6 +9,7 @@
 #import "AVUser.h"
 
 #import "AVImageModel.h"
+#import "AVImageModelsCache.h"
 
 #import "NSString+AVRandomName.h"
 
@@ -64,10 +65,10 @@ static NSString * const kSurnameKey = @"surname";
 
 - (AVImageModel *)imageModel {
     NSURL *url = [NSURL URLWithString:kImageFileURL];
+    AVImageModelsCache *imageModelCache = [AVImageModelsCache cache];
+    AVImageModel *imageModel = [imageModelCache imageModelWithURL:url];
 
-//    NSURL *url = [[NSBundle mainBundle] URLForResource:kImageFileName withExtension:kImageFileExtension];
-
-    return [AVImageModel imageWithURL:url];
+    return imageModel;
 }
 
 @end
