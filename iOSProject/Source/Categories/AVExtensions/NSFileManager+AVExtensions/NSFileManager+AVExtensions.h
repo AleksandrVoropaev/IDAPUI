@@ -12,6 +12,7 @@
 
 + (NSURL *)applicationDataDirectoryURL:(NSSearchPathDirectory)directory
                              inDomains:(NSSearchPathDomainMask)domainMask;
++ (NSURL *)userDomainApplicationDataDirectoryURL:(NSSearchPathDirectory)directory;
 
 + (NSURL *)specifyURL:(NSURL *)url withFolderName:(NSString *)folderName;
 + (NSURL *)specifyURLWithBundleID:(NSURL *)url;

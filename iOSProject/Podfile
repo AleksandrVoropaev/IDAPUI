@@ -1,0 +1,4 @@
+target 'iOSProject' do
+    pod 'FBSDKCoreKit'
+    pod 'FBSDKLoginKit'
+end

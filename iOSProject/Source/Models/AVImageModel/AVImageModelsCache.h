@@ -14,16 +14,9 @@
 
 + (instancetype)cache;
 
-- (void)addImageModel:(AVImageModel *)model withURL:(NSURL *)url;
 - (void)addImageModel:(AVImageModel *)model;
-
-- (void)removeImageModelWithURL:(NSURL *)url;
 - (void)removeImageModel:(AVImageModel *)model;
-
-- (BOOL)containsImageModelWithURL:(NSURL *)url;
 - (BOOL)containsImageModel:(AVImageModel *)model;
-
 - (AVImageModel *)imageModelWithURL:(NSURL *)url;
-- (NSURL *)URLForImageModel:(AVImageModel *)model;
 
 @end

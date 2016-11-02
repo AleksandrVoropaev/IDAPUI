@@ -9,6 +9,7 @@
 #import "AVImageModelsCache.h"
 
 #import "AVWeakifyStrongify.h"
+#import "AVDispatchMacro.h"
 
 @interface AVImageModelsCache ()
 @property (nonatomic, strong)   NSMapTable  *cache;
@@ -21,15 +22,19 @@
 #pragma mark Class Methods
 
 + (instancetype)cache {
-    static dispatch_once_t onceToken;
-    static AVImageModelsCache *imageModelCache = nil;
-    AVWeakify(self);
-    dispatch_once(&onceToken, ^{
-        AVStrongify(self);
-        imageModelCache = [[self alloc] init];
-    });
+//    static dispatch_once_t onceToken;
+//    static AVImageModelsCache *imageModelCache = nil;
+//    AVWeakify(self);
+//    dispatch_once(&onceToken, ^{
+//        AVStrongify(self);
+//        imageModelCache = [[self alloc] init];
+//    });
+//    
+//    return imageModelCache;
     
-    return imageModelCache;
+    AVDispatchOnceMacro(imageModelCache, AVImageModelsCache, ^{
+        return [self new];
+    });
 }
 
 #pragma mark -

@@ -8,6 +8,8 @@
 
 #import "NSFileManager+AVExtensions.h"
 
+#import "AVDispatchMacro.h"
+
 static NSString * const kDataFolderName = @"appData";
 
 @implementation NSFileManager (AVExtensions)
@@ -29,6 +31,16 @@ static NSString * const kDataFolderName = @"appData";
     return applicationDirectory;
 }
 
++ (NSURL *)userDomainApplicationDataDirectoryURL:(NSSearchPathDirectory)directory {
+    return [self applicationDataDirectoryURL:directory inDomains:NSUserDomainMask];
+}
+
++ (NSURL *)dispatchOnceURLWithDirectory:(NSSearchPathDirectory)directory {
+    AVDispatchOnceMacro(directoryURL, NSURL, ^{
+        return [self userDomainApplicationDataDirectoryURL:directory];
+    });
+}
+
 + (NSURL *)specifyURL:(NSURL *)url withFolderName:(NSString *)folderName {
     return [url URLByAppendingPathComponent:folderName];
 }
@@ -38,14 +50,7 @@ static NSString * const kDataFolderName = @"appData";
 }
 
 + (NSURL *)applicationSupportDirectoryURL {
-    static dispatch_once_t onceToken;
-    static NSURL *applicationSupportDirectory = nil;
-    dispatch_once(&onceToken, ^{
-        applicationSupportDirectory = [self applicationDataDirectoryURL:NSApplicationSupportDirectory
-                                                              inDomains:NSUserDomainMask];
-    });
-    
-    return applicationSupportDirectory;
+    return [self dispatchOnceURLWithDirectory:NSApplicationSupportDirectory];
 }
 
 + (NSURL *)applicationSupportDirectoryURLWithFolderName:(NSString *)folderName {
@@ -53,13 +58,7 @@ static NSString * const kDataFolderName = @"appData";
 }
 
 + (NSURL *)libraryDirectoryURL {
-    static dispatch_once_t onceToken;
-    static NSURL *libraryDirectory = nil;
-    dispatch_once(&onceToken, ^{
-        libraryDirectory = [self applicationDataDirectoryURL:NSLibraryDirectory inDomains:NSUserDomainMask];
-    });
-    
-    return libraryDirectory;
+    return [self dispatchOnceURLWithDirectory:NSLibraryDirectory];
 }
 
 + (NSURL *)libraryDirectoryURLWithFolderName:(NSString *)folderName {
@@ -67,14 +66,11 @@ static NSString * const kDataFolderName = @"appData";
 }
 
 + (NSString *)applicationDataFilePath:(NSString *)fileName {
-    static dispatch_once_t onceToken;
-    static NSString *dataDirectoryPath = nil;
-    dispatch_once(&onceToken, ^{
+    AVDispatchOnceMacro(dataDirectoryPath, NSString, ^{
         dataDirectoryPath = [self libraryDirectoryURLWithFolderName:kDataFolderName].path;
         [self createFolderIfDoesNotExistsAtPath:dataDirectoryPath];
+        return [dataDirectoryPath stringByAppendingPathComponent:fileName];
     });
-    
-    return [dataDirectoryPath stringByAppendingPathComponent:fileName];
 }
 
 + (void)createFolderIfDoesNotExistsAtPath:(NSString *)path {
