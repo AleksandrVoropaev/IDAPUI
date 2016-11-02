@@ -44,4 +44,28 @@ static const NSUInteger kNSStringRandomStringDefaultMaxLength = 30;
     return [symbols copy];
 }
 
++ (NSString *)fileNameWithURL:(NSURL *)url {
+    NSCharacterSet *characters = [NSCharacterSet URLPathAllowedCharacterSet];
+    NSString *path = [url.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:characters];
+    
+    return path;
+}
+
++ (NSString *)fileNameWithoutExtensionWithURL:(NSURL *)url {
+    return [self fileNameWithURL:url].stringByDeletingPathExtension;
+}
+
+- (instancetype)deleteSymbol:(NSString *)symbol {
+    return [self stringByReplacingOccurrencesOfString:symbol withString:@""];
+}
+
+- (instancetype)deleteSymbols:(NSArray *)symbols {
+    id result = self;
+    for (NSString *symbol in symbols) {
+        result = [result deleteSymbol:symbol];
+    }
+    
+    return result;
+}
+
 @end

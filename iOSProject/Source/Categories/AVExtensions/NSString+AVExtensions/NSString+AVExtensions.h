@@ -15,7 +15,11 @@
 + (instancetype)randomString;
 + (instancetype)randomStringWithLength:(NSUInteger)length;
 + (instancetype)randomStringWithLength:(NSUInteger)length alphabet:(AVAlphabet *)alphabet;
++ (NSString *)fileNameWithURL:(NSURL *)url;
++ (NSString *)fileNameWithoutExtensionWithURL:(NSURL *)url;
 
+- (instancetype)deleteSymbol:(NSString *)symbol;
+- (instancetype)deleteSymbols:(NSArray *)symbols;
 - (NSArray *)symbols;
 
 @end

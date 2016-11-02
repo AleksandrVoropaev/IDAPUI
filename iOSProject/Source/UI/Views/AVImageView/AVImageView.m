@@ -31,8 +31,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
-    self.loadingView.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
 
     if (!self.contentImageView) {
         [self initSubviews];
@@ -78,9 +76,19 @@
 #pragma mark -
 #pragma mark View Lifecycle
 
-
 #pragma mark -
 #pragma mark Private
+
+#pragma mark -
+#pragma mark Parrent Methods Overwrite
+
+- (id)actualLoadingView {
+    AVLoadingView *loadingView = [AVLoadingView loadingViewForView:self];
+    loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
+    loadingView.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    
+    return loadingView;
+}
 
 #pragma mark -
 #pragma mark Image Model Observation
