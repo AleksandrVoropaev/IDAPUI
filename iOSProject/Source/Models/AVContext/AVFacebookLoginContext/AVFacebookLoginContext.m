@@ -12,6 +12,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "AVImageModelsCache.h"
+#import "AVUsersViewController.h"
 
 @implementation AVFacebookLoginContext
 
@@ -42,6 +43,8 @@
                                                    user.friends =  [result valueForKey:@"friends"];
                                                    
                                                    user.state = AVModelStateDidLoad;
+                                                   
+                                                   AVUsersViewController *usersViewController = [AVUsersViewController alloc]
                                                }
                                            }];
                                        }

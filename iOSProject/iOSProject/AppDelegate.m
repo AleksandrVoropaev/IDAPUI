@@ -11,6 +11,7 @@
 #import "AVSquareMovingViewController.h"
 #import "AVUsersViewController.h"
 #import "AVUsers.h"
+#import "AVFacebookLoginViewController.h"
 
 #import "UIWindow+AVExtensions.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
@@ -36,15 +37,20 @@
     AVUsers *users = [AVUsers users];
     self.users = users;
     
-    AVUsersViewController *controller = [AVUsersViewController new];
-    self.usersViewController = controller;
+//    AVUsersViewController *controller = [AVUsersViewController new];
+//    self.usersViewController = controller;
     
 //    controller.users = users;
 
+//    window.rootViewController = controller;
+//    [window makeKeyAndVisible];
+    
+//    controller.users = users;
+
+    
+    AVFacebookLoginViewController *controller = [AVFacebookLoginViewController new];
     window.rootViewController = controller;
     [window makeKeyAndVisible];
-    
-    controller.users = users;
 
     // Override point for customization after application launch.
     return YES;
