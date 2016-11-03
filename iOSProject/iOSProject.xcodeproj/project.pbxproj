@@ -36,6 +36,7 @@
 		1F3E62D51DC73D8B009DD1AD /* AVFacebookLoginContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E62D41DC73D8B009DD1AD /* AVFacebookLoginContext.m */; };
 		1F46F4EC1DC4A42B00542BCF /* AVImageModelsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46F4EB1DC4A42B00542BCF /* AVImageModelsCache.m */; };
 		1F53F4571D9E9BB800E91BC7 /* AVArrayChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F53F4561D9E9BB800E91BC7 /* AVArrayChangesObject.m */; };
+		1F64D0911DCB639100E3CAAF /* AVFacebookFriendsLoadContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64D0901DCB639100E3CAAF /* AVFacebookFriendsLoadContext.m */; };
 		1F6AE9DD1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9DA1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m */; };
 		1F6AE9DE1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9DC1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.m */; };
 		1F6AE9E51D9E31D300B43386 /* NSObject+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AE9E41D9E31D300B43386 /* NSObject+AVExtensions.m */; };
@@ -45,6 +46,9 @@
 		1FAF90C01DA5304300DFB062 /* AVUsersSortingArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAF90BF1DA5304300DFB062 /* AVUsersSortingArrayModel.m */; };
 		1FCAA6461D86FD9B00708B7B /* AVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAA6451D86FD9A00708B7B /* AVArrayModel.m */; };
 		1FCAA64A1D8714E700708B7B /* AVUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAA6491D8714E700708B7B /* AVUsers.m */; };
+		1FD7ACBC1DCB85FF00B414B1 /* AVFacebookLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD7ACBA1DCB85FF00B414B1 /* AVFacebookLoginViewController.m */; };
+		1FD7ACBD1DCB85FF00B414B1 /* AVFacebookLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FD7ACBB1DCB85FF00B414B1 /* AVFacebookLoginViewController.xib */; };
+		1FD7ACC01DCB865600B414B1 /* AVFacebookLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD7ACBF1DCB865600B414B1 /* AVFacebookLoginView.m */; };
 		1FE14A961D7FEE37005D42AA /* AVImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14A951D7FEE37005D42AA /* AVImageModel.m */; };
 		1FE14A9A1D800ACD005D42AA /* AVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14A991D800ACD005D42AA /* AVObservableObject.m */; };
 		1FE14ABF1D8054A6005D42AA /* AVSquareMovingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE14AA31D8054A6005D42AA /* AVSquareMovingView.m */; };
@@ -150,6 +154,8 @@
 		1F46F4EB1DC4A42B00542BCF /* AVImageModelsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageModelsCache.m; sourceTree = "<group>"; };
 		1F53F4551D9E9BB800E91BC7 /* AVArrayChangesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayChangesObject.h; sourceTree = "<group>"; };
 		1F53F4561D9E9BB800E91BC7 /* AVArrayChangesObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVArrayChangesObject.m; sourceTree = "<group>"; };
+		1F64D08F1DCB639100E3CAAF /* AVFacebookFriendsLoadContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFacebookFriendsLoadContext.h; sourceTree = "<group>"; };
+		1F64D0901DCB639100E3CAAF /* AVFacebookFriendsLoadContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFacebookFriendsLoadContext.m; sourceTree = "<group>"; };
 		1F6AE9D91D9AD23000B43386 /* AVArrayOneIndexChangesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayOneIndexChangesObject.h; sourceTree = "<group>"; };
 		1F6AE9DA1D9AD23000B43386 /* AVArrayOneIndexChangesObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVArrayOneIndexChangesObject.m; sourceTree = "<group>"; };
 		1F6AE9DB1D9AD23000B43386 /* AVArrayTwoIndexesChangesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVArrayTwoIndexesChangesObject.h; sourceTree = "<group>"; };
@@ -168,6 +174,11 @@
 		1FCAA6451D86FD9A00708B7B /* AVArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVArrayModel.m; sourceTree = "<group>"; };
 		1FCAA6481D8714E700708B7B /* AVUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVUsers.h; sourceTree = "<group>"; };
 		1FCAA6491D8714E700708B7B /* AVUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVUsers.m; sourceTree = "<group>"; };
+		1FD7ACB91DCB85FF00B414B1 /* AVFacebookLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFacebookLoginViewController.h; sourceTree = "<group>"; };
+		1FD7ACBA1DCB85FF00B414B1 /* AVFacebookLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFacebookLoginViewController.m; sourceTree = "<group>"; };
+		1FD7ACBB1DCB85FF00B414B1 /* AVFacebookLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFacebookLoginViewController.xib; sourceTree = "<group>"; };
+		1FD7ACBE1DCB865600B414B1 /* AVFacebookLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFacebookLoginView.h; sourceTree = "<group>"; };
+		1FD7ACBF1DCB865600B414B1 /* AVFacebookLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFacebookLoginView.m; sourceTree = "<group>"; };
 		1FE14A941D7FEE37005D42AA /* AVImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVImageModel.h; sourceTree = "<group>"; };
 		1FE14A951D7FEE37005D42AA /* AVImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageModel.m; sourceTree = "<group>"; };
 		1FE14A981D800ACD005D42AA /* AVObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVObservableObject.h; sourceTree = "<group>"; };
@@ -385,6 +396,7 @@
 		1F1E02E11DC73C7A00ABC346 /* AVContext */ = {
 			isa = PBXGroup;
 			children = (
+				1F64D08E1DCB639100E3CAAF /* AVFacebookFriendsLoadContext */,
 				1F3E62D21DC73D8B009DD1AD /* AVFacebookLoginContext */,
 				1F1E02E21DC73C7A00ABC346 /* AVContext.h */,
 				1F1E02E31DC73C7A00ABC346 /* AVContext.m */,
@@ -571,6 +583,15 @@
 			path = AVFacebookLoginContext;
 			sourceTree = "<group>";
 		};
+		1F64D08E1DCB639100E3CAAF /* AVFacebookFriendsLoadContext */ = {
+			isa = PBXGroup;
+			children = (
+				1F64D08F1DCB639100E3CAAF /* AVFacebookFriendsLoadContext.h */,
+				1F64D0901DCB639100E3CAAF /* AVFacebookFriendsLoadContext.m */,
+			);
+			path = AVFacebookFriendsLoadContext;
+			sourceTree = "<group>";
+		};
 		1F6AE9D81D9AD23000B43386 /* Private */ = {
 			isa = PBXGroup;
 			children = (
@@ -658,6 +679,18 @@
 			path = AVUsers;
 			sourceTree = "<group>";
 		};
+		1FD7ACB81DCB85FF00B414B1 /* AVFacebookLoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1FD7ACBE1DCB865600B414B1 /* AVFacebookLoginView.h */,
+				1FD7ACBF1DCB865600B414B1 /* AVFacebookLoginView.m */,
+				1FD7ACB91DCB85FF00B414B1 /* AVFacebookLoginViewController.h */,
+				1FD7ACBA1DCB85FF00B414B1 /* AVFacebookLoginViewController.m */,
+				1FD7ACBB1DCB85FF00B414B1 /* AVFacebookLoginViewController.xib */,
+			);
+			path = AVFacebookLoginViewController;
+			sourceTree = "<group>";
+		};
 		1FE14A931D7FEE37005D42AA /* AVImageModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -681,6 +714,7 @@
 		1FE14AA01D8054A6005D42AA /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				1FD7ACB81DCB85FF00B414B1 /* AVFacebookLoginViewController */,
 				1FE14AA11D8054A6005D42AA /* AVSquareMovingViewController */,
 				1FE14AAA1D8054A6005D42AA /* AVUsersViewComtroller */,
 				1FE14AB51D8054A6005D42AA /* Test */,
@@ -944,6 +978,7 @@
 				1F0E890D1D7EFAEF000A85E1 /* Main.storyboard in Resources */,
 				1FE14AC71D8054A6005D42AA /* AVUserCell.xib in Resources */,
 				1FE14AC51D8054A6005D42AA /* AVUsersViewController.xib in Resources */,
+				1FD7ACBD1DCB85FF00B414B1 /* AVFacebookLoginViewController.xib in Resources */,
 				1FE14AC11D8054A6005D42AA /* AVSquareMovingViewController.xib in Resources */,
 				1FEFB5481DB64F5100C39542 /* AVLoadingView.xib in Resources */,
 			);
@@ -1039,12 +1074,15 @@
 				1F0E89031D7EF828000A85E1 /* AVRandom.m in Sources */,
 				1F1E02E41DC73C7A00ABC346 /* AVContext.m in Sources */,
 				1FEFB5441DB6464C00C39542 /* AVViewWithLoadingView.m in Sources */,
+				1FD7ACC01DCB865600B414B1 /* AVFacebookLoginView.m in Sources */,
 				1F46F4EC1DC4A42B00542BCF /* AVImageModelsCache.m in Sources */,
+				1FD7ACBC1DCB85FF00B414B1 /* AVFacebookLoginViewController.m in Sources */,
 				1F2B57CF1D7057D70026A944 /* AppDelegate.m in Sources */,
 				1FE14A9A1D800ACD005D42AA /* AVObservableObject.m in Sources */,
 				1FE14AC81D8054A6005D42AA /* AVDraggableView.m in Sources */,
 				1F397DC01DA3C6A000AE8272 /* AVArrayChangesObject+UITableView.m in Sources */,
 				1FA16A1E1D95562400F7C27E /* NSMutableArray+AVExtensions.m in Sources */,
+				1F64D0911DCB639100E3CAAF /* AVFacebookFriendsLoadContext.m in Sources */,
 				1FAF90C01DA5304300DFB062 /* AVUsersSortingArrayModel.m in Sources */,
 				1FCAA64A1D8714E700708B7B /* AVUsers.m in Sources */,
 				1F0E88FE1D7EF7F9000A85E1 /* AVRangeAlphabet.m in Sources */,

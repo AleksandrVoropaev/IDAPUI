@@ -17,7 +17,7 @@
 
 - (void)execute {
     FBSDKLoginManager *loginManager = [FBSDKLoginManager new];
-    [loginManager logInWithReadPermissions:@[@"public_profile"]
+    [loginManager logInWithReadPermissions:@[@"public_profile", @"email", @"user_friends"]
                         fromViewController:self.viewController
                                    handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
                                        AVUser *user = [AVUser new];
@@ -32,18 +32,17 @@
                                        parameters:nil] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
                                                if (error) {
                                                    NSLog(@"%@", error.description);
-                                                   return nil;
+                                               } else {
+                                                   user.userID = [[FBSDKAccessToken currentAccessToken] userID];
+                                                   user.name = [result valueForKey:@"name"];
+                                                   user.surname = [result valueForKey:@""];
+                                                   user.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [[FBSDKAccessToken currentAccessToken] userID]]];
+                                                   //user.imageModel = [[AVImageModelsCache cache] imageModelWithURL:user.imageURL];
+                                                   user.email =  [result valueForKey:@"email"];
+                                                   user.friends =  [result valueForKey:@"friends"];
+                                                   
+                                                   user.state = AVModelStateDidLoad;
                                                }
-                                               
-                                               user.userID = [[FBSDKAccessToken currentAccessToken] userID];
-                                               user.name = [result valueForKey:@"name"];
-                                               user.surname = [result valueForKey:@""];
-                                               user.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [[FBSDKAccessToken currentAccessToken] userID]]];
-                                               //                                               user.imageModel = [[AVImageModelsCache cache] imageModelWithURL:user.imageURL];
-                                               user.email =  [result valueForKey:@"email"];
-                                               user.friends =  [result valueForKey:@"friends"];
-                                               
-                                               user.state = AVModelStateDidLoad;
                                            }];
                                        }
                                        
